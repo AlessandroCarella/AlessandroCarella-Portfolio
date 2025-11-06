@@ -15,7 +15,6 @@ import About from "./pages/About";
 import Resume from "./pages/Resume";
 import "./styles/App.css";
 import "./styles/text.css";
-import ProjectPageDemo from "./pages/ProjectPageDemo";
 import ProjectPageWrapper from "./pages/ProjectPageWrapper";
 
 const WIPpage = "/home";
@@ -48,7 +47,6 @@ function AppContent() {
             />
             <div className="app-container mt-4">
                 <Routes>
-                    <Route path="/project-demo" element={<ProjectPageDemo />} />
                     <Route
                         path="/"
                         element={<Navigate to={WIPpage} replace />}

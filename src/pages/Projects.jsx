@@ -11,16 +11,6 @@ const Projects = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("all");
 
-    // Categories for filtering
-    const categories = [
-        "all",
-        "data mining",
-        "business",
-        "visualization",
-        "thesis",
-        "other",
-    ];
-
     useEffect(() => {
         loadProjects();
     }, []);
