@@ -23,7 +23,7 @@ const Projects = () => {
         try {
             // Dynamically import all JSON files from the projects directory
             const projectModules = import.meta.glob(
-                "/src/pages/projects/**/*.json"
+                "/public/projects/**/*.json"
             );
 
             const projectsData = [];
@@ -51,7 +51,7 @@ const Projects = () => {
                     projectsData.push({
                         ...projectData,
                         folderName: folderName, // Original folder name for ProjectPage
-                        folderPath: `/src/pages/projects/${folderName}`,
+                        folderPath: `/public/projects/${folderName}`,
                         backgroundImage,
                         id: folderName,
                         urlSlug: urlSlug, // URL-friendly version

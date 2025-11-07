@@ -10,7 +10,7 @@ import "./styles/ProjectPage.css";
 
 const ProjectPage = ({
     projectFolderName,
-    projectsFolder = "/src/pages/projects/",
+    projectsFolder = "/projects/",
     imageNames = [],
 }) => {
     const [projectData, setProjectData] = useState(null);
@@ -24,38 +24,67 @@ const ProjectPage = ({
             try {
                 setLoading(true);
 
-                // Construct paths
+                // Construct paths - files are in public folder
                 const basePath = `${projectsFolder}${projectFolderName}`;
-                const jsonPath = `${basePath}/${projectFolderName}.json`;
-                const htmlPath = `${basePath}/${projectFolderName}.html`;
 
-                // Load JSON
-                const jsonResponse = await fetch(jsonPath);
-                if (!jsonResponse.ok)
+                // Try to find the JSON file - need to handle different naming conventions
+                let jsonData = null;
+                let htmlText = null;
+
+                // Try different possible JSON file names
+                const possibleJsonNames = [
+                    `${projectFolderName}.json`,
+                    `${projectFolderName.replace(/\s+/g, "_")}.json`,
+                    `${projectFolderName
+                        .replace(/\s+/g, "_")
+                        .replace(/_(\d)/g, " $1")}.json`,
+                ];
+
+                for (const jsonName of possibleJsonNames) {
+                    try {
+                        const jsonPath = `${basePath}/${jsonName}`;
+                        const jsonResponse = await fetch(jsonPath);
+                        if (jsonResponse.ok) {
+                            jsonData = await jsonResponse.json();
+                            break;
+                        }
+                    } catch (e) {
+                        // Continue to next possibility
+                    }
+                }
+
+                if (!jsonData) {
                     throw new Error("Failed to load project JSON");
-                const jsonData = await jsonResponse.json();
+                }
+
                 setProjectData(jsonData);
 
-                // Load HTML
-                const htmlResponse = await fetch(htmlPath);
-                if (!htmlResponse.ok)
-                    throw new Error("Failed to load project HTML");
-                let htmlText = await htmlResponse.text();
+                // Try to load HTML content if specified
+                if (jsonData.content) {
+                    const htmlPath = `${basePath}/${jsonData.content}`;
+                    const htmlResponse = await fetch(htmlPath);
+                    if (htmlResponse.ok) {
+                        htmlText = await htmlResponse.text();
 
-                // Replace image paths with correct paths
-                imageNames.forEach((imageName) => {
-                    const imagePath = `${basePath}/${imageName}`;
-                    htmlText = htmlText.replace(
-                        new RegExp(`src="${imageName}"`, "g"),
-                        `src="${imagePath}"`
-                    );
-                });
+                        // Replace image paths with correct paths
+                        imageNames.forEach((imageName) => {
+                            const imagePath = `${basePath}/${imageName}`;
+                            htmlText = htmlText.replace(
+                                new RegExp(`src="${imageName}"`, "g"),
+                                `src="${imagePath}"`
+                            );
+                        });
 
-                setHtmlContent(htmlText);
+                        setHtmlContent(htmlText);
+                    }
+                }
+
                 setLoading(false);
             } catch (err) {
                 console.error("Error loading project data:", err);
-                setError(err.message);
+                setError(
+                    `Error Loading Project: ${err.message}. Please check that the project files exist at: ${projectsFolder}${projectFolderName}/`
+                );
                 setLoading(false);
             }
         };
@@ -182,111 +211,116 @@ const ProjectPage = ({
     const getRepositoryName = (url) => {
         try {
             const match = url.match(/github\.com\/[^/]+\/([^/]+)/);
-            return match ? match[1] : "Repository";
+            if (match) {
+                return match[1].replace(/-/g, " ");
+            }
         } catch (e) {
             console.error("Error parsing repository name:", e);
-            return "Repository";
         }
+        return "Repository";
     };
 
-    // Convert keyWords object to SkillSection format
+    // Format keywords into display-friendly structure
     const formatKeyWords = (keyWords) => {
         if (!keyWords) return {};
 
         const formatted = {};
-        Object.entries(keyWords).forEach(([category, items]) => {
-            // Convert category name to title case with spaces
-            const categoryName = category
+        Object.entries(keyWords).forEach(([key, values]) => {
+            const displayKey = key
                 .split("_")
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(" ");
 
-            // Convert items array to array of objects with null values (no links)
-            formatted[categoryName] = items.map((item) => ({ [item]: null }));
+            formatted[displayKey] = Array.isArray(values) ? values : [values];
         });
 
         return formatted;
     };
 
-    // Get PDF path
-    const getPDFPath = (filename) => {
-        const basePath = `${projectsFolder}${projectFolderName}`;
-        return `${basePath}/${filename}`;
+    // Handle PDF opening
+    const handleOpenPDF = (type, path) => {
+        // Construct full path to PDF in public folder
+        const fullPath = `${projectsFolder}${projectFolderName}/${path}`;
+        setActivePDF({ type, path: fullPath });
     };
 
-    // Handle PDF open
-    const handleOpenPDF = (type, filename) => {
-        setActivePDF({
-            type,
-            path: getPDFPath(filename),
-        });
-    };
-
-    // Handle PDF close
     const handleClosePDF = () => {
         setActivePDF(null);
     };
 
+    const colors = {
+        background: "#f0f6fc",
+        text: "#010409",
+        border: "#d1d9e0",
+        hover: "#e6edf3",
+    };
+
     if (loading) {
         return (
-            <div className="project-page-container">
-                <div className="loading-message">
-                    <p className="paragraph">Loading project data...</p>
-                </div>
+            <div className="project-page-loading">
+                <div className="loading-spinner"></div>
+                <p>Loading project...</p>
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="project-page-container">
-                <div className="error-message">
-                    <h2 className="heading-lg">Error Loading Project</h2>
-                    <p className="paragraph">{error}</p>
-                    <p className="paragraph">
-                        Please check that the project files exist at:
-                        <br />
-                        {projectsFolder}
-                        {projectFolderName}/
-                    </p>
-                </div>
+            <div className="project-page-error">
+                <h2>Error Loading Project</h2>
+                <p>{error}</p>
             </div>
         );
     }
 
-    const colors = ["blue", "green", "purple", "orange", "red"];
-    const { introContent, sections } = parseHtmlIntoSections(htmlContent);
+    if (!projectData) {
+        return (
+            <div className="project-page-error">
+                <h2>No Project Data</h2>
+                <p>Project data could not be loaded.</p>
+            </div>
+        );
+    }
+
+    const { introContent, sections } = htmlContent
+        ? parseHtmlIntoSections(htmlContent)
+        : { introContent: [], sections: [] };
 
     return (
-        <div className="project-page-wrapper">
-            {/* Project Title */}
-            <div className="project-title-section">
-                <h1 className="project-main-title">
-                    {projectData.projectName}
-                </h1>
-            </div>
-
-            <div className="project-page-container">
+        <div className="project-page-container">
+            <div className="project-page-layout">
                 {/* Main Content - 70% */}
                 <main className="project-main-content">
-                    <div className="project-content-wrapper">
-                        {/* Intro content (before first heading) */}
-                        {introContent.length > 0 && (
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: introContent.join(""),
-                                }}
-                            />
+                    {/* Project Header */}
+                    <header className="project-header">
+                        <h1 className="heading-xl project-title">
+                            {projectData.projectName}
+                        </h1>
+                        {projectData.quickSummary && (
+                            <p className="paragraph project-summary">
+                                {projectData.quickSummary}
+                            </p>
                         )}
+                    </header>
 
-                        {/* Main sections with collapsible subsections */}
-                        {sections.map((section, sectionIndex) => (
+                    {/* Introduction Content */}
+                    {introContent.length > 0 && (
+                        <div
+                            className="project-intro"
+                            dangerouslySetInnerHTML={{
+                                __html: introContent.join(""),
+                            }}
+                        />
+                    )}
+
+                    {/* Collapsible Sections */}
+                    <div className="project-sections">
+                        {sections.map((section, index) => (
                             <CollapsibleSection
-                                key={`section-${sectionIndex}`}
+                                key={`section-${index}`}
                                 title={section.title}
-                                defaultOpen={section.title == "What I Learned" ? true : false}
+                                isInitiallyExpanded={index === 0}
                             >
-                                {/* Section content */}
                                 {section.content.length > 0 && (
                                     <div
                                         dangerouslySetInnerHTML={{

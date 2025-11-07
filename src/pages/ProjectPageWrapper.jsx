@@ -8,15 +8,87 @@ import "./styles/ProjectPageWrapper.css";
  *
  * This component:
  * 1. Reads the project slug from the URL (e.g., /projects/data-mining-1)
- * 2. Loads all project JSON files to find the matching project
+ * 2. Fetches the project JSON file from public folder
  * 3. Extracts image filenames from the project data
  * 4. Passes the correct props to ProjectPage component
  *
- * Usage in App.jsx:
- * import ProjectPageWrapper from './pages/ProjectPageWrapper';
- *
- * <Route path="/projects/:projectSlug" element={<ProjectPageWrapper />} />
+ * IMPORTANT: Project folders must be in /public/projects/ directory
+ * Structure: /public/projects/Data Mining 1/Data_Mining_1.json
  */
+
+// Map of URL slugs to project folder names and JSON file names
+// This needs to be manually maintained or generated during build
+const PROJECT_MAP = {
+    "data-mining-1": {
+        folder: "Data Mining 1",
+        jsonFile: "data_Mining_1.json",
+    },
+    "data-mining-2": {
+        folder: "Data Mining 2",
+        jsonFile: "Data_Mining_2.json",
+    },
+    "decision-support-system": {
+        folder: "Decision Support System",
+        jsonFile: "Decision Support System.json",
+    },
+    "bachelor-thesis": {
+        folder: "Bachelor Thesis",
+        jsonFile: "Bachelor_Thesis.json",
+    },
+    "business-process-mining": {
+        folder: "Business Process Mining",
+        jsonFile: "Business_Process_Mining.json",
+    },
+    "fundamentals-of-business-management": {
+        folder: "Fundamentals of Business Management",
+        jsonFile: "Fundamentals_of_Business_Management.json",
+    },
+    "hackathon-xai": {
+        folder: "Hackathon XAI",
+        jsonFile: "Hackathon_XAI.json",
+    },
+    "healthy-catering": {
+        folder: "Healthy Catering",
+        jsonFile: "Healthy_Catering.json",
+    },
+    "information-retrieval": {
+        folder: "Information Retrieval",
+        jsonFile: "Information_Retrieval.json",
+    },
+    "master-thesis": {
+        folder: "Master Thesis",
+        jsonFile: "Master_Thesis.json",
+    },
+    "optimization-for-data-science": {
+        folder: "Optimization for Data Science",
+        jsonFile: "Optimization_for_Data_Science.json",
+    },
+    "project-design-and-management": {
+        folder: "Project Design and Management",
+        jsonFile: "Project_Design_and_Management.json",
+    },
+    scomodo: {
+        folder: "Scomodo",
+        jsonFile: "Scomodo.json",
+    },
+    "statistics-for-data-science": {
+        folder: "Statistics for Data Science",
+        jsonFile: "Statistics_for_Data_Science.json",
+    },
+    "strategic-and-competitive-intelligence": {
+        folder: "Strategic and Competitive Intelligence",
+        jsonFile: "Strategic_and_Competitive_Intelligence.json",
+    },
+    "technologies-for-web-marketing": {
+        folder: "Technologies for Web Marketing",
+        jsonFile: "Technologies_for_Web_Marketing.json",
+    },
+    "visual-analytics": {
+        folder: "Visual Analytics",
+        jsonFile: "Visual_Analytics.json",
+    },
+};
+
 const ProjectPageWrapper = () => {
     const { projectSlug } = useParams();
     const navigate = useNavigate();
@@ -33,50 +105,31 @@ const ProjectPageWrapper = () => {
             setLoading(true);
             setError(null);
 
-            // Load all project JSON files
-            const projectModules = import.meta.glob(
-                "/src/pages/projects/**/*.json"
-            );
+            // Check if project exists in our map
+            const projectInfo = PROJECT_MAP[projectSlug];
 
-            let foundProject = null;
-            let projectFolderName = null;
-
-            // Find the matching project by comparing URL slug
-            for (const path in projectModules) {
-                try {
-                    const folderMatch = path.match(
-                        /\/src\/pages\/projects\/([^/]+)\//
-                    );
-                    const folderName = folderMatch ? folderMatch[1] : "";
-
-                    // Create URL slug from folder name
-                    const urlSlug = folderName
-                        .toLowerCase()
-                        .replace(/\s+/g, "-");
-
-                    // Check if this is the project we're looking for
-                    if (urlSlug === projectSlug) {
-                        const module = await projectModules[path]();
-                        foundProject = module.default;
-                        projectFolderName = folderName;
-                        break;
-                    }
-                } catch (error) {
-                    console.error(`Error loading project from ${path}:`, error);
-                }
-            }
-
-            if (!foundProject || !projectFolderName) {
+            if (!projectInfo) {
                 setError("Project not found");
                 setLoading(false);
                 return;
             }
 
+            // Fetch the JSON file from public folder
+            const jsonPath = `/projects/${projectInfo.folder}/${projectInfo.jsonFile}`;
+
+            const response = await fetch(jsonPath);
+
+            if (!response.ok) {
+                throw new Error(`Failed to load project: ${response.status}`);
+            }
+
+            const foundProject = await response.json();
+
             // Extract image names from the project data
             const imageNames = extractImageNames(foundProject);
 
             setProjectData({
-                projectFolderName,
+                projectFolderName: projectInfo.folder,
                 imageNames,
                 projectInfo: foundProject,
             });
@@ -178,7 +231,7 @@ const ProjectPageWrapper = () => {
     return (
         <ProjectPage
             projectFolderName={projectData.projectFolderName}
-            projectsFolder="/src/pages/projects/"
+            projectsFolder="/projects/"
             imageNames={projectData.imageNames}
         />
     );

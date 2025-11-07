@@ -86,7 +86,7 @@ const Home = () => {
                             Graduated in
                             <br />
                             Data Science
-                            <br />&<br />
+                            <br />and<br />
                             Business Informatics
                             <br />&<br />
                             Computer Science
