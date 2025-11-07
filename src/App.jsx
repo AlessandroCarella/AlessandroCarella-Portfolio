@@ -11,11 +11,11 @@ import { Home as HomeIcon, User, Briefcase, FileText } from "lucide-react";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import About from "./pages/About";
 import Resume from "./pages/Resume";
 import "./styles/App.css";
 import "./styles/text.css";
-import ProjectPageWrapper from "./pages/ProjectPageWrapper";
 
 const WIPpage = "/home";
 
@@ -66,7 +66,7 @@ function AppContent() {
                         */}
                     <Route
                         path="/projects/:projectSlug"
-                        element={<ProjectPageWrapper />}
+                        element={<ProjectDetail />} // ✅ CHANGED: Updated component
                     />
 
                     {/* Other pages */}

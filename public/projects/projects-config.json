@@ -1,0 +1,251 @@
+{
+    "projects": [
+        {
+            "slug": "data-mining-1",
+            "folder": "Data Mining 1",
+            "jsonFile": "data Mining 1.json",
+            "htmlFile": "data Mining 1.html",
+            "pdfFiles": {
+                "report": "REPORT data mining 1.pdf"
+            },
+            "images": ["heatmap.png", "learningCurve.png"],
+            "categories": ["data mining", "machine learning"]
+        },
+        {
+            "slug": "data-mining-2",
+            "folder": "Data Mining 2",
+            "jsonFile": "Data_Mining_2.json",
+            "htmlFile": "Data_Mining_2.html",
+            "pdfFiles": {
+                "report": "REPORT data mining 2.pdf"
+            },
+            "images": [],
+            "categories": ["data mining", "machine learning"]
+        },
+        {
+            "slug": "decision-support-system",
+            "folder": "Decision Support System",
+            "jsonFile": "Decision Support System.json",
+            "htmlFile": "Decision Support System.html",
+            "pdfFiles": {
+                "report": "REPORT Decision Support Systems.pdf",
+                "presentation": "PRESENTATION Decision Support Systems.pdf"
+            },
+            "images": [
+                "DW Schema.png",
+                "geo_dash.png",
+                "People_Dashboard.png",
+                "Street_dashboard.jpeg"
+            ],
+            "categories": ["business intelligence", "data warehouse"]
+        },
+        {
+            "slug": "bachelor-thesis",
+            "folder": "Bachelor Thesis",
+            "jsonFile": "Bachelor_Thesis.json",
+            "htmlFile": "Bachelor_Thesis.html",
+            "pdfFiles": {
+                "report": "BACHELOR THESIS.pdf",
+                "manual": "BACHELOR THESIS user manual.pdf"
+            },
+            "images": [],
+            "categories": ["thesis", "web development"]
+        },
+        {
+            "slug": "business-process-mining",
+            "folder": "Business Process Mining",
+            "jsonFile": "Business_Process_Mining.json",
+            "htmlFile": "Business_Process_Mining.html",
+            "pdfFiles": {
+                "report": "REPORT business processes modeling.pdf"
+            },
+            "images": [],
+            "categories": ["business", "process mining"]
+        },
+        {
+            "slug": "fundamentals-of-business-management",
+            "folder": "Fundamentals of Business Management",
+            "jsonFile": "Fundamentals_of_Business_Management.json",
+            "htmlFile": "Fundamentals_of_Business_Management.html",
+            "pdfFiles": {
+                "report": "REPORT Fundamentals of Business Management.pdf",
+                "presentation": "PRESENTATION Fundamentals of Business Management.pdf"
+            },
+            "images": [],
+            "categories": ["business", "management"]
+        },
+        {
+            "slug": "hackathon-xai",
+            "folder": "Hackathon XAI",
+            "jsonFile": "Hackathon_XAI.json",
+            "htmlFile": "Hackathon_XAI.html",
+            "pdfFiles": {
+                "report": "REPORT Hackathon.pdf"
+            },
+            "images": [],
+            "categories": ["machine learning", "explainable ai"]
+        },
+        {
+            "slug": "healthy-catering",
+            "folder": "Healthy Catering",
+            "jsonFile": "Healthy_Catering.json",
+            "htmlFile": "Healthy_Catering.html",
+            "pdfFiles": {
+                "report": "REPORT Heatlhy Catering.pdf",
+                "manual": "USER MANUAL Heatlhy Catering.pdf"
+            },
+            "images": [],
+            "categories": ["web development", "business"]
+        },
+        {
+            "slug": "information-retrieval",
+            "folder": "Information Retrieval",
+            "jsonFile": "Information_Retrieval.json",
+            "htmlFile": "Information_Retrieval.html",
+            "pdfFiles": {
+                "presentation": "PRESENTATION Information retrival.pdf"
+            },
+            "images": [],
+            "categories": ["information retrieval", "search"]
+        },
+        {
+            "slug": "master-thesis",
+            "folder": "Master Thesis",
+            "jsonFile": "Master_Thesis.json",
+            "htmlFile": "Master_Thesis.html",
+            "pdfFiles": {
+                "report": "MASTER THESIS.pdf"
+            },
+            "images": [],
+            "categories": ["thesis", "machine learning"]
+        },
+        {
+            "slug": "optimization-for-data-science",
+            "folder": "Optimization for Data Science",
+            "jsonFile": "Optimization_for_Data_Science.json",
+            "htmlFile": "Optimization_for_Data_Science.html",
+            "pdfFiles": {
+                "report": "REPORT Optimization for data science.pdf"
+            },
+            "images": [],
+            "categories": ["optimization", "data science"]
+        },
+        {
+            "slug": "project-design-and-management",
+            "folder": "Project Design and Management",
+            "jsonFile": "Project_Design_and_Management.json",
+            "htmlFile": "Project_Design_and_Management.html",
+            "pdfFiles": {
+                "report": "REPORT Project Design and Management.pdf",
+                "presentation": "PRESENTATION Project Design and Management.pdf"
+            },
+            "images": [],
+            "categories": ["business", "management", "project management"]
+        },
+        {
+            "slug": "scomodo",
+            "folder": "Scomodo",
+            "jsonFile": "Scomodo.json",
+            "htmlFile": "Scomodo.html",
+            "pdfFiles": {},
+            "images": [],
+            "categories": ["web development", "e-commerce"]
+        },
+        {
+            "slug": "statistics-for-data-science",
+            "folder": "Statistics for Data Science",
+            "jsonFile": "Statistics_for_Data_Science.json",
+            "htmlFile": "Statistics_for_Data_Science.html",
+            "pdfFiles": {
+                "presentation": "PRESENTATION statistics for data science.pdf"
+            },
+            "images": [],
+            "categories": ["statistics", "data science"]
+        },
+        {
+            "slug": "strategic-and-competitive-intelligence",
+            "folder": "Strategic and Competitive Intelligence",
+            "jsonFile": "Strategic_and_Competitive_Intelligence.json",
+            "htmlFile": "Strategic_and_Competitive_Intelligence.html",
+            "pdfFiles": {},
+            "images": [],
+            "categories": ["business", "intelligence"]
+        },
+        {
+            "slug": "technologies-for-web-marketing",
+            "folder": "Technologies for Web Marketing",
+            "jsonFile": "Technologies_for_Web_Marketing.json",
+            "htmlFile": "Technologies_for_Web_Marketing.html",
+            "pdfFiles": {},
+            "images": [],
+            "categories": ["web development", "marketing"]
+        },
+        {
+            "slug": "visual-analytics",
+            "folder": "Visual Analytics",
+            "jsonFile": "Visual_Analytics.json",
+            "htmlFile": "Visual_Analytics.html",
+            "pdfFiles": {
+                "report": "REPORT Visual analytics.pdf"
+            },
+            "images": [],
+            "categories": ["visualization", "data science"]
+        }
+    ],
+    "categoryColors": {
+        "data mining": {
+            "cardBackground": "#1a1f2e",
+            "titleColor": "#64b5f6",
+            "overlayGradientStart": "rgba(25, 118, 210, 0.1)",
+            "overlayGradientEnd": "rgba(25, 118, 210, 0.6)"
+        },
+        "machine learning": {
+            "cardBackground": "#1a1f2e",
+            "titleColor": "#64b5f6",
+            "overlayGradientStart": "rgba(25, 118, 210, 0.1)",
+            "overlayGradientEnd": "rgba(25, 118, 210, 0.6)"
+        },
+        "business": {
+            "cardBackground": "#1e1a2e",
+            "titleColor": "#ba68c8",
+            "overlayGradientStart": "rgba(123, 31, 162, 0.1)",
+            "overlayGradientEnd": "rgba(123, 31, 162, 0.6)"
+        },
+        "management": {
+            "cardBackground": "#1e1a2e",
+            "titleColor": "#ba68c8",
+            "overlayGradientStart": "rgba(123, 31, 162, 0.1)",
+            "overlayGradientEnd": "rgba(123, 31, 162, 0.6)"
+        },
+        "visualization": {
+            "cardBackground": "#1a2e1f",
+            "titleColor": "#81c784",
+            "overlayGradientStart": "rgba(56, 142, 60, 0.1)",
+            "overlayGradientEnd": "rgba(56, 142, 60, 0.6)"
+        },
+        "data science": {
+            "cardBackground": "#1a2e1f",
+            "titleColor": "#81c784",
+            "overlayGradientStart": "rgba(56, 142, 60, 0.1)",
+            "overlayGradientEnd": "rgba(56, 142, 60, 0.6)"
+        },
+        "thesis": {
+            "cardBackground": "#2e1a1a",
+            "titleColor": "#e57373",
+            "overlayGradientStart": "rgba(211, 47, 47, 0.1)",
+            "overlayGradientEnd": "rgba(211, 47, 47, 0.6)"
+        },
+        "web development": {
+            "cardBackground": "#1a2a2e",
+            "titleColor": "#ffd700",
+            "overlayGradientStart": "rgba(255, 215, 0, 0.1)",
+            "overlayGradientEnd": "rgba(255, 215, 0, 0.6)"
+        },
+        "default": {
+            "cardBackground": "#1a2a2e",
+            "titleColor": "#ffffff",
+            "overlayGradientStart": "rgba(0, 0, 0, 0.1)",
+            "overlayGradientEnd": "rgba(0, 0, 0, 0.5)"
+        }
+    }
+}

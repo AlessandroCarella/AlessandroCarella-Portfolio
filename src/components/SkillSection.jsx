@@ -5,9 +5,6 @@ import "./styles/SkillSection.css";
 const SkillSection = ({
     sectionName,
     skills,
-    onSkillHover,
-    onSkillLeave,
-    onSkillClick,
     colors,
 }) => {
     const titleStyle = {
@@ -21,16 +18,10 @@ const SkillSection = ({
             </h3>
             <div className="skills-list">
                 {skills.map((skill, index) => {
-                    const skillName = Object.keys(skill)[0];
-                    const skillLink = skill[skillName];
                     return (
                         <TextCapsule
                             key={index}
-                            name={skillName}
-                            link={skillLink}
-                            onHover={onSkillHover}
-                            onLeave={onSkillLeave}
-                            onClick={onSkillClick}
+                            name={skill}
                             colors={colors}
                         />
                     );
