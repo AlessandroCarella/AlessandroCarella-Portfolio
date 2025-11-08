@@ -1,23 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ExamCard from "../components/ExamCard";
-import TextCapsule from "../components/text/TextCapsule";
-import Notification from "../components/text/Notification";
-import {
-    Github,
-    Linkedin,
-    Mail,
-    MessageCircle,
-    Briefcase,
-    GraduationCap,
-    ChevronDown,
-    ChevronUp,
-} from "lucide-react";
+import Sidebar from "../components/Sidebar";
+import { Briefcase, GraduationCap, ChevronDown, ChevronUp } from "lucide-react";
 import "./styles/Resume.css";
 
 const Resume = () => {
-    const [showNotification, setShowNotification] = useState(false);
-    const [notificationMessage, setNotificationMessage] = useState("");
-
     // Collapsible sections state
     const [isMasterOpen, setIsMasterOpen] = useState(true);
     const [isBachelorOpen, setIsBachelorOpen] = useState(true);
@@ -41,55 +28,6 @@ const Resume = () => {
         // Cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, []);
-
-    const handleCopyToClipboard = async (text) => {
-        try {
-            await navigator.clipboard.writeText(text);
-            setNotificationMessage("Copied to clipboard!");
-            setShowNotification(true);
-        } catch (err) {
-            console.error("Failed to copy text: ", err);
-            setNotificationMessage("Failed to copy");
-            setShowNotification(true);
-        }
-    };
-
-    const handleContactClick = (contact) => {
-        if (contact.type === "email" || contact.type === "number") {
-            handleCopyToClipboard(contact.name);
-        } else if (contact.url) {
-            window.open(contact.url, "_blank", "noopener,noreferrer");
-        }
-    };
-
-    const contacts = [
-        {
-            name: "GitHub",
-            url: "https://github.com/AlessandroCarella/",
-            icon: <Github size={16} />,
-            showPreview: false,
-            type: "link",
-        },
-        {
-            name: "LinkedIn",
-            url: "https://www.linkedin.com/in/alessandrocarella",
-            icon: <Linkedin size={16} />,
-            showPreview: false,
-            type: "link",
-        },
-        {
-            name: "alessandro.carella.lavoro@gmail.com",
-            icon: <Mail size={16} />,
-            showPreview: false,
-            type: "email",
-        },
-        {
-            name: "+39 351 805 3605",
-            icon: <MessageCircle size={16} />,
-            showPreview: false,
-            type: "number",
-        },
-    ];
 
     // Bachelor's Degree Exams
     const bachelorExams = [
@@ -411,50 +349,10 @@ const Resume = () => {
 
     return (
         <div className="resume-container">
-            {/* Copy Notification */}
-            <Notification
-                message={notificationMessage}
-                isVisible={showNotification}
-                onClose={() => setShowNotification(false)}
-            />
+            {/* Sidebar Component */}
+            <Sidebar />
 
-            {/* Sidebar - Same as Home */}
-            <aside className="sidebar">
-                <div className="sidebar-content">
-                    <img
-                        src="/propic.jpeg"
-                        alt="Alessandro Carella"
-                        className="sidebar-image"
-                    />
-                    <div className="sidebar-info">
-                        <p className="paragraph">
-                            Graduated in
-                            <br />
-                            Data Science
-                            <br />
-                            and
-                            <br />
-                            Business Informatics
-                            <br />&<br />
-                            Computer Science
-                        </p>
-                    </div>
-                    <div className="sidebar-contacts">
-                        {contacts.map((contact, index) => (
-                            <TextCapsule
-                                key={index}
-                                name={contact.name}
-                                link={contact.url || contact.name}
-                                icon={contact.icon}
-                                fontSize={23}
-                                onClick={() => handleContactClick(contact)}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </aside>
-
-            {/* Main Content */}
+            {/* Main Content - 80% */}
             <main className="main-content">
                 {/* Education Section */}
                 <section className="resume-section">
@@ -466,30 +364,40 @@ const Resume = () => {
                     {/* Master's Degree */}
                     <div className="degree-block">
                         <div
-                            className="degree-header clickable"
-                            onClick={() => setIsMasterOpen(!isMasterOpen)}
+                            className={`degree-header ${
+                                window.innerWidth <= 1400 ? "clickable" : ""
+                            }`}
+                            onClick={() =>
+                                window.innerWidth <= 1400 &&
+                                setIsMasterOpen(!isMasterOpen)
+                            }
                         >
                             <div>
                                 <h2 className="degree-title">
-                                    MSc in Data Science and Business Informatics
+                                    Master's Degree (MSc)
                                 </h2>
                                 <p className="degree-info">
-                                    University of Pisa • Expected December 2025
-                                    • Final Mark: 103/110
+                                    Data Science and Business Informatics
                                 </p>
                             </div>
                             <div className="degree-header-right">
-                                {isMasterOpen ? (
-                                    <ChevronUp
-                                        size={24}
-                                        className="collapse-icon"
-                                    />
-                                ) : (
-                                    <ChevronDown
-                                        size={24}
-                                        className="collapse-icon"
-                                    />
-                                )}
+                                <p className="degree-info">
+                                    University of Bari Aldo Moro
+                                    <br />
+                                    2023 - 2025 • Bari, Italy
+                                </p>
+                                {window.innerWidth <= 1400 &&
+                                    (isMasterOpen ? (
+                                        <ChevronUp
+                                            size={24}
+                                            className="collapse-icon"
+                                        />
+                                    ) : (
+                                        <ChevronDown
+                                            size={24}
+                                            className="collapse-icon"
+                                        />
+                                    ))}
                             </div>
                         </div>
                         <div
@@ -499,13 +407,7 @@ const Resume = () => {
                         >
                             <div className="exams-grid">
                                 {masterExams.map((exam, index) => (
-                                    <ExamCard
-                                        key={index}
-                                        exam={exam.exam}
-                                        ssd={exam.ssd}
-                                        credits={exam.credits}
-                                        link={exam.link}
-                                    />
+                                    <ExamCard key={index} {...exam} />
                                 ))}
                             </div>
                         </div>
@@ -514,30 +416,38 @@ const Resume = () => {
                     {/* Bachelor's Degree */}
                     <div className="degree-block">
                         <div
-                            className="degree-header clickable"
-                            onClick={() => setIsBachelorOpen(!isBachelorOpen)}
+                            className={`degree-header ${
+                                window.innerWidth <= 1400 ? "clickable" : ""
+                            }`}
+                            onClick={() =>
+                                window.innerWidth <= 1400 &&
+                                setIsBachelorOpen(!isBachelorOpen)
+                            }
                         >
                             <div>
                                 <h2 className="degree-title">
-                                    BSc in Computer Science
+                                    Bachelor's Degree (BSc)
                                 </h2>
-                                <p className="degree-info">
-                                    University of Bari Aldo Moro • Graduated
-                                    July 2023 • Final Mark: 96/110
-                                </p>
+                                <p className="degree-info">Computer Science</p>
                             </div>
                             <div className="degree-header-right">
-                                {isBachelorOpen ? (
-                                    <ChevronUp
-                                        size={24}
-                                        className="collapse-icon"
-                                    />
-                                ) : (
-                                    <ChevronDown
-                                        size={24}
-                                        className="collapse-icon"
-                                    />
-                                )}
+                                <p className="degree-info">
+                                    University of Bari Aldo Moro
+                                    <br />
+                                    2019 - 2023 • Bari, Italy
+                                </p>
+                                {window.innerWidth <= 1400 &&
+                                    (isBachelorOpen ? (
+                                        <ChevronUp
+                                            size={24}
+                                            className="collapse-icon"
+                                        />
+                                    ) : (
+                                        <ChevronDown
+                                            size={24}
+                                            className="collapse-icon"
+                                        />
+                                    ))}
                             </div>
                         </div>
                         <div
@@ -547,20 +457,14 @@ const Resume = () => {
                         >
                             <div className="exams-grid">
                                 {bachelorExams.map((exam, index) => (
-                                    <ExamCard
-                                        key={index}
-                                        exam={exam.exam}
-                                        ssd={exam.ssd}
-                                        credits={exam.credits}
-                                        link={exam.link}
-                                    />
+                                    <ExamCard key={index} {...exam} />
                                 ))}
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Work Experience Section */}
+                {/* Experience Section */}
                 <section className="resume-section">
                     <div className="section-header">
                         <Briefcase size={32} className="section-icon" />
@@ -569,39 +473,42 @@ const Resume = () => {
 
                     <div className="experience-block">
                         <div
-                            className="experience-header clickable"
+                            className={`experience-header ${
+                                window.innerWidth <= 1400 ? "clickable" : ""
+                            }`}
                             onClick={() =>
+                                window.innerWidth <= 1400 &&
                                 setIsExperienceOpen(!isExperienceOpen)
                             }
                         >
                             <div>
                                 <h2 className="experience-title">
-                                    Full Stack Developer
+                                    Full-Stack Developer
                                 </h2>
                                 <a
-                                    href="https://www.linkedin.com/company/dxctechnology/"
+                                    href="https://www.municipiumapp.it/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="company-link"
-                                    onClick={(e) => e.stopPropagation()}
                                 >
-                                    DXC Technology
+                                    Municipium S.p.A.
                                 </a>
                                 <p className="experience-info">
                                     July 2022 - August 2023 • Bari, Italy
                                 </p>
                             </div>
-                            {isExperienceOpen ? (
-                                <ChevronUp
-                                    size={24}
-                                    className="collapse-icon"
-                                />
-                            ) : (
-                                <ChevronDown
-                                    size={24}
-                                    className="collapse-icon"
-                                />
-                            )}
+                            {window.innerWidth <= 1400 &&
+                                (isExperienceOpen ? (
+                                    <ChevronUp
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                ) : (
+                                    <ChevronDown
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                ))}
                         </div>
                         <div
                             className={`collapsible-content ${

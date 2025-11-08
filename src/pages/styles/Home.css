@@ -1,3 +1,4 @@
+/* GitHub Calendar Styles */
 .react-activity-calendar {
     width: 100% !important;
 }
@@ -12,6 +13,7 @@
     min-width: 600px;
 }
 
+/* Home Page Specific Styles */
 .intro-title-wrapper {
     margin-bottom: 2rem;
     width: 100%;
@@ -23,55 +25,6 @@
     gap: 2rem;
     width: 100%;
     max-width: 100%;
-}
-
-.sidebar {
-    flex: 0 0 20%;
-    max-width: 300px;
-    min-width: 220px;
-    padding: 1.5rem;
-    position: fixed;
-    top: var(--navbar-height, 80px);
-    height: calc(100vh - var(--navbar-height, 80px));
-    display: flex;
-    align-items: center; /* Vertically center the content */
-    overflow-y: auto;
-}
-
-.sidebar-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    width: 100%;
-}
-
-.sidebar-image {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ffffff;
-}
-
-.sidebar-info {
-    text-align: center;
-    width: 100%;
-}
-
-.sidebar-contacts {
-    width: 100%;
-}
-
-.sidebar-contacts .skills-container {
-    padding: 0;
-}
-
-.sidebar-contacts .skill-capsule {
-    width: 100%;
-    justify-content: center;
-    margin: 8px 0;
 }
 
 .main-content {
@@ -89,37 +42,6 @@
         gap: 1rem;
     }
 
-    .sidebar {
-        position: relative;
-        width: 100%;
-        max-width: 100%;
-        min-width: unset;
-        padding: 1.5rem;
-        top: 0;
-        left: 0;
-        height: auto;
-        max-height: none;
-        display: block;
-    }
-
-    .sidebar-content {
-        flex-direction: row;
-        align-items: center;
-        gap: 2rem;
-    }
-
-    .sidebar-image {
-        width: 250px;
-        min-width: 250px;
-        max-width: 250px;
-        flex-shrink: 0;
-    }
-
-    .sidebar-info {
-        text-align: left;
-        flex: 1;
-    }
-
     .main-content {
         width: 100%;
         padding: 0;
@@ -128,26 +50,6 @@
 }
 
 @media (max-width: 1160px) {
-    .sidebar {
-        padding: 1rem;
-    }
-
-    .sidebar-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 1rem;
-    }
-
-    .sidebar-info {
-        text-align: center;
-    }
-
-    .sidebar-image {
-        width: 200px;
-        min-width: 200px;
-        max-width: 200px;
-    }
-
     .github-calendar-home {
         min-width: 300px;
     }
