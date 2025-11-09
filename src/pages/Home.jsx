@@ -9,10 +9,8 @@ import "./styles/Home.css";
 const Home = () => {
     return (
         <div className="home-container">
-            {/* Sidebar Component */}
             <Sidebar />
 
-            {/* Main Content - 80% */}
             <main className="main-content">
                 <div className="intro-title-wrapper">
                     <TextPressure
@@ -32,10 +30,6 @@ const Home = () => {
                 <div className="max-w-6xl mx-auto px-6 py-16">
                     <h1 className="heading-xl">About Me</h1>
                     <p className="paragraph">Hi, nice to see you here :)</p>
-                    {/* <p className="paragraph">
-                        On this page you will find a summary of my experiences
-                        both through projects and .
-                    </p> */}
                     <p className="paragraph">
                         I have worked on many projects over the years. I have
                         decided to showcase some of them in the Project
@@ -88,8 +82,6 @@ const Home = () => {
                         My skills include{" "}
                         <b>both data analysis and programming-focused skills</b>
                         .{" "}
-                        {/* I have developed a strong acumen for problem-solving,
-                        and I enjoy an occasional challenge. */}
                         During my bachelor's degree, I learned most of the
                         programming skills and techniques I put to use on a
                         daily basis, for my data-related projects as well. Those
@@ -97,14 +89,6 @@ const Home = () => {
                         visualization field, my master's thesis [link to thesis
                         repo] is in fact on the topic.
                     </p>
-                    {/* <p className="paragraph">
-                        You can take a look at some of my projects in the
-                        related page [link to page]. All my work is linked to
-                        its GitHub repository, and occasionally the report
-                        and/or slides that were made for the project
-                        presentation; feel free to download my code and play
-                        around with it :)
-                    </p> */}
                     <p className="paragraph">
                         Most of my time is spent staring at a computer screen.
                         During the day, I am usually working on some university,
@@ -151,8 +135,6 @@ const Home = () => {
                         language. Every class in my master's degree was held in
                         English and I both bonded and worked, mostly with
                         international students.
-                        {/* and <b>always</b> in a setting
-                        where not everyone's first language was Italian. */}
                     </p>
                     <p className="paragraph">
                         I'm excited to bring my skills to an exciting and
