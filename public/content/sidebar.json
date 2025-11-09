@@ -1,0 +1,41 @@
+{
+    "image": {
+        "src": "/propic.jpeg",
+        "alt": "Alessandro Carella"
+    },
+    "info": {
+        "text": "Graduated in\nData Science\nand\nBusiness Informatics\n&\nComputer Science"
+    },
+    "notifications": {
+        "copySuccess": "Copied to clipboard!",
+        "copyFailure": "Failed to copy"
+    },
+    "contacts": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/AlessandroCarella/",
+            "icon": "Github",
+            "showPreview": false,
+            "type": "link"
+        },
+        {
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/in/alessandrocarella",
+            "icon": "Linkedin",
+            "showPreview": false,
+            "type": "link"
+        },
+        {
+            "name": "alessandro.carella.lavoro@gmail.com",
+            "icon": "Mail",
+            "showPreview": false,
+            "type": "email"
+        },
+        {
+            "name": "+39 351 805 3605",
+            "icon": "MessageCircle",
+            "showPreview": false,
+            "type": "number"
+        }
+    ]
+}

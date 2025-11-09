@@ -19,7 +19,7 @@ const Resume = () => {
 
     // Fetch resume data from JSON file
     useEffect(() => {
-        fetch("/resume-data.json")
+        fetch("/content/resume.json")
             .then((response) => response.json())
             .then((data) => {
                 setPageText(data.pageText);

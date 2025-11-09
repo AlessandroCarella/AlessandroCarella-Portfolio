@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TextCapsule from "./text/TextCapsule";
 import Notification from "./text/Notification";
 import { Github, Linkedin, Mail, MessageCircle } from "lucide-react";
@@ -7,15 +7,38 @@ import "./styles/Sidebar.css";
 const Sidebar = () => {
     const [showNotification, setShowNotification] = useState(false);
     const [notificationMessage, setNotificationMessage] = useState("");
+    const [sidebarData, setSidebarData] = useState(null);
+
+    // Icon mapping
+    const iconMap = {
+        Github: <Github size={16} />,
+        Linkedin: <Linkedin size={16} />,
+        Mail: <Mail size={16} />,
+        MessageCircle: <MessageCircle size={16} />,
+    };
+
+    // Load sidebar data from JSON
+    useEffect(() => {
+        fetch("/content/sidebar.json")
+            .then((response) => response.json())
+            .then((data) => setSidebarData(data))
+            .catch((error) =>
+                console.error("Error loading sidebar data:", error)
+            );
+    }, []);
 
     const handleCopyToClipboard = async (text) => {
         try {
             await navigator.clipboard.writeText(text);
-            setNotificationMessage("Copied to clipboard!");
+            setNotificationMessage(
+                sidebarData.notifications.copySuccess
+            );
             setShowNotification(true);
         } catch (err) {
             console.error("Failed to copy text: ", err);
-            setNotificationMessage("Failed to copy");
+            setNotificationMessage(
+                sidebarData.notifications.copyFailure
+            );
             setShowNotification(true);
         }
     };
@@ -28,34 +51,14 @@ const Sidebar = () => {
         }
     };
 
-    const contacts = [
-        {
-            name: "GitHub",
-            url: "https://github.com/AlessandroCarella/",
-            icon: <Github size={16} />,
-            showPreview: false,
-            type: "link",
-        },
-        {
-            name: "LinkedIn",
-            url: "https://www.linkedin.com/in/alessandrocarella",
-            icon: <Linkedin size={16} />,
-            showPreview: false,
-            type: "link",
-        },
-        {
-            name: "alessandro.carella.lavoro@gmail.com",
-            icon: <Mail size={16} />,
-            showPreview: false,
-            type: "email",
-        },
-        {
-            name: "+39 351 805 3605",
-            icon: <MessageCircle size={16} />,
-            showPreview: false,
-            type: "number",
-        },
-    ];
+    // Show loading or empty state while data is being fetched
+    if (!sidebarData) {
+        return (
+            <aside className="sidebar">
+                <div className="sidebar-content">Loading...</div>
+            </aside>
+        );
+    }
 
     return (
         <>
@@ -70,32 +73,32 @@ const Sidebar = () => {
             <aside className="sidebar">
                 <div className="sidebar-content">
                     <img
-                        src="/propic.jpeg"
-                        alt="Alessandro Carella"
+                        src={sidebarData.image.src}
+                        alt={sidebarData.image.alt}
                         className="sidebar-image"
                     />
                     <div className="sidebar-info">
                         <p className="paragraph">
-                            Graduated in
-                            <br />
-                            Data Science
-                            <br />
-                            and
-                            <br />
-                            Business Informatics
-                            <br />
-                            &
-                            <br />
-                            Computer Science
+                            {sidebarData.info.text
+                                .split("\n")
+                                .map((line, index) => (
+                                    <React.Fragment key={index}>
+                                        {line}
+                                        {index <
+                                            sidebarData.info.text.split("\n")
+                                                .length -
+                                                1 && <br />}
+                                    </React.Fragment>
+                                ))}
                         </p>
                     </div>
                     <div className="sidebar-contacts">
-                        {contacts.map((contact, index) => (
+                        {sidebarData.contacts.map((contact, index) => (
                             <TextCapsule
                                 key={index}
                                 name={contact.name}
                                 link={contact.url || contact.name}
-                                icon={contact.icon}
+                                icon={iconMap[contact.icon]}
                                 fontSize={23}
                                 onClick={() => handleContactClick(contact)}
                             />
