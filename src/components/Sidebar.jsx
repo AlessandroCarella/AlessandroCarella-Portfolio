@@ -99,7 +99,6 @@ const Sidebar = () => {
                                 name={contact.name}
                                 link={contact.url || contact.name}
                                 icon={iconMap[contact.icon]}
-                                fontSize={23}
                                 onClick={() => handleContactClick(contact)}
                             />
                         ))}

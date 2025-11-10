@@ -67,7 +67,6 @@ const ProjectSidebar = ({ projectData, onOpenPDF }) => {
                                         name={getCollaboratorName(url)}
                                         link={url}
                                         icon={<Linkedin size={16} />}
-                                        fontSize={16}
                                         onClick={(link) =>
                                             window.open(
                                                 link,
@@ -92,7 +91,6 @@ const ProjectSidebar = ({ projectData, onOpenPDF }) => {
                                 name={getRepositoryName(projectData.repository)}
                                 link={projectData.repository}
                                 icon={<Github size={16} />}
-                                fontSize={16}
                                 onClick={(link) =>
                                     window.open(
                                         link,
@@ -116,7 +114,6 @@ const ProjectSidebar = ({ projectData, onOpenPDF }) => {
                                 name="View Notes"
                                 link={projectData.classNotes}
                                 icon={<SiNotion className="w-6 h-6" />}
-                                fontSize={16}
                                 onClick={(link) =>
                                     window.open(
                                         link,
@@ -140,7 +137,6 @@ const ProjectSidebar = ({ projectData, onOpenPDF }) => {
                                 name="View Report"
                                 link={projectData.report}
                                 icon={<FileText size={16} />}
-                                fontSize={16}
                                 onClick={() =>
                                     onOpenPDF("Report", projectData.report)
                                 }
@@ -160,7 +156,6 @@ const ProjectSidebar = ({ projectData, onOpenPDF }) => {
                                 name="View Slides"
                                 link={projectData.slides}
                                 icon={<FileText size={16} />}
-                                fontSize={16}
                                 onClick={() =>
                                     onOpenPDF("Slides", projectData.slides)
                                 }

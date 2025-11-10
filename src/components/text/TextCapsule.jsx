@@ -8,16 +8,7 @@ const TextCapsule = ({
     onHover,
     onLeave,
     onClick,
-    fontSize = 14,
 }) => {
-    const textStyle = {
-        fontSize: `${fontSize}px`,
-    };
-
-    const iconStyle = {
-        fontSize: `${fontSize + 2}px`,
-    };
-
     return (
         <div
             className="text-capsule"
@@ -39,11 +30,11 @@ const TextCapsule = ({
             }}
         >
             {icon && (
-                <span className="capsule-icon" style={iconStyle}>
+                <span className="capsule-icon">
                     {icon}
                 </span>
             )}
-            <span className="capsule-text" style={textStyle}>
+            <span className="capsule-text">
                 {name}
             </span>
         </div>

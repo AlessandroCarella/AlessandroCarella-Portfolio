@@ -36,7 +36,11 @@ const Home = () => {
                 <p key={index} className="paragraph">
                     {paragraph.parts.map((part, partIndex) => {
                         if (part.type === "text") {
-                            return <span key={partIndex}>{part.content}</span>;
+                            return (
+                                <span key={partIndex} className="paragraph">
+                                    {part.content}
+                                </span>
+                            );
                         }
                         if (part.type === "link") {
                             return (

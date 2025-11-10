@@ -193,7 +193,7 @@ const Resume = () => {
                                 <p className="paragraph">
                                     {experience.description}
                                 </p>
-                                <ul className="experience-list">
+                                <ul className="experience-list paragraph">
                                     {experience.responsibilities.map(
                                         (responsibility, index) => (
                                             <li key={index}>

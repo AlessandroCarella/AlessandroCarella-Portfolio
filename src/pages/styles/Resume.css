@@ -177,18 +177,11 @@
 }
 
 .experience-list li {
-    font-size: 1rem;
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.75rem;
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.6;
-}
-
-@media (max-width: 480px) {
-    .experience-list li {
-        font-size: 0.8rem;
-    }
 }
 
 .experience-list li::before {
