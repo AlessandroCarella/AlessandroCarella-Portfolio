@@ -33,25 +33,6 @@ const Resume = () => {
             );
     }, []);
 
-    // Set default open state based on screen size
-    useEffect(() => {
-        const handleResize = () => {
-            const shouldBeOpen = window.innerWidth > 1400;
-            setIsMasterOpen(shouldBeOpen);
-            setIsBachelorOpen(shouldBeOpen);
-            setIsExperienceOpen(shouldBeOpen);
-        };
-
-        // Set initial state
-        handleResize();
-
-        // Add event listener
-        window.addEventListener("resize", handleResize);
-
-        // Cleanup
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
     return (
         <div className="resume-container">
             {/* Sidebar Component */}
@@ -69,13 +50,8 @@ const Resume = () => {
                     {/* Master's Degree */}
                     <div className="degree-block">
                         <div
-                            className={`degree-header ${
-                                window.innerWidth <= 1400 ? "clickable" : ""
-                            }`}
-                            onClick={() =>
-                                window.innerWidth <= 1400 &&
-                                setIsMasterOpen(!isMasterOpen)
-                            }
+                            className="degree-header clickable"
+                            onClick={() => setIsMasterOpen(!isMasterOpen)}
                         >
                             <div>
                                 <h2 className="degree-title">{master.title}</h2>
@@ -91,18 +67,17 @@ const Resume = () => {
                                 <p className="degree-info">
                                     {master.period} • {master.location}
                                 </p>
-                                {window.innerWidth <= 1400 &&
-                                    (isMasterOpen ? (
-                                        <ChevronUp
-                                            size={24}
-                                            className="collapse-icon"
-                                        />
-                                    ) : (
-                                        <ChevronDown
-                                            size={24}
-                                            className="collapse-icon"
-                                        />
-                                    ))}
+                                {isMasterOpen ? (
+                                    <ChevronUp
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                ) : (
+                                    <ChevronDown
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                )}
                             </div>
                         </div>
                         <div
@@ -121,13 +96,8 @@ const Resume = () => {
                     {/* Bachelor's Degree */}
                     <div className="degree-block">
                         <div
-                            className={`degree-header ${
-                                window.innerWidth <= 1400 ? "clickable" : ""
-                            }`}
-                            onClick={() =>
-                                window.innerWidth <= 1400 &&
-                                setIsBachelorOpen(!isBachelorOpen)
-                            }
+                            className="degree-header clickable"
+                            onClick={() => setIsBachelorOpen(!isBachelorOpen)}
                         >
                             <div>
                                 <h2 className="degree-title">
@@ -145,18 +115,17 @@ const Resume = () => {
                                 <p className="degree-info">
                                     {bachelor.period} • {bachelor.location}
                                 </p>
-                                {window.innerWidth <= 1400 &&
-                                    (isBachelorOpen ? (
-                                        <ChevronUp
-                                            size={24}
-                                            className="collapse-icon"
-                                        />
-                                    ) : (
-                                        <ChevronDown
-                                            size={24}
-                                            className="collapse-icon"
-                                        />
-                                    ))}
+                                {isBachelorOpen ? (
+                                    <ChevronUp
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                ) : (
+                                    <ChevronDown
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                )}
                             </div>
                         </div>
                         <div
@@ -177,18 +146,13 @@ const Resume = () => {
                 <section className="resume-section">
                     <div className="section-header">
                         <Briefcase size={32} className="section-icon" />
-                        <h1 className="heading-xl">
-                            {pageText.experience}
-                        </h1>
+                        <h1 className="heading-xl">{pageText.experience}</h1>
                     </div>
 
                     <div className="experience-block">
                         <div
-                            className={`experience-header ${
-                                window.innerWidth <= 1400 ? "clickable" : ""
-                            }`}
+                            className="experience-header clickable"
                             onClick={() =>
-                                window.innerWidth <= 1400 &&
                                 setIsExperienceOpen(!isExperienceOpen)
                             }
                         >
@@ -207,18 +171,17 @@ const Resume = () => {
                                 <p className="experience-info">
                                     {experience.period} • {experience.location}
                                 </p>
-                                {window.innerWidth <= 1400 &&
-                                    (isExperienceOpen ? (
-                                        <ChevronUp
-                                            size={24}
-                                            className="collapse-icon"
-                                        />
-                                    ) : (
-                                        <ChevronDown
-                                            size={24}
-                                            className="collapse-icon"
-                                        />
-                                    ))}
+                                {isExperienceOpen ? (
+                                    <ChevronUp
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                ) : (
+                                    <ChevronDown
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                )}
                             </div>
                         </div>
                         <div
