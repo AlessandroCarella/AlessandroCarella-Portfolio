@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ExamCard from "../components/ExamCard";
 import Sidebar from "../components/Sidebar";
-import { Briefcase, GraduationCap, ChevronDown, ChevronUp } from "lucide-react";
+import { Briefcase, GraduationCap, ChevronDown, ChevronUp, Wrench } from "lucide-react";
 import "./styles/Resume.css";
 
 const Resume = () => {
@@ -210,6 +210,7 @@ const Resume = () => {
                 {/* Skills Section */}
                 <section className="resume-section">
                     <div className="section-header">
+                        <Wrench size={32} className="section-icon" />
                         <h1 className="heading-xl">{pageText.skill}</h1>
                     </div>
 
