@@ -73,15 +73,9 @@
 .university-link {
     font-size: 1.25rem;
     font-weight: 500;
-    color: rgba(96, 165, 250, 0.9);
-    text-decoration: none;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    transition: all 0.2s ease;
 }
 
 .university-link:hover {
-    color: rgba(96, 165, 250, 1);
     text-decoration: underline;
 }
 
@@ -151,15 +145,9 @@
 .company-link {
     font-size: 1.25rem;
     font-weight: 500;
-    color: rgba(96, 165, 250, 0.9);
-    text-decoration: none;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-    transition: all 0.2s ease;
 }
 
 .company-link:hover {
-    color: rgba(96, 165, 250, 1);
     text-decoration: underline;
 }
 
@@ -174,7 +162,7 @@
 }
 
 .experience-description p {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
 }
 
 .experience-list {
@@ -190,6 +178,12 @@
     margin-bottom: 0.75rem;
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+    .experience-list li {
+        font-size: 0.8rem;
+    }
 }
 
 .experience-list li::before {

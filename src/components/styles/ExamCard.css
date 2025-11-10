@@ -40,11 +40,17 @@
 }
 
 .exam-title {
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 500;
     color: #ffffff;
     margin: 0;
     flex: 1;
+}
+
+@media (max-width: 480px) {
+    .exam-title{
+        font-size: 0.8rem;
+    }
 }
 
 .exam-link-icon {

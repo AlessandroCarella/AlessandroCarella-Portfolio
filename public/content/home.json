@@ -1,0 +1,136 @@
+{
+    "title": "Welcome to my portfolio!",
+    "sections": [
+        {
+            "id": "about-me",
+            "heading": "About Me",
+            "paragraphs": [
+                "Hi, nice to see you here :)",
+                {
+                    "parts": [
+                        {
+                            "type": "text",
+                            "content": "I have worked on many projects over the years. I have decided to showcase some of them in the "
+                        },
+                        {
+                            "type": "link",
+                            "text": "Project",
+                            "url": "/Projects"
+                        },
+                        {
+                            "type": "text",
+                            "content": " page. You can filter the results in the page based on the ones you are the most interested in :)"
+                        }
+                    ]
+                },
+                {
+                    "parts": [
+                        { "type": "text", "content": "The " },
+                        {
+                            "type": "link",
+                            "text": "About",
+                            "url": "/About"
+                        },
+                        {
+                            "type": "text",
+                            "content": " page allows you to get to know me a bit better, I talk about my hobbies and some fun facts."
+                        }
+                    ]
+                }
+            ],
+            "specialContent": {
+                "type": "resume-joke",
+                "text": "In the ",
+                "link": {
+                    "text": "Resume",
+                    "url": "/Resume"
+                },
+                "textAfter": " page, you can find a 1:1 copy of the info I shared with many companies in a standardized way so that they could",
+                "strikethrough": "hire me",
+                "shinyWords": [
+                    "suggest",
+                    "the",
+                    "best",
+                    "fitting",
+                    "ads",
+                    "on",
+                    "my",
+                    "social",
+                    "media",
+                    "feed."
+                ]
+            }
+        },
+        {
+            "id": "looking-for",
+            "heading": "What I am looking for",
+            "paragraphs": [
+                "I am currently seeking a position as a data scientist in a collaborative, fast-paced, and challenging environment. I enjoy solving problems using a data driven approach, and apply my coding skills on top of my data intuition to find quick and adaptive solutions!",
+                {
+                    "text": "I am a data scientist with a passion for visual storytelling. I believe that ",
+                    "bold": "words, data, and its contextual representation are the most powerful tools to change the world",
+                    "textAfter": "."
+                }
+            ]
+        },
+        {
+            "id": "skills",
+            "heading": "What I can do",
+            "paragraphs": [
+                {
+                    "text": "My skills include ",
+                    "bold": "both data analysis and programming-focused skills",
+                    "textAfter": ". During my bachelor's degree, I learned most of the programming skills and techniques I put to use on a daily basis, for my data-related projects as well. Those skills turned out to be very useful in the data visualization field, my master's thesis is in fact on the topic."
+                },
+                {
+                    "parts": [
+                        {
+                            "type": "text",
+                            "content": "Most of my time is spent staring at a computer screen. I often am working on a university, personal or side project, as proven by my contribution chart on GitHub. You can check out my "
+                        },
+                        {
+                            "type": "link",
+                            "text": "master thesis project",
+                            "url": "/projects/master-thesis"
+                        },
+                        {
+                            "type": "text",
+                            "content": " to see what I've been working on recently."
+                        }
+                    ]
+                }
+            ],
+            "includeGitHub": true
+        },
+        {
+            "id": "experience",
+            "heading": "Previous work experience and new horizons",
+            "paragraphs": [
+                {
+                    "parts": [
+                        { "type": "text", "content": "As you can see in my " },
+                        {
+                            "type": "link",
+                            "text": "Resume",
+                            "url": "/Resume"
+                        },
+                        {
+                            "type": "text",
+                            "content": " page, I worked as a full-stack developer for 14 months, mostly on the frontend side of development. At work, i used ReactJS and the Springboot framework, with the occasional JSP page here and there."
+                        }
+                    ]
+                },
+                "I am now looking forward to a data-focused position where I can combine both of my developed areas of expertise."
+            ]
+        },
+        {
+            "id": "additional-info",
+            "heading": "Additional Info",
+            "paragraphs": [
+                "I feel fortunate to be born in a setting that allowed me to learn so much among extraordinarily talented teachers and peers.",
+                "My native language is Italian, but since I was a teenager, I have developed most of my interests online; therefore, I do not really consider English as a second language. Every class in my master's degree was held in English and I both bonded and worked, mostly with international students.",
+                "I'm excited to bring my skills to an exciting and challenging setting for my first data-related job :)"
+            ]
+        }
+    ]
+}

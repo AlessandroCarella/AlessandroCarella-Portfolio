@@ -84,7 +84,7 @@ const Resume = () => {
                                     href={master.uniLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="university-link"
+                                    className="university-link text-link"
                                 >
                                     {master.uni}
                                 </a>
@@ -138,7 +138,7 @@ const Resume = () => {
                                     href={bachelor.uniLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="university-link"
+                                    className="university-link text-link"
                                 >
                                     {bachelor.uni}
                                 </a>
@@ -200,7 +200,7 @@ const Resume = () => {
                                     href={experience.companyLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="company-link"
+                                    className="company-link text-link"
                                 >
                                     {experience.company}
                                 </a>

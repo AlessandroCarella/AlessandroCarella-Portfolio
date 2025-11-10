@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import TextPressure from "../components/text/TextPressure";
 import ShinyText from "../components/text/ShinyText";
 import Sidebar from "../components/Sidebar";
@@ -7,6 +8,93 @@ import GitHubCalendar from "react-github-calendar";
 import "./styles/Home.css";
 
 const Home = () => {
+    const [content, setContent] = useState(null);
+
+    useEffect(() => {
+        fetch("/content/home.json")
+            .then((response) => response.json())
+            .then((data) => setContent(data))
+            .catch((error) => console.error("Error loading content:", error));
+    }, []);
+
+    if (!content) {
+        return <div>Loading...</div>;
+    }
+
+    const renderParagraph = (paragraph, index) => {
+        if (typeof paragraph === "string") {
+            return (
+                <p key={index} className="paragraph">
+                    {paragraph}
+                </p>
+            );
+        }
+
+        // Handle paragraphs with parts (text and links)
+        if (paragraph.parts) {
+            return (
+                <p key={index} className="paragraph">
+                    {paragraph.parts.map((part, partIndex) => {
+                        if (part.type === "text") {
+                            return <span key={partIndex}>{part.content}</span>;
+                        }
+                        if (part.type === "link") {
+                            return (
+                                <Link
+                                    key={partIndex}
+                                    to={part.url}
+                                    className="text-link"
+                                >
+                                    {part.text}
+                                </Link>
+                            );
+                        }
+                        return null;
+                    })}
+                </p>
+            );
+        }
+
+        // Handle paragraphs with bold text
+        if (paragraph.bold) {
+            return (
+                <p key={index} className="paragraph">
+                    {paragraph.text}
+                    <b>{paragraph.bold}</b>
+                    {paragraph.textAfter}
+                </p>
+            );
+        }
+
+        return null;
+    };
+
+    const renderSpecialContent = (specialContent) => {
+        if (specialContent.type === "resume-joke") {
+            return (
+                <div className="paragraph">
+                    {specialContent.text}
+                    {specialContent.link && (
+                        <Link
+                            to={specialContent.link.url}
+                            className="text-link"
+                        >
+                            {specialContent.link.text}
+                        </Link>
+                    )}
+                    {specialContent.textAfter}{" "}
+                    <s>{specialContent.strikethrough}</s>{" "}
+                    {specialContent.shinyWords.map((word, index) => (
+                        <React.Fragment key={index}>
+                            <ShinyText text={word} speed={3} />{" "}
+                        </React.Fragment>
+                    ))}
+                </div>
+            );
+        }
+        return null;
+    };
+
     return (
         <div className="home-container">
             <Sidebar />
@@ -14,7 +102,7 @@ const Home = () => {
             <main className="main-content">
                 <div className="intro-title-wrapper">
                     <TextPressure
-                        text="Welcome to my portfolio!"
+                        text={content.title}
                         flex={true}
                         alpha={false}
                         stroke={false}
@@ -27,120 +115,33 @@ const Home = () => {
                         fontSize={100}
                     />
                 </div>
-                <div className="max-w-6xl mx-auto px-6 py-16">
-                    <h1 className="heading-xl">About Me</h1>
-                    <p className="paragraph">Hi, nice to see you here :)</p>
-                    <p className="paragraph">
-                        I have worked on many projects over the years. I have
-                        decided to showcase some of them in the Project
-                        page[link to page]. The page will ask you to select
-                        which kind of projects you are interested in seeing
-                        before showing you anything :)
-                    </p>
-                    <p className="paragraph">
-                        The about page allows you to get to know me a bit
-                        better, I talk about my hobbies and some fun facts.
-                    </p>
-                    <div className="paragraph">
-                        In the resume page, you can find a 1:1 copy of the info
-                        I shared with many companies in a standardized way so
-                        that they could <s>hire me</s>{" "}
-                        <ShinyText text="suggest" speed={3} />{" "}
-                        <ShinyText text="the" speed={3} />{" "}
-                        <ShinyText text="best" speed={3} />{" "}
-                        <ShinyText text="fitting" speed={3} />{" "}
-                        <ShinyText text="ads" speed={3} />{" "}
-                        <ShinyText text="on" speed={3} />{" "}
-                        <ShinyText text="my" speed={3} />{" "}
-                        <ShinyText text="social" speed={3} />{" "}
-                        <ShinyText text="media" speed={3} />{" "}
-                        <ShinyText text="feed." speed={3} />
+
+                {content.sections.map((section) => (
+                    <div
+                        key={section.id}
+                        className="max-w-6xl mx-auto px-6 py-16"
+                    >
+                        <h1 className="heading-xl">{section.heading}</h1>
+
+                        {section.paragraphs.map((paragraph, index) =>
+                            renderParagraph(paragraph, index)
+                        )}
+
+                        {section.specialContent &&
+                            renderSpecialContent(section.specialContent)}
+
+                        {section.includeGitHub && (
+                            <div className="w-full overflow-x-auto">
+                                <div className="github-calendar-home">
+                                    <GitHubCalendar
+                                        username="alessandrocarella"
+                                        colorScheme="dark"
+                                    />
+                                </div>
+                            </div>
+                        )}
                     </div>
-                </div>
-                <div className="max-w-6xl mx-auto px-6 py-16">
-                    <h1 className="heading-xl">What I am looking for</h1>
-                    <p className="paragraph">
-                        I am currently seeking a position as a data scientist in
-                        a collaborative, fast-paced, and challenging
-                        environment. I enjoy solving problems using a data
-                        driven approach, and apply my coding skills on top of my
-                        data intuition to find quick and adaptive solutions!
-                    </p>
-                    <p className="paragraph">
-                        I am a data scientist with a passion for visual
-                        storytelling. I believe that{" "}
-                        <b>
-                            words, data, and its contextual representation are
-                            the most powerful tools to change the world
-                        </b>
-                        .
-                    </p>
-                </div>
-                <div className="max-w-6xl mx-auto px-6 py-16">
-                    <h1 className="heading-xl">What I can do</h1>
-                    <p className="paragraph">
-                        My skills include{" "}
-                        <b>both data analysis and programming-focused skills</b>
-                        .{" "}
-                        During my bachelor's degree, I learned most of the
-                        programming skills and techniques I put to use on a
-                        daily basis, for my data-related projects as well. Those
-                        skills turned out to be very useful in the data
-                        visualization field, my master's thesis [link to thesis
-                        repo] is in fact on the topic.
-                    </p>
-                    <p className="paragraph">
-                        Most of my time is spent staring at a computer screen.
-                        During the day, I am usually working on some university,
-                        personal or side project, as proven by my contribution
-                        chart on GitHub.
-                    </p>
-                    <div className="w-full overflow-x-auto">
-                        <div className="github-calendar-home">
-                            <GitHubCalendar
-                                username="alessandrocarella"
-                                colorScheme="dark"
-                            />
-                        </div>
-                    </div>
-                </div>
-                <div className="max-w-6xl mx-auto px-6 py-16">
-                    <h1 className="heading-xl">
-                        Previous work experience and new horizons
-                    </h1>
-                    <p className="paragraph">
-                        As you can see in my resume page [link to resume page],
-                        I worked as a full-stack developer for 14 months, mostly
-                        on the frontend side of development. At work, i used
-                        ReactJS and the Springboot framework, with the
-                        occasional JSP page here and there.
-                    </p>
-                    <p className="paragraph">
-                        I am now looking forward to a data-focused position
-                        where I can combine both of my developed areas of
-                        expertise.
-                    </p>
-                </div>
-                <div className="max-w-6xl mx-auto px-6 py-16">
-                    <h1 className="heading-xl">Additional Info </h1>
-                    <p className="paragraph">
-                        I feel fortunate to be born in a setting that allowed me
-                        to learn so much among extraordinarily talented teachers
-                        and peers.
-                    </p>
-                    <p className="paragraph">
-                        My native language is Italian, but since I was a
-                        teenager, I have developed most of my interests online;
-                        therefore, I do not really consider English as a second
-                        language. Every class in my master's degree was held in
-                        English and I both bonded and worked, mostly with
-                        international students.
-                    </p>
-                    <p className="paragraph">
-                        I'm excited to bring my skills to an exciting and
-                        challenging setting for my first data-related job :)
-                    </p>
-                </div>
+                ))}
             </main>
         </div>
     );
