@@ -33,10 +33,10 @@ const ProjectContent = ({
                 if (!configResponse.ok) {
                     throw new Error("Failed to load projects configuration");
                 }
+                console.log(configResponse)
                 const config = await configResponse.json();
-
                 // Find this project's config
-                const projectConfig = config.projects.find(
+                const projectConfig = config.find(
                     (p) => p.folder === projectFolderName
                 );
 

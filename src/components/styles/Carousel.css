@@ -1,0 +1,325 @@
+/* ========================================
+   CAROUSEL STYLES
+   Add these styles to your ProjectPage.css
+   ======================================== */
+
+/* Carousel Container */
+.carousel {
+    position: relative;
+    width: 100%;
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Carousel Viewport */
+.carousel-viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+/* Carousel Track */
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+/* Carousel Slide */
+.carousel-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+    display: block;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+/* Hide non-active slides for screen readers */
+.carousel-slide:not(.active) {
+    visibility: hidden;
+}
+
+.carousel-slide.active {
+    visibility: visible;
+}
+
+/* Carousel Controls */
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.carousel-btn {
+    pointer-events: auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+.carousel-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carousel-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.carousel-indicator:hover {
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(1.2);
+}
+
+.carousel-indicator.active {
+    background: #ffffff;
+    width: 24px;
+    border-radius: 5px;
+}
+
+/* Loading state for images */
+.carousel-slide img {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.carousel-slide img[src] {
+    background: none;
+    animation: none;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .carousel-slide img {
+        max-height: 500px;
+    }
+
+    .carousel-btn {
+        width: 44px;
+        height: 44px;
+    }
+
+    .carousel-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        margin: 1.5rem 0;
+        border-radius: 8px;
+    }
+
+    .carousel-viewport {
+        border-radius: 8px;
+    }
+
+    .carousel-slide img {
+        max-height: 400px;
+    }
+
+    .carousel-controls {
+        padding: 0 0.5rem;
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .carousel-indicators {
+        bottom: 1rem;
+        padding: 0.4rem 0.75rem;
+        gap: 0.4rem;
+    }
+
+    .carousel-indicator {
+        width: 8px;
+        height: 8px;
+    }
+
+    .carousel-indicator.active {
+        width: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide img {
+        max-height: 300px;
+    }
+
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .carousel-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .carousel-indicators {
+        bottom: 0.75rem;
+        padding: 0.3rem 0.6rem;
+        gap: 0.3rem;
+    }
+
+    .carousel-indicator {
+        width: 7px;
+        height: 7px;
+    }
+
+    .carousel-indicator.active {
+        width: 18px;
+    }
+}
+
+/* Smooth transitions for all carousel elements */
+.carousel * {
+    box-sizing: border-box;
+}
+
+/* Focus styles for accessibility */
+.carousel-btn:focus,
+.carousel-indicator:focus {
+    outline: 2px solid rgba(102, 126, 234, 0.8);
+    outline-offset: 2px;
+}
+
+.carousel-btn:focus:not(:focus-visible),
+.carousel-indicator:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Prevent image dragging */
+.carousel-slide img {
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Optional: Add caption support */
+.carousel-slide[data-caption]::after {
+    content: attr(data-caption);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: #ffffff;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Print styles */
+@media print {
+    .carousel-controls,
+    .carousel-indicators {
+        display: none;
+    }
+
+    .carousel-track {
+        display: block;
+    }
+
+    .carousel-slide {
+        min-width: 100%;
+        page-break-inside: avoid;
+        visibility: visible !important;
+    }
+
+    .carousel-slide img {
+        max-height: none;
+    }
+}

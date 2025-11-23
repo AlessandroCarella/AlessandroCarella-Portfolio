@@ -1,155 +1,166 @@
-{
-    "projects": [
-        {
-            "slug": "data-mining-1",
-            "folder": "Data Mining 1",
-            "jsonFile": "data Mining 1.json",
-            "htmlFile": "data Mining 1.html",
-            "pdfFiles": {
-                "report": "REPORT data mining 1.pdf"
-            },
-            "categories": ["data mining", "machine learning"]
+[
+    {
+        "slug": "data-mining-1",
+        "folder": "Data Mining 1",
+        "jsonFile": "data Mining 1.json",
+        "htmlFile": "data Mining 1.html",
+        "pdfFiles": {
+            "report": "REPORT data mining 1.pdf"
         },
-        {
-            "slug": "data-mining-2",
-            "folder": "Data Mining 2",
-            "jsonFile": "Data_Mining_2.json",
-            "htmlFile": "Data_Mining_2.html",
-            "pdfFiles": {
-                "report": "REPORT data mining 2.pdf"
-            },
-            "categories": ["data mining", "machine learning"]
+        "categories": ["data mining", "machine learning"]
+    },
+    {
+        "slug": "data-mining-2",
+        "folder": "Data Mining 2",
+        "jsonFile": "Data_Mining_2.json",
+        "htmlFile": "Data_Mining_2.html",
+        "pdfFiles": {
+            "report": "REPORT data mining 2.pdf"
         },
-        {
-            "slug": "decision-support-system",
-            "folder": "Decision Support System",
-            "jsonFile": "Decision Support System.json",
-            "htmlFile": "Decision Support System.html",
-            "pdfFiles": {
-                "report": "REPORT Decision Support Systems.pdf",
-                "presentation": "PRESENTATION Decision Support Systems.pdf"
-            },
-            "categories": ["business intelligence", "data warehouse"]
+        "categories": ["data mining", "machine learning"]
+    },
+    {
+        "slug": "decision-support-system",
+        "folder": "Decision Support System",
+        "jsonFile": "Decision Support System.json",
+        "htmlFile": "Decision Support System.html",
+        "pdfFiles": {
+            "report": "REPORT Decision Support Systems.pdf",
+            "presentation": "PRESENTATION Decision Support Systems.pdf"
         },
-        {
-            "slug": "bachelor-thesis",
-            "folder": "Bachelor Thesis",
-            "jsonFile": "Bachelor_Thesis.json",
-            "htmlFile": "Bachelor_Thesis.html",
-            "pdfFiles": {
-                "report": "BACHELOR THESIS.pdf",
-                "manual": "BACHELOR THESIS user manual.pdf"
-            },
-            "categories": ["thesis", "web development"]
+        "categories": ["business intelligence", "data warehouse"]
+    },
+    {
+        "slug": "bachelor-thesis",
+        "folder": "Bachelor Thesis",
+        "jsonFile": "Bachelor_Thesis.json",
+        "htmlFile": "Bachelor_Thesis.html",
+        "pdfFiles": {
+            "report": "BACHELOR THESIS.pdf",
+            "manual": "BACHELOR THESIS user manual.pdf"
         },
-        {
-            "slug": "business-process-mining",
-            "folder": "Business Process Mining",
-            "jsonFile": "Business_Process_Mining.json",
-            "htmlFile": "Business_Process_Mining.html",
-            "pdfFiles": {
-                "report": "REPORT business processes modeling.pdf"
-            },
-            "categories": ["business", "process mining"]
+        "categories": ["thesis", "web development"]
+    },
+    {
+        "slug": "business-process-mining",
+        "folder": "Business Process Mining",
+        "jsonFile": "Business_Process_Mining.json",
+        "htmlFile": "Business_Process_Mining.html",
+        "pdfFiles": {
+            "report": "REPORT business processes modeling.pdf"
         },
-        {
-            "slug": "fundamentals-of-business-management",
-            "folder": "Fundamentals of Business Management",
-            "jsonFile": "Fundamentals_of_Business_Management.json",
-            "htmlFile": "Fundamentals_of_Business_Management.html",
-            "pdfFiles": {
-                "report": "REPORT Fundamentals of Business Management.pdf",
-                "presentation": "PRESENTATION Fundamentals of Business Management.pdf"
-            },
-            "categories": ["business", "management"]
+        "categories": ["business", "process mining"]
+    },
+    {
+        "slug": "fundamentals-of-business-management",
+        "folder": "Fundamentals of Business Management",
+        "jsonFile": "Fundamentals_of_Business_Management.json",
+        "htmlFile": "Fundamentals_of_Business_Management.html",
+        "pdfFiles": {
+            "report": "REPORT Fundamentals of Business Management.pdf",
+            "presentation": "PRESENTATION Fundamentals of Business Management.pdf"
         },
-        {
-            "slug": "hackathon-xai",
-            "folder": "Hackathon XAI",
-            "jsonFile": "Hackathon_XAI.json",
-            "htmlFile": "Hackathon_XAI.html",
-            "pdfFiles": {
-                "report": "REPORT Hackathon.pdf"
-            },
-            "categories": ["machine learning", "explainable ai"]
+        "categories": ["business", "management"]
+    },
+    {
+        "slug": "hackathon-xai",
+        "folder": "Hackathon XAI",
+        "jsonFile": "Hackathon_XAI.json",
+        "htmlFile": "Hackathon_XAI.html",
+        "pdfFiles": {
+            "report": "REPORT Hackathon.pdf"
         },
-        {
-            "slug": "healthy-catering",
-            "folder": "Healthy Catering",
-            "jsonFile": "Healthy_Catering.json",
-            "htmlFile": "Healthy_Catering.html",
-            "pdfFiles": {
-                "report": "REPORT Heatlhy Catering.pdf",
-                "manual": "USER MANUAL Heatlhy Catering.pdf"
-            },
-            "categories": ["web development", "business"]
+        "categories": ["machine learning", "explainable ai"]
+    },
+    {
+        "slug": "healthy-catering",
+        "folder": "Healthy Catering",
+        "jsonFile": "Healthy_Catering.json",
+        "htmlFile": "Healthy_Catering.html",
+        "pdfFiles": {
+            "report": "REPORT Heatlhy Catering.pdf",
+            "manual": "USER MANUAL Heatlhy Catering.pdf"
         },
-        {
-            "slug": "master-thesis",
-            "folder": "Master Thesis",
-            "jsonFile": "Master_Thesis.json",
-            "htmlFile": "Master_Thesis.html",
-            "pdfFiles": {
-                "report": "MASTER THESIS.pdf"
-            },
-            "categories": ["thesis", "machine learning"]
+        "categories": ["web development", "business"]
+    },
+    {
+        "slug": "master-thesis",
+        "folder": "Master Thesis",
+        "jsonFile": "Master_Thesis.json",
+        "htmlFile": "Master_Thesis.html",
+        "pdfFiles": {
+            "report": "MASTER THESIS.pdf"
         },
-        {
-            "slug": "optimization-for-data-science",
-            "folder": "Optimization for Data Science",
-            "jsonFile": "Optimization_for_Data_Science.json",
-            "htmlFile": "Optimization_for_Data_Science.html",
-            "pdfFiles": {
-                "report": "REPORT Optimization for data science.pdf"
-            },
-            "categories": ["optimization", "data science"]
+        "categories": ["thesis", "machine learning"]
+    },
+    {
+        "slug": "optimization-for-data-science",
+        "folder": "Optimization for Data Science",
+        "jsonFile": "Optimization_for_Data_Science.json",
+        "htmlFile": "Optimization_for_Data_Science.html",
+        "pdfFiles": {
+            "report": "REPORT Optimization for data science.pdf"
         },
-        {
-            "slug": "project-design-and-management",
-            "folder": "Project Design and Management",
-            "jsonFile": "Project_Design_and_Management.json",
-            "htmlFile": "Project_Design_and_Management.html",
-            "pdfFiles": {
-                "report": "REPORT Project Design and Management.pdf",
-                "presentation": "PRESENTATION Project Design and Management.pdf"
-            },
-            "categories": ["business", "management", "project management"]
+        "categories": ["optimization", "data science"]
+    },
+    {
+        "slug": "project-design-and-management",
+        "folder": "Project Design and Management",
+        "jsonFile": "Project_Design_and_Management.json",
+        "htmlFile": "Project_Design_and_Management.html",
+        "pdfFiles": {
+            "report": "REPORT Project Design and Management.pdf",
+            "presentation": "PRESENTATION Project Design and Management.pdf"
         },
-        {
-            "slug": "Scomodo Prints",
-            "folder": "Scomodo Prints",
-            "jsonFile": "Scomodo Prints.json",
-            "htmlFile": "Scomodo Prints.html",
-            "pdfFiles": {},
-            "categories": ["web development", "e-commerce"]
+        "categories": ["business", "management", "project management"]
+    },
+    {
+        "slug": "Scomodo Prints",
+        "folder": "Scomodo Prints",
+        "jsonFile": "Scomodo Prints.json",
+        "htmlFile": "Scomodo Prints.html",
+        "categories": ["web development", "e-commerce"]
+    },
+    {
+        "slug": "Scomodo Interactive Maps",
+        "folder": "Scomodo Interactive Maps",
+        "jsonFile": "Scomodo Interactive Maps.json",
+        "htmlFile": "Scomodo Interactive Maps.html",
+        "categories": ["web development", "e-commerce"]
+    },
+    {
+        "slug": "Bari Data Questionnaire Analysis",
+        "folder": "Bari Data Questionnaire Analysis",
+        "jsonFile": "Bari Data Questionnaire Analysis.json",
+        "htmlFile": "Bari Data Questionnaire Analysis.html",
+        "categories": ["web development", "e-commerce"]
+    },
+    {
+        "slug": "statistics-for-data-science",
+        "folder": "Statistics for Data Science",
+        "jsonFile": "Statistics_for_Data_Science.json",
+        "htmlFile": "Statistics_for_Data_Science.html",
+        "pdfFiles": {
+            "presentation": "PRESENTATION statistics for data science.pdf"
         },
-        {
-            "slug": "statistics-for-data-science",
-            "folder": "Statistics for Data Science",
-            "jsonFile": "Statistics_for_Data_Science.json",
-            "htmlFile": "Statistics_for_Data_Science.html",
-            "pdfFiles": {
-                "presentation": "PRESENTATION statistics for data science.pdf"
-            },
-            "categories": ["statistics", "data science"]
+        "categories": ["statistics", "data science"]
+    },
+    {
+        "slug": "strategic-and-competitive-intelligence",
+        "folder": "Strategic and Competitive Intelligence",
+        "jsonFile": "Strategic_and_Competitive_Intelligence.json",
+        "htmlFile": "Strategic_and_Competitive_Intelligence.html",
+        "pdfFiles": {},
+        "categories": ["business", "intelligence"]
+    },
+    {
+        "slug": "visual-analytics",
+        "folder": "Visual Analytics",
+        "jsonFile": "Visual_Analytics.json",
+        "htmlFile": "Visual_Analytics.html",
+        "pdfFiles": {
+            "report": "REPORT Visual analytics.pdf"
         },
-        {
-            "slug": "strategic-and-competitive-intelligence",
-            "folder": "Strategic and Competitive Intelligence",
-            "jsonFile": "Strategic_and_Competitive_Intelligence.json",
-            "htmlFile": "Strategic_and_Competitive_Intelligence.html",
-            "pdfFiles": {},
-            "categories": ["business", "intelligence"]
-        },
-        {
-            "slug": "visual-analytics",
-            "folder": "Visual Analytics",
-            "jsonFile": "Visual_Analytics.json",
-            "htmlFile": "Visual_Analytics.html",
-            "pdfFiles": {
-                "report": "REPORT Visual analytics.pdf"
-            },
-            "categories": ["visualization", "data science"]
-        }
-    ]
-}
+        "categories": ["visualization", "data science"]
+    }
+]

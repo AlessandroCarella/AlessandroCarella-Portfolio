@@ -30,7 +30,7 @@ export const useProjectDetail = (projectSlug) => {
                 }
 
                 const config = await configResponse.json();
-                const projectConfig = config.projects.find(
+                const projectConfig = config.find(
                     (p) => p.slug === projectSlug
                 );
 

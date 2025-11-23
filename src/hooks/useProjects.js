@@ -25,7 +25,7 @@ export const useProjects = () => {
 
                 // Load each project's JSON file
                 const projectsData = await Promise.all(
-                    config.projects.map(async (projectConfig) => {
+                    config.map(async (projectConfig) => {
                         try {
                             const jsonPath = `/projects/${projectConfig.folder}/${projectConfig.jsonFile}`;
                             const response = await fetch(jsonPath);

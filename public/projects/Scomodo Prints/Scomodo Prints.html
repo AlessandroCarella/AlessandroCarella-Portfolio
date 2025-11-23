@@ -1,48 +1,59 @@
 <p>
-    I have developed a digital toolkit for urban research and analysis in my
+    I have developed a
+    <strong>digital toolkit for urban research and analysis</strong> in my
     hometown, Bari. The project is part of a collaborative article examining
-    aggregation spaces and urban dynamics, this project contains two
-    sophisticated web-based visualization tools designed to transform survey
-    data and geographic information into publication-ready outputs. The tools
-    were developed for
-    <a href="https://scomodo.org/"> Scomodo </a>, a cultural association focused
-    on independent journalism and social analysis.
+    aggregation spaces and urban dynamics, this project contains
+    <strong>two sophisticated web-based visualization tools</strong> designed to
+    transform survey data and geographic information into
+    <strong>publication-ready outputs</strong>. The tools were developed for
+    <a href="https://scomodo.org/"> Scomodo </a>, a
+    <em>cultural association</em> focused on independent journalism and social
+    analysis.
 </p>
 
 <p>
-    The project addresses a critical need in urban research: the ability to
-    visualize and communicate complex data about community spaces, amenities,
-    and resident perspectives in an accessible yet rigorous manner. By combining
-    interactive data visualization with cartographic mapping, the toolkit
-    enables researchers, journalists, and community organizers to explore
-    patterns in urban life, identify spatial relationships, and produce
+    The project addresses a <strong>critical need in urban research</strong>:
+    the ability to visualize and communicate complex data about community
+    spaces, amenities, and resident perspectives in an
+    <em>accessible yet rigorous</em> manner. By combining
+    <strong>interactive data visualization with cartographic mapping</strong>,
+    the toolkit enables researchers, journalists, and community organizers to
+    explore patterns in urban life, identify spatial relationships, and produce
     high-quality visual materials for both digital and print publications.
 </p>
 <p>
-    The project consists of two tools: an interactive survey visualization
-    dashboard that transforms some of
+    The project consists of <strong>two tools</strong>: an
+    <strong>interactive survey visualization dashboard</strong> that transforms
+    some of
     <a href="https://bari-data-questionnaire-analysis.pages.dev/"> this </a>
-    questionnaire responses into dynamic charts and graphs, and a cartographic
-    mapping tool that creates publication-ready SVG maps displaying various
-    urban features and amenities.
+    questionnaire responses into dynamic charts and graphs, and a
+    <strong>cartographic mapping tool</strong> that creates
+    <em>publication-ready SVG maps</em> displaying various urban features and
+    amenities.
 </p>
 
 <p>
-    The maps generated using the tool were were featured at a
-    <a href="https://www.instagram.com/p/DQHu5DvDBKF/"> festival </a>
-    organized by the association in October 2025 (see pictures below).
+    The maps generated using the tool were were
+    <strong
+        >featured at a
+        <a href="https://www.instagram.com/p/DQHu5DvDBKF/">
+            festival
+        </a></strong
+    >
+    organized by the association in <em>October 2025</em> (see pictures below).
 </p>
 
 <p>
-    Both tools were built with a focus on accessibility, usability, and
-    professional-grade output quality, ensuring that the resulting
-    visualizations could serve both analytical and communicative purposes in the
-    context of urban research and journalism.
+    Both tools were built with a focus on
+    <strong
+        >accessibility, usability, and professional-grade output quality</strong
+    >, ensuring that the resulting visualizations could serve both analytical
+    and communicative purposes in the context of urban research and journalism.
 </p>
 
 <p>
     A live version of both project is aviable at this
-    <a href="https://scomodo-prints.pages.dev/"> landing page </a>.
+    <a href="https://scomodo-prints.pages.dev/">page</a>.
 </p>
 
 <h2>Gallery</h2>
@@ -62,64 +73,72 @@
 
 <h2>Design and User Experience</h2>
 <p>
-    Live preview functionality is central to the user experience of both tools.
-    In the survey dashboard, every change to chart type, color scheme, or data
-    selection instantly updates the visualization, allowing users to explore
-    different representations interactively. This feedback loop supports an
-    exploratory approach to data analysis, where users can quickly test
-    different hypotheses and visual approaches without committing to any single
-    representation options.
+    <strong>Live preview functionality</strong> is central to the user
+    experience of both tools. In the survey dashboard, every change to chart
+    type, color scheme, or data selection
+    <strong>instantly updates the visualization</strong>, allowing users to
+    explore different representations interactively. This
+    <em>feedback loop</em> supports an exploratory approach to data analysis,
+    where users can quickly test different hypotheses and visual approaches
+    without committing to any single representation options.
 </p>
 
 <p>
-    The cartographic tool implements a synchronized dual-view system: a live map
-    preview for interaction and data verification, paired with an export preview
-    that shows exactly how the final SVG will appear. This eliminates surprises
-    during the export process and allows users to make adjustments with full
-    knowledge of how they will affect the final output. The SVG files produced
-    by the interface later went through some improvements of the designers at
-    Scomodo, you can see the final results in the gallery.
+    The cartographic tool implements a
+    <strong>synchronized dual-view system</strong>: a live map preview for
+    interaction and data verification, paired with an
+    <strong>export preview</strong> that shows exactly how the final SVG will
+    appear. This eliminates surprises during the export process and allows users
+    to make adjustments with full knowledge of how they will affect the final
+    output. The <em>SVG files</em> produced by the interface later went through
+    some improvements of the designers at Scomodo, you can see the final results
+    in the gallery.
 </p>
 
 <p>
-    Responsive design considerations ensure that both tools function effectively
-    across different screen sizes, though the focus remains on desktop use where
-    the complexity of the controls and the need for precision make
-    mouse-and-keyboard interaction optimal. The layout adapts gracefully to
-    different viewport sizes, maintaining usability even on smaller laptop
-    screens while taking full advantage of larger displays when available.
+    <strong>Responsive design considerations</strong> ensure that both tools
+    function effectively across different screen sizes, though the focus remains
+    on <em>desktop use</em> where the complexity of the controls and the need
+    for precision make mouse-and-keyboard interaction optimal. The layout adapts
+    gracefully to different viewport sizes, maintaining usability even on
+    smaller laptop screens while taking full advantage of larger displays when
+    available.
 </p>
 
 <h2>Challenges and Solutions</h2>
 <p>
-    One of the primary challenges was achieving publication-quality SVG exports
-    that could be used directly in professional design workflows. Initial export
-    implementations produced SVG files that did not represent the correct
-    output. Sometimes text would reflow unpredictably, fonts would substitute
-    incorrectly, and complex chart elements would become uneditable. The
-    solution required embedding fonts directly in the SVG files using
-    base64-encoded data URLs and implementing path generation that maintains
-    editability while ensuring visual fidelity.
+    One of the primary challenges was achieving
+    <strong>publication-quality SVG exports</strong> that could be used directly
+    in professional design workflows. Initial export implementations produced
+    SVG files that did not represent the correct output. Sometimes text would
+    reflow unpredictably, fonts would substitute incorrectly, and complex chart
+    elements would become uneditable. The solution required
+    <strong>embedding fonts directly in the SVG files</strong> using
+    <em>base64-encoded data URLs</em> and implementing path generation that
+    maintains editability while ensuring visual fidelity.
 </p>
 
 <p>
-    The cartographic tool faced the technical challenge of working with map
-    tiles across CORS restrictions. Modern browsers prevent loading tiles from
-    many mapping services when running locally or from different domains, which
-    would break the export functionality. The solution implemented a proxy
-    mechanism combined with tile caching strategies that respect both security
-    constraints and the need to generate high-quality map exports. This required
-    careful handling of asynchronous operations to ensure all tiles loaded
-    before export generation began.
+    The cartographic tool faced the technical challenge of working with
+    <strong>map tiles across CORS restrictions</strong>. Modern browsers prevent
+    loading tiles from many mapping services when running locally or from
+    different domains, which would break the export functionality. The solution
+    implemented a
+    <strong>proxy mechanism combined with tile caching strategies</strong> that
+    respect both security constraints and the need to generate high-quality map
+    exports. This required careful handling of
+    <em>asynchronous operations</em> to ensure all tiles loaded before export
+    generation began.
 </p>
 
 <p>
-    Label collision detection and resolution required developing custom
-    algorithms since standard mapping libraries don't provide adequate solutions
-    for publication-quality label placement. The system needed to balance
-    multiple factors: maintaining geographic accuracy, ensuring readability, and
-    creating visually pleasing layouts. The implemented solution uses a
-    combination of quadtree spatial indexing for efficient collision detection
-    and iterative adjustment algorithms that nudge labels to optimal positions
-    while respecting proximity to their associated markers.
+    <strong>Label collision detection and resolution</strong> required
+    developing custom algorithms since standard mapping libraries don't provide
+    adequate solutions for publication-quality label placement. The system
+    needed to balance multiple factors: maintaining geographic accuracy,
+    ensuring readability, and creating visually pleasing layouts. The
+    implemented solution uses a combination of
+    <em>quadtree spatial indexing</em> for efficient collision detection and
+    <strong>iterative adjustment algorithms</strong> that nudge labels to
+    optimal positions while respecting proximity to their associated markers.
 </p>
