@@ -198,6 +198,40 @@
     line-height: 1.5;
 }
 
+/* Two Images Side by Side */
+.two-images-div {
+    display: flex;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    align-items: flex-start;
+}
+
+.two-images-div img {
+    flex: 1;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+}
+
+.two-images-div figure {
+    flex: 1;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.two-images-div figure img {
+    width: 100%;
+}
+
+.two-images-div .project-image-caption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+}
+
 /* Tables in main content */
 .project-main-content table {
     width: 100%;
@@ -309,6 +343,15 @@
         .collapsible-section
         .collapsible-title {
         font-size: 1.1rem;
+    }
+
+    .two-images-div {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .two-images-div img {
+        max-width: 100%;
     }
 }
 
