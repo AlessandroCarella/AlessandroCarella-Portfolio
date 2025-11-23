@@ -1,0 +1,287 @@
+<p>
+    This project explores <strong>advanced optimization techniques</strong> for
+    solving <strong>minimum cost flow problems</strong> with quadratic, convex,
+    and separable objective functions. The work focuses on implementing and
+    comparing different algorithmic approaches to network flow optimization.
+</p>
+
+<p>
+    The core problem addresses the challenge of finding
+    <strong>optimal flow allocation</strong> in directed networks where
+    transportation costs follow a quadratic relationship. Mathematically, the
+    problem is formulated as minimizing x<sup>T</sup>Qx + qx subject to flow
+    conservation constraints Ex = b and capacity constraints 0 ≤ x ≤ u, where
+    <em>Q</em> is a positive semidefinite diagonal matrix representing quadratic
+    costs, <em>E</em> is the node-arc incidence matrix, and
+    <em>b</em> represents supply/demand at each node.
+</p>
+
+<p>
+    This problem has practical applications in
+    <strong>logistics, resource allocation, and network design</strong>, where
+    costs often increase non-linearly with flow volumes. Our investigation
+    implements <strong>three distinct solution approaches</strong>: a Lagrangian
+    dual-based algorithm with smoothing,
+    <em>Nesterov's Fast Gradient Method</em> with dynamic parameters, and the
+    <em>CVXPY</em> optimization library with the SCS solver.
+</p>
+
+<h2>What I Learned</h2>
+<p>
+    This project provided insights into the practical challenges of convex
+    optimization and the
+    <strong
+        >significant gap between theoretical guarantees and real-world
+        performance</strong
+    >. I learned that the <strong>smoothing parameter μ</strong> plays a
+    critical role in algorithm convergence, too small leads to numerical
+    instability and tiny step sizes, while too large distorts the original
+    problem excessively.
+</p>
+
+<p>
+    The implementation revealed that
+    <strong
+        >dynamic parameter adjustment dramatically improves performance</strong
+    >
+    over fixed parameters. Our variant with dynamic μ achieved convergence in
+    approximately <strong>1,676 iterations</strong> on small matrices compared
+    to <strong>28,784 iterations</strong> with constant parameters. However,
+    accessing the optimal value <em>a priori</em> provides substantial
+    advantages, reducing relative errors from 4.1 to 0.082 on complex instances.
+</p>
+
+<p>
+    I discovered the importance of <strong>problem conditioning</strong> in
+    optimization algorithms. Fast Gradient methods performed well on
+    well-conditioned problems but struggled with ill-conditioned matrices, while
+    the <em>SCS solver</em> maintained consistent performance across all test
+    cases. The <strong>Lagrangian relaxation approach</strong> proved powerful
+    for decomposing the problem into parallelizable sub-problems, exploiting the
+    separable structure of the objective function.
+</p>
+
+<p>
+    Perhaps most importantly, I learned that
+    <strong>specialized solvers like SCS</strong>, built on years of research
+    and optimization,
+    <strong>significantly outperform custom implementations</strong>
+    in terms of both speed (25-2925 iterations vs. 150,000) and robustness. This
+    underscored the value of understanding
+    <strong>when to build custom solutions versus using existing tools</strong>,
+    and highlighted the challenges of translating theoretical convergence rates
+    into practical algorithms.
+</p>
+
+<h2>Lagrangian Dual Approach and Smoothing</h2>
+<p>
+    The <strong>Lagrangian dual-based algorithm</strong> forms the theoretical
+    foundation of our optimization approach. By relaxing the equality
+    constraints Ex = b using <em>Lagrange multipliers λ</em>, we transform the
+    constrained primal problem into an unconstrained dual maximization problem:
+    max<sub>λ</sub> φ(λ), where φ(λ) = min<sub>x</sub> {x<sup>T</sup>Qx + qx +
+    λ(Ex - b) : 0 ≤ x ≤ u}.
+</p>
+
+<p>
+    A critical challenge arises from the positive semidefinite matrix Q
+    containing <strong>zeros on its diagonal</strong>, making certain components
+    non-invertible. To address this, we introduce a
+    <strong>smoothing regularization term</strong> μ||x||<sub>2</sub
+    ><sup>2</sup>, creating the smoothed problem: min<sub>x</sub>
+    {x<sup>T</sup>Qx + qx + λ(Ex - b) + μ||x||<sub>2</sub><sup>2</sup> : 0 ≤ x ≤
+    u}. This makes the objective function
+    <strong>strictly convex and differentiable</strong>
+    everywhere.
+</p>
+
+<p>
+    The <strong>separable structure</strong> of the Lagrangian allows
+    decomposition into m independent one-dimensional problems, one for each arc
+    (i,j). For each arc, the optimal flow x*<sub>ij</sub> can be computed
+    analytically as max(0, min(u<sub>ij</sub>, -(q<sub>ij</sub> - λ<sub>i</sub>
+    + λ<sub>j</sub>)/(2(Q<sub>ij</sub> + μ)))). This
+    <strong>closed-form solution enables efficient parallel computation</strong>
+    and makes each iteration computationally tractable even for large networks.
+</p>
+
+<p>
+    The <strong>gradient of the dual function</strong> φ(λ) with respect to λ
+    equals Ex* - b, representing the violation of flow conservation constraints.
+    This gradient has a clear physical interpretation: when Ex* = b, flows
+    satisfy conservation laws and the gradient vanishes; otherwise, the gradient
+    magnitude indicates how severely the constraints are violated. The
+    <em>Lipschitz constant</em> of this gradient is L = ||E||<sub>2</sub
+    ><sup>2</sup>/μ, which grows as μ decreases, creating a
+    <strong>fundamental trade-off between accuracy and convergence speed</strong
+    >.
+</p>
+
+<h2>Nesterov's Fast Gradient Method and Acceleration</h2>
+<p>
+    <strong>Nesterov's Fast Gradient Method</strong> provides
+    <strong>optimal worst-case convergence rates</strong> for smooth convex
+    optimization. Unlike standard gradient descent which updates at the current
+    point λ<sub>k</sub>, Nesterov's method introduces
+    <strong>momentum</strong> by computing gradients at an extrapolated point
+    y<sub>k</sub> = (1 - θ<sub>k</sub>)λ<sub>k</sub> +
+    θ<sub>k</sub>v<sub>k</sub>, where <em>v<sub>k</sub></em> represents a
+    velocity term and θ<sub>k</sub> = 2/(k+2) provides the acceleration
+    schedule.
+</p>
+
+<p>
+    The algorithm maintains <strong>three sequences</strong>: the main iterates
+    λ<sub>k</sub>, the extrapolation points y<sub>k</sub>, and auxiliary
+    variables v<sub>k</sub>. At each iteration, we compute the gradient at
+    y<sub>k</sub>, update λ<sub>k+1</sub> = y<sub>k</sub> - t∇φ(y<sub>k</sub>)
+    with step size t ∈ (0, 1/L], and update the velocity v<sub>k+1</sub> = λ<sub
+        >k</sub
+    >
+    + (1/θ<sub>k</sub>)(λ<sub>k+1</sub> - λ<sub>k</sub>). This momentum
+    mechanism allows the algorithm to achieve
+    <strong>O(1/k<sup>2</sup>) convergence rate</strong> compared to O(1/k) for
+    standard gradient descent.
+</p>
+
+<p>
+    For our problem, theoretical convergence is guaranteed by the bound
+    φ(λ<sub>k</sub>) - φ* ≤ (2/((k+1)<sup>2</sup>t))||λ<sub>0</sub> - λ*||<sub
+        >2</sub
+    ><sup>2</sup>. However, this bound
+    <strong>depends on knowing the distance to the optimal point λ*</strong>,
+    which is typically unavailable. In practice, convergence behavior depends
+    heavily on problem conditioning and the choice of smoothing parameter μ.
+</p>
+
+<p>
+    Our implementation tested <strong>three variants</strong>: constant step
+    size with fixed μ, dynamic μ using knowledge of the optimal value f*, and
+    dynamic μ without requiring f*. The constant step size approach struggled
+    with larger problems, requiring over 28,000 iterations for small matrices
+    and failing to converge for larger ones. The
+    <strong>dynamic approaches showed dramatic improvements</strong>, with the
+    variant using f* converging in under 2,000 iterations and achieving relative
+    errors below 10<sup>-4</sup>
+    on well-conditioned problems.
+</p>
+
+<h2>Implementation and Experimental Setup</h2>
+<p>
+    The implementation consists of multiple
+    <em>Python Jupyter notebooks</em> organized by algorithm variant. The
+    <em>fastGradientMethod.ipynb</em> contains the baseline implementation with
+    constant parameters, while <em>fastGradientMethodWithOpt.ipynb</em> and
+    <em>fastGradientMethodWithoutOpt.ipynb</em>
+    implement dynamic smoothing strategies. Supporting scripts include
+    <em>getProblemData.py</em> for parsing DMX instance files,
+    <em>gradientUtils.py</em> with shared optimization functions, and
+    <em>plots.py</em> for visualization.
+</p>
+
+<p>
+    Test instances were generated using the <em>netgen</em> network generator to
+    create base linear cost flow problems, to which we added
+    <strong>randomized quadratic costs</strong>. The matrix Q was constructed by
+    centering random values around q<sub>ij</sub>/u<sub>ij</sub> within
+    intervals controlled by parameter α = 100. To simulate positive semidefinite
+    matrices with zero diagonal elements, we introduced parameter
+    <strong>ρ = 0.3</strong>, randomly setting 30% of quadratic costs to zero.
+</p>
+
+<p>
+    The <strong>smoothing parameter μ</strong> was computed as μ = ε/(2||u||<sub
+        >2</sub
+    ><sup>2</sup>) where ε = 10<sup>-3</sup> is the tolerance, ensuring the
+    approximation error remains bounded. For the dynamic variant without optimal
+    value, we employed a <strong>progressive reduction strategy</strong>: μ<sub
+        >k</sub
+    >
+    = max(10<sup>-⌊k/1000⌋</sup>, ε/(2K)), gradually decreasing μ every 1000
+    iterations while respecting the theoretical minimum. This heuristic balances
+    initial progress with eventual accuracy.
+</p>
+
+<p>
+    We compared our implementations against
+    <strong>CVXPY using the SCS</strong> (Splitting Conic Solver) with indirect
+    method settings. The solver automatically transforms our problem into
+    standard conic form. Performance metrics included
+    <strong>iteration count, final objective value, gradient norm</strong> at
+    termination, and relative error compared to the solver solution. All
+    experiments ran for a maximum of 150,000 iterations on smaller instances
+    (nodes < 500, arcs < 3000) due to computational time constraints.
+</p>
+
+<h2>Results and Comparative Analysis</h2>
+<p>
+    The experimental results reveal
+    <strong>stark performance differences</strong> across methods and problem
+    instances. On the small test matrix (4 nodes, 4 arcs), the Fast Gradient
+    method with optimal value knowledge converged in
+    <strong>509 iterations</strong> to within 7.6×10<sup>-5</sup> relative
+    error, while the variant without optimal value required
+    <strong>1,680 iterations</strong> achieving 1.2×10<sup>-4</sup> error. In
+    contrast,
+    <strong>SCS solved the same problem in just 25 iterations</strong> with
+    comparable accuracy.
+</p>
+
+<p>
+    For the <em>rmfgen 4-4-500</em> instance, both Fast Gradient variants
+    <strong>reached their 150,000 iteration limit</strong>. The method with
+    optimal value achieved objective value 365,912.49 (2.0% relative error),
+    while the variant without optimal value reached 368,963.11 (1.1% error)
+    compared to SCS's reference solution of 373,214.42 obtained in only 675
+    iterations. Interestingly, the
+    <strong>method without optimal value performed better here</strong>,
+    suggesting that access to f* isn't universally advantageous and may depend
+    on problem characteristics.
+</p>
+
+<p>
+    The most challenging instance, <em>rmfgen 4-16-500</em>,
+    <strong>exposed the limitations of Fast Gradient methods</strong>. With
+    optimal value, the method achieved 8.2% relative error after 150,000
+    iterations, while without it the <strong>error exploded to 407%</strong>,
+    indicating complete failure to approximate the solution. SCS required 2,925
+    iterations, still maintaining high efficiency. This demonstrates that
+    <strong>problem conditioning and dimensionality severely impact</strong>
+    gradient method performance.
+</p>
+
+<p>
+    The gradient norm evolution plots reveal
+    <strong>oscillatory behavior</strong> in the dynamic μ variants, contrasting
+    with the smooth monotonic decrease predicted by theory. These oscillations
+    correspond to reductions in μ every 1000 iterations, temporarily disrupting
+    convergence but enabling eventual progress toward finer-grained solutions.
+    The relative gap plots show the methods can approach optimal values but
+    <strong>struggle to achieve high precision</strong>, suggesting these
+    first-order methods are better suited for obtaining approximate solutions
+    quickly rather than high-accuracy results.
+</p>
+
+<h2>Conclusions</h2>
+<p>
+    This project demonstrates that while
+    <strong>Lagrangian dual methods with fast gradient acceleration</strong>
+    provide elegant theoretical frameworks for convex optimization,
+    <strong>practical implementation faces substantial challenges</strong>. The
+    fundamental tension between smoothing for computational tractability and
+    accuracy of the original problem solution requires
+    <u>careful parameter management</u>. Our dynamic smoothing strategies show
+    promise but remain sensitive to problem conditioning and scale.
+</p>
+
+<p>
+    The <strong>superior performance of the SCS solver</strong>, typically
+    50-1000× fewer iterations than our implementations, highlights the value of
+    specialized optimization software incorporating decades of algorithmic
+    refinements, adaptive parameter selection, preconditioning techniques, and
+    numerical stability enhancements. For practitioners, this suggests
+    <u
+        >custom implementations are valuable for understanding and research but
+        production systems benefit from mature solver libraries</u
+    >.
+</p>

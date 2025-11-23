@@ -1,8 +1,66 @@
 {
     "projectName": "Visual Analytics",
-    "quickSummary": "Interactive data visualization for the VAST Challenge 2023.",
+    "quickSummary": "Interactive visual analytics tool using D3.js to investigate illegal fishing networks through knowledge graph visualization. Developed for VAST Challenge 2023, enabling analysts to explore entity relationships and identify suspicious patterns in maritime industry connections.",
     "content": "Visual_Analytics.html",
     "report": "REPORT Visual analytics.pdf",
+    "liveVersion": "https://alessandrocarella-visual-analytics-project.alessandro-carella-universita.workers.dev/",
     "collaborators": [],
-    "repository": "https://github.com/AlessandroCarella/Visual-analytics"
+    "repository": "https://github.com/AlessandroCarella/Visual-analytics",
+    "skills": [
+        "JavaScript",
+        "D3.js",
+        "Data Visualization",
+        "Visual Analytics",
+        "Network Analysis",
+        "Graph Theory",
+        "Data Cleaning",
+        "Interactive Visualization",
+        "Force-Directed Graphs",
+        "Pandas",
+        "Problem Solving",
+        "Pattern Recognition",
+        "Web Development"
+    ],
+    "keywords": {
+        "technologies": [
+            "D3.js",
+            "JavaScript",
+            "Python",
+            "Pandas",
+            "SVG",
+            "JSON"
+        ],
+        "visualization": [
+            "Network Graphs",
+            "Interactive Visualizations",
+            "Node-Link Diagrams",
+            "Visual Encoding",
+            "Tooltips",
+            "Context Menus"
+        ],
+        "methodologies": [
+            "Visual Analytics",
+            "Data Exploration",
+            "Pattern Recognition",
+            "Cluster Analysis",
+            "Link Distance Analysis",
+            "Interactive Design"
+        ],
+        "dataProcessing": [
+            "Data Cleaning",
+            "Missing Data Handling",
+            "Duplicate Resolution",
+            "CSV Processing",
+            "Data Merging"
+        ],
+        "features": [
+            "Multi-Link Visualization",
+            "Distance-Based Exploration",
+            "Node Highlighting",
+            "Link Filtering",
+            "Opacity Control",
+            "Hover Interactions",
+            "Right-Click Menus"
+        ]
+    }
 }

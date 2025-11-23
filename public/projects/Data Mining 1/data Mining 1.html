@@ -1,141 +1,446 @@
 <p>
-    This is one of the first projects i have worked on during my Master in Data
-    Science and Business Informatics. The project analyzes a Spotify Tracks
-    dataset which was provided by the teachers, containing approximately 15,000
-    songs with 24 attributes including duration, popularity, danceability,
-    energy, and genre. Me and my colleagues, other than friends, applied the
-    following data mining techniques that were tought us during the classes:
-    data preparation, clustering, classification, regression, and pattern
-    mining.
-</p>
-<p>
-    You can find the link to the project github repository, report in the side
-    panel of this page. The linked class notes refer to the data mining 2 class
-    since the second module expanded the first class concepts.
+    This project was completed as part of the <i>Data Mining I</i> course at the
+    University of Pisa during the 2023-2024 academic year. The project involved
+    an
+    <strong>extensive analysis of a Spotify Tracks dataset</strong> containing
+    over 15,000 songs, utilizing various data mining techniques to extract
+    meaningful insights about music characteristics and patterns.
 </p>
 
-<h2 id="what-i-learned">What I Learned</h2>
 <p>
-    This project proved to be an invaluable learning experience that shaped my
-    understanding of practical data mining applications.
+    The project has <strong>five major analytical phases</strong>: data
+    understanding and preparation, clustering analysis, classification modeling,
+    regression techniques, and pattern mining. Each phase employed multiple
+    algorithms and methodologies to explore the dataset from different
+    analytical perspectives. The dataset included
+    <strong>24 attributes</strong>, extracted from the
+    <a href="https://developer.spotify.com/documentation/web-api">Spotify API</a
+    >, describing various aspects of songs, including duration, popularity,
+    energy, danceability, acousticness, and musical genre.
 </p>
+
 <p>
-    Working collaboratively with my colleagues (who became friends in the
-    meanwhile) taught me that data science is as much about teamwork and
-    communication as it is about technical skills. Dividing responsibilities,
-    reviewing each other's progresses, and discussing approaches helped me
-    develop better coding practices and learn to articulate technical concepts
-    clearly.
+    Working collaboratively as a <strong>team of three students</strong>, we
+    implemented data quality assessment procedures, handled missing values and
+    outliers, performed feature engineering, and applied standardization
+    techniques. The analytical work was conducted in <i>Python</i>, with the use
+    of libraries such as <i>scikit-learn</i>, <i>pandas</i>, and
+    <i>mlxtend</i> for applying various machine learning algorithms and data
+    processing workflows.
 </p>
+
+<h2>What I Learned</h2>
 <p>
+    This project provided hands-on experience with the
+    <strong>complete data mining workflow</strong>, from raw data exploration to
+    model evaluation and interpretation. One of the most significant lessons was
+    understanding the
+    <strong>critical importance of data quality assessment</strong> and
+    preprocessing. Through comprehensive analysis of missing values, outliers,
+    and semantic inconsistencies, I learned that cleaning data is not merely a
+    preliminary step but a fundamental process that directly impacts all
+    subsequent analysis. The decision to remove observations with multiple
+    outlier attributes while preserving dataset size taught me the
+    <strong>balance between data quality and quantity</strong>.
+</p>
+
+<p>
+    The clustering phase revealed the
+    <strong>complexity of unsupervised learning</strong> and the challenge of
+    finding natural groupings in high-dimensional data. Working with algorithms
+    like <i>kMeans</i>, <i>hierarchical clustering</i>, and density-based
+    methods like <i>DBSCAN</i> and <i>HDBSCAN</i>, I learned that different
+    algorithms have distinct strengths and weaknesses. The consistently
+    <strong>low Silhouette scores</strong> across most clustering attempts
+    demonstrated that
+    <strong>not all datasets have clear natural clusters</strong>, and sometimes
+    domain knowledge must complement algorithmic results. This experience taught
+    me to critically evaluate metrics rather than blindly accepting algorithmic
+    outputs.
+</p>
+
+<p>
+    Classification modeling provided insights into handling
+    <strong>multiclass problems</strong> and dealing with
+    <strong>imbalanced datasets</strong>. The dramatic improvement in accuracy
+    when moving from 20-class genre classification to 4-class grouped genres
+    illustrated the importance of
+    <strong>problem formulation and feature engineering</strong>.
+    <i>K-Nearest Neighbors</i> achieved the best results for our use case, with
+    <strong>74% accuracy</strong> on grouped genres, demonstrating that simpler
+    models can sometimes outperform more complex ones when properly tuned. The
+    experience with decision trees taught me about overfitting, the importance
+    of hyperparameter tuning, and the value of cross-validation.
+</p>
+
+<p>
+    The regression analysis deepened my understanding of
+    <strong>predictive modeling for continuous variables</strong>. Working with
+    <i>Ridge</i> and <i>Lasso</i> regularization taught me about controlling
+    model complexity and the
+    <strong>trade-offs between bias and variance</strong>. The disappointing
+    results with Lasso in simple regression contexts illustrated that
+    regularization techniques must be applied appropriately to the problem
+    structure.
+</p>
+
+<p>
+    Pattern mining using <i>Apriori</i> and <i>FP-Growth</i> algorithms revealed
+    how to <strong>extract meaningful association rules</strong> from
+    categorical data. Learning to optimize support and confidence thresholds
+    through iterative experimentation taught me that
+    <strong>data mining is as much art as science</strong>. The process of
+    binning continuous variables into categories for pattern mining highlighted
+    the importance of thoughtful feature transformation. Most importantly, I
+    learned that the value of data mining lies not just in implementing
+    algorithms but in
+    <strong>interpreting results within the domain context</strong> and
+    communicating insights effectively.
+</p>
+
+<h2>Data Understanding and Preparation</h2>
+<p>
+    The project began with a thorough examination of the Spotify Tracks dataset,
+    which initially contained
+    <strong>15,000 observations across 24 attributes</strong>. These attributes
+    included both continuous variables like duration, tempo, and energy, as well
+    as categorical variables such as genre, explicit content flags, and musical
+    key. A comprehensive <strong>semantic analysis</strong> was performed to
+    understand each attribute's meaning, measurement scale, and potential
+    relevance for analysis.
+</p>
+
+<p>
+    Statistical exploration revealed important characteristics of the data
+    distribution. Measures of central tendency showed that some attributes like
+    <i>danceability</i> exhibited <strong>near-normal distributions</strong>,
+    while others like <i>popularity</i> and <i>energy</i> displayed
+    <strong>significant skewness</strong>. The mean duration of songs was
+    approximately 247 seconds with substantial variance, indicating a wide range
+    of song lengths in the dataset. Several attributes showed high standard
+    deviations, suggesting
+    <strong>diverse musical characteristics</strong> across the tracks.
+</p>
+
+<img src="distribution.png" alt="Features distributions" />
+
+<p>
+    Data quality assessment identified
+    <strong>three primary challenges</strong>: missing values, outliers, and
+    semantic inconsistencies. The attributes <i>mode</i>, <i>time signature</i>,
+    and <i>popularity confidence</i> contained significant numbers of missing
+    values, with popularity confidence having
+    <strong>12,783 missing entries</strong> out of 15,000 total observations.
+    This led to the decision to
+    <strong>drop the popularity confidence column entirely</strong> while
+    imputing missing values in mode and time signature using the statistical
+    mode.
+</p>
+
+<p>
+    Outlier detection employed a sophisticated multi-criteria approach using the
+    <i>Interquartile Range method</i> with a scale factor of 1.5. Rather than
+    removing observations with any single outlier attribute, which would have
+    resulted in excessive data loss, we established a
+    <strong>threshold requiring two or more attributes</strong> to be classified
+    as outliers before removing an observation. This balanced approach resulted
+    in the <strong>removal of 763 observations</strong>, reducing the dataset to
+    14,237 rows while preserving the majority of data.
+</p>
+
+<img src="heatmap.png" alt="Correlation of features" />
+<p>
+    Feature engineering involved examining
+    <strong>pairwise correlations</strong> to identify redundant variables. The
+    correlation analysis revealed <strong>perfect correlation</strong> between
+    <i>duration_ms</i> and <i>features_duration_ms</i>, and very high
+    correlation between <i>n_beats</i> and <i>n_bars</i>. These redundant
+    features were removed to reduce dimensionality. Additionally, the
+    <i>processing</i> attribute was dropped due to lack of documentation and
+    unclear purpose. Semantic inconsistencies in album names were identified and
+    corrected using <strong>fuzzy string matching</strong> with an 80%
+    similarity threshold.
+</p>
+
+<h2>Clustering Analysis</h2>
+<p>
+    The clustering phase explored multiple algorithms to identify natural
+    groupings within the Spotify tracks data. Partitioning methods including
+    <i>kMeans</i>, <i>Bisecting kMeans</i>, and <i>kModes</i> were
+    systematically evaluated across different k values ranging from 2 to 200.
+    For kMeans, both <i>Silhouette scores</i> and
+    <i>Sum of Squared Errors</i> were calculated for each configuration. The
+    analysis revealed that even with k=2, the Silhouette score remained
+    relatively low at 0.22, suggesting the
+    <strong>dataset lacks strongly defined natural clusters</strong>.
+</p>
+<img src="Silhouette.png" alt="Silhouette score" />
+<p>
+    The <strong>optimal configuration for kMeans was k=11 clusters</strong>,
+    achieving a Silhouette score of approximately 0.13 and Sum of Squared Errors
+    of 5.1. This represented a reasonable balance between the two metrics,
+    though the low Silhouette score indicated that
+    <strong>cluster separation was modest</strong>.
+    <i>Bisecting kMeans</i> produced similar results with slightly different
+    characteristics, yielding an optimal k=10 configuration with comparable
+    performance metrics. The <i>kModes</i> algorithm, designed for categorical
+    data, achieved its best result with k=2 and an entropy score of 0.0102.
+</p>
+<img src="sse.png" alt="Sum of Squared Errors results" />
+<p>
+    <strong>Hierarchical clustering</strong> was explored using multiple linkage
+    methods: <i>centroid</i>, <i>complete</i>, <i>single</i>, and
+    <i>group average</i> linkage. Various threshold values from 5 to 50 were
+    tested with both distance and maxclust criteria. Single linkage with a
+    threshold of 5 achieved the highest Silhouette score of 0.34, but was
+    <strong>rejected due to sensitivity to outliers</strong> and noise. Instead,
+    <strong>Group Average Linkage</strong> with a threshold of 10 and the
+    maxclust criterion was selected as optimal, achieving a Silhouette score of
+    0.11 and producing more balanced clusters.
+</p>
+
+<p>
+    <strong>Density-based clustering methods</strong> including <i>DBSCAN</i>,
+    <i>OPTICS</i>, and <i>HDBSCAN</i> were implemented to identify clusters of
+    varying density. DBSCAN was tested with epsilon values ranging from 0.1 to 3
+    and minimum samples from 1 to 20. The most promising results occurred with
+    eps=3 and min_samples≥5, though most configurations tended to
+    <strong>produce only two significant clusters</strong>. OPTICS proved
+    computationally expensive and was run on a reduced sample of 5,000
+    observations, but even with optimal parameters, results remained suboptimal
+    with most data falling into just two clusters.
+</p>
+
+<p>
+    The clustering analysis concluded that
     <strong
-        >The biggest technical lesson was understanding that real-world data is
-        messy.</strong
+        >hierarchical Group Average Linkage provided the most balanced
+        results</strong
     >
-    The data preparation phase consumed far more time than I initially expected,
-    but it taught me critical thinking about data quality. Deciding when to
-    impute missing values versus removing them, determining the correct outlier
-    thresholds, and justifying each preprocessing decision required careful
-    consideration of the impact on our models. I learned that these early
-    decisions fundamentally change project outcomes since no sophisticated
-    algorithm can compensate for poor data preparation.
+    for this dataset. The consistently modest performance across all clustering
+    algorithms suggested that the Spotify tracks data may not contain strongly
+    defined natural groupings. This finding indicates that
+    <strong>musical characteristics form more of a continuum</strong> than
+    discrete categories, which aligns with the intuitive understanding of
+    music's complexity and diversity.
 </p>
+
+<h2>Classification Models</h2>
 <p>
-    The clustering analysis was humbling. Despite implementing seven different
-    algorithms with various parameter configurations, we achived modest
-    performance metrics. This taught me that
-    <strong>not every dataset is naturally "clusterable"</strong> and that
-    sometimes the data, especially if multifaced as music ones, simply doesn't
-    have clear groupings. Learning to interpret and communicate these
-    limitations honestly is as important as celebrating successes.
+    The classification phase aimed to
+    <strong>predict musical genres</strong> using various machine learning
+    models. The initial approach targeted all 20 genres as separate classes, but
+    the high dimensionality posed significant challenges. To address this, an
+    alternative approach was developed using
+    <strong>clustered genres created through kMeans with k=5</strong>, reducing
+    the classification problem to four target classes. This grouping was based
+    on musical similarity patterns discovered during the clustering phase.
 </p>
+
 <p>
-    The regression work reinforced the importance of understanding real-world
-    data's relationships. Discovering that n_beats could predict duration with
-    94.7% accuracy seems obvious in retrospect, longer songs naturally have more
-    beats, but identifying such strong predictors requires domain knowledge
-    combined with statistical analysis.
+    <strong>K-Nearest Neighbors classification</strong> was implemented with
+    extensive hyperparameter optimization, including varying sample sizes from
+    10% to 100% of the dataset, k-fold cross-validation with k=33, and testing
+    both uniform and distance-based weighting schemes. For the 20-class genre
+    problem, the optimal model used 10% of the dataset with k=35 and uniform
+    weights, achieving 56% training accuracy but
+    <strong>only 41% test accuracy</strong>, indicating significant overfitting.
+    This moderate performance reflected the inherent difficulty of
+    distinguishing between 20 musical genres based solely on audio features.
 </p>
+
 <p>
+    When applied to the
     <strong
-        >Perhaps most importantly, this project taught me the iterative nature
-        of data science.</strong
+        >grouped genres (4 classes), KNN demonstrated dramatic
+        improvement</strong
+    >. Using the same 10% sample size with k=35 and uniform weights, the model
+    achieved
+    <strong>74% accuracy, 74% precision, 67% recall, and 73% F1 score</strong>
+    on the test set. This substantial performance boost demonstrated that
+    consolidating similar genres into broader categories allowed the model to
+    identify more robust patterns in the feature space. The learning curves
+    showed that
+    <strong>smaller sample sizes actually performed better</strong>, suggesting
+    that the model benefited from reduced noise in the training data.
+</p>
+
+<p>
+    <strong>Naive Bayes classifiers</strong> were evaluated in both
+    <i>Gaussian</i> and <i>Multinomial</i> variants. Gaussian Naive Bayes
+    performed better due to the predominantly continuous nature of the
+    attributes, achieving <strong>87% accuracy</strong> on the full 20-genre
+    classification problem. However, examination of precision, recall, and F1
+    scores revealed that this
+    <strong>high accuracy was misleading due to class imbalance</strong>. For
+    grouped genres, Gaussian Naive Bayes achieved 64% precision, 70% recall, and
+    75% F1 score, demonstrating robust performance with appropriate metric
+    interpretation.
+</p>
+
+<p>
+    <strong>Decision tree classifiers</strong> were trained with and without
+    hyperparameter tuning, using randomized search and grid search
+    cross-validation. Initial models without tuning showed
+    <strong>severe overfitting</strong>, achieving 97% training accuracy but
+    only 43% test accuracy for 20-genre classification. For grouped genres,
+    randomized search cross-validation yielded optimal parameters that
+    <strong>balanced training and test accuracy at 74% and 73%</strong>
+    respectively. Grid search produced a model with slightly lower but more
+    stable performance at 66% training and 65% test accuracy, with the final
+    tree having a <strong>maximum depth of 2</strong> to prevent overfitting.
+</p>
+
+<p>
+    <strong>Binary classification</strong> was attempted using the
+    <i>mode</i> attribute (major vs. minor key) as the target. While initial
+    models without hyperparameter tuning achieved 98% training accuracy, test
+    accuracy dropped to 66%, again indicating overfitting. Attempts to optimize
+    using randomized and grid search cross-validation encountered
+    <strong>class imbalance problems</strong>, with models showing 74% accuracy
+    but <strong>zero recall for the minority class</strong>. This highlighted
+    the importance of addressing class imbalance through techniques like
+    oversampling or adjusting class weights.
+</p>
+
+<h2>Regression Techniques</h2>
+<p>
+    The regression analysis focused on predicting
+    <strong>three continuous target variables</strong>: song duration,
+    popularity, and danceability. Simple regression was performed exhaustively,
+    examining 12 regressors against each of the three targets using
+    <i>standard linear regression</i>, <i>Ridge regularization</i>, and
+    <i>Lasso regularization</i>, resulting in <strong>108 total models</strong>.
+    This comprehensive approach allowed for identification of the strongest
+    univariate relationships in the dataset.
+</p>
+
+<p>
+    A particularly
+    <strong
+        >strong relationship was discovered between song duration and number of
+        beats</strong
+    >, as expected by the logical relationship given that longer songs naturally
+    contain more beats.
+</p>
+
+<p>
+    Simple regression revealed interesting relationships between other variable
+    pairs.
+    <strong
+        >Danceability and valence showed moderate positive correlation</strong
     >
-    We constantly cycled between analysis, interpretation, refinement, and
-    re-analysis. Initial approaches rarely worked perfectly; success came from
-    experimentation, learning from failures, and incremental improvement.
-</p>
-<p>
-    Looking back through the commit history, I can see my growth not just in
-    technical proficiency with Python libraries (scikit-learn, pandas,
-    matplotlib) but in my analytical thinking and problem-solving approach. This
-    foundational project established methodologies and best practices that I
-    continue to apply in my work today.
+    (R² = 0.248), suggesting that happier-sounding songs tend to be more
+    danceable. Similarly,
+    <strong>instrumentalness negatively predicted popularity</strong>
+    (R² = 0.128), indicating that instrumental tracks generally achieve lower
+    popularity scores than vocal tracks. These findings aligned with common
+    musical intuitions and provided empirical validation of expected
+    relationships.
 </p>
 
 <p>
-    Here is a quick summary of what we worked on as a group, but you can see my
-    specific contributions through the
-    <a
-        href="https://github.com/AlessandroCarella/data-mining-project/commits/main/"
-        >github commits page</a
-    >.
+    <strong>Lasso regularization consistently underperformed</strong> compared
+    to Ridge and standard regression in the simple regression context. This was
+    attributed to Lasso's tendency to shrink coefficients toward zero to reduce
+    model complexity, which is
+    <strong>counterproductive when using only a single predictor</strong>.
 </p>
 
-<h2 id="data-understanding-and-preparation">
-    Data Understanding and Preparation
-</h2>
 <p>
-    The initial phase involved data quality assessment and preprocessing. We
-    identified significant missing values in three attributes (Processing, Mode,
-    and Popularity_confidence) and addressed them through imputation and
-    deletion strategies. Using the Interquartile Range (IQR) method with a 1.5
-    scale, outliers were removed, with observations containing two or more
-    outlier attributes eliminated. This reduced the dataset to 14,237 rows and
-    preserved data integrity. Additionally, highly correlated variables were
-    removed, including features_duration_ms (which had a 1:1 correlation with
-    duration_ms) and n_bars (which had a 0.98 correlation with n_beats).
-    <img src="heatmap.png" alt="correlation matrix" />
+    <strong>K-Nearest Neighbors regression</strong> was implemented with the
+    same rigorous hyperparameter optimization approach used in classification,
+    including sample size variation, k-fold cross-validation, and testing
+    different k values and weighting schemes. The optimal models used 10% of the
+    dataset (1,500 samples) with varying k values depending on the target. For
+    duration prediction, k=33 achieved an <strong>R² of 0.49</strong> on test
+    data, while danceability prediction with k=47 reached
+    <strong>R² = 0.46</strong>, demonstrating moderate predictive capability.
 </p>
-<h2 id="clustering-analysis">Clustering Analysis</h2>
+
 <p>
-    Multiple clustering algorithms were evaluated, including kMeans, Bisecting
-    kMeans, kModes, Hierarchical clustering variants, DBSCAN, OPTICS, and
-    HDBSCAN. Most algorithms struggled with the dataset, with many producing
-    optimal results only when forcing two clusters. The best performing approach
-    was Hierarchical clustering using Group Average Linkage with a threshold of
-    10 and maxclust criterion, achieving a very low Silhouette score of 0.11.
-    This method was selected since it was the best at balancing between
-    performance and <em>"robustness"</em> against outliers and noise.
+    <strong>Decision tree regression</strong> explored various hyperparameters
+    including split criterion (<i>squared error</i> and <i>Friedman MSE</i>),
+    maximum depth, minimum samples per leaf, and minimum samples per split. For
+    duration prediction, a tree with no maximum depth restriction, minimum
+    samples per leaf of 1, and minimum samples per split of 20, achieved the
+    <strong>best performance with R² = 0.78</strong> on test data. However,
+    danceability and popularity predictions showed more modest results,
+    highlighting that tree-based methods
+    <strong>performed better for some targets than others</strong>.
 </p>
-<h2 id="classification-models">Classification Models</h2>
+
 <p>
-    Classification focused on predicting music genres using both the original 20
-    genre classes and a reduced set of 4 grouped genres (created through kMeans
-    clustering). Three primary models were tested: K-Nearest Neighbors, Naive
-    Bayes, and Decision Trees. KNN was the best performing classifier,
-    particularly when using grouped genres, achieving good test set metrics of
-    74% accuracy, 74% precision, 67% recall, and 73% F1-score.
-    <img src="learningCurve.png" alt="results" />
+    The comprehensive regression analysis demonstrated that
+    <strong>duration was the most predictable target variable</strong>,
+    achieving strong performance across multiple modeling approaches.
+    <strong>Popularity proved most difficult to predict</strong>, likely due to
+    its dependence on external factors beyond the audio features captured in the
+    dataset. The comparison of multiple regression techniques provided insights
+    into the trade-offs between model complexity, interpretability, and
+    predictive performance.
 </p>
-<h2 id="regression-analysis">Regression Analysis</h2>
+
+<h2>Pattern Mining</h2>
 <p>
-    The regression component targeted three continuous variables: duration,
-    popularity, and danceability. Various models were implemented, including
-    simple and multiple linear regression (with Standard, Ridge, and Lasso
-    regularization), KNN-based regression, and decision tree regression. The
-    best results emerged for duration prediction using n_beats as a predictor,
-    achieving an R² score of 0.947. Multiple regression with Ridge
-    regularization consistently performed well across targets, while Lasso
-    regularization underperformed due to the dataset's relatively low
-    complexity.
+    Pattern mining was conducted using
+    <strong>association rule learning</strong> to discover interesting
+    relationships between categorical attributes in the dataset. The analysis
+    began with data preprocessing, where
+    <strong>continuous variables were transformed into categorical bins</strong>
+    to make them suitable for pattern mining algorithms. Ten attributes were
+    selected for analysis: duration, explicit content, popularity, mode, genre,
+    danceability, energy, speechiness, acousticness, and liveness. These
+    variables were chosen based on their potential to reveal meaningful patterns
+    in song characteristics.
 </p>
-<h2 id="pattern-mining">Pattern Mining</h2>
+
 <p>
-    Using Apriori and FP-Growth algorithms, we extracted frequent itemsets,
-    closed itemsets, and maximal itemsets from preprocessed data with binned
-    continuous variables. Optimal parameters were identified at 25% support and
-    65% confidence, yielding 208 association rules. The analysis successfully
-    predicted the "explicit" variable, demonstrating that very long songs with
-    very low liveliness and speechiness tend to be non-explicit.
+    The <strong>Apriori algorithm</strong> was applied first, with parameters
+    set to a <strong>minimum support of 25%</strong> and a minimum of 2 items
+    per itemset. This configuration yielded
+    <strong>104 frequent itemsets</strong>, representing combinations of
+    attributes that appeared together in at least 25% of the songs. The same
+    parameters were then applied using the <i>FP-Growth</i> algorithm, which
+    produced 81 frequent itemsets. The difference in counts between the two
+    algorithms arose from their different implementation approaches and internal
+    optimization strategies.
+</p>
+
+<p>
+    <strong>Closed itemset extraction</strong> maintained the same parameters,
+    with Apriori producing 104 closed itemsets and FP-Growth generating 81.
+    Closed itemsets represent <strong>non-redundant patterns</strong> where no
+    superset has the same support, making them valuable for identifying the most
+    specific frequently occurring patterns.
+    <strong>Maximal itemset extraction</strong>, which finds the longest
+    frequent patterns that aren't subsets of any other frequent pattern, yielded
+    25 itemsets with Apriori and 20 with FP-Growth.
+</p>
+
+<p>
+    <strong>Association rule extraction</strong> was performed using both
+    algorithms with a <strong>confidence threshold of 70%</strong>. Apriori
+    generated 236 rules while FP-Growth produced 177 rules, with the top rules
+    being identical between the two methods. The
+    <strong>highest lift value observed was approximately 1.55</strong>,
+    indicating that the presence of certain attribute combinations made other
+    attributes 1.55 times more likely to occur than would be expected by chance
+    alone. These rules provided insights into how different musical
+    characteristics tend to co-occur.
+</p>
+
+<p>
+    Pattern mining for prediction focused on the
+    <i>explicit content</i> variable as a target. Using FP-Growth rules, the
+    analysis identified that songs with
+    <strong
+        >very long duration (240,000+ milliseconds), very low liveness, and very
+        low speechiness were strongly associated with non-explicit
+        content</strong
+    >. This pattern makes intuitive sense: longer instrumental or low-speech
+    tracks are less likely to contain explicit lyrics. The identification of
+    such rules demonstrated how
+    <strong>pattern mining can support predictive tasks</strong> by revealing
+    conditional relationships in categorical data.
 </p>

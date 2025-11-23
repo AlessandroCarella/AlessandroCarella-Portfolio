@@ -1,0 +1,436 @@
+<p>
+    As artificial intelligence systems become increasingly integrated into
+    critical decision-making processes across healthcare, finance, justice, and
+    other high-stakes domains, the need for
+    <strong>transparent and interpretable explanations</strong> of machine
+    learning predictions has become clear. My master's thesis project addresses
+    the fundamental challenge of
+    <strong
+        >transforming complex explainability method outputs into intuitive
+        visual representations</strong
+    >
+    that support exploration, confirmation, and understanding.
+</p>
+
+<p>
+    The proposed framework enables users to
+    <strong
+        >iteratively explore how local decision boundaries are captured</strong
+    >
+    by synthetic neighborhoods and how these neighborhoods translate into
+    interpretable decision rules. Rather than relying on static textual
+    representations that place significant cognitive burden on users, my system
+    implements
+    <strong>interactive visualizations that bridge the gap</strong> between
+    algorithmic explanations and human understanding.
+</p>
+
+<p>
+    The system focuses on <strong>local explainability methods</strong> that
+    generate synthetic neighborhoods around explained instances and extract
+    rules through surrogate models. While implemented using the
+    <a href="https://link.springer.com/article/10.1007/s10618-022-00878-5">
+        <em>LORE sa</em>
+    </a>
+    (Stable and Actionable Local Rule-based Explanations) method, the
+    framework's architecture could easily accommodate other state-of-the-art
+    methods.
+</p>
+
+<h2>What I Learned</h2>
+<p>
+    Through the thesis I gained insights into the intersection of
+    <strong
+        >explainable AI, information visualization, and human-computer
+        interaction</strong
+    >. I discovered that effective explanation communication requires more than
+    sophisticated algorithms, it demands
+    <strong>carefully designed interactive systems</strong> that support diverse
+    analytical workflows and accommodate different cognitive preferences.
+</p>
+
+<p>
+    I learned the importance of <strong>coordinated multiple views</strong> in
+    complex data exploration. By implementing bidirectional coordination between
+    spatial neighborhood projections and hierarchical rule structures, I learned
+    how enabling users to
+    <strong>transition between spatial intuition and logical reasoning</strong>
+    creates more powerful analytical capabilities than either representation
+    alone.
+</p>
+
+<img
+    src="dual_representation_strategy.jpg"
+    alt="Bidirectional Coordination mock up"
+/>
+
+<p>
+    Working with dimensionality reduction techniques deepened my understanding
+    of their trade-offs. I learned that
+    <a href="https://umap-learn.readthedocs.io/en/latest/"><em>UMAP</em></a>
+    <strong>excels at both local and global structure preservation</strong>
+    while maintaining computational efficiency, making it ideal for interactive
+    applications.
+    <a href="https://en.wikipedia.org/wiki/Principal_component_analysis">
+        <em>PCA</em> </a
+    >'s linear transformation <strong>preserves decision boundaries</strong>,
+    enabling direct visualization of surrogate model regions. Each technique
+    offers distinct advantages for different analytical scenarios.
+</p>
+
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="DR example UMAP.png"
+        alt="Example of UMAP output on a generated neighborhood"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="DR example PCA.png"
+        alt="Example of PCA output on a generated neighborhood"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<p>
+    The development of
+    <strong>three alternative decision tree visualizations</strong>, <em
+        >Tree Layout</em
+    >, <em>Rule and Counterfactual Rules Centered</em>, and
+    <em>Rule Centered</em>, taught me that there is
+    <strong>no single "best" visualization approach</strong>. Different layouts
+    serve different cognitive approaches and analytical needs.
+</p>
+
+<img src="FullInterfaceFinal.png" alt="Three alternative tree visualizations" />
+
+<p>
+    The <em>Voronoi tessellation</em> implementation for decision boundary
+    visualization taught me sophisticated geometric algorithms and their
+    application to machine learning visualization.
+    <strong>Balancing computational efficiency with visual accuracy</strong>
+    through user-configurable granularity settings demonstrated the importance
+    of providing users control over performance-quality trade-offs.
+</p>
+
+<p>
+    Perhaps most importantly, I learned that
+    <strong>effective XAI tools must address cognitive load</strong> through
+    visual connection mechanisms, enable confirmation through interactive
+    exploration, and support diverse mental models through multiple
+    representation formats. The documented use cases validated that
+    <strong
+        >well-designed coordination mechanisms transform explanation
+        consumption</strong
+    >
+    from passive acceptance into active analytical investigation.
+</p>
+
+<h2>Technical Implementation</h2>
+<p>
+    The system architecture consists of <strong>two primary components</strong>:
+    a progressive configuration interface and a coordinated visualization
+    system. The configuration interface implements a
+    <strong>seven-stage workflow</strong> including dataset selection,
+    classifier configuration, instance specification, explanation parameters,
+    dimensionality reduction settings, and visualization selection.
+</p>
+
+<p>
+    The spatial neighborhood analysis component employs
+    <strong
+        >scatter plot projections with four dimensionality reduction
+        techniques</strong
+    >: <em>UMAP</em>, <em>t-SNE</em>, <em>PCA</em>, and <em>MDS</em>. Each
+    method is accessible through radio button controls, enabling rapid switching
+    between projection methods for comparative analysis.
+</p>
+
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="DR example UMAP.png"
+        alt="Example of UMAP output on a generated neighborhood"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="DR example PCA.png"
+        alt="Example of PCA output on a generated neighborhood"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="DR example t-sne.png"
+        alt="Example of t-SNE output on a generated neighborhood"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="DR example MDS.png"
+        alt="Example of MDS output on a generated neighborhood"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<p>
+    For PCA projections, the system implements
+    <strong>Voronoi tessellation-based decision boundary visualization</strong>.
+    This approach naturally accommodates irregular decision boundaries produced
+    by decision trees. The algorithm constructs a dense mesh grid sampling the
+    2D visualization space, applies
+    <strong>inverse PCA transformation</strong> to project grid points back to
+    the original feature space, obtains surrogate model predictions for each
+    point, and generates Voronoi diagrams with graph-based merging of adjacent
+    regions sharing identical class predictions.
+</p>
+
+<p>
+    Each of the three decision tree layouts serves different analytical needs.
+    The <strong><em>Tree Layout</em></strong> implements the traditional
+    hierarchical structure using the <em>Reingold-Tilford algorithm</em>,
+    providing comprehensive views of entire surrogate model structures with
+    clear parent-child relationships.
+</p>
+
+<p>
+    The
+    <strong><em>Rule and Counterfactual Rules Centered</em></strong>
+    visualization employs depth-aligned positioning where nodes at equivalent
+    depths align vertically in columns. This layout
+    <strong>positions the explained instance path at the bottom</strong>
+    for immediate identification, with alternative decision paths sorted by
+    divergence points and positioned above. Rectangular nodes maximize
+    information density while straight-line connections with sample-proportional
+    stroke widths reveal instance flow patterns.
+</p>
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="inter_blocks.png"
+        alt="Rule and Counterfactual Rules Centered Layout"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="inter_class.png"
+        alt="Tree Layout"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<p>
+    The <strong><em>Rule Centered</em></strong> visualization implements
+    adaptive spacing based on subtree complexity, with horizontal distances
+    between path nodes calculated proportionally to off-path subtree sizes. The
+    layout features
+    <strong>interactive subtree collapse/expand functionality</strong>, enabling
+    progressive disclosure where users focus on explanation-relevant paths while
+    selectively exploring alternatives through right-click context menu
+    operations.
+</p>
+
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="inter_spawn.png"
+        alt="Rule centered layout"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="inter_spawn_exp.png"
+        alt="Rule centered layout expanded"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<p>
+    <strong>Bidirectional coordination</strong> serves as the fundamental
+    interaction paradigm. When users click spatial neighborhood points, the
+    system identifies corresponding feature vectors, traces decision paths
+    through tree structures, and propagates highlighting. Conversely, tree node
+    interactions identify synthetic neighborhood instances satisfying node
+    conditions and highlight corresponding scatter plot points. This
+    coordination maintains
+    <strong>visual consistency through synchronized color schemes</strong>
+    across all visualization components.
+</p>
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="inter_neigh_point_click.png"
+        alt="Neighborhood on point click"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="inter_blocks_point_click.png"
+        alt="Rule and Counterfactual Rules Centered Layout on point click"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="inter_neigh_leaf_click.png"
+        alt="Neighborhood on point click"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="inter_blocks_leaf_click.png"
+        alt="Rule and Counterfactual Rules Centered Layout on leaf click"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+<p>
+    The backend employs <strong>Python with <em>scikit-learn</em></strong> for
+    machine learning workflows, <em>DEAP</em> framework for genetic algorithm
+    implementation, and optimized <em>CART</em> decision tree construction. The
+    frontend utilizes
+    <strong><em>D3.js</em> for interactive visualizations</strong>, implementing
+    custom layouts, Voronoi tessellation algorithms, and sophisticated
+    coordination mechanisms. The system integrates with
+    <em>Jupyter notebooks</em>, supporting both standalone web interfaces and
+    embedded notebook views for data science workflows.
+</p>
+
+<h2>Contributions and Impact</h2>
+<p>
+    This work makes several contributions to the field of explainable artificial
+    intelligence and visual analytics. The primary contribution is the
+    <strong>dual-representation coordination strategy</strong> that integrates
+    spatial neighborhood analysis with hierarchical rule visualization through
+    bidirectional interaction mechanisms. This approach
+    <strong
+        >addresses fundamental limitations in current XAI presentation
+        formats</strong
+    >
+    by making the relationship between synthetically generated neighborhoods and
+    resulting explanations explicitly visible and explorable.
+</p>
+
+<p>
+    The development of
+    <strong
+        >three alternative decision tree layouts advances visualization
+        design</strong
+    >
+    for explanation scenarios. The
+    <em>Rule and Counterfactual Rules Centered</em> visualization's
+    depth-aligned positioning enables direct comparison of decision criteria
+    across branches at equivalent depths. The
+    <em>Rule Centered</em> visualization's adaptive spacing and progressive
+    disclosure supports efficient exploration of complex decision structures
+    while maintaining focus on explanation-relevant paths.
+</p>
+
+<p>
+    The system demonstrates
+    <strong>practical value across diverse application scenarios</strong>. For
+    educational contexts, the progressive disclosure workflow supports
+    scaffolded introduction to XAI concepts, while multiple tree layouts enable
+    demonstration of how different visual representations reveal complementary
+    insights. For professional data science workflows, the
+    <strong>iterative refinement capabilities</strong> through parameter
+    adjustment enable thorough investigation of explanation quality and decision
+    space coverage.
+</p>
+
+<p>
+    The work validates
+    <strong>key design principles for XAI visualization</strong>: information
+    integration reduces cognitive load through coordinated views, interactive
+    confirmation supports explanation trust through bidirectional exploration,
+    and multiple representation formats accommodate diverse user mental models
+    and analytical preferences.
+</p>
+
+<h2>Future Directions</h2>
+<p>
+    Several enhancement opportunities could extend the system's capabilities
+    while maintaining its core coordination principles. Visual encoding
+    enhancements include <strong>multi-colored edge encoding</strong> displaying
+    class distribution proportions within decision tree branches, as implemented
+    in
+    <a href="https://ieeexplore.ieee.org/document/6102453"
+        ><em>BaobabView</em></a
+    >, one of the surveyed visualization systems. This would provide immediate
+    visibility of class composition without requiring tooltip interactions,
+    though careful visual hierarchy management would be necessary to maintain
+    clarity.
+</p>
+<img src="baobabView UI.png" alt="BaobabView UI" />
+
+<p>
+    <strong>Adaptive interaction mechanisms</strong> could provide more nuanced
+    complexity control. A hybrid visualization mode enabling progressive
+    transformation of individual counterfactual paths from circular to
+    rectangular representations would support natural analytical workflows where
+    users start with focused examination and gradually expand scope based on discovered patterns.
+    <strong>Threshold-based leaf filtering</strong>
+    through user-adjustable sliders would enable dynamic hiding of low-sample
+    leaves, managing visual complexity while maintaining access to complete
+    information through expandable stub branches.
+</p>
+
+<img src="branch filtering.png" alt="Example of branch filtering" />
+
+<p>
+    <strong>Clustering-based alternative coloring schemes</strong> would enable
+    investigation of intrinsic neighborhood structure beyond class-based
+    organization. Toggle controls switching between class-based and
+    clustering-based coloring would support cluster-class correspondence
+    verification, within-class pattern discovery, and projected space artifact
+    detection. This would create rich exploration spaces when combined with the
+    existing dimensionality reduction technique selection capabilities.
+</p>
+
+<p>
+    <strong>Textual rule export functionality</strong> would address scenarios
+    requiring communication through channels not supporting interactive
+    visualization. Right-click context menu operations on tree nodes could
+    generate formatted textual representations in multiple output formats
+    including natural language for non-technical audiences, Python-style
+    conditionals for code integration, formal logic notation for academic
+    manuscripts, and LaTeX table formats for document insertion.
+</p>
+
+<h2>Conclusion</h2>
+<p>
+    This thesis demonstrates that
+    <strong
+        >effective explainable AI requires more than sophisticated
+        algorithms</strong
+    >, it demands carefully designed interactive visual systems that bridge
+    computational outputs with human understanding. The developed framework
+    successfully
+    <strong
+        >transforms complex explainability method outputs into intuitive visual
+        representations</strong
+    >
+    through coordinated multiple views, enabling users to transition fluidly
+    between spatial intuition and logical reasoning.
+</p>
+
+<p>
+    The system's <strong>dual-representation strategy</strong>, combining
+    scatter plot projections with alternative decision tree layouts through
+    bidirectional coordination mechanisms, addresses critical gaps in current
+    XAI visual analytics approaches. By making the relationship between
+    synthetic neighborhoods and extracted rules explicitly visible and
+    explorable, the framework
+    <strong
+        >transforms explanation consumption from passive acceptance into active
+        analytical investigation</strong
+    >.
+</p>
+
+<p>
+    The documented use cases showcase the framework's
+    <strong>effectiveness across diverse scenarios</strong>, from pedagogical
+    applications introducing XAI concepts to professional data science workflows
+    investigating complex decision patterns. The iterative development process
+    establishes methodological patterns for future enhancement evaluation.
+</p>
+
+<p>
+    While implemented using the <em>LOREsa</em> explainability method, the
+    framework's architecture and coordination mechanisms could
+    <strong>readily accommodate other state-of-the-art techniques</strong>
+    generating synthetic neighborhoods and extracting symbolic rules. This
+    extensibility, combined with the system's demonstrated effectiveness and
+    identified future enhancement opportunities, positions this work as a
+    <strong>foundation for continued advancement</strong> in explainable AI
+    visual analytics.
+</p>

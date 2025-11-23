@@ -38,7 +38,7 @@
         "Seaborn",
         "CRISP-DM"
     ],
-    "keyWords": {
+    "keywords": {
         "programming_languages": ["Python"],
         "libraries": [
             "pandas",
@@ -75,7 +75,6 @@
             "Gaussian NB",
             "Multinomial NB",
             "Decision Trees",
-            "Simple and Multiple Linear Regression",
             "Ridge Regression",
             "Lasso Regression",
             "Logistic Regression",
@@ -88,12 +87,14 @@
             "Association Rule Mining",
             "Frequent Itemset Mining",
             "Closed Itemsets Extraction",
-            "StandardScaler",
             "Maximal Itemsets Extraction"
         ],
         "techniques": [
+            "Data Understanding",
+            "Statistical Analysis",
+            "Data Quality Assessment",
+            "Feature Engineering",
             "Outlier Detection",
-            "IQR Method",
             "Z-score",
             "Missing Value Imputation",
             "Duplicate Removal",
@@ -108,36 +109,8 @@
             "Grid Search Cross Validation",
             "Randomized Search Cross Validation",
             "Hyperparameter Tuning",
-            "Data Exploration",
-            "Model Comparison",
-            "Train-Test Split",
             "Overfitting Prevention",
             "Imbalanced Data Handling"
-        ],
-        "metrics": [
-            "Silhouette Score",
-            "Sum of Squared Errors",
-            "SSE",
-            "Entropy",
-            "Accuracy",
-            "Precision",
-            "Recall",
-            "F1-Score",
-            "Confusion Matrix",
-            "ROC Curve",
-            "AUC",
-            "R² Score",
-            "Mean Squared Error",
-            "MSE",
-            "Mean Absolute Deviation",
-            "Mean",
-            "Median",
-            "Mode",
-            "Standard Deviation",
-            "Variance",
-            "Range",
-            "IQR",
-            "Percentiles"
         ],
         "visualization": [
             "Histograms",
@@ -145,37 +118,20 @@
             "Scatter Plots",
             "3D Plots",
             "Correlation Heatmaps",
-            "Clustermaps",
-            "Dendrograms",
             "Learning Curves",
             "Bar Charts",
             "Line Plots"
         ],
         "soft_skills": [
-            "Data Understanding",
-            "Statistical Analysis",
-            "Data Quality Assessment",
-            "Feature Engineering",
-            "Model Selection",
-            "Model Evaluation",
-            "Hyperparameter Optimization",
             "Documentation",
             "Critical Thinking",
             "Decision Making",
-            "Iterative Refinement",
             "Comparative Analysis",
             "Teamwork",
             "Project Management",
             "Communication",
             "Academic Writing",
             "Problem-Solving"
-        ],
-        "domain_knowledge": [
-            "Music Analytics",
-            "Spotify API",
-            "Audio Features",
-            "Genre Classification",
-            "Popularity Analysis"
         ]
     }
 }

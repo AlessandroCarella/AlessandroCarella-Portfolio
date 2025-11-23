@@ -1,9 +1,105 @@
 {
     "projectName": "Healthy Catering",
-    "quickSummary": "3D game.",
+    "quickSummary": "3D serious game for nutritional education built with Unity and C#. Players manage a restaurant serving health-appropriate dishes to customers with medical conditions, learning about nutrition, pathologies, and environmental sustainability through engaging gameplay mechanics and progressive difficulty levels.",
     "content": "Healthy_Catering.html",
     "report": "REPORT Heatlhy Catering.pdf",
+    "saverioThesis": "SaverioTesi.pdf",
     "userManual": "USER MANUAL Heatlhy Catering.pdf",
-    "collaborators": ["Saverio"],
-    "repository": "https://github.com/AlessandroCarella/Healthy-Catering-Alessandro"
+    "collaborators": ["https://www.linkedin.com/in/f-cassano/"],
+    "repository": "https://github.com/AlessandroCarella/Healthy-Catering-Alessandro",
+    "skills": [
+        "Unity 3D Game Development",
+        "C# Programming",
+        "Game Mechanics Design",
+        "UI/UX Design",
+        "Serious Game Development",
+        "Educational Content Integration",
+        "3D Graphics Implementation",
+        "Inventory Management Systems",
+        "Scoring Algorithm Design",
+        "Version Control (Git/GitHub)",
+        "Project Management",
+        "User Testing & Evaluation",
+        "Performance Optimization",
+        "Collaborative Development",
+        "Technical Documentation",
+        "Agile Methodologies",
+        "Iterative Design",
+        "Flowchart Creation",
+        "Storyboard Development",
+        "Asset Integration",
+        "Audio Integration",
+        "Alpha & Beta Testing",
+        "SUS Evaluation",
+        "Cross-platform Optimization",
+        "Problem Solving"
+    ],
+    "keywords": {
+        "technologies": ["Unity", "C#", "Visual Studio 2019", "Blender", "Git"],
+        "game-development": [
+            "3D Game Development",
+            "First-Person Perspective",
+            "Game Engine Programming",
+            "Interactive Systems",
+            "Real-time Graphics",
+            "Character Animation",
+            "Camera Controls",
+            "Input Management",
+            "Scene Management"
+        ],
+        "game-design": [
+            "Serious Game Design",
+            "Tutorial System Design",
+            "Progressive Difficulty",
+            "Inventory Management",
+            "Resource Management",
+            "Scoring Systems",
+            "Feedback Mechanisms",
+            "Level Design"
+        ],
+        "domains": [
+            "Educational Games",
+            "Health Education",
+            "Nutrition Science",
+            "Environmental Sustainability",
+            "Dietary Education"
+        ],
+        "health-topics": [
+            "Diabetes Management",
+            "Hypertension Diet",
+            "Pathology-Diet Relationships",
+            "NutriScore System",
+            "Dietary Requirements",
+            "Nutritional Education",
+            "Medical Conditions",
+            "Food-Health Correlation"
+        ],
+        "environmental": [
+            "Environmental Impact",
+            "Sustainability",
+            "EcoCost (costoEco)",
+            "Sustainable Food Choices",
+            "Carbon Footprint",
+            "Environmental Awareness"
+        ],
+        "methodologies": [
+            "Iterative Design",
+            "User-Centered Design",
+            "Prototype Development",
+            "Flowchart Modeling",
+            "Storyboarding",
+            "Alpha-Beta Testing",
+            "Performance Testing",
+            "Load Testing"
+        ],
+        "soft-skills": [
+            "Team Collaboration",
+            "Project Planning",
+            "Time Management",
+            "Documentation Writing",
+            "Communication",
+            "Problem Analysis",
+            "Critical Thinking"
+        ]
+    }
 }

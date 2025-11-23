@@ -1,8 +1,92 @@
 {
     "projectName": "Master Thesis",
-    "quickSummary": "Interactive linked visualizations for output of XAI libraries.",
+    "quickSummary": "An interactive visualization framework for explainable AI that coordinates spatial neighborhood projections with hierarchical decision tree visualizations, enabling intuitive exploration and validation of local rule-based explanations through bidirectional interaction mechanisms.",
     "content": "Master_Thesis.html",
-    "report": "MASTER THESIS.pdf",
+    "thesis": "MASTER THESIS.pdf",
     "collaborators": [],
-    "repository": "https://github.com/AlessandroCarella/Master-thesis"
+    "repository": "https://github.com/AlessandroCarella/Master-thesis",
+    "skills": [
+        "Python",
+        "JavaScript",
+        "D3.js",
+        "Data Visualization",
+        "Machine Learning",
+        "Explainable AI (XAI)",
+        "Interactive Visualization Design",
+        "Dimensionality Reduction",
+        "Visual Analytics",
+        "User Interface Design",
+        "Research and Documentation",
+        "Jupyter Notebooks",
+        "Information Visualization",
+        "Human-Computer Interaction",
+        "Iterative Design",
+        "Algorithm Implementation"
+    ],
+    "keywords": {
+        "technologies": [
+            "Python",
+            "JavaScript",
+            "D3.js",
+            "scikit-learn",
+            "Jupyter",
+            "HTML/CSS",
+            "UMAP",
+            "PCA",
+            "t-SNE",
+            "MDS"
+        ],
+        "domains": [
+            "Explainable Artificial Intelligence (XAI)",
+            "Machine Learning",
+            "Visual Analytics",
+            "Human-Computer Interaction"
+        ],
+        "methodologies": [
+            "Dimensionality Reduction",
+            "Surrogate Models",
+            "Interactive Visualization",
+            "Coordinated Multiple Views",
+            "Progressive Disclosure",
+            "Bidirectional Coordination",
+            "Iterative Design Process"
+        ],
+        "techniques": [
+            "Decision Trees",
+            "LOREsa",
+            "Voronoi Tessellation",
+            "Random Forest",
+            "Reingold-Tilford Layout",
+            "Rule Extraction",
+            "Neighborhood Generation"
+        ],
+        "concepts": [
+            "Synthetic Neighborhoods",
+            "Local Explanations",
+            "Factual Rules",
+            "Counterfactual Rules",
+            "Decision Boundaries",
+            "Feature Space Projection",
+            "Model Interpretability",
+            "Black-box Models",
+            "Cognitive Load Reduction",
+            "Visual Confirmation"
+        ],
+        "applications": [
+            "Educational Tools",
+            "Data Science Workflows",
+            "Model Debugging",
+            "Explanation Validation",
+            "Interactive Exploration"
+        ],
+        "visualization_types": [
+            "Scatter Plots",
+            "Decision Tree Diagrams",
+            "Node-Link Diagrams",
+            "Coordinated Views",
+            "Interactive Tooltips",
+            "Hierarchical Visualizations",
+            "Depth-Aligned Layouts"
+        ]
+    }
 }

@@ -1,9 +1,78 @@
 {
     "projectName": "Fundamentals of Business Management",
-    "quickSummary": "Business management project.",
+    "quickSummary": "Developed a comprehensive forecasting system for banking sector EBIT and Net Income predictions using machine learning models trained on financial statements from Italy's top 5 banks (2018-2022) and macroeconomic indicators. Created an interactive React dashboard with Django backend enabling what-if scenario analyses for strategic financial planning.",
     "content": "Fundamentals_of_Business_Management.html",
     "report": "REPORT Fundamentals of Business Management.pdf",
     "slides": "PRESENTATION Fundamentals of Business Management.pdf",
-    "collaborators": ["Ibrahima Jallow", "Marco Poiani", "Simona Cattari"],
-    "repository": "https://github.com/AlessandroCarella/Foundamentals-of-business-management-project"
+    "collaborators": [
+        "https://www.linkedin.com/in/marco-poiani/",
+        "https://www.linkedin.com/in/simona-cattari-b674a5264/",
+        "Ibrahima Jallow"
+    ],
+    "repository": "https://github.com/AlessandroCarella/Foundamentals-of-business-management-project",
+    "skills": [
+        "Machine Learning",
+        "Financial Analysis",
+        "Full-Stack Development",
+        "Django REST Framework",
+        "React.js",
+        "Financial Forecasting",
+        "Dashboard Design",
+        "Scikit-learn",
+        "Pandas/NumPy",
+        "Material UI",
+        "Team Collaboration"
+    ],
+    "keywords": {
+        "technologies": [
+            "Python",
+            "Django",
+            "React",
+            "Vite",
+            "scikit-learn",
+            "pandas",
+            "NumPy",
+            "REST API",
+            "JavaScript",
+            "Git"
+        ],
+        "machine-learning": [
+            "Linear Regression",
+            "Ridge Regression",
+            "Lasso Regression",
+            "ElasticNet",
+            "StandardScaler",
+            "Feature Engineering",
+            "Regularization Techniques"
+        ],
+        "finance": [
+            "Profit & Loss Statement",
+            "Net Income",
+            "Net Interest Margin",
+            "Operating Income",
+            "Financial Statement Analysis",
+            "Banking KPIs",
+            "Operating Costs",
+            "Net Fees and Commissions",
+            "Net Profit Margin"
+        ],
+        "business-analytics": [
+            "What-If Analysis",
+            "Scenario Planning",
+            "Business Intelligence Dashboard",
+            "KPI Visualization",
+            "Financial Forecasting",
+            "Data-Driven Insights"
+        ],
+        "evaluation-metrics": [
+            "Mean Squared Error (MSE)",
+            "Mean Absolute Error (MAE)",
+            "R-squared Score",
+            "Explained Variance Score",
+            "Accuracy",
+            "Precision",
+            "Recall",
+            "F1 Score"
+        ]
+    }
 }

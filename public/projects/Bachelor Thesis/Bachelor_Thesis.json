@@ -1,9 +1,77 @@
 {
     "projectName": "Bachelor Thesis",
-    "quickSummary": "Facial features extraction and mood prediction with real-time application.",
+    "quickSummary": "Machine learning system for detecting student moods (engaged, confused, frustrated, bored, drowsy, looking away) in e-learning environments through facial Action Unit analysis. Achieved 82% accuracy using Random Forest classifier with real-time webcam implementation.",
     "content": "Bachelor_Thesis.html",
-    "report": "BACHELOR THESIS.pdf",
+    "thesis": "BACHELOR THESIS.pdf",
     "userManual": "BACHELOR THESIS user manual.pdf",
     "collaborators": [],
-    "repository": "https://github.com/AlessandroCarella/bachelor-s-thesis"
+    "repository": "https://github.com/AlessandroCarella/bachelor-s-thesis",
+    "skills": [
+        "Machine Learning",
+        "Computer Vision",
+        "Python Programming",
+        "Research & Analysis",
+        "Algorithm Implementation",
+        "Dataset Management",
+        "Model Evaluation",
+        "Real-time Processing",
+        "GPU Computing (CUDA)",
+        "Data Preprocessing & Cleaning",
+        "Statistical Analysis",
+        "GUI Development",
+        "Academic Writing",
+        "Problem Solving"
+    ],
+    "keywords": {
+        "technologies": [
+            "Python",
+            "Machine Learning",
+            "Computer Vision",
+            "Deep Learning",
+            "CUDA",
+            "GPU Acceleration",
+            "Artificial Intelligence",
+            "Pattern Recognition"
+        ],
+        "libraries_frameworks": [
+            "Py-Feat",
+            "Scikit-learn",
+            "PyTorch",
+            "OpenCV",
+            "Pandas",
+            "NumPy",
+            "Matplotlib",
+            "Pickle",
+            "TQDM"
+        ],
+        "ml_algorithms": [
+            "Random Forest",
+            "K-Nearest Neighbors",
+            "Support Vector Machine",
+            "Naive Bayes",
+            "Support Vector Regression",
+            "Ensemble Learning",
+            "Classification"
+        ],
+        "methodologies": [
+            "Facial Action Coding System (FACS)",
+            "Action Units",
+            "Cross-Validation",
+            "Undersampling",
+            "Oversampling",
+            "Feature Extraction",
+            "Model Comparison"
+        ],
+        "domains": [
+            "E-Learning",
+            "Education Technology",
+            "Affective Computing",
+            "Student Engagement",
+            "Facial Expression Recognition",
+            "Emotion Detection",
+            "Mood Analysis",
+            "Online Education"
+        ],
+        "tools": ["Visual Studio Code", "Jupyter Notebook", "Git", "GitHub"]
+    }
 }

@@ -1,0 +1,422 @@
+<p>
+    This project addresses the
+    <strong>VAST Challenge 2023 Mini-Challenge 1</strong>, focused on combating
+    <strong>illegal, unreported, and unregulated (IUU) fishing</strong>.
+    <em>FishEye International</em>, an organization dedicated to protecting
+    marine species, gathers online news articles about fishing and the marine
+    industry. Using <em>natural language processing</em>, they extract entities
+    and relationships to create a <strong>knowledge graph</strong> for
+    investigating suspicious activities.
+</p>
+
+<p>
+    The challenge was to develop an
+    <strong>interactive visual analytics tool</strong> that helps analysts
+    explore contextual information around suspected entities without being
+    overwhelmed by data. The tool needed to be
+    <strong>dynamic and interactive</strong>, emphasizing relevant connections
+    to identify companies potentially engaged in illegal fishing.
+</p>
+
+<p>
+    Four specific entities were designated for investigation:
+    <em>Mar de la Vida OJSC</em>, <em>979893388</em>,
+    <em>Oceanfront Oasis Inc Carrie</em>, and <em>8327</em>. The visualization
+    was built using <strong>JavaScript and D3.js</strong> to create an
+    interactive network graph with multiple exploration features, allowing
+    analysts to discover patterns and relationships that might indicate illegal
+    fishing activities.
+</p>
+
+<p>
+    A live version of the project is aviable
+    <a
+        href="https://alessandrocarella-visual-analytics-project.alessandro-carella-universita.workers.dev/#main-content"
+        >here</a
+    >
+</p>
+
+<h2>What I Learned</h2>
+
+<p>
+    This project marked my
+    <strong>first experience with the D3.js library</strong>, which revealed
+    very helpful for my
+    <a href="http://localhost:5173/projects/master-thesis"
+        >Master Thesis's project</a
+    >. The reliance solely on JavaScript for data manipulation
+    <strong>limited options</strong> and made the process less efficient
+    compared to using a <em>dedicated API</em> as i was used while
+    <a href="https://alessandrocarella.pages.dev/resume">working</a>.
+</p>
+<p>
+    The most challenging aspect was the
+    <strong>initial data exploration phase</strong>. Without a clear pattern
+    identified beforehand, the project evolved into building a comprehensive
+    <strong>"toolbox" for visual data exploration</strong>. This approach taught
+    me that effective visual analytics can emerge through
+    <em>iterative development</em> and user interaction rather than being
+    limited to predetermined analysis.
+</p>
+
+<p>
+    Through visual exploration, I learned to identify
+    <strong>key patterns indicating potential illegal activity</strong>: highly
+    interconnected clusters of entities and nodes with numerous incoming and
+    outgoing connections. The entity
+    <strong>979893388 emerged as a central node</strong> connected to multiple
+    clusters, particularly through <em>partnership links</em>, revealing a
+    network of major entities including <em>Mar del Oeste Pic</em>,
+    <em>Ocean Fisheries Llc</em>, and <em>SeaSpray Wave SRL Solutions</em>.
+</p>
+<img
+    src="clusters1.png"
+    alt="Cluster of partnership connections of the entity 979893388"
+/>
+
+<p>
+    Selecting an appropriate <strong>color palette</strong> was crucial for
+    intuitive navigation. Using
+    <a href="https://colorbrewer2.org/#type=qualitative&scheme=Set3&n=9">
+        <em>ColorBrewer</em>
+    </a>
+    's qualitative scheme with <strong>nine distinct colors</strong>, I learned
+    to balance visual clarity with information density. Colors distinguished
+    between <em>node states</em> (entity to investigate, clickable nodes,
+    sources, targets) and <em>link types</em>
+    (ownership, partnership, family relationship, membership).
+</p>
+
+<p>
+    Implementing <strong>multiple interaction methods</strong> taught me about
+    <em>progressive disclosure</em> in UI design. The left panel provides
+    filtered views and distance-based exploration, left-clicking highlights
+    immediate connections, right-clicking expands nodes to reveal sources or
+    targets, and hovering displays detailed tooltips. Each interaction serves a
+    specific analytical purpose without overwhelming users.
+</p>
+
+<p>
+    Creating the <strong>"link distance n" concept</strong> (you can read about
+    it in the report) allowed for systematic network traversal, defining
+    distance as the number of links needed to reach other nodes from an origin.
+</p>
+
+<h2>Technical Implementation</h2>
+
+<p>
+    The VAST Challenge provided data in <strong>JSON format</strong> containing
+    nodes with attributes (<em>type, country, id</em>) and links with attributes
+    (<em>type, weight, source, target</em>).
+</p>
+
+<p>
+    <strong>Data cleaning</strong> involved removing nodes with no connections
+    not appearing in the edges dataset, handling
+    <strong>1,815 nodes missing type attributes</strong>, and addressing
+    <strong>6,948 nodes missing country information</strong>. For duplicate IDs,
+    the strategy prioritized retaining
+    <strong>less frequent entity types</strong>. For example, when ID 18
+    appeared as both "organization" (987 instances) and "vessel" (115
+    instances), the less common "vessel" type was retained.
+</p>
+
+<p>
+    Two CSV files were created, <em>nodes.csv</em> and <em>edges.csv</em>, then
+    merged to produce a dataset with columns for link type, weight, source,
+    target, and attributes for both source and target nodes. Missing values were
+    replaced with "Unknown" to maintain dataset integrity while enabling proper
+    visualization.
+</p>
+
+<p>
+    The core visualization uses
+    <a href="https://d3js.org/d3-force">
+        <strong>D3.js force-directed graphs</strong>
+    </a>
+    to create an interactive network. <strong>Node sizes vary</strong> based on
+    the number of incoming and outgoing connections, providing visual indicators
+    of entity importance.
+    <strong>Link widths correspond to connection weights</strong>, with thicker
+    lines representing stronger relationships. For bidirectional links, width is
+    determined by the highest weight between directions.
+</p>
+
+<p>
+    To handle <strong>multiple link types between two nodes</strong>, links are
+    drawn at different angles ensuring simultaneous visibility of all
+    connections. This required custom calculations based on link type presence.
+    A <em>dummy link</em> with lower simulation strength connects the four
+    entities under investigation, maintaining their grouping without interfering
+    with navigation.
+</p>
+
+<p>
+    The <strong>left panel serves as the primary control interface</strong>. The
+    "Investigate Number of Links Distance" section includes a dropdown to select
+    entities and three numeric inputs to explore nodes at distance n, viewing
+    them as sources, targets, or both. These inputs operate independently,
+    resetting others when activated to streamline user interaction.
+</p>
+
+<p>
+    <strong>Four buttons allow filtering by link type</strong> (ownership,
+    partnership, family relationship, membership). Clicking a button disables
+    that link type and turns the button gray, with subsequent clicks re-enabling
+    the links. An <strong>opacity slider</strong> controls the visibility of
+    non-highlighted nodes and links, ranging from 0% to 100% in 10% increments,
+    with a default of 10%.
+</p>
+
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="Investigate number of links distance from nodes to investigate.png"
+        alt="Investigate Number of Links Distance section"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="Link types buttons.png"
+        alt="Filter by link type"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<p>
+    Two select menus at the panel bottom enable
+    <strong>specific node investigation</strong>, allowing users to view a
+    selected node with its targets or sources. This targeted exploration
+    complements the broader distance-based analysis.
+</p>
+
+<p>
+    <strong>Left-clicking a node highlights it</strong> along with all
+    connections at link distance 1, reducing opacity for other elements.
+    Double-clicking the same node returns to the default view. This interaction
+    replaced an earlier implementation using red borders, as the
+    <em>opacity-based approach</em> proved more effective.
+</p>
+
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="Select a node to investigate its connections as a source or as a target.png"
+        alt="Select of a single node"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="node highlight example.png"
+        alt="Node highlight example"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<p>
+    <strong>Right-clicking opens a context menu</strong> with options to expand
+    the node as a source (revealing targets), as a target (revealing sources),
+    or both. Hovering over nodes displays <strong>tooltips</strong> showing the
+    node name, type, country, number of sources, and number of targets. This
+    information helps users make informed decisions before expanding nodes.
+</p>
+
+<p>
+    A <strong>"Show Map Legend" button</strong> in the top-right corner reveals
+    a right panel explaining colors, symbols, interaction methods, and links
+    between investigated entities. The button text changes to "Hide Map Legend"
+    when the panel is visible.
+</p>
+
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="context menu.png"
+        alt="Context menu shown when right clicking a node"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="map legend button.png"
+        alt="Show legend button"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<h2>Design Decisions</h2>
+
+<p>
+    After testing various color palettes, a
+    <strong>qualitative color scheme from ColorBrewer</strong> with nine
+    distinct colors was chosen.
+    <strong>Four colors distinguish link types</strong>: blue for ownership
+    (#80b1d3), orange for partnership (#fdb462), light green for family
+    relationship (#b3de69), and pink for membership (#fccde5).
+</p>
+
+<p>
+    <strong>Five colors represent node states</strong>: purple for entities to
+    investigate (#bc80bd), light yellow for right-clickable nodes (#ffffb3),
+    lime green for source-and-target nodes (#b3de69), coral for source-only
+    nodes (#fb8072), and teal for target-only nodes (#8dd3c7). This color
+    assignment makes <strong>node functionality immediately apparent</strong> to
+    users.
+</p>
+
+<img src="palette.png" alt="Colors palette" />
+
+<p>
+    To prevent overcrowding with excessive colors,
+    <strong>SVG icons differentiate entity types</strong> from
+    <em>SVG Repo</em>. Icons represent unknown (?), company (building), event
+    (calendar), location (pin), movement (arrows), organization (people), person
+    (figure), and political organization (gavel). This iconic representation
+    reduces cognitive load while maintaining visual clarity.
+</p>
+
+<img src="icons.png" alt="SVG icons for the entities types" />
+
+<p>
+    Links include <strong>directional markers</strong> indicating information
+    flow. Bidirectional links display markers at both ends. When multiple link
+    types exist between two nodes, they are drawn at
+    <strong>calculated angles</strong> to ensure all connections remain visible
+    simultaneously, preventing overlap and information loss.
+</p>
+
+<p>
+    <strong>Link width encoding weight</strong> proved subtle in practice, as
+    the majority of weights fall between 0.8 and 1. However, the
+    <strong>88 links with weights below 0.8</strong> provide valuable context.
+    The decision to retain all weighted links, despite their visual similarity,
+    prioritizes <em>information completeness</em> over simplified
+    representation.
+</p>
+
+<img src="multilink example.png" alt="Multilink example" />
+
+<p>
+    The project adopted a <strong>"treasure hunt" approach</strong>, recognizing
+    that suspicious behavior patterns were not apparent during initial data
+    exploration. This led to developing
+    <strong>comprehensive tools enabling effective visual inspection</strong>
+    rather than presenting predetermined insights.
+</p>
+
+<p>
+    Most interactions <strong>modify displayed data volume</strong>, except
+    left-clicking which highlights without changing the data subset. This
+    distinction helps users understand whether they are filtering data or simply
+    emphasizing existing relationships. The opacity slider remains
+    <u>disabled during node highlighting</u>
+    to prevent conflicting visual states.
+</p>
+
+<h2>Analytical Findings</h2>
+
+<p>
+    <strong>
+        Please refer to sections 6 and 7 of the report for more details
+    </strong>
+</p>
+
+<p>
+    Analysis revealed
+    <strong>entity 979893388 as a central node</strong> connected to multiple
+    clusters. When filtering for partnership links,
+    <strong>distinct clusters emerged</strong>, including a major cluster of
+    highly-connected entities on the graph periphery. This cluster contains
+    several big nodes interconnected through various relationship types.
+</p>
+
+<p>
+    The entity maintains <strong>direct ownership links</strong> with
+    <em>Mar del Oeste Pic</em> and <em>Ocean Fisheries Llc</em>, family
+    relationships with <em>png xi Line</em>, Mar del Oeste Pic, Ocean Fisheries
+    Llc, 903311212, and SeaSpray Wave SRL Solutions, and membership links with
+    png xi Line, Mar del Oeste Pic, 903311212, and SeaSpray Wave SRL Solutions.
+    Notably,
+    <strong>partnership links do not directly connect 979893388</strong> to
+    these major entities.
+</p>
+
+<p>
+    <strong>Entity 160 demonstrates broad ownership influence</strong> over
+    major entities except Mar del Oeste Pic. It owns png xi Line, SeaSpray Wave
+    SRL Solutions, and has bidirectional ownership relationships with Ocean
+    Fisheries Llc and 903311212. Membership links extend from 160 to png xi Line
+    and Mar del Oeste Pic.
+</p>
+
+<p>
+    The
+    <strong>absence of partnership and family relationship links</strong>
+    connecting 160 to major entities suggests a pattern focused on
+    <strong>formal ownership and membership structures</strong>. This
+    ownership-centric network might indicate attempts to control multiple
+    entities while maintaining distance through formal business relationships.
+</p>
+
+<p>
+    <em>Mar de la Vida OJSC</em> connects to a cluster of entities primarily
+    through <em>membership-type links</em>, acting as a source with targets at
+    link distance 1. At link distance 2, connections through
+    <em>node 33681303</em> reveal another cluster with various relationship
+    types.
+</p>
+
+<p>
+    Two entities directly linked to Mar de la Vida OJSC,
+    <em>Ancla Azul Company Solutions</em> and <em>â**He</em>, connect to
+    <strong>larger entities previously identified</strong>, specifically Mar del
+    Oeste Pic and SeaSpray Wave SRL Solutions. This interconnection suggests
+    <strong>potential collaboration in illegal activities</strong>, though
+    direct evidence remains circumstantial.
+</p>
+
+<p>
+    <em>Oceanfront Oasis Inc Carriers</em> presents a unique case with
+    <strong>only incoming connections and no outgoing links</strong>. Its
+    significant connection to 979893388, which owns it, places it within the
+    broader network. At link distance 2, nodes like FishEye International, 2262,
+    and 8787 link it to all major entities including SeaSpray Wave SRL Solutions
+    and Ocean Fisheries LLC.
+</p>
+
+<p>
+    The <strong>lack of outgoing connections</strong> combined with ties to
+    significant entities suggests it may be embedded in a network facilitating
+    illegal fishing activities, potentially serving as a
+    <strong>recipient or endpoint</strong> rather than an active connector.
+</p>
+
+<p>
+    <em>Entity 8327</em> connects to two small clusters through membership and
+    ownership links at link distance 1. At distance 2, it connects through
+    <em>Calvin Salas</em>
+    using partnership links to the cluster of large entities. Additionally,
+    <strong>entity 160 points to 8327</strong>, providing another connection to
+    the broader network.
+</p>
+
+<p>
+    This layered connectivity indicates 8327 may have ties to illegal fishing
+    activities, though its position suggests a
+    <strong>more peripheral role</strong> compared to central entities like
+    979893388 and 160.
+</p>
+
+<p>
+    A
+    <strong
+        >significant pattern associated with potential illegal activity</strong
+    >
+    is the presence of <strong>clusters at link distance 1 or 2</strong> from
+    investigated entities. These clusters suggest coordinated interactions that
+    could indicate illicit behavior. Links between suspect entities and major
+    highly-connected entities potentially imply illegal activities, though they
+    may also represent legitimate business interactions.
+</p>
+
+<p>
+    The findings emerged through <strong>visual exploration</strong> rather than
+    prior data analysis, highlighting the importance of
+    <em>interactive visualization</em> in uncovering irregularities. While
+    identified patterns suggest possible illegal activity,
+    <u>further investigation is necessary</u> to understand connection nature
+    and reduce uncertainty.
+</p>

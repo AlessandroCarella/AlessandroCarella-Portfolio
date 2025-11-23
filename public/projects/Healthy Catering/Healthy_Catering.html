@@ -1,0 +1,395 @@
+<p>
+    <strong>Healthy Catering</strong> is a
+    <strong>3D serious game</strong> developed as part of my bachelor's degree
+    in Computer Science at the <em>University of Bari</em>. Created in
+    collaboration with
+    <a href="https://www.linkedin.com/in/f-cassano/"> Saverio Cassano </a>
+    , this project combines gaming entertainment with
+    <strong
+        >educational content focused on nutrition, pathologies, and
+        environmental sustainability</strong
+    >. The game places players in the role of a restaurant manager who must
+    serve appropriate dishes to customers based on their medical conditions and
+    dietary requirements.
+</p>
+
+<p>
+    Developed for the <em>Multimedia Design and Production</em> course, the game
+    targets students from
+    <strong>hospitality institutes and nutrition science courses</strong>. The
+    project emphasizes the correlation between food choices, health conditions,
+    and environmental impact through an engaging
+    <strong>first-person gameplay experience</strong>.
+</p>
+
+<p>
+    The game was later extended with <strong>VR capabilities</strong> by my
+    collaborator as part of his bachelor thesis. The current version with VR
+    support is available at this
+    <a href="https://github.com/zSavT/Healthy-Catering">project repository</a>,
+    though this page focuses on the <strong>original PC version</strong> I
+    contributed to. You can also find Saverio's thesis in the content of the
+    page.
+</p>
+
+<h2>What I Learned</h2>
+<p>
+    This project provided me with experience in
+    <strong>game development</strong> and
+    <strong>interdisciplinary collaboration</strong>. Working with
+    <em>Unity</em> and <em>C#</em> deepened my understanding of game engine
+    architecture, 3D graphics programming, and real-time interactive systems. I
+    learned how to implement game mechanics involving inventory management,
+    scoring systems, and dynamic UI elements that respond to player choices.
+</p>
+
+<p>
+    The serious game nature of the project taught me how to
+    <strong>balance educational content with engaging gameplay</strong>. I
+    discovered the importance of progressive difficulty curves, clear feedback
+    mechanisms, and intuitive tutorials. Designing systems that teach players
+    about
+    <a href="https://it.wikipedia.org/wiki/Nutri-score">
+        <em>nutriScore</em>
+    </a>
+    , <em>costoEco</em> (environmental cost), and pathology-diet relationships
+    required careful consideration of how information is presented and
+    reinforced through gameplay.
+</p>
+
+<p>
+    <strong>Project management skills</strong> were essential throughout the
+    development. I learned to estimate time requirements accurately, track
+    progress across multiple development phases, and adapt to changing
+    requirements. The structured approach using flowcharts, storyboards, and
+    prototypes proved crucial for maintaining alignment between design vision
+    and implementation.
+</p>
+
+<p>
+    <strong>User testing</strong> opened my eyes to the gap between developer
+    intention and player experience. Conducting alpha and beta tests, observing
+    player behavior, and gathering feedback through
+    <em>SUS (System Usability Scale)</em> questionnaires taught me the value of
+    <strong>iterative design</strong>. The testing phase revealed issues we
+    hadn't anticipated, such as difficulty balancing problems that required
+    adjusting score thresholds to prevent player frustration.
+</p>
+
+<p>
+    <strong>Collaboration</strong> was central to the project's success. Working
+    closely with another developer, coordinating with external contributors for
+    music, 3D assets, and UI design taught me effective communication and
+    improved my skills at <strong>version control practices using Git</strong>.
+    I learned to divide responsibilities, integrate work from multiple sources,
+    and maintain code quality across team contributions.
+</p>
+
+<h2>Technical Implementation</h2>
+
+<p>
+    The game was built using <strong>Unity 2021.3.5f</strong> with
+    <strong>C#</strong> as the primary programming language.
+    <em>Visual Studio 2019</em> served as the development environment, providing
+    robust debugging and code completion capabilities. For asset creation and
+    editing, we utilized <em>Adobe Photoshop 2022</em> for textures and UI
+    elements, <em>Adobe Illustrator 2022</em> for vector graphics and logos, and
+    <em>Blender</em>
+    for custom 3D modeling when needed.
+</p>
+
+<p>
+    The project leveraged several <strong>Unity asset packs</strong> including
+    <a
+        href="https://assetstore.unity.com/packages/3d/environments/urban/polygon-city-pack-art-by-synty-95214"
+    >
+        Polygon City
+    </a>
+    ,
+    <a
+        href="https://assetstore.unity.com/packages/3d/environments/industrial/polygon-farm-pack-art-by-synty-146192"
+    >
+        Polygon Farmer
+    </a>
+    , and
+    <a
+        href="https://assetstore.unity.com/packages/essentials/tutorial-projects/polygon-prototype-pack-art-by-synty-137126"
+    >
+        Polygon Prototype
+    </a>
+    Pack for environmental 3D models. Character animations were sourced from
+    <a href="https://www.mixamo.com/#/"> <em>Mixamo</em> </a>
+    , while the soundtrack was custom-composed by
+    <a href="https://www.linkedin.com/in/a-congedo7/"> Alessandro Congedo </a>
+    . Version control was managed through <em>GitHub</em>, enabling asynchronous
+    development and collaborative workflows.
+</p>
+
+<p>
+    The game's architecture revolves around several interconnected systems. The
+    <strong>customer interaction system</strong> manages client profiles,
+    including their pathologies (diabetes, hypertension), dietary restrictions,
+    and dish preferences. Each customer is generated with specific health
+    parameters that determine which dishes are suitable for them.
+</p>
+
+<p>
+    The <strong>scoring algorithm</strong> evaluates dish selections based on
+    multiple factors: affinity with customer pathologies and diet,
+    <em>nutriScore</em> ratings (A through E), and <em>costoEco</em> values
+    (environmental impact from 0-41+). The calculation awards
+    <strong>base points of 100</strong> for appropriate dishes or
+    <strong>-10 for poor choices</strong>, then applies percentage-based bonuses
+    or penalties based on nutritional quality and environmental sustainability.
+</p>
+
+<p>
+    The <strong>inventory management system</strong> tracks ingredient
+    quantities and enforces constraints on dish preparation. Players can only
+    prepare dishes when all required ingredients are available in sufficient
+    quantities. The shop system allows purchasing new ingredients using earned
+    money, creating a <strong>resource management loop</strong> that encourages
+    strategic planning.
+</p>
+
+<p>
+    A <strong>dynamic price calculation system</strong> determines earnings per
+    dish served. The formula considers ingredient base costs plus a 10% profit
+    margin, then applies affinity bonuses (+5% for correct choices, -5% for
+    incorrect ones) and ranking bonuses (3%, 2%, or 1% for dishes in the top
+    three positions of the sorted dish list).
+</p>
+
+<p>
+    The UI employs a consistent visual language using the
+    <em>Roboto-Bold Sans Serif</em> font for clarity and readability. A
+    <strong>color-coding system</strong> helps players quickly identify
+    information categories:
+    <strong>green for correct choices, red for incorrect ones</strong>, yellow
+    for ingredients, orange for dishes, blue for pathologies, and purple for
+    diets.
+</p>
+
+<p>
+    The in-game interface includes multiple views: a
+    <strong>customer interaction menu</strong> displaying medical records and
+    dish options, an <strong>inventory management system</strong> accessed
+    through a virtual computer, a <strong>shop interface</strong> for purchasing
+    ingredients, and a <strong>recipe book</strong> showing all available dishes
+    with their ingredients and technical specifications. An integrated help menu
+    provides contextual guidance accessible at any time by
+    <u>pressing the H key</u>.
+</p>
+
+<h2>Game Design & Mechanics</h2>
+
+<p>
+    Players assume the role of a <strong>restaurant manager</strong> who has
+    inherited their uncle's establishment. The
+    <strong>core gameplay loop</strong> involves serving customers by selecting
+    appropriate dishes from available options, earning money and points based on
+    choice quality, managing ingredient inventory, purchasing supplies from the
+    shop, and progressing through increasingly challenging levels.
+</p>
+
+<p>
+    The game features <strong>three levels with escalating difficulty</strong>.
+    <strong>Level 0</strong> serves as an interactive tutorial introducing
+    movement controls, customer interaction mechanics, inventory management, and
+    the shop system. This level requires serving 5 customers and achieving a
+    score of 700. <strong>Level 1</strong> focuses on diabetes-related dietary
+    knowledge, requiring 15 customers served and a score of 1400.
+    <strong>Level 2</strong> addresses hypertension, demanding 20 customers
+    served and a score of 2000.
+</p>
+
+<p>
+    The <strong>educational content is seamlessly integrated</strong> into
+    gameplay rather than presented as separate lessons. Players learn about
+    pathology-appropriate nutrition by making decisions and receiving
+    <strong>immediate feedback</strong>. Incorrect dish selections trigger
+    informative pop-ups explaining why specific ingredients are incompatible
+    with certain conditions or diets.
+</p>
+
+<p>
+    <strong>NPC characters</strong> scattered throughout the game world provide
+    contextual tips about dish selection, <em>nutriScore</em> interpretation,
+    and environmental considerations. The recipe book serves as an in-game
+    reference, allowing players to research dish compositions, nutritional
+    ratings, and environmental impacts without breaking immersion.
+</p>
+
+<p>
+    The <strong>tutorial system</strong> employs a gradual reveal approach,
+    introducing concepts only when necessary to avoid overwhelming players with
+    information. Each tutorial segment combines textual explanations with video
+    demonstrations and
+    <u>requires players to successfully complete the action before proceeding</u
+    >, ensuring active learning rather than passive reading.
+</p>
+
+<p>
+    <strong>Difficulty increases</strong> through multiple mechanisms: higher
+    score requirements, more customers to serve, stricter failure thresholds,
+    and more complex pathology-diet combinations. The game maintains tension
+    through <strong>resource scarcity</strong>, players must balance immediate
+    food service needs with long-term inventory investment decisions.
+</p>
+
+<p>
+    <strong>Failure conditions</strong> include
+    <u>running out of both ingredients and money</u> (below 5 currency units),
+    or failing to reach the level's score threshold within the maximum number of
+    customer servings (10 for Level 0, 25 for Level 1, 30 for Level 2). This
+    creates strategic pressure to make optimal choices rather than merely
+    acceptable ones.
+</p>
+
+<h2>Development Process</h2>
+
+<p>
+    The project began with
+    <strong>comprehensive planning documentation</strong> including requirement
+    specifications, target audience analysis, and style guidelines. We defined
+    minimum and recommended system requirements, ensuring the game would be
+    accessible on modest hardware (minimum 1GB RAM, integrated graphics) while
+    supporting high-end configurations (up to 1920x1080 resolution,
+    <em>GEFORCE GT</em> graphics cards).
+</p>
+
+<p>
+    <strong>Design documentation</strong> included detailed flowcharts mapping
+    navigation between all game screens and gameplay states, storyboards
+    specifying visual layout and color schemes for each interface, and
+    prototypes demonstrating key interactions. This upfront design work proved
+    crucial for maintaining consistency and coordination between developers.
+</p>
+
+<p>
+    Development followed a <strong>phased approach</strong> tracked through
+    weekly progress monitoring. The schedule allocated time for content
+    acquisition (5 hours), material verification and validation (5 hours),
+    interface definition (17 hours), material refinement (8 hours),
+    <strong>core development (48 hours)</strong>,
+    <strong>testing (30 hours)</strong>, and publication (2 hours).
+</p>
+
+<p>
+    Actual development tracking revealed the
+    <strong>fluid nature of game development</strong>. Early weeks saw
+    concentrated effort on asset acquisition, interface design, and material
+    refinement, with development intensity increasing mid-project. The final
+    weeks focused exclusively on testing and bug fixing before publication.
+</p>
+
+<p>
+    The <strong>project team</strong> consisted of two primary developers with
+    support from external contributors. <em>Alessandro Congedo</em> composed the
+    original soundtrack, <em>Francesca Caranzano</em> assisted with UI design,
+    <em>Angelica Garofalo</em> contributed 3D art assets, and
+    <em>Vincenzo Francesco Pio Grande</em> provided text review and editing.
+</p>
+
+<p>
+    Technical resources combined owned assets (<em>Polygon packs</em>), free
+    Unity Asset Store resources, online sound effect repositories, and
+    custom-created materials. This hybrid approach balanced
+    <strong>quality requirements with the zero-budget constraint</strong>
+    imposed by the academic context.
+</p>
+
+<h2>Testing & Results</h2>
+
+<p>
+    <strong>Alpha testing</strong> focused on functional correctness, structural
+    integrity, and performance across different hardware configurations. We
+    evaluated interface pleasantness, simplicity, command learning curve,
+    response accuracy, and feature functionality. Testing was conducted on four
+    machines ranging from modest (<em>i5-4690K with GTX 1650 Super</em>) to
+    high-end (<em>Ryzen 7 5800H with RTX 3060</em>) configurations.
+</p>
+
+<p>
+    <strong>Key issues discovered</strong> during alpha testing included
+    <strong>framerate-dependent animation timing</strong> that caused
+    inconsistent behavior across different PCs, and
+    <strong>persistent game state variables</strong> that weren't being reset
+    when levels were reloaded. The animation issue was resolved by implementing
+    framerate-independent timing, while the state issue required explicit
+    variable reinitialization on level load.
+</p>
+
+<p>
+    <strong>Performance testing</strong> showed stable frame rates across all
+    test configurations, with CPU usage ranging from 27-50% and GPU usage from
+    20-62% depending on hardware. Even the lowest-spec machine maintained stable
+    performance at maximum graphics settings, validating our optimization
+    efforts.
+</p>
+
+<p>
+    A <strong>critical discovery</strong> during alpha testing was
+    <strong>difficulty balancing</strong>. Initial testing revealed that
+    achieving level objectives required perfect performance with no margin for
+    error. This created excessive challenge and potential player frustration. We
+    responded by <u>lowering score thresholds for each level</u>, providing a
+    more reasonable error margin while maintaining meaningful challenge.
+</p>
+
+<p>
+    Navigation consistency checks revealed
+    <strong>missing confirmation dialogs</strong> when players attempted to
+    return to the main menu mid-level, potentially causing accidental progress
+    loss. Audio system testing uncovered rare cases where footstep sounds would
+    continue playing when menus opened, requiring explicit audio suppression
+    during menu states.
+</p>
+
+<p>
+    <strong>Beta testing</strong> involved five users representing both target
+    users (students from relevant educational backgrounds) and experienced
+    gamers who could provide technical feedback. Testing occurred in controlled
+    environments with developers present for observation and note-taking.
+</p>
+
+<p>
+    The <em>System Usability Scale (SUS)</em> questionnaire yielded a
+    <strong>final score of 91.5 out of 100</strong>, indicating
+    <strong>excellent usability</strong>. Individual responses showed
+    consistency across metrics, with particularly strong scores for feature
+    integration, ease of learning, and minimal need for external support. Users
+    rated the game as simple to use (scores of 3-4 out of 4) and felt
+    comfortable during play.
+</p>
+
+<p>
+    Qualitative feedback from beta testers highlighted the game's
+    <strong>intuitive controls and clear visual communication</strong>. The
+    color-coding system for information categories received positive mention,
+    helping players quickly parse complex nutritional data. The tutorial
+    system's gradual introduction of concepts was praised for preventing
+    information overload.
+</p>
+
+<p>
+    Some users initially found the
+    <strong>scoring system's complexity challenging</strong> to understand,
+    particularly the interaction between <em>nutriScore</em>, <em>costoEco</em>,
+    and pathology affinity bonuses. This feedback validated our decision to
+    include detailed help documentation accessible at any time during gameplay,
+    and suggested the tutorial could spend additional time on scoring mechanics.
+</p>
+
+<p>
+    The completed project
+    <strong>successfully met its educational objectives</strong> while
+    maintaining engaging gameplay. The game runs stably across a wide range of
+    hardware configurations, features an
+    <strong>intuitive interface validated by SUS testing</strong>, and
+    effectively teaches players about nutrition-pathology relationships and
+    environmental food impacts. The structured development approach,
+    comprehensive testing, and willingness to iterate based on feedback resulted
+    in a <strong>polished final product</strong> that serves its serious game
+    purpose effectively.
+</p>

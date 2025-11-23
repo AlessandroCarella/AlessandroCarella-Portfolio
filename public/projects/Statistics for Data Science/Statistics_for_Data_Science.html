@@ -1,0 +1,300 @@
+<p>
+    This project is a <strong>recreation and implementation</strong> of the
+    research paper
+    <a href="https://arxiv.org/abs/2301.06710">
+        "Word Embeddings as Statistical Estimators"
+    </a>
+    by
+    <em>Neil Dey, Matthew Singer, Jonathan P. Williams, and Srijan Sengupta</em>
+    from North Carolina State University, published on arXiv in January 2023.
+    The goal was to
+    <strong
+        >reproduce the theoretical framework and experimental results</strong
+    >
+    presented in the original paper, gaining hands-on understanding of the
+    statistical foundations underlying word embedding methods.
+</p>
+<p>
+    The original paper investigates
+    <strong>word embeddings through a statistical lens</strong>. Word embeddings
+    are fundamental tools in NLP that
+    <strong>map words and phrases to vectors</strong> in Euclidean space,
+    enabling the application of mathematical and machine learning methods to
+    text data. However, these embeddings have historically been evaluated
+    primarily through downstream task performance,
+    <strong>lacking formal theoretical understanding</strong> of what linguistic
+    features they actually capture.
+</p>
+<p>
+    The core research question addresses whether
+    <strong>word embeddings, particularly Word2Vec</strong>, can be formally
+    defined and analyzed using statistical frameworks. Rather than treating
+    embeddings as black boxes evaluated solely on performance metrics, the paper
+    proposes
+    <strong>defining them in statistically meaningful ways</strong> using
+    generative models with known features. Our recreation involved implementing
+    the proposed algorithms, generating synthetic corpora using
+    <em>copula-based models</em>, and validating that embedding methods can
+    consistently recover known features from text data.
+</p>
+<p>
+    By recreating this work, we implemented the
+    <strong
+        >theoretical connection between Skip-gram and Pointwise Mutual
+        Information</strong
+    >
+    matrices, developed the novel <em>SVD-based estimators</em> including
+    <em>EM-MVSVD and DD-MVSVD</em> for handling infinite PMI values which was
+    proposed in the paper, and
+    <strong>replicated the experimental validation</strong> using the Brown
+    Corpus.
+</p>
+
+<h2>What I Learned</h2>
+<p>
+    Through recreating this research paper, I gained insights into both the
+    theoretical foundations and practical implementation challenges of
+    statistical NLP. The most significant learning was understanding how
+    <strong>Word2Vec implicitly performs matrix factorization</strong> on
+    <em>Pointwise Mutual Information matrices</em>. Implementing this connection
+    from scratch, building on <em>Levy and Goldberg's 2014 work</em>,
+    transformed my perspective on embeddings from
+    <strong
+        >opaque neural methods to interpretable statistical estimators</strong
+    >.
+</p>
+<p>
+    Reproducing the <strong>copula-based text generation model</strong> taught
+    me how to work with challenging statistical concepts including
+    <a href="https://bggj.is/posts/gaussian-copula/">
+        <em>Gaussian copulas</em>
+    </a>
+    combined with <em>Zipfian marginal distributions</em>. Understanding
+    <a
+        href="https://www.finance-tutoring.fr/understanding-sklar's-theorem-in-layman%E2%80%99s-terms%E2%80%A6/"
+    >
+        <em>Sklar's Theorem</em>
+    </a>
+    and implementing the code to
+    <strong>combine marginal distributions into joint distributions</strong> was
+    crucial for building the dense corpus generation model. This hands-on
+    experience showed me how theoretical statistics can be applied to create
+    practical models that reflect real-world linguistic phenomena like
+    <a href="https://en.wikipedia.org/wiki/Zipf%27s_law"><em>Zipf's law</em></a
+    >.
+</p>
+<p>
+    The recreation deepened my understanding of
+    <strong>missing data problems</strong> in statistics through direct
+    implementation. <u>Not all missing values are created equal</u>, the
+    distinction between <strong>sparse settings</strong> where zeros represent
+    true absence versus <strong>dense settings</strong> where zeros result from
+    finite sampling has
+    <strong>profound implications for algorithm design</strong>. Implementing
+    the <em>EM-MVSVD and DD-MVSVD algorithms</em> from the paper's pseudocode
+    gave me practical experience on statistical methods code implementation.
+</p>
+<p>
+    Working through the
+    <strong>Expectation-Maximization algorithm implementation</strong> in the
+    context of Singular Value Decomposition taught me how
+    <strong
+        >iterative optimization methods can handle complex matrix completion
+        problems</strong
+    >. I learned to implement <em>exponential smoothing</em> for convergence
+    stabilization and understood the importance of proper initialization in
+    iterative algorithms. Comparing my implementation results with the paper's
+    figures <strong>validated my understanding</strong> and revealed subtleties
+    in the algorithms that were not immediately apparent from the mathematical
+    descriptions alone.
+</p>
+<p>
+    Replicating the experimental phase taught me
+    <strong>rigorous methodology for comparing statistical estimators</strong>.
+    I learned to generate controlled synthetic datasets where
+    <strong>ground truth is known</strong>, enabling direct evaluation of method
+    accuracy through <em>RMSE measurements</em>. Successfully reproducing the
+    paper's key finding, that
+    <strong
+        >truncated SVD on SPPMI degrades with more data while MVSVD methods
+        remain consistent</strong
+    >, demonstrated the value of statistically principled approaches and
+    validated my implementation.
+</p>
+
+<h2>Theoretical Foundation</h2>
+<p>
+    The theoretical foundation rests on establishing the
+    <strong>connection between Word2Vec and Pointwise Mutual Information</strong
+    >. The <em>Skip-gram objective</em> with negative sampling
+    <strong>implicitly factorizes a shifted PMI matrix</strong>. Specifically,
+    Word2Vec with <em>k negative samples</em> factorizes
+    <strong>SPMI = PMI - log(k)·J</strong>, where J is the all-ones matrix. This
+    insight transformed embeddings from mysterious neural networks into
+    <strong>interpretable statistical quantities</strong> measuring word
+    co-occurrence patterns.
+</p>
+<p>
+    The project addresses a fundamental challenge in real text corpora:
+    <strong>infinite PMI values</strong> arising from word pairs that never
+    co-occur. This necessitates
+    <strong>distinguishing between two statistical settings</strong>. In the
+    <strong>sparse setting</strong>, some word pairs genuinely have zero
+    probability of co-occurrence, and infinite PMI represents a real absence of
+    semantic relationship. In the <strong>dense setting</strong>, all word pairs
+    have non-zero co-occurrence probability, and observed zeros result merely
+    from <strong>finite sample sizes</strong>.
+</p>
+<p>
+    To model language statistically, the project employs a
+    <strong>first-order</strong>
+    <a href="https://en.wikipedia.org/wiki/Markov_chain">
+        <em>Markov chain</em>
+    </a>
+    with <strong>Zipfian marginal distributions</strong> and full co-occurrence
+    structure specified through <em>copulas</em>. <em>Zipf's law</em>, which
+    describes the power-law distribution of word frequencies in natural
+    language, is <strong>empirically verified against the Brown Corpus</strong>.
+    The model incorporates this linguistic scenario by fitting Zipfian
+    distributions to word frequency data and using <em>Gaussian copulas</em> to
+    capture dependency structure between words.
+</p>
+<p>
+    <em>Sklar's Theorem</em> provides the mathematical foundation for
+    <strong
+        >combining marginal distributions into multivariate
+        distributions</strong
+    >
+    through copulas. This allows separating the problem into modeling individual
+    word frequencies and modeling their co-occurrence relationships. The
+    <strong>Gaussian copula choice</strong> is empirically motivated, it
+    <strong>fits real corpus data well</strong> while remaining mathematically
+    tractable for computation and analysis.
+</p>
+
+<h2>Experimental Results and Reproduction Validation</h2>
+<p>
+    Our recreation began by confirming that
+    <strong
+        >word frequencies in the Brown Corpus follow Zipfian
+        distributions</strong
+    >, as described in the original paper. Plotting observed frequencies against
+    rank on log-log scales revealed the characteristic
+    <em>power-law behavior</em>, with
+    <strong>fitted curves closely matching empirical data</strong>. This
+    validation justified using Zipfian marginals in the statistical text
+    generation model and provided confidence that our implementation of the
+    copula-based synthetic corpus generation was correct.
+</p>
+<img src="zipf_fit_r.png" alt="Zipfian distributions on the Brown Corpus" />
+<p>
+    The primary results successfully reproduced the patterns reported in the
+    paper for how
+    <strong>different methods approximate population SPMI</strong> across corpus
+    sizes ranging from 10 to 1,000,000 tokens. Our implementation confirmed that
+    <strong
+        >Word2Vec, EM-MVSVD, and DD-MVSVD all maintain consistently low
+        RMSE</strong
+    >
+    values regardless of corpus size, with errors remaining near zero across the
+    entire range. This stability indicates these methods
+    <strong>successfully recover underlying semantic structure</strong> even
+    from relatively small samples.
+</p>
+<img src="aggregated_no_sppmi.png" alt="Results without SPPMI" />
+<p>
+    We successfully replicated the paper's key finding:
+    <strong
+        >truncated SVD on SPPMI matrices exhibits dramatically different
+        behavior</strong
+    >
+    from the other methods. Our results showed
+    <strong>RMSE starting at moderate levels</strong>, for small corpora, but
+    <strong>increasings systematically with corpus size</strong>, reaching values exceeding
+    400 for million-token corpora. This
+    <u>counterintuitive degradation</u> occurs because larger corpora reveal
+    more word pairs with observed zero co-occurrence, creating more negative PMI
+    entries that truncation discards,
+    <strong>progressively losing more information</strong>.
+</p>
+<img src="aggregated_with_sppmi.png" alt="Results including SPPMI" />
+<p>
+    The <strong>convergence between Word2Vec and MVSVD methods</strong> in our
+    reproduction provides validation of both the original paper's theoretical
+    framework and our implementation. The matching results confirm that
+    <strong>Word2Vec implicitly factorizes SPMI matrices</strong> and that the
+    MVSVD methods provide
+    <strong>statistically tractable alternatives</strong> with comparable
+    estimation accuracy.
+</p>
+
+<h2>Conclusions</h2>
+<p>
+    Recreating this research established for us the importance of
+    <strong>viewing word embeddings as formal statistical estimators</strong>
+    rather than purely algorithmic constructs. By implementing the framework
+    that defines embeddings as
+    <strong>low-rank approximations to population SPMI matrices</strong>, we
+    gained appreciation for how this formalization
+    <strong>enables rigorous analysis</strong> of embedding properties,
+    bias-variance tradeoffs, convergence rates, and consistency, questions that
+    would be unanswerable without statistical frameworks.
+</p>
+<p>
+    The reproduction helped us understand the
+    <strong
+        >crucial distinction between sparse and dense statistical
+        settings</strong
+    >. If language truly inhabits a sparse setting where many word pairs cannot
+    co-occur,
+    <u
+        >methods should preserve and interpret infinite PMI values as meaningful
+        semantic signals</u
+    >. Conversely, if language is dense with sampling zeros, methods like
+    <em>DD-MVSVD</em> that
+    <strong>impute missing values using distributional knowledge</strong> become
+    essential. This nuanced understanding came from implementing both
+    perspectives.
+</p>
+<p>
+    Successfully reproducing the
+    <strong>degradation of SPPMI with increasing data</strong> challenged our
+    initial intuitions that more data always improves estimates. This finding
+    from the paper, which we confirmed through our own implementation,
+    demonstrates that
+    <strong
+        >theoretically sound methods matter more than data quantity
+        alone</strong
+    >. <u>Simple approaches that discard information</u>, even for seemingly
+    pragmatic reasons like avoiding infinities,
+    <strong>can fail in the large-data regime</strong>.
+</p>
+<p>
+    From a practical perspective, we learned that the
+    <strong>MVSVD methods offer interpretable alternatives to Word2Vec</strong>
+    with similar performance but
+    <strong>greater theoretical transparency</strong>. Understanding exactly
+    what these methods estimate helped us reason about when they should work
+    well. The methods' probabilistic foundations also suggest potential for
+    <em>uncertainty quantification, Bayesian extensions</em>, and integration
+    with other probabilistic NLP models.
+</p>
+<p>
+    The <strong>copula-based text generation model</strong> we implemented
+    provides a valuable tool for NLP evaluation. Generating
+    <strong>synthetic text with known ground truth semantic structure</strong>
+    enables testing whether methods capture intended properties rather than
+    merely performing well on arbitrary tasks. This
+    <strong>controlled evaluation paradigm</strong> could extend beyond
+    embeddings to other NLP components.
+</p>
+<p>
+    This recreation project reinforced the
+    <strong>value of reproducing research as a learning methodology</strong>.
+    The process of translating mathematical descriptions into working code
+    revealed <strong>implementation details and edge cases</strong> that were
+    not apparent from reading the paper alone. We also gained appreciation for
+    the original authors' contributions and the
+    <strong>rigor required to produce reproducible research</strong> in
+    statistical NLP.
+</p>

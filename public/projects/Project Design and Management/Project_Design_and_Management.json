@@ -1,8 +1,84 @@
 {
     "projectName": "Project Design and Management",
-    "quickSummary": "Analysis of FAI's website for enanchements.",
+    "quickSummary": "Enhanced user experience for Fondo Ambiente Italiano website through comprehensive user research, need validation, and solution development. Designed and tested three innovative solutions, interactive map, email notifications, and AI chatbot, using structured assessment methodology to improve event discovery for active seniors.",
     "content": "Project_Design_and_Management.html",
     "report": "REPORT Project Design and Management.pdf",
     "slides": "PRESENTATION Project Design and Management.pdf",
-    "collaborators": ["Lorenzo Lattanzi", "Pietro Argento", "Rafael", "Tolgonai Nasipbek Kyzy"]
+    "collaborators": [
+        "https://www.linkedin.com/in/pietro-argento/",
+        "https://www.linkedin.com/in/rafael-ignacio-urbina-hincapi%C3%A9-2ba11a214/",
+        "https://www.linkedin.com/in/tolgonai-nasipbek-kyzy/",
+        "Lorenzo Lattanzi"
+    ],
+    "skills": [
+        "User Research",
+        "Needs Analysis",
+        "Project Management",
+        "UX/UI Design",
+        "Data Analysis",
+        "Benchmarking",
+        "Brainstorming Techniques",
+        "Hypothesis Testing",
+        "A/B Testing",
+        "Solution Assessment",
+        "AI Integration",
+        "Prompt Engineering",
+        "Social Media Analysis",
+        "Website Analysis",
+        "Quantitative and Qualitative Research",
+        "User Testing",
+        "Stakeholder Analysis",
+        "Team Collaboration"
+    ],
+    "keywords": {
+        "technologies": [
+            "Interactive Maps",
+            "Web Design",
+            "Generative AI",
+            "GPT-4",
+            "ChatGPT",
+            "Custom Chatbot Development"
+        ],
+        "methodologies": [
+            "Round-Robin Brainstorming",
+            "Brain-Writing",
+            "A/B Testing",
+            "Benchmarking",
+            "User Research",
+            "Need Validation",
+            "Hypothesis Testing",
+            "Nominal Group Technique",
+            "Thinking Aloud",
+            "Consensus Building",
+            "Majority Voting",
+            "Mixed-Methods Research"
+        ],
+        "domains": [
+            "Cultural Heritage",
+            "User Experience",
+            "Non-profit Organizations",
+            "Event Management",
+            "Italian Heritage Sites",
+            "Digital Transformation",
+            "Accessibility"
+        ],
+        "research_techniques": [
+            "Social Network Analysis",
+            "Website Analysis",
+            "Top-Down Approach",
+            "Bottom-Up Approach",
+            "Qualitative and Quantitative Analysis",
+            "User Observation",
+            "Demographic Analysis"
+        ],
+        "design_concepts": [
+            "User-Centered Design",
+            "Desirability Assessment",
+            "Feasibility Analysis",
+            "Solution Prototyping",
+            "Need Hypothesis",
+            "Quality Index",
+            "Multi-Dimensional Assessment"
+        ]
+    }
 }

@@ -1,9 +1,0 @@
-{
-    "projectName": "Information Retrieval",
-    "quickSummary": "Information retrieval project.",
-    "content": "Information_Retrieval.html",
-    "slides": "PRESENTATION Information retrival.pdf",
-    "classNotes": "https://alessandro-carella.notion.site/Information-retrieval-11aa1f6cd9d08096b2face8e116f3556",
-    "collaborators": ["Samuele Boldrini"],
-    "repository": "https://github.com/rhododendrox/IR-project"
-}

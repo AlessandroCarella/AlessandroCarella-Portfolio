@@ -1,0 +1,409 @@
+<p>
+    My bachelor thesis consists of an
+    <strong>automated system for detecting and analyzing student moods</strong>
+    in e-learning environments through
+    <strong>facial expression recognition</strong>. The research addresses a
+    critical gap in online education: the inability of instructors to gauge
+    student engagement and emotional states in real-time.
+</p>
+
+<p>
+    Through the use of <em>Action Units (AUs)</em>, a facial coding system
+    developed by <em>Paul Ekman</em>, the system identifies subtle facial muscle
+    movements that indicate different emotional states. Unlike traditional
+    emotion recognition systems that focus on basic emotions (happiness, anger,
+    sadness, disgust, fear, neutral), this project specifically targets
+    <strong>mood states relevant to learning contexts</strong>: <b>engaged</b>,
+    <b>confused</b>, <b>frustrated</b>, <b>bored</b>, <b>drowsy</b>, and
+    <b>looking away</b>.
+</p>
+
+<p>
+    Developed at <em>Università degli studi di Bari Aldo Moro</em> under the
+    supervision of <em>Prof. Stefano Ferilli</em> and
+    <em>Prof. Berardina De Carolis</em>, the project combines computer vision,
+    machine learning, and real-time processing to create a
+    <strong>practical tool for monitoring student engagement</strong> during
+    online classes.
+</p>
+
+<h2>What I Learned</h2>
+<p>
+    This project provided comprehensive experience across multiple domains of
+    artificial intelligence and software engineering. The most significant
+    technical learning came from
+    <strong
+        >implementing and comparing five different machine learning
+        algorithms</strong
+    >
+    for classification tasks, understanding their strengths, weaknesses, and
+    appropriate use cases.
+</p>
+
+<p>
+    Working with the <em>Py-Feat library</em> for facial feature extraction
+    taught me about the complexity of facial action coding systems and the
+    computational challenges of real-time video processing. I learned to
+    <strong>optimize performance using CUDA acceleration</strong>, achieving
+    approximately <strong>100 predictions per minute</strong>
+    on GPU-enabled hardware compared to significantly slower CPU-only
+    processing.
+</p>
+
+<p>
+    <strong>Dataset management</strong> proved to be one of the most crucial
+    aspects of the project. I learned practical techniques for
+    <strong>handling imbalanced datasets</strong> through resampling strategies,
+    combining multiple data sources (<em>DAiSEE</em> and
+    <em>Student Engagement datasets</em>), and implementing data cleaning
+    pipelines. The importance of balanced training data became evident when
+    initial models consistently predicted only the majority class.
+</p>
+
+<p>
+    The project deepened my understanding of
+    <strong>evaluation metrics beyond simple accuracy</strong>, including
+    <em>precision</em>, <em>recall</em>, <em>balanced accuracy</em>, and
+    <em>k-fold cross-validation</em>. I learned that model selection requires
+    considering multiple factors: performance metrics, computational efficiency,
+    real-time processing requirements, and interpretability.
+</p>
+
+<p>
+    Integrating the
+    <a href="https://ieeexplore.ieee.org/document/6578158"
+        ><em>WoMan framework</em></a
+    >
+    for workflow modeling exposed me to
+    <strong>declarative process mining</strong> and
+    <em>First-Order Logic</em> representations. Although this approach required
+    significantly more training data than initially anticipated, it provided
+    insights into alternative methodologies for pattern recognition in
+    sequential data.
+</p>
+
+<p>
+    I also gained experience in
+    <strong>building user-facing applications</strong> that combine complex
+    backend processing with intuitive interfaces. The real-time mood detection
+    GUI required careful consideration of performance optimization, user
+    feedback mechanisms, and robust error handling.
+</p>
+
+<p>
+    The thesis represents the
+    <strong>end of my bachelor in data science journey</strong>, and was a good
+    introduction to the topics I later refined and expanded during my master
+    course.
+</p>
+
+<h2>Architecture and Data Pipeline</h2>
+<p>
+    The system architecture consists of <strong>three main components</strong>:
+    data acquisition and preprocessing, model training and evaluation, and
+    real-time inference. The data pipeline begins with the
+    <em>Py-Feat library</em>, which extracts
+    <strong>20 Action Units</strong> from facial images or video frames. These
+    AUs represent specific facial muscle movements, such as
+    <em>inner brow raiser (AU1)</em>, <em>outer brow raiser (AU2)</em>,
+    <em>cheek raiser (AU6)</em>, and <em>lip corner puller (AU12)</em>.
+</p>
+<img src="Action Units.png" alt="Action units" />
+<p>
+    The preprocessing stage involved significant data engineering work. The
+    combined dataset of <strong>74,322 samples</strong> from
+    <em>DAiSEE</em> (video-based) and
+    <em>Student Engagement Dataset</em> (image-based) required careful
+    integration. Each video was processed at the frame level, with DAiSEE videos
+    analyzed at approximately 2 frames per second. The initial dataset exhibited
+    <strong>severe class imbalance</strong>, with 55,707 samples labeled as
+    "engaged" compared to only 240 "drowsy" samples.
+</p>
+
+<p>
+    To address this imbalance, a <strong>resampling strategy</strong> was
+    implemented using both undersampling and oversampling techniques. The final
+    balanced dataset contained <strong>2,000 samples per class</strong>,
+    achieved through
+    <a
+        href="https://scikit-learn.org/stable/modules/generated/sklearn.utils.resample.html"
+        ><em>scikit-learn's resample function</em></a
+    >
+    for oversampling minority classes and custom undersampling for majority
+    classes. This balancing proved critical for model performance, as initial
+    tests showed models predicting almost exclusively the "engaged" class.
+</p>
+
+<h2>Machine Learning Models</h2>
+<p>
+    <strong>Five classification algorithms</strong> were implemented and
+    rigorously evaluated: <em>Random Forest</em>,
+    <em>K-Nearest Neighbors (KNN)</em>, <em>Support Vector Machine (SVM)</em>,
+    <em>Naive Bayes</em>, and <em>Support Vector Regression (SVR)</em>. Each
+    model was trained on the same balanced dataset and evaluated using
+    <strong>33-fold cross-validation</strong> to ensure robust performance
+    estimates.
+</p>
+
+<p>
+    The
+    <strong>Random Forest classifier emerged as the clear winner</strong> with
+    <strong>82.26% accuracy</strong>, 81.86% precision, and 82.26% recall. The
+    model used 100 decision trees and leveraged the ensemble learning approach
+    to reduce overfitting. Feature importance analysis revealed that while most
+    Action Units contributed similarly (7-12% importance),
+    <strong>AU43 (eyes closed) had significantly higher predictive power</strong
+    >, logically indicating states like drowsiness or disengagement. This is
+    very important since it gave insights on the fact that the model behaves in
+    a human sound way, at least for that feature. More about this in my
+    <a href="https://alessandrocarella.pages.dev/projects/master-thesis"
+        >master's thesis</a
+    >.
+</p>
+
+<p>
+    The <em>K-Nearest Neighbors classifier</em> achieved respectable performance
+    with 77.87% accuracy. Even though the accuracy result is rather high, the
+    number of neighbors was set to <em>n_neighbors=1</em>.
+    <u
+        >Reviewing this result at the end of my master's course I have to
+        specify that this is definitely a mistake I made because I did not know
+        about overfitting and of how exactly classifiers are supposed to work</u
+    >.
+</p>
+
+<p>
+    <em>Support Vector Machine</em>, <em>Naive Bayes</em>, and <em>SVR</em>
+    <strong>performed significantly worse</strong>
+    (54%, 39%, and 17% accuracy respectively), highlighting that not all
+    algorithms are equally suitable for this type of facial expression
+    classification task. The poor performance of Naive Bayes likely stemmed from
+    the violation of its independence assumption, as facial Action Units are
+    inherently correlated.
+</p>
+
+<h2>Real-Time Application</h2>
+<p>
+    The practical application of my research materialized in a
+    <strong>Python-based GUI that performs live mood detection</strong> through
+    webcam input. The interface displays the video feed alongside real-time
+    predictions, showing the current detected mood, confidence percentages for
+    all six mood classes, and the most frequent mood over the last minute.
+    <img src="GUI.png" alt="Interface mock up" />
+</p>
+
+<img />
+
+<p>
+    <strong>Performance optimization was critical</strong> for real-time
+    operation. Using an <em>AMD Ryzen 7 5800H</em> processor with
+    <em>NVIDIA GeForce RTX 3060</em> laptop GPU, the system achieved
+    approximately <strong>100 predictions per minute</strong> when leveraging
+    CUDA acceleration. Without GPU acceleration, prediction time increased from
+    0.6-0.7 seconds to 1.6-1.7 seconds per frame, demonstrating the importance
+    of hardware acceleration for real-time facial analysis.
+</p>
+
+<p>
+    The application implements a
+    <strong>sliding window approach for temporal smoothing</strong>, tracking
+    predictions over one-minute intervals to identify dominant mood states and
+    reduce the impact of momentary misclassifications. This temporal aggregation
+    improves the reliability of mood assessments for practical educational
+    applications.
+</p>
+
+<h2>Data Sources and Integration</h2>
+<p>
+    The research utilized two primary datasets:
+    <strong
+        ><a
+            href="https://people.iith.ac.in/vineethnb/resources/daisee/index.html"
+            >DAiSEE</a
+        ></strong
+    >
+    (Dataset for Affective States in E-Environments) and the
+    <strong>Student Engagement Dataset</strong> from Kaggle. DAiSEE provided
+    <strong>9,068 video clips</strong> of students in naturalistic e-learning
+    settings, labeled with engagement levels (0-3) across four dimensions:
+    <em>boredom</em>, <em>engagement</em>, <em>confusion</em>, and
+    <em>frustration</em>. The dataset was specifically designed to address
+    "in-the-wild" scenarios with variable lighting, head poses, and occlusions.
+</p>
+
+<p>
+    The
+    <strong
+        ><a href="https://www.kaggle.com/datasets/joyee19/studentengagement"
+            >Student Engagement Dataset</a
+        ></strong
+    >
+    complemented DAiSEE with static images categorized into six mood states:
+    confused, engaged, frustrated, bored, drowsy, and looking away. While
+    smaller in scale, it provided
+    <strong
+        >essential coverage of mood states not fully represented in
+        DAiSEE</strong
+    >, particularly drowsy and looking away conditions.
+</p>
+
+<p>
+    Data extraction from videos required careful frame sampling. Rather than
+    analyzing every frame (which would have been computationally prohibitive),
+    the system extracted frames at the framerate of each video, effectively
+    sampling 1-2 frames per second. For the 50 videos per mood class used in
+    <em>WoMan framework</em> experiments, processing time averaged approximately
+    3 minutes per video, totaling roughly
+    <strong>36 hours for the full analysis</strong>.
+</p>
+
+<h2>Action Units as Features</h2>
+<p>
+    The <em>Facial Action Coding System (FACS)</em> provides a
+    <strong
+        >comprehensive, objective method for describing facial movements</strong
+    >. Rather than subjective emotion labels, FACS decomposes expressions into
+    <strong>20 measurable Action Units</strong>, each corresponding to specific
+    muscle activations. For example, <em>AU12 (lip corner puller)</em> activates
+    during smiling, while <em>AU1</em> and <em>AU2</em> (inner and outer brow
+    raisers) indicate surprise or fear.
+</p>
+
+<p>
+    <em>Py-Feat's</em> detection pipeline first identifies faces using
+    <em>RetinaFace</em>, localizes 68 facial landmarks with
+    <em>MobileFaceNet</em>, and then
+    <strong
+        >predicts Action Unit activations using an XGBoost classifier</strong
+    >
+    trained on multiple facial expression databases including <em>BP4D</em>,
+    <em>DISFA</em>, and <em>CK+</em>. Each AU is represented as a continuous
+    value between 0 and 1, indicating activation intensity.
+</p>
+
+<p>
+    Beyond Action Units, Py-Feat extracts additional contextual information
+    including face bounding boxes, head pose angles (<em>pitch</em>,
+    <em>roll</em>, <em>yaw</em>), and emotion probabilities for six basic
+    emotions. However,
+    <strong>only the 20 Action Units were used as features</strong> for the mood
+    classification models, based on literature suggesting AUs provide more
+    reliable indicators of engagement states than basic emotion classifications.
+</p>
+
+<h2>Practical Applications</h2>
+<p>
+    The immediate application target is <strong>online education</strong>, where
+    instructors could use the system to
+    <strong>monitor student engagement during live video classes</strong>.
+    Real-time feedback about class-wide attention levels could prompt
+    instructors to adjust teaching pace, clarify confusing material, or
+    introduce breaks when fatigue is detected.
+</p>
+
+<p>
+    Beyond real-time monitoring,
+    <strong>aggregated mood data could provide valuable analytics</strong> for
+    course improvement. Analyzing when students become confused or disengaged
+    during recorded lectures could identify content that needs redesign.
+    Correlation with assessment performance could validate whether engagement
+    during lessons predicts learning outcomes.
+</p>
+
+<p>
+    The system's architecture also suits
+    <strong>asynchronous learning scenarios</strong>. Students watching
+    pre-recorded content could receive
+    <strong>personalized recommendations</strong> (take a break, review previous
+    material, seek additional resources) based on detected engagement patterns.
+    Adaptive learning systems could modify content presentation based on
+    real-time mood detection.
+</p>
+
+<h2>Research Contributions</h2>
+<p>
+    This thesis contributes to the growing body of research on
+    <em>affective computing in education</em> by demonstrating that
+    <strong>mood states can be reliably detected</strong> from facial
+    expressions. The choice to focus on moods rather than emotions represents a
+    <strong>practical alignment with real-world educational needs</strong>, as
+    students don't typically display extreme emotions during normal learning
+    activities.
+</p>
+
+<p>
+    The comprehensive comparison of machine learning algorithms for AU-based
+    mood classification provides
+    <strong>guidance for future researchers</strong>. The finding that
+    <strong>Random Forest substantially outperforms other approaches</strong>
+    aligns with similar conclusions in related emotion recognition research,
+    reinforcing its position as a preferred algorithm for facial expression
+    analysis.
+</p>
+
+<p>
+    The <strong>integration and balancing of multiple datasets</strong> (DAiSEE
+    and Student Engagement) created a more comprehensive training corpus than
+    either dataset alone could provide. The methodology for combining video and
+    image datasets while maintaining label consistency could be replicated for
+    other facial expression recognition tasks.
+</p>
+
+<p>
+    Finally, the exploration of the <em>WoMan framework</em> for mood workflow
+    modeling, while ultimately constrained by data requirements, identified an
+    <strong>interesting avenue for future research</strong> with larger datasets
+    or more focused use cases.
+</p>
+
+<h2>Technical Enhancements</h2>
+<p>
+    Several technical improvements could enhance system performance and
+    applicability. <strong>Deep learning approaches</strong>, particularly
+    <em>convolutional neural networks</em> trained end-to-end on facial images,
+    might achieve higher accuracy than the current pipeline of separate face
+    detection, AU extraction, and classification stages. However, such models
+    would require substantially more training data and computational resources.
+</p>
+
+<p>
+    <strong>Temporal modeling</strong> represents a significant opportunity for
+    improvement. The current system treats each frame independently, ignoring
+    the sequential nature of mood changes.
+    <em>Recurrent neural networks (RNNs)</em> or
+    <em>temporal convolutional networks</em> could model how moods evolve over
+    time, potentially improving accuracy and providing early detection of mood
+    transitions.
+</p>
+
+<p>
+    <strong>Multi-modal integration</strong> could substantially boost
+    reliability by incorporating additional signals beyond facial expressions.
+    <em>Voice analysis</em> (prosody, speaking rate),
+    <em>body language</em> (posture, fidgeting), and even mouse movement
+    patterns or typing behavior could provide complementary engagement
+    indicators less susceptible to facial occlusion or deliberate masking.
+</p>
+
+<h2>Ethical Considerations and Deployment</h2>
+<p>
+    Deployment of mood monitoring systems in educational settings raises
+    <strong>important ethical questions</strong>.
+    <u>Privacy concerns are paramount</u>, continuous facial monitoring could
+    feel invasive and might discourage authentic expression if students know
+    they're being constantly assessed.
+    <strong
+        >Transparent communication about data usage, storage, and retention
+        policies</strong
+    >
+    is essential.
+</p>
+
+<p>
+    The system should be positioned as a
+    <strong>tool to augment, not replace, instructor judgment</strong>.
+    Automated mood detection can provide useful indicators, but
+    <strong>human interpretation and decision-making remain essential</strong>.
+    Instructors should be trained to use the system appropriately and to
+    recognize its limitations.
+</p>

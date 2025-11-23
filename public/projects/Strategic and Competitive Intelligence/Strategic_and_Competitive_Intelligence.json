@@ -1,7 +1,96 @@
 {
     "projectName": "Strategic and Competitive Intelligence",
-    "quickSummary": "Market dynamics, competitive landscapes, and business intelligence analysis on the coding genAI market to inform strategic decision-making.",
+    "quickSummary": "Strategic intelligence analysis of coding trends through social media and Stack Overflow, analyzing 3.8M+ tweets, Dev.to articles, Reddit posts, and custom-built R scraper for extracting structured Q&A data to identify technology adoption patterns and emerging methodologies.",
     "content": "Strategic_and_Competitive_Intelligence.html",
     "collaborators": [],
-    "repository": "https://github.com/AlessandroCarella/Strategic-and-competitive-intelligence"
+    "repository": "https://github.com/AlessandroCarella/Strategic-and-competitive-intelligence",
+    "skills": [
+        "Strategic Intelligence",
+        "Competitive Analysis",
+        "Natural Language Processing",
+        "Text Mining",
+        "Data Collection via APIs",
+        "Python Programming",
+        "R Programming",
+        "Web Scraping",
+        "Data Visualization",
+        "Sentiment Analysis",
+        "Dashboard Development",
+        "Big Data Processing",
+        "Data Cleaning and Preprocessing",
+        "Trend Analysis",
+        "R Shiny",
+        "Error Handling and Resilience",
+        "Critical Thinking",
+        "Data Storytelling"
+    ],
+    "keywords": {
+        "intelligence_methodologies": [
+            "strategic & competitive",
+            "social media",
+            "market",
+            "trend analysis",
+            "discourse analysis"
+        ],
+        "data_sources": [
+            "Twitter",
+            "Dev.to",
+            "Reddit",
+            "Stack Overflow",
+            "social media",
+            "developer communities",
+            "ChatGPT Tweets Dataset",
+            "Q&A platforms"
+        ],
+        "technologies_and_tools": [
+            "Python",
+            "R",
+            "Shiny",
+            "NLTK",
+            "spaCy",
+            "pandas",
+            "BeautifulSoup",
+            "PRAW",
+            "plotly",
+            "ggplot2",
+            "wordcloud2",
+            "requests",
+            "yaml",
+            "jsonlite"
+        ],
+        "nlp_techniques": [
+            "named entity recognition",
+            "sentiment analysis",
+            "tokenization",
+            "part-of-speech tagging",
+            "text classification",
+            "stopword removal",
+            "frequency analysis"
+        ],
+        "visualization_methods": [
+            "interactive dashboards",
+            "word clouds",
+            "treemaps",
+            "frequency plots"
+        ],
+        "research_domains": [
+            "software development trends",
+            "coding methodologies",
+            "developer discourse",
+            "remote work impact",
+            "digital nomadism",
+            "gig economy",
+            "generative AI",
+            "company visibility"
+        ],
+        "data_processing": [
+            "collection",
+            "cleaning",
+            "filtering",
+            "normalization",
+            "API integration",
+            "web scraping",
+            "quality assurance"
+        ]
+    }
 }

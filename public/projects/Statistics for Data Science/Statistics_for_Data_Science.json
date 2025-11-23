@@ -1,8 +1,61 @@
 {
     "projectName": "Statistics for Data Science",
-    "quickSummary": "Statistical analysis project applying fundamental statistical methods and hypothesis testing to real-world data science problems.",
+    "quickSummary": "A statistical analysis of word embeddings establishing theoretical connections between Word2Vec and PMI matrices. Developed novel SVD-based estimators incorporating EM algorithms and copula models to recover semantic relationships from text, validated through controlled experiments on synthetic and real corpora.",
     "content": "Statistics_for_Data_Science.html",
     "slides": "PRESENTATION statistics for data science.pdf",
-    "collaborators": ["Rafael"],
-    "repository": "https://github.com/AlessandroCarella/Statistics-for-data-science-project-24-25"
+    "collaborators": [
+        "https://www.linkedin.com/in/rafael-ignacio-urbina-hincapi%C3%A9-2ba11a214/"
+    ],
+    "repository": "https://github.com/AlessandroCarella/Statistics-for-data-science-project-24-25",
+    "skills": [
+        "Statistical Inference",
+        "Natural Language Processing",
+        "Singular Value Decomposition (SVD)",
+        "Expectation-Maximization Algorithms",
+        "Copula Theory",
+        "Matrix Factorization",
+        "Python Programming",
+        "Statistical Modeling",
+        "Hypothesis Testing",
+        "Research Methodology",
+        "Collaborative Problem-Solving"
+    ],
+    "keywords": {
+        "statistical_methods": [
+            "Pointwise Mutual Information",
+            "Copulas",
+            "Gaussian Copula",
+            "Zipf's Law",
+            "Expectation-Maximization",
+            "Singular Value Decomposition",
+            "RMSE",
+            "Chi-square Distance",
+            "Statistical Estimators",
+            "Missing Value Imputation",
+            "Markov Chains"
+        ],
+        "nlp_concepts": [
+            "Word Embeddings",
+            "Word2Vec",
+            "Skip-gram Model",
+            "Semantic Relationships",
+            "Co-occurrence Matrices",
+            "Natural Language Processing"
+        ],
+        "algorithms": ["EM-MVSVD", "DD-MVSVD", "SPPMI", "Truncated SVD"],
+        "mathematical_frameworks": [
+            "Sklar's Theorem",
+            "Low-rank Approximation",
+            "Matrix Factorization",
+            "Probability Theory",
+            "Power-law Distributions"
+        ],
+        "applications": [
+            "Embedding Evaluation",
+            "Semantic Analysis",
+            "Language Modeling",
+            "Distributional Semantics",
+            "Computational Linguistics"
+        ]
+    }
 }

@@ -1,0 +1,655 @@
+<p>
+    This project is an extension of the
+    <a href="https://alessandrocarella.pages.dev/projects/data-mining-1"
+        >Data Mining I project</a
+    >. This project demonstrates
+    <strong>advanced data mining techniques</strong> applied across multiple
+    domains including <em>time series analysis</em>, <em>classification</em>,
+    <em>regression</em>, and <em>model explainability</em>. Working with two
+    interconnected tabular datasets, obtained through the
+    <a href="https://developer.spotify.com/documentation/web-api">spotify API</a
+    >, containing track features such as danceability, energy, acousticness, and
+    artist metadata including popularity and follower counts, me and my team
+    developed a <strong>complete data science pipeline</strong> from data
+    understanding through advanced modeling and interpretation.
+</p>
+<p>
+    The datasets were <strong>merged to create an enriched view</strong> that
+    combines track-level audio features with aggregated artist statistics. After
+    extensive preprocessing including handling duplicate records with multiple
+    genres, creating derived features like <em>BeatPerMinute</em>, and ensuring
+    data quality through semantic consistency checks, the final dataset
+    contained <strong>nearly 90,000 observations with 36 features</strong>.
+</p>
+<p>
+    Additionally, we worked with <strong>time series data</strong> representing
+    9,860 songs across <strong>20 different genres</strong>, applying
+    dimensionality reduction techniques and exploring temporal patterns in
+    music.
+</p>
+
+<h2>What I Learned</h2>
+<p>
+    This project provided extensive hands-on experience with
+    <strong>advanced data mining methodologies</strong> and deepened my
+    understanding of the complete machine learning workflow. Working with both
+    tabular and time series data taught me the importance of
+    <strong>careful data preparation</strong> and the significant impact that
+    preprocessing decisions have on downstream analysis.
+</p>
+<p>
+    I gained practical expertise in
+    <strong>time series approximation techniques</strong>, learning that
+    <a href="https://jmotif.github.io/sax-vsm_site/morea/algorithm/PAA.html">
+        <em>PAA</em>
+    </a>
+    generally outperformed
+    <a href="https://jmotif.github.io/sax-vsm_site/morea/algorithm/SAX.html">
+        <em>SAX</em>
+    </a>
+    for our music classification tasks, and understanding when to apply
+    different distance metrics like
+    <a href="https://en.wikipedia.org/wiki/Dynamic_time_warping">
+        <em>DynamicTimeWarping</em>
+    </a>
+    and
+    <a href="https://ics.uci.edu/~pazzani/Publications/keogh-kdd.pdf">
+        <em>DerivativeDynamicTimeWarping</em>
+    </a>
+    . The classification experiments revealed that model performance is highly
+    dependent on <strong>proper hyperparameter tuning</strong> and that
+    <strong
+        >ensemble methods like Random Forest and Gradient Boosting consistently
+        delivered the best results</strong
+    >, achieving accuracies around 22% on the challenging multi-class key
+    prediction task.
+</p>
+<p>
+    The <strong>imbalanced learning</strong> section was particularly
+    interesting, teaching me various resampling strategies and their trade-offs.
+    I learned that <em>Random Undersampling</em>, despite its simplicity, can be
+    effective when computational resources are limited. The neural network
+    experiments highlighted the constant challenge of
+    <strong>balancing model complexity with overfitting</strong>, and the
+    importance of early stopping and regularization techniques.
+</p>
+<p>
+    Perhaps most valuable was the <strong>explainability work</strong> using
+    <a
+        href="https://www.geeksforgeeks.org/artificial-intelligence/introduction-to-explainable-aixai-using-lime/"
+    >
+        <em>LIME</em>
+    </a>
+    ,
+    <a href="https://arxiv.org/abs/1805.10820"> <em>LORE</em> </a>
+    , and
+    <a
+        href="https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html"
+    >
+        <em>SHAP</em>
+    </a>
+    . These tools demonstrated that even with relatively modest prediction
+    accuracy, we can
+    <strong>extract meaningful insights about feature importance</strong> and
+    model decision-making.
+</p>
+<p>
+    Finally, the project reinforced the importance of
+    <strong>rigorous experimental methodology</strong>, including proper
+    train-test splitting, cross-validation, and comprehensive metric reporting.
+    The experience of working through challenges like computational constraints,
+    class imbalance, and high-dimensional data taught me valuable
+    <strong>problem-solving skills</strong> that extend beyond specific
+    algorithms to general data science practice.
+</p>
+
+<h2>Data Understanding and Preparation</h2>
+<p>
+    The project began with <strong>two primary datasets</strong>: a tracks
+    dataset containing 36 features for music tracks and an artists dataset with
+    5 features about music artists. The tracks dataset included both nominal
+    features like genre, name, and album information, and continuous features
+    such as <em>danceability</em>, <em>energy</em>, <em>acousticness</em>, and
+    <em>tempo</em>. Audio analysis features from Spotify's API provided
+    technical measurements including loudness in decibels, tempo confidence, and
+    time signature.
+</p>
+<p>
+    Data preparation involved several steps. We
+    <strong>merged the two datasets</strong> by calculating mean popularity and
+    follower counts for artists associated with each track, adding two new
+    derived columns to the tracks dataset. A significant challenge was
+    <strong>handling duplicate track IDs</strong> that appeared with different
+    genre labels. These duplicates were consolidated by concatenating genre
+    values with semicolon separators, preserving all genre information while
+    ensuring record uniqueness.
+</p>
+<p>
+    We created a new <em>BeatPerMinute</em> feature by combining duration and
+    beat count information,
+    <strong
+        >reducing dimensionality while preserving essential temporal
+        characteristics</strong
+    >. Statistical analysis revealed diverse distribution patterns across
+    features: danceability showed a skewed normal distribution while valence
+    appeared more uniform. The dataset exhibited generally well-behaved
+    distributions without excessive concentration at specific points, though
+    some features showed <strong>high variance</strong> as evidenced by large
+    standard deviations relative to their means.
+</p>
+<img src="distribution.png" alt="Distribution of the most relevant features" />
+<p>
+    <strong>Data quality assessment</strong> included checking for semantic
+    inconsistencies. We implemented similarity-based checking for album names
+    from the same artists, flagging pairs with 85% or greater similarity. This
+    revealed cases where albums had identical names with minor capitalization
+    differences. Similar checks for artist names found no significant
+    inconsistencies.
+</p>
+<p>
+    The time series component required additional preprocessing, including
+    removing two files with non-standard lengths and handling 136 duplicate IDs
+    by verifying file identity before removal, resulting in a
+    <strong>balanced dataset of 9,860 time series</strong> across 20 genre
+    folders.
+</p>
+
+<h2>Time Series Analysis and Classification</h2>
+<p>
+    Time series analysis formed a substantial portion of the project, exploring
+    music data represented as sequential measurements. We implemented
+    <strong>two approximation techniques</strong> to manage computational
+    complexity: <em>Piecewise Aggregate Approximation (PAA)</em> and
+    <em>Symbolic Aggregate Approximation (SAX)</em>. After testing various
+    interval counts, we settled on <strong>256 intervals</strong> for both
+    methods, finding this provided an optimal balance between pattern capture
+    and computational efficiency.
+</p>
+<p>
+    For classification tasks, we employed multiple algorithms including
+    <em>K-Nearest Neighbors</em> with specialized distance metrics,
+    <em>ROCKET transformers</em>, and <em>Canonical Interval Forest</em>. A key
+    innovation was implementing
+    <strong>Derivative Dynamic Time Warping (DDTW)</strong> as a distance
+    metric, which focuses on the shape of time series rather than absolute
+    values, proving particularly effective for music data without temporal
+    shifting.
+</p>
+<img
+    src="ddtw.png"
+    alt="Derivative
+    Dynamic Time Warping (DDTW)"
+/>
+<p>
+    The K-Neighbors classifier experiments tested 16 different k values ranging
+    from 5 to 97, combined with three distance metrics across eight target
+    variables.
+    <strong>PAA approximation consistently outperformed SAX</strong> across most
+    tasks. For genre classification, we achieved
+    <strong>around 30% accuracy with PAA and DTW distance</strong>, while SAX
+    only reached approximately 20%. The most successful predictions were for the
+    speechiness feature, achieving <strong>over 93% accuracy</strong> with high
+    precision, though recall remained a consistent challenge across all target
+    variables.
+</p>
+<p>
+    <strong>Motif and shapelet discovery</strong> revealed recurring patterns in
+    the music time series. Motifs typically exhibited steep positive or negative
+    slopes and occurred at the beginning or end of sequences, while discords
+    manifested as erratic subsections distributed throughout. We extracted
+    <strong>seven shapelets</strong>
+    representing discriminative subsequences for different genres including
+    <em>Synth-pop</em>, <em>Songwriter</em>, <em>Kids</em>, <em>Emo</em>,
+    <em>Heavy-Metal</em>, and <em>Opera</em>. These shapelets captured the
+    essential temporal characteristics that distinguish musical genres.
+</p>
+<img src="shapelet.png" alt="One of the found shapelet" />
+
+<h2>Clustering and Sequential Pattern Mining</h2>
+<p>
+    Clustering experiments explored multiple approaches to group similar time
+    series. <strong>K-means clustering</strong> with varying k values (3, 9, 20,
+    89, 91, 93) was tested using <em>Euclidean</em>, <em>DTW</em>, and
+    <em>DDTW</em> distances. Results showed that
+    <strong
+        >PAA approximation with either Euclidean or DTW distance and low k
+        values (3 or 9) produced the most promising outcomes</strong
+    >, with silhouette scores reaching 0.42 for k=3. Higher k values proved
+    computationally prohibitive for DTW and DDTW distances, and overall results
+    remained modest.
+</p>
+<p>
+    <strong>Feature-based clustering</strong> extracted 783 features from time
+    series using the <em>TSFresh</em> library's comprehensive feature
+    calculator. We reduced dimensionality by selecting the
+    <strong>top 100 features based on variance</strong>, eliminating constant
+    features. Hierarchical clustering with various linkage methods
+    (<em>centroid</em>, <em>complete</em>, <em>single</em>, <em>average</em>)
+    and criteria (<em>distance</em>, <em>maxclust</em>) was applied. However,
+    silhouette scores remained consistently poor, often negative, indicating
+    weak cluster separation.
+</p>
+<p>
+    <strong>Dimensionality reduction techniques</strong> including
+    <em>Multidimensional Scaling (MDS)</em>,
+    <em>Isometric Mapping (IsoMap)</em>, and <em>t-SNE</em> were employed to
+    visualize clustering results. We computed dissimilarity matrices using DTW
+    and its
+    <a
+        href="https://rtavenar.github.io/hdr/parts/01/dtw.html#Setting-additional-constraints"
+    >
+        <em>Sakoe-Chiba</em>
+    </a>
+    constrained variant. While these techniques reduced computational
+    complexity, the resulting 2D and 3D representations showed
+    <strong>no clear cluster boundaries</strong>, consistent with the poor
+    silhouette scores observed in the clustering analysis.
+</p>
+<img src="dr.png" alt="Dimensionality reduction time series" />
+<p>
+    <strong>Sequential pattern mining</strong> using the
+    <a
+        href="https://en.wikipedia.org/wiki/GSP_algorithm#:~:text=GSP%20algorithm%20(Generalized%20Sequential%20Pattern,in%20a%20level%2Dwise%20fashion."
+    >
+        <em>Generalized Sequential Patterns</em>
+    </a>
+    (GSP) algorithm identified recurring temporal patterns in the
+    PAA-approximated time series. With parameters set to
+    <strong>minimum support of 0.85</strong>, maximum gap of 2, and minimum gap
+    of 1, we discovered patterns of up to 4 consecutive values spanning up to 3
+    time steps. The high minimum support ensured that only frequently occurring
+    patterns across 85% of the dataset were considered significant, revealing
+    <strong>common structural elements</strong> in music time series across
+    different genres.
+</p>
+
+<h2>Outlier Detection and Imbalanced Learning</h2>
+<p>
+    Outlier detection employed an
+    <strong>ensemble approach combining nine different methods</strong>:
+    <em>Elliptical Envelope</em>, <em>KNN-based outlier scores</em>,
+    <em>Local Outlier Factor</em>, <em>DBSCAN</em>,
+    <em>Cluster-Based Local Outlier Factor</em>,
+    <em>Angle-Based Outlier Degree</em>, <em>Feature Bagging</em>,
+    <em>LODA</em>, and <em>Isolation Forest</em>. We implemented a
+    <strong>three-round filtering process</strong> with increasing contamination
+    factors (1%, 10%, 20%), requiring outliers to be flagged by all nine methods
+    to be considered true outliers.
+</p>
+<p>
+    The conservative 1% contamination yielded zero matching outliers, while 10%
+    identified 163, and 20% found 715 outliers. We selected the
+    <strong>20% contamination level as optimal</strong>, providing approximately
+    1% of the total dataset as outliers. Dimensionality reduction using t-SNE on
+    k-means cluster medoids (k=5,000 and k=10,000) revealed that detected
+    <strong>outliers concentrated on the periphery</strong> of the data
+    distribution, with the central core remaining untouched, validating the
+    effectiveness of the ensemble approach.
+</p>
+<p>
+    <strong>Imbalanced learning</strong> addressed the key feature's uneven
+    distribution (ranging from 2,737 to 10,461 samples across 12 classes). We
+    tested <strong>multiple resampling strategies</strong> including
+    <em>Random Undersampling</em>, <em>Condensed Nearest Neighbor</em>,
+    <em>Tomek Links</em>, <em>Edited Nearest Neighbors</em>,
+    <em>Cluster Centroids</em>, <em>Random Oversampling</em>, and
+    <em>SMOTE</em>. Each method was evaluated using decision trees with
+    extensive hyperparameter grids including criteria (entropy, gini), max
+    depths, minimum samples for splitting and leaves, and pruning parameters.
+</p>
+<p>
+    Results across different balancing methods remained
+    <strong>remarkably consistent</strong>, with accuracy around 14%, precision
+    4.5%, recall 11.6%, and F1 scores 6.7%. The consistency suggested that the
+    modest performance was
+    <strong>inherent to the task's difficulty</strong> rather than specific to
+    balancing methods. We selected <em>Random Undersampling</em> for subsequent
+    analyses due to its computational efficiency and stochastic nature, reducing
+    all classes to 2,189 samples (the minimum class size).
+</p>
+
+<h2>Classification</h2>
+<p>
+    We employed multiple sophisticated algorithms on the balanced dataset to
+    predict the "key" feature. <strong>Logistic Regression</strong> with 10-fold
+    cross-validation explored penalties (L2, None), tolerances, regularization
+    strengths, solvers (<em>lbfgs</em>, <em>saga</em>), and maximum iterations.
+    The optimal configuration used L2 penalty, tolerance 0.0003, C=3, saga
+    solver, and 100 iterations, achieving test accuracy of
+    <strong>12.52%</strong>, precision 15.61%, recall 11.06%, and F1 score
+    11.29%.
+</p>
+<p>
+    <strong>Support Vector Machines</strong> investigated both linear and
+    non-linear kernels. Linear SVM with One-vs-Rest strategy and low
+    regularization (C=0.001) achieved only 12.8% accuracy.
+    <strong>Non-linear SVM with RBF kernel</strong>, high C (10), and high gamma
+    (10) performed slightly better at 16% accuracy, indicating the dataset's
+    complex non-linear relationships. Support vectors visualized using t-SNE
+    revealed decision boundaries struggling to separate the 12 key classes
+    effectively.
+</p>
+<p>
+    <strong>Neural networks</strong> utilized <em>Keras Tuner</em> with Bayesian
+    and Hyperband search strategies exploring 1-5 fully connected layers, 12-48
+    units per layer, activation functions (<em>sigmoid</em>, <em>tanh</em>,
+    <em>relu</em>), optimizers (<em>SGD</em>, <em>Adam</em>), and learning
+    rates. Early stopping and model checkpoints prevented overfitting. The best
+    five models achieved <strong>accuracies between 12.7-13.2%</strong>, with
+    convergence occurring in few epochs. The consistent performance across
+    architectures suggested the models reached a
+    <strong>fundamental limit</strong> for this classification task given the
+    available features.
+</p>
+<p>
+    <strong>Ensemble methods provided the best classification results</strong>.
+    <em>Random Forests</em> with 100-500 estimators and various minimum sample
+    parameters achieved 20% accuracy with 19% F1 score. <em>Bagging</em> with
+    Random Forests and 30 estimators reached <strong>22% accuracy</strong> and
+    22% F1 score. <em>AdaBoost</em> with 500 Random Forest base learners and 500
+    boosting iterations also achieved 22% accuracy and 22% F1 score.
+    <em>Gradient Boosting Machines</em> with 75 estimators, maximum depth 15,
+    learning rate 0.1, and log loss criterion delivered the strongest results:
+    <strong
+        >18.07% test accuracy, 19.87% precision, 16.6% recall, and 18.72% F1
+        score</strong
+    >.
+</p>
+
+<h2>Regression</h2>
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>R²</th>
+            <th>MSE</th>
+            <th>RMSE</th>
+            <th>MAE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>Random Forest</strong></td>
+            <td><strong>0.322</strong></td>
+            <td><strong>29.2T</strong></td>
+            <td><strong>5.4M</strong></td>
+            <td><strong>2.1M</strong></td>
+        </tr>
+        <tr>
+            <td>Gradient Boosting</td>
+            <td>0.283</td>
+            <td>30.9T</td>
+            <td>5.6M</td>
+            <td>2.2M</td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    Regression analysis predicted the continuous
+    <strong>artists followers mean</strong> feature from track characteristics
+    including explicit content, popularity, danceability, energy, mode,
+    speechiness, acousticness, instrumentalness, liveness, valence, and BPM. Two
+    ensemble regression methods were compared: <em>Random Forest</em> and
+    <em>Gradient Boosting Regressors</em>.
+</p>
+<p>
+    <strong>Random Forest Regressor</strong> grid search explored maximum depths
+    (None, 2-20 by 2s), minimum samples to split (2, 5, 10), and minimum samples
+    per leaf (1, 2, 4, 8). The optimal configuration used
+    <strong>no maximum depth restriction</strong>, minimum 2 samples for
+    splitting, and minimum 2 samples per leaf. This unrestricted depth suggested
+    the model benefited from capturing complex decision boundaries in the data.
+</p>
+<p>
+    <strong>Gradient Boosting Regressor</strong> grid search tested learning
+    rates (0.01, 0.1, 0.2), number of estimators (50, 75, 100), maximum depths
+    (3-11), and minimum samples to split (2, 4, 6). The optimal model used
+    <strong>100 estimators, maximum depth 11, learning rate 0.1</strong>, and
+    minimum 2 samples to split. The moderate learning rate balanced convergence
+    speed with stability, while the deep trees (depth 11) captured complex
+    non-linear relationships.
+</p>
+<p>
+    Comparative evaluation revealed
+    <strong>Random Forest as the superior model</strong>, performing marginally
+    better across all metrics. While both models showed relatively low R²
+    values, indicating that
+    <strong
+        >predicting follower counts from audio features remains
+        challenging</strong
+    >, Random Forest demonstrated better generalization with test performance
+    more consistent with validation results.
+</p>
+
+<h2>Model Explainability</h2>
+<p>
+    <strong>Model explainability techniques</strong> were applied to the
+    Logistic Regression classifier to understand its decision-making process. We
+    examined a single randomly selected test instance (index 112) with true
+    class 8 (correctly predicted) using
+    <strong>three complementary explainability methods</strong>: <em>LIME</em>,
+    <em>LORE</em>, and <em>SHAP</em>.
+</p>
+<img src="LIME XAI.png" alt="LIME results" />
+<p>
+    <strong>LIME</strong> (<em
+        >Local Interpretable Model-agnostic Explanations</em
+    >) provided local explanations by perturbing the instance and observing
+    model reactions. The analysis revealed that
+    <strong>n_beats was the most influential feature</strong> for predicting
+    "key" 8, with the instance's value of 287 beats strongly supporting this
+    classification. Additionally, LIME showed that when mode equals 1, the model
+    presumed the key would not be 8, providing insight into the model's logical
+    rules.
+</p>
+<img src="LORE XAI.png" alt="LORE results" />
+<p>
+    <strong>LORE</strong> (<em>LOcal Rule-based Explanations</em>) extracted
+    interpretable rules by analyzing coefficient patterns. Setting a threshold
+    of 0.6 (above random baseline 0.5), LORE generated rules showing that
+    <strong
+        >mode values greater than 0.01 and time signature values greater than
+        0.595 were associated with key 8</strong
+    >. These rules aligned with LIME's findings about mode importance and
+    revealed time signature as another critical feature for this classification.
+</p>
+<img src="SHAP XAI.png" alt="SHAP results" />
+<p>
+    <strong>SHAP</strong> (<em>SHapley Additive exPlanations</em>) employed game
+    theory principles to assign feature importance scores. The analysis
+    confirmed <strong>n_beats as the most important feature</strong>, consistent
+    with LIME and LORE findings.
+    <strong>Loudness emerged as another highly influential feature</strong> for
+    the classification decision. Uniquely, SHAP revealed that valence had a
+    negative impact on key prediction, meaning decreasing valence values
+    decreased the predicted key value. The SHAP summary plot visualized feature
+    importance across the dataset, showing n_beats and loudness as consistently
+    impactful, while the waterfall plot for the specific instance illustrated
+    how features contributed additively to the final prediction.
+</p>
+<p>
+    The
+    <strong>convergence of insights across all three methods</strong> validated
+    the reliability of the explanations. The complementary nature of the
+    techniques provided a comprehensive understanding: LIME offered intuitive
+    local explanations, LORE provided clear decision rules, and SHAP delivered
+    rigorous feature attribution. This multi-method approach demonstrated that
+    even with modest prediction accuracy (around 12-18%), the
+    <strong>models captured meaningful relationships</strong> between audio
+    features and musical keys.
+</p>
+
+<h2>Results and Impact</h2>
+<p>
+    The project successfully demonstrated a
+    <strong>comprehensive data mining pipeline</strong> applied to music data,
+    achieving several significant outcomes. The time series classification
+    experiments revealed that
+    <strong>PAA approximation generally outperformed SAX</strong>, with
+    K-Neighbors achieving up to 30% accuracy for genre prediction and over 93%
+    for speechiness classification. The consistent challenge of low recall
+    across target variables highlighted the difficulty of capturing all
+    instances of each class in such a complex, multi-class problem.
+</p>
+<p>
+    Advanced classification methods progressively improved performance, with
+    <strong>ensemble techniques delivering the best results</strong>. Random
+    Forest and AdaBoost both achieved 22% accuracy on the key prediction task,
+    while Gradient Boosting reached 18.07% accuracy with the most balanced
+    precision-recall trade-off. While these accuracies may seem modest, they
+    <strong
+        >significantly exceeded random baseline performance (8.33% for 12
+        classes)</strong
+    >
+    and revealed meaningful patterns in the relationship between audio features
+    and musical keys.
+</p>
+<p>
+    The regression analysis successfully
+    <strong>predicted artist follower counts with R² of 0.322</strong> using
+    Random Forest, explaining nearly one-third of the variance from track
+    features alone. This demonstrated that audio characteristics contain
+    non-obvious signals about artist popularity. The project also validated the
+    effectiveness of <strong>ensemble outlier detection</strong>, identifying
+    715 outliers (approximately 1% of data) through the agreement of nine
+    different methods.
+</p>
+<p>
+    From a methodological perspective, the project highlighted several important
+    insights: the <strong>superiority of ensemble methods</strong> for complex
+    tasks, the importance of
+    <strong>proper hyperparameter tuning</strong> through systematic grid
+    search, and the value of multiple evaluation metrics. The explainability
+    analysis proved particularly impactful, showing that features like
+    <em>beat count</em>, <em>loudness</em>, <em>time signature</em>, and
+    <em>mode</em> play crucial roles in musical key determination, providing
+    interpretable insights even when prediction accuracy is modest.
+</p>
+<p>
+    The comprehensive nature of the project demonstrated proficiency across the
+    full spectrum of data mining techniques, from foundational data preparation
+    through advanced modeling and interpretation. The
+    <a href="https://github.com/SaraHoxha/DataMining2"> GitHub repository </a>
+    provides <strong>reproducible code for all analyses</strong>, contributing
+    to open science practices. The work has implications for
+    <em>music recommendation systems</em>,
+    <em>automated music analysis tools</em>, and understanding the relationship
+    between audio features and higher-level musical constructs.
+</p>
+
+<h2>Challenges and Solutions</h2>
+<p>
+    The project encountered numerous technical and methodological challenges.
+    <strong>Computational constraints</strong> posed the most persistent
+    difficulty, particularly with time series analysis using DTW and DDTW
+    distances. For high k values in K-means clustering (89, 91, 93), these
+    distance calculations proved computationally prohibitive. We addressed this
+    by <strong>pre-computing distance matrices</strong> for K-Neighbors
+    classification and limiting the scope of clustering experiments to feasible
+    parameter ranges.
+</p>
+<p>
+    Managing the large time series dataset required
+    <strong>strategic approximation</strong>. Initial experiments revealed that
+    full-resolution time series (length 1,280) were too computationally
+    expensive for comprehensive analysis. We systematically tested PAA and SAX
+    approximations with various interval counts, ultimately selecting
+    <strong>256 intervals as the optimal balance</strong>. This reduced
+    dimensionality by 80% while preserving essential pattern information,
+    enabling classification and clustering experiments that would otherwise be
+    impossible.
+</p>
+<p>
+    The <strong>imbalanced nature of the key feature</strong> (ranging from
+    2,737 to 10,461 samples across 12 classes) presented significant modeling
+    challenges. We implemented and compared seven different resampling
+    techniques, discovering that results remained consistent across methods.
+    This led to selecting <em>Random Undersampling</em> for efficiency, though
+    it meant sacrificing data volume. The consistent poor performance across
+    resampling approaches ultimately suggested that the task's difficulty
+    stemmed from
+    <strong>inherent complexity rather than class imbalance</strong> alone.
+</p>
+<p>
+    <strong
+        >Neural network training revealed a tendency toward overfitting</strong
+    >, with models converging in very few epochs. We addressed this through
+    multiple strategies: implementing <em>early stopping</em> with patience
+    parameters, using <em>model checkpoints</em> to save the best performing
+    version, experimenting with simpler architectures (1-5 layers with 12-48
+    units), and adjusting learning rates and regularization. Despite these
+    efforts, we found that the models reached a
+    <strong>performance ceiling</strong> quickly, suggesting fundamental
+    limitations in the features' ability to predict the target variables.
+</p>
+<p>
+    <strong>Data quality issues</strong> required careful handling. The
+    duplicate IDs in the time series dataset could have corrupted analysis if
+    not properly addressed. We implemented a verification process to confirm
+    that files with matching IDs were truly identical before removing
+    duplicates. The multiple genre labels for single tracks required innovative
+    handling by
+    <strong>concatenating values rather than arbitrarily selecting one</strong>,
+    preserving complete information. Semantic inconsistencies in album names
+    were identified through fuzzy matching and corrected through manual
+    verification.
+</p>
+<p>
+    The clustering analysis consistently produced
+    <strong>poor results with negative silhouette scores</strong>, indicating
+    weak cluster separation. Rather than forcing interpretations, we
+    acknowledged these limitations and explored alternative approaches including
+    feature-based clustering and dimensionality reduction for visualization.
+</p>
+
+<h2>Conclusion</h2>
+<p>
+    This comprehensive data mining project successfully explored music data
+    through multiple analytical lenses, demonstrating the
+    <strong>complete lifecycle of a data science project</strong> from initial
+    data understanding through advanced modeling and interpretation. Working
+    with nearly 90,000 tracks and 9,860 time series across 20 genres, we applied
+    cutting-edge techniques in <em>time series analysis</em>,
+    <em>classification</em>, <em>regression</em>, <em>clustering</em>, and
+    <em>model explainability</em>.
+</p>
+<p>
+    The project validated several important principles:
+    <strong
+        >ensemble methods consistently outperform individual classifiers</strong
+    >, proper data preparation and feature engineering are crucial for success,
+    and
+    <strong
+        >multiple evaluation metrics provide more reliable assessment</strong
+    >
+    than any single measure. The explainability analysis proved that
+    interpretability and predictive performance are not mutually exclusive, with
+    <em>LIME</em>, <em>LORE</em>, and <em>SHAP</em> providing complementary
+    insights into model decision-making.
+</p>
+<p>
+    While achieving perfect prediction accuracy on such complex tasks remains
+    elusive, the project successfully
+    <strong>identified meaningful patterns</strong> in the relationships between
+    audio features and musical attributes. The <em>Random Forest</em> and
+    <em>Gradient Boosting</em> models for both classification and regression
+    tasks demonstrated practical applicability, with
+    <strong>performance well above baseline levels</strong>. The feature
+    importance analyses revealed that temporal characteristics (<em
+        >beat counts</em
+    >), audio properties (<em>loudness</em>, <em>energy</em>), and melodic
+    aspects (<em>mode</em>, <em>key</em>) all contribute to defining musical
+    identity.
+</p>
+<p>
+    The <strong>rigorous experimental methodology</strong>, comprehensive
+    documentation, and reproducible code in the GitHub repository ensure that
+    these findings can be validated, extended, and built upon by future
+    researchers. The project demonstrates proficiency across the full spectrum
+    of data mining techniques and provides a
+    <strong
+        >template for approaching complex, multi-faceted data analysis
+        challenges</strong
+    >
+    in real-world domains.
+</p>

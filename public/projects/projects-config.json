@@ -8,7 +8,6 @@
             "pdfFiles": {
                 "report": "REPORT data mining 1.pdf"
             },
-            "images": ["heatmap.png", "learningCurve.png"],
             "categories": ["data mining", "machine learning"]
         },
         {
@@ -19,7 +18,6 @@
             "pdfFiles": {
                 "report": "REPORT data mining 2.pdf"
             },
-            "images": [],
             "categories": ["data mining", "machine learning"]
         },
         {
@@ -31,12 +29,6 @@
                 "report": "REPORT Decision Support Systems.pdf",
                 "presentation": "PRESENTATION Decision Support Systems.pdf"
             },
-            "images": [
-                "DW Schema.png",
-                "geo_dash.png",
-                "People_Dashboard.png",
-                "Street_dashboard.jpeg"
-            ],
             "categories": ["business intelligence", "data warehouse"]
         },
         {
@@ -48,7 +40,6 @@
                 "report": "BACHELOR THESIS.pdf",
                 "manual": "BACHELOR THESIS user manual.pdf"
             },
-            "images": [],
             "categories": ["thesis", "web development"]
         },
         {
@@ -59,7 +50,6 @@
             "pdfFiles": {
                 "report": "REPORT business processes modeling.pdf"
             },
-            "images": [],
             "categories": ["business", "process mining"]
         },
         {
@@ -71,7 +61,6 @@
                 "report": "REPORT Fundamentals of Business Management.pdf",
                 "presentation": "PRESENTATION Fundamentals of Business Management.pdf"
             },
-            "images": [],
             "categories": ["business", "management"]
         },
         {
@@ -82,7 +71,6 @@
             "pdfFiles": {
                 "report": "REPORT Hackathon.pdf"
             },
-            "images": [],
             "categories": ["machine learning", "explainable ai"]
         },
         {
@@ -94,19 +82,7 @@
                 "report": "REPORT Heatlhy Catering.pdf",
                 "manual": "USER MANUAL Heatlhy Catering.pdf"
             },
-            "images": [],
             "categories": ["web development", "business"]
-        },
-        {
-            "slug": "information-retrieval",
-            "folder": "Information Retrieval",
-            "jsonFile": "Information_Retrieval.json",
-            "htmlFile": "Information_Retrieval.html",
-            "pdfFiles": {
-                "presentation": "PRESENTATION Information retrival.pdf"
-            },
-            "images": [],
-            "categories": ["information retrieval", "search"]
         },
         {
             "slug": "master-thesis",
@@ -116,7 +92,6 @@
             "pdfFiles": {
                 "report": "MASTER THESIS.pdf"
             },
-            "images": [],
             "categories": ["thesis", "machine learning"]
         },
         {
@@ -127,7 +102,6 @@
             "pdfFiles": {
                 "report": "REPORT Optimization for data science.pdf"
             },
-            "images": [],
             "categories": ["optimization", "data science"]
         },
         {
@@ -139,7 +113,6 @@
                 "report": "REPORT Project Design and Management.pdf",
                 "presentation": "PRESENTATION Project Design and Management.pdf"
             },
-            "images": [],
             "categories": ["business", "management", "project management"]
         },
         {
@@ -148,7 +121,6 @@
             "jsonFile": "Scomodo.json",
             "htmlFile": "Scomodo.html",
             "pdfFiles": {},
-            "images": [],
             "categories": ["web development", "e-commerce"]
         },
         {
@@ -159,7 +131,6 @@
             "pdfFiles": {
                 "presentation": "PRESENTATION statistics for data science.pdf"
             },
-            "images": [],
             "categories": ["statistics", "data science"]
         },
         {
@@ -168,17 +139,7 @@
             "jsonFile": "Strategic_and_Competitive_Intelligence.json",
             "htmlFile": "Strategic_and_Competitive_Intelligence.html",
             "pdfFiles": {},
-            "images": [],
             "categories": ["business", "intelligence"]
-        },
-        {
-            "slug": "technologies-for-web-marketing",
-            "folder": "Technologies for Web Marketing",
-            "jsonFile": "Technologies_for_Web_Marketing.json",
-            "htmlFile": "Technologies_for_Web_Marketing.html",
-            "pdfFiles": {},
-            "images": [],
-            "categories": ["web development", "marketing"]
         },
         {
             "slug": "visual-analytics",
@@ -188,7 +149,6 @@
             "pdfFiles": {
                 "report": "REPORT Visual analytics.pdf"
             },
-            "images": [],
             "categories": ["visualization", "data science"]
         }
     ],

@@ -1,8 +1,58 @@
 {
     "projectName": "Optimization for Data Science",
-    "quickSummary": "Mathematical optimization project.",
+    "quickSummary": "Implementation and comparison of Lagrangian dual-based optimization algorithms using Nesterov's Fast Gradient Method with dynamic smoothing for solving quadratic minimum cost flow problems on network graphs, benchmarked against CVXPY's SCS solver.",
     "content": "Optimization_for_Data_Science.html",
     "report": "REPORT Optimization for data science.pdf",
-    "collaborators": ["Erica"],
-    "repository": "https://github.com/AlessandroCarella/Optimization-for-Data-Science-project"
+    "collaborators": ["https://www.linkedin.com/in/erica-neri-408633331/"],
+    "repository": "https://github.com/AlessandroCarella/Optimization-for-Data-Science-project",
+    "skills": [
+        "Convex Optimization",
+        "Mathematical Modeling",
+        "Algorithm Implementation",
+        "Python Programming",
+        "Matlab Programming",
+        "Numerical Methods",
+        "Lagrangian Relaxation",
+        "Network Flow Analysis",
+        "Problem Decomposition",
+        "Scientific Computing",
+        "Research and Analysis",
+        "Critical Thinking",
+        "Technical Writing"
+    ],
+    "keywords": {
+        "technologies": [
+            "Python",
+            "CVXPY",
+            "Jupyter Notebooks",
+            "NumPy",
+            "SCS Solver",
+            "netgen"
+        ],
+        "optimization_methods": [
+            "Nesterov's Fast Gradient Method",
+            "Lagrangian Dual Method",
+            "Gradient Descent",
+            "Smoothing Techniques",
+            "First-Order Methods",
+            "Accelerated Gradient Methods"
+        ],
+        "mathematical_concepts": [
+            "Convex Optimization",
+            "Quadratic Programming",
+            "Network Flow Problems",
+            "Minimum Cost Flow",
+            "Lipschitz Continuity",
+            "Positive Semidefinite Matrices",
+            "Duality Theory"
+        ],
+        "domains": ["Data Science", "Numerical Optimization", "Graph Theory"],
+        "tools_and_libraries": [
+            "CVXPY",
+            "Splitting Conic Solver",
+            "Matplotlib",
+            "Scientific Python",
+            "DMX File Format"
+        ]
+    }
 }

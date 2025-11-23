@@ -1,9 +1,116 @@
 {
     "projectName": "Data Mining 2",
-    "quickSummary": "Advanced data mining project building upon foundational techniques to explore deep learning, ensemble methods, and advanced pattern recognition algorithms.",
+    "quickSummary": "Data mining project analyzing Spotify music data through time series classification, neural networks, and ensemble methods. Applied DTW, Random Forest, and Gradient Boosting for prediction tasks, with LIME, LORE, and SHAP explainability revealing key audio feature relationships.",
     "content": "Data_Mining_2.html",
     "report": "REPORT data mining 2.pdf",
     "classNotes": "https://alessandro-carella.notion.site/Data-mining-2-9b74c1ae2ce04eb28d26003a23a399dd",
-    "collaborators": ["Rafael", "Sara"],
-    "repository": "https://github.com/AlessandroCarella/Data-mining-2"
+    "collaborators": [
+        "https://www.linkedin.com/in/sara-hoxha/",
+        "https://www.linkedin.com/in/rafael-ignacio-urbina-hincapi%C3%A9-2ba11a214/"
+    ],
+    "repository": "https://github.com/SaraHoxha/DataMining2",
+    "skills": [
+        "Time Series Analysis",
+        "Machine Learning",
+        "Deep Learning",
+        "Data Preprocessing",
+        "Feature Engineering",
+        "Model Explainability",
+        "Ensemble Methods",
+        "Statistical Analysis",
+        "Data Visualization",
+        "Python Programming",
+        "Scikit-learn",
+        "TensorFlow/Keras",
+        "Hyperparameter Tuning",
+        "Cross-Validation",
+        "Imbalanced Learning",
+        "Dimensionality Reduction",
+        "Pattern Mining",
+        "Outlier Detection"
+    ],
+
+    "keywords": {
+        "programming_and_libraries": [
+            "Python",
+            "Scikit-learn",
+            "TensorFlow",
+            "Keras",
+            "tslearn",
+            "sktime",
+            "NumPy",
+            "Pandas"
+        ],
+        "classification_algorithms": [
+            "Logistic Regression",
+            "Support Vector Machines",
+            "K-Nearest Neighbors",
+            "Decision Trees",
+            "Neural Networks"
+        ],
+        "ensemble_methods": [
+            "Random Forest",
+            "Gradient Boosting",
+            "AdaBoost",
+            "Bagging",
+            "Boosting"
+        ],
+        "clustering_methods": ["K-Means", "Hierarchical Clustering", "DBSCAN"],
+        "dimensionality_reduction": ["t-SNE", "MDS", "IsoMap"],
+        "anomaly_detection": [
+            "Isolation Forest",
+            "Local Outlier Factor",
+            "Outlier Detection"
+        ],
+        "time_series_representation": [
+            "PAA",
+            "SAX",
+            "DTW",
+            "DDTW",
+            "Motifs",
+            "Shapelets"
+        ],
+        "time_series_classification": [
+            "Time Series Classification",
+            "ROCKET",
+            "Canonical Interval Forest",
+            "Sequential Pattern Mining",
+            "GSP Algorithm"
+        ],
+        "classification_metrics": [
+            "Accuracy",
+            "Precision",
+            "Recall",
+            "F1-Score"
+        ],
+        "regression_metrics": ["R-Squared", "MSE", "RMSE", "MAE"],
+        "validation_techniques": [
+            "Cross-Validation",
+            "Grid Search",
+            "Silhouette Score"
+        ],
+        "data_preprocessing": [
+            "Data Cleaning",
+            "Feature Engineering",
+            "Feature Extraction",
+            "Data Quality Assessment",
+            "Data Integration"
+        ],
+        "imbalanced_data_handling": [
+            "Imbalanced Learning",
+            "Undersampling",
+            "Oversampling",
+            "SMOTE",
+            "Tomek Links"
+        ],
+        "explainability": [
+            "LIME",
+            "LORE",
+            "SHAP",
+            "Feature Importance",
+            "Model Interpretability",
+            "Local Explanations",
+            "Rule Extraction"
+        ]
+    }
 }

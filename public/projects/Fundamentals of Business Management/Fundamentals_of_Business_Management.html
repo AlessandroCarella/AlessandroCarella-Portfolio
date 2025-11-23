@@ -1,0 +1,321 @@
+<p>
+    This project addresses a
+    <strong>critical challenge in the banking sector</strong>: incorporating
+    <strong>Net Inflow forecasts</strong> as a starting point for
+    <strong>budget planning</strong>. Developed as part of the
+    <em>Fundamentals of Business Management</em> course for the
+    <a
+        href="https://www.linkedin.com/posts/tagetik-italia_cchtagetikitalia-datascience-activity-7140301812988907520-HO_i/"
+    >
+        CCH Tagetik Business Data Challenge
+    </a>
+    , the project focuses on creating a comprehensive forecasting system that
+    leverages <em>macroeconomic data</em> and <em>operational costs</em> to
+    perform margin simulations and enable financial institutions to react to
+    adverse scenarios.
+</p>
+
+<p>
+    The core deliverable is an <strong>interactive dashboard</strong> featuring
+    <strong>key performance indicators</strong> essential for conducting
+    <strong>what-if analyses</strong>. This tool empowers users to examine how
+    changes in macroeconomic conditions and business assumptions impact
+    <em>Earnings Before Interest and Taxes</em>, enabling strategic
+    decision-making in dynamic market conditions. The project team, comprising
+    <em>Cattari Simona, Poiani Marco, Carella Alessandro, and Jallow Ebrima</em
+    >, extracted data from the <strong>top five Italian banks</strong> by assets
+    (<em>Unicredit, Intesa Sanpaolo, MPS, BPER Banca, and Banco BPM</em>)
+    covering the period from <strong>2018 to 2022</strong>, deliberately
+    including data before and during the COVID-19 pandemic to assess the impact
+    of significant macroeconomic events.
+</p>
+
+<img src="dash1.png" alt="Implemented dashboard" />
+
+<h2>What I Learned</h2>
+<p>
+    Through this project, I gained comprehensive insights into
+    <strong>financial forecasting</strong> and
+    <strong>business analytics</strong> in the banking sector. I developed a
+    deep understanding of <strong>financial statement analysis</strong>,
+    particularly <em>consolidated Profit and Loss statements</em>, learning to
+    identify and extract the most relevant items such as
+    <em
+        >Net Interest Margin, Net Fees and Commissions, Operating Income, and
+        Administrative Expenses</em
+    >. These elements proved crucial in understanding a bank's financial health
+    and operational efficiency.
+</p>
+
+<p>
+    I learned to work with
+    <strong>critical macroeconomic indicators</strong> including
+    <em
+        >GDP, unemployment rates, Producer Price Index, Consumer Price Index,
+        exchange rates, real interest rates, and the COVID-19 Stringency
+        Index</em
+    >. Understanding how these
+    <strong>external factors influence banking performance</strong> was
+    essential for creating accurate forecasts. The project taught me that while
+    banks can control their internal operations to some extent,
+    <strong>macroeconomic factors play an equally important role</strong> in
+    determining end-of-year financial outcomes.
+</p>
+
+<p>
+    From a technical perspective, I mastered the
+    <strong>selection and implementation of machine learning models</strong>
+    suitable for <strong>small datasets</strong>. Working with only
+    <em>25 samples and 49 features</em>, I learned why models like
+    <em
+        >Linear Regression, Ridge, Lasso, ElasticNet, and Decision Tree
+        Regressors</em
+    >
+    are particularly effective in such scenarios. I gained hands-on experience
+    with <strong>multiple evaluation metrics</strong> including
+    <em
+        >Mean Squared Error, Mean Absolute Error, R-squared score, Explained
+        Variance Score, Accuracy, Precision, Recall, and F1 Score</em
+    >, understanding that relying on multiple metrics provides a
+    <strong>more robust assessment</strong> when traditional cross-validation
+    isn't feasible due to limited data.
+</p>
+
+<p>
+    The project significantly enhanced my
+    <strong>full-stack development capabilities</strong>. I learned to integrate
+    <strong>machine learning models with web applications</strong> using
+    <em>Django</em> for the backend and <em>React with Material UI</em> for the
+    frontend. Working with the <em>scikit-learn library</em> deepened my
+    understanding of model serialization, data preprocessing with
+    <em>StandardScaler</em>, and creating <em>RESTful API endpoints</em> for
+    frontend-backend communication.
+</p>
+
+<p>
+    Importantly, I learned about the
+    <strong>challenges of working with real-world financial data</strong>,
+    including the importance of <strong>data transparency</strong>, the
+    differences between individual and consolidated financial statements, and
+    the need to balance comprehensive analysis with user experience. The project
+    taught me to think strategically about
+    <strong
+        >presenting complex financial information in an accessible way</strong
+    >, making sophisticated forecasting tools usable for business
+    decision-makers who may not have technical backgrounds.
+</p>
+
+<h2>Data Collection and Financial Analysis</h2>
+<p>
+    The foundation of this project rested on
+    <strong>meticulous data collection</strong> and analysis of
+    <strong>financial statements</strong> from Italy's leading banking
+    institutions. We focused exclusively on
+    <strong>consolidated Profit and Loss statements</strong>, which provide a
+    comprehensive view of both parent companies and their subsidiaries, offering
+    a more accurate representation of overall financial health and performance.
+    Data was gathered directly from the <strong>annual reports</strong>
+    published on the official websites of major banks in italy, namely:
+    <em
+        >Unicredit, Intesa Sanpaolo, Monte dei Paschi di Siena, BPER Banca, and
+        Banco BPM</em
+    >, covering the years <strong>2018 through 2022</strong>.
+</p>
+
+<p>
+    Our dataset comprises <strong>25 rows and 50 columns</strong>, representing
+    <em>quarterly data from five banks over five years</em>. From the income
+    statements, we extracted <strong>key financial metrics</strong>:
+    <em
+        >Interest Income and Similar Revenues, Net Interest Margin, Fees and
+        Commissions, Operating Income, Net Profit from Financial Activities,
+        Administrative Expenses (including staff costs and other administrative
+        expenses), Operating Costs, EBIT, and Net Income</em
+    >. Each of these items was carefully selected for its significance in
+    understanding
+    <strong>bank profitability and operational efficiency</strong>.
+</p>
+
+<p>
+    The <strong>macroeconomic component</strong> of our dataset incorporated
+    <strong>seven key indicators</strong>: <em>GDP Index</em> reflecting
+    economic health, <em>Unemployment Rate</em> indicating labor market
+    stability, <em>Producer Price Index</em> showing production cost dynamics,
+    <em>Consumer Price Index</em> representing inflation,
+    <em>Exchange Rates</em> measuring currency relative values,
+    <em>Real Interest Rate</em> accounting for inflation effects on nominal
+    rates, and the <em>COVID-19 Stringency Index</em>
+    capturing pandemic-related restrictions. These macroeconomic variables were
+    sourced from the
+    <a href="https://data.worldbank.org/"> World Bank database </a>
+    and the financial reports themselves, ensuring
+    <strong>data consistency and reliability</strong>.
+</p>
+
+<p>
+    An important aspect of our data collection strategy was the
+    <strong>temporal scope</strong>. By including data from 2018 onwards, we
+    captured both
+    <strong>pre-pandemic and pandemic-era financial performance</strong>,
+    enabling our models to learn from
+    <strong>extreme market conditions</strong>. This decision proved valuable
+    for assessing how adverse scenarios impact banking operations and for
+    validating the robustness of our forecasting approach. Additionally, we
+    included
+    <em
+        >operational data such as the number of employees and average cost per
+        employee</em
+    >, recognizing that personnel costs represent a significant portion of
+    banking operational expenses.
+</p>
+
+<h2>Machine Learning Model Development and Evaluation</h2>
+<p>
+    The machine learning implementation phase required careful consideration of
+    our <strong>dataset constraints</strong>. With only
+    <strong>25 samples</strong>, we needed models that could perform reliably
+    without extensive training data. We implemented
+    <strong>five distinct models</strong>: <em>Linear Regression</em> as our
+    baseline, <em>Ridge Regression</em> to handle multicollinearity through L2
+    regularization, <em>Lasso Regression</em> for feature selection via L1
+    regularization, <em>ElasticNet</em> combining both L1 and L2 penalties, and
+    <em>Decision Tree Regressor</em> for capturing non-linear relationships in
+    the data.
+</p>
+
+<p>
+    Our evaluation strategy employed a
+    <strong>comprehensive set of metrics</strong> to assess model performance
+    from multiple angles.
+    <em>Mean Squared Error and Mean Absolute Error</em> provided insights into
+    prediction accuracy, while
+    <em>R-squared score and Explained Variance Score</em> measured how well
+    models captured data variability. We also calculated
+    <em>Accuracy, Precision, Recall, and F1 Score</em> to evaluate model
+    reliability from different perspectives. This
+    <strong>multi-metric approach was essential</strong> given that our limited
+    dataset size prevented the use of traditional k-fold cross-validation.
+</p>
+
+<p>
+    The models were implemented using
+    <strong>Python's scikit-learn library</strong>. We employed
+    <em>StandardScaler</em> to normalize features, ensuring that variables with
+    different scales wouldn't bias the models. All trained models, along with
+    the scaler object and dataset splits, were
+    <strong>serialized using Python's pickle module</strong> for efficient
+    loading and prediction in the production environment. This approach ensured
+    <strong>reproducibility</strong> and facilitated seamless integration with
+    the web application.
+</p>
+
+<p>
+    A challenge we addressed was
+    <strong>enabling predictions on user-provided data</strong> while
+    maintaining consistency with the training data structure. We implemented
+    functionality to <strong>calculate mean values</strong> from the uploaded
+    dataset, which serve as <strong>default parameters</strong> for the what-if
+    analysis. This design decision ensures that users start with
+    <strong>realistic baseline values</strong> representative of their data,
+    improving the relevance and interpretability of scenario analyses. The
+    system allows users to
+    <strong>adjust these parameters through intuitive sliders</strong>,
+    immediately seeing how changes impact the predicted
+    <em>EBIT and Net Income</em>.
+</p>
+
+<h2>Dashboard Architecture and User Experience</h2>
+<p>
+    The user interface was built using <strong>React and Vite</strong>, and
+    styled with <em>Material UI</em> for a modern, professional appearance. The
+    dashboard consists of <strong>three main pages</strong>:
+    <em>Predictions (Landing Page), Evaluation, and Dashboard</em>. The
+    architecture follows a clear data flow: users
+    <strong>upload datasets</strong> to the frontend, which are processed by the
+    <em>Django backend</em> to calculate initialization values and generate
+    predictions, with results returned via <em>RESTful API endpoints</em>.
+</p>
+
+<p>
+    The <strong>Landing Page</strong> serves as the entry point where users
+    <u>upload their datasets</u>. This triggers backend processing that extracts
+    mean values for key features, preparing the system for what-if analyses. The
+    interface provides immediate feedback and clear navigation to other sections
+    of the application. The <strong>Evaluation page</strong> presents a
+    <strong>comprehensive comparison of all implemented models</strong>,
+    displaying their performance metrics. Users can review
+    <em
+        >Mean Squared Error, Mean Absolute Error, R-squared scores, Explained
+        Variance Scores, Accuracy, Precision, Recall, and F1 Scores</em
+    >
+    for each model, enabling informed selection of the most appropriate model
+    for their specific use case.
+</p>
+
+<p>
+    The <strong>what-if analysis functionality</strong> represents the
+    dashboard's <strong>most important feature</strong>. Users can manipulate
+    <strong>eight key parameters</strong>:
+    <em
+        >GDP Index, CPI Index, PPI, COVID Stringency Index, Unemployment Rate,
+        Real Interest Rate, Exchange Rates Percentage, and Cost Per Employee</em
+    >. Each parameter is controlled through
+    <strong>sliders initialized with mean values</strong> from the uploaded
+    dataset. As users adjust these sliders, the system sends the modified values
+    to the backend, which <strong>generates new predictions</strong> based on
+    the selected model. Results are <strong>immediately displayed</strong>,
+    showing predicted values for key P&L items including
+    <em
+        >Net Interest Margin, Net Fees and Commissions, Operating Income,
+        Administrative Expenses, Operating Costs, EBIT, and Net Income</em
+    >.
+</p>
+
+<h2>Challenges and Solutions</h2>
+<p>
+    Working with a <strong>limited dataset</strong> presented our
+    <strong>primary challenge</strong>. With only <strong>25 samples</strong>,
+    many traditional machine learning approaches were not feasible. We addressed
+    this by
+    <strong>selecting models known to perform well with small datasets</strong>
+    and employing <strong>multiple evaluation metrics</strong>. This strategy,
+    combined with the inclusion of <em>regularization techniques</em> in models
+    like Ridge, Lasso, and ElasticNet, helped
+    <strong>prevent overfitting</strong> while maintaining predictive
+    capability.
+</p>
+
+<p>
+    Another significant challenge involved
+    <strong>extracting and structuring data</strong> from financial statements
+    that, while standardized by the <em>Bank of Italy</em>, contained subtle
+    variations across institutions. We resolved this through
+    <strong>meticulous manual data extraction and verification</strong>,
+    ensuring consistency in how we categorized P&L items across all five banks.
+    This process required deep understanding of banking terminology and
+    financial statement structure, demanding
+    <strong>careful attention to detail</strong> and multiple validation passes.
+</p>
+
+<p>
+    <strong>User experience design</strong> for the what-if analysis posed an
+    interesting challenge. We needed to make
+    <strong>complex financial modeling accessible</strong> to users who might
+    not have technical backgrounds. Our solution involved using
+    <strong>sliders with intelligently calculated default values</strong>, clear
+    labeling of parameters, and <strong>immediate visual feedback</strong> on
+    predictions. We also provided textual explanations and contextual
+    information to help users understand what each parameter represents and how
+    it might impact financial outcomes.
+</p>
+
+<p>
+    Integrating <strong>macroeconomic variables</strong> required careful
+    consideration of their <strong>temporal alignment</strong> with financial
+    statement data. Since banks report annually but macroeconomic indicators
+    often have different reporting frequencies, we needed to ensure
+    <strong>proper time-matching</strong> between these datasets. We addressed
+    this by using <strong>year-end or annual average values</strong> for
+    macroeconomic indicators, maintaining consistency with the annual financial
+    reporting cycle of our target institutions.
+</p>

@@ -1,9 +1,54 @@
 {
     "projectName": "Business Process Mining",
-    "quickSummary": "Process mining project.",
+    "quickSummary": "Comprehensive business process modeling project analyzing a painting school scenario using BPMN and Workflow Nets. The project involved formal verification of process properties including soundness, boundedness, and liveness using Petri net analysis and WoPeD tool.",
     "content": "Business_Process_Mining.html",
     "report": "REPORT business processes modeling.pdf",
     "classNotes": "https://alessandro-carella.notion.site/BPM-118a1f6cd9d0800cb593c67a51c3d13f",
     "collaborators": [],
-    "repository": "https://github.com/AlessandroCarella/Business-Processes-Modeling-project"
+    "repository": "https://github.com/AlessandroCarella/Business-Processes-Modeling-project",
+    "skills": [
+        "BPMN (Business Process Model Notation)",
+        "Petri Nets",
+        "Workflow Nets",
+        "Formal Verification",
+        "Process Analysis",
+        "WoPeD",
+        "Soundness Analysis",
+        "Systems Modeling",
+        "Process Design",
+        "Problem Decomposition"
+    ],
+    "keywords": {
+        "modeling_notations": [
+            "BPMN",
+            "Petri Nets",
+            "Workflow Nets",
+            "Process Models",
+            "Coverability Graphs"
+        ],
+        "analysis_techniques": [
+            "Soundness",
+            "Boundedness Verification",
+            "Liveness",
+            "S-Component",
+            "Free-Choice Violation Detection",
+            "Reachability"
+        ],
+        "tools_and_technologies": [
+            "WoPeD",
+            "Camunda Modeler"
+        ],
+        "properties_and_concepts": [
+            "Soundness",
+            "Boundedness",
+            "Liveness",
+            "Deadlock-Freeness",
+            "Well-Structuredness",
+            "S-Coverability",
+            "PT-Handles",
+            "TP-Handles",
+            "Connected Components",
+            "Strong Connectivity"
+        ]
+    }
 }

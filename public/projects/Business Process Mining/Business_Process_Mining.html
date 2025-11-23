@@ -1,0 +1,255 @@
+<p>
+    This is my <strong>Business Process Modeling</strong> class project. The
+    objective was to model and evaluate the procedural dynamics through which a
+    <strong>painting school</strong> manages <strong>student requests</strong>,
+    learning appointments, and pedagogical interactions between students and
+    teachers.
+</p>
+<p>
+    The process encompasses the complete <strong>student lifecycle</strong>,
+    from initial contact with the school through course selection, lesson
+    scheduling, artistic session execution, feedback incorporation, and payment
+    processing. The modeling effort employed two complementary approaches:
+    <strong>Business Process Model and Notation (BPMN)</strong>, through the use
+    of <a href="https://camunda.com/bpmn/"><em>Camunda Modeler</em></a
+    >, for visual process representation, and <strong>Workflow Nets</strong> (a
+    specialized form of <em>Petri nets</em>) for formal mathematical analysis
+    and verification.
+</p>
+<p>
+    The analysis utilized
+    <a href="https://github.com/woped/WoPeD"><strong>WoPeD</strong></a
+    >, a specialized tool for <em>Petri net</em> modeling and analysis, to
+    evaluate critical properties including
+    <strong>soundness, boundedness, liveness, and deadlock-freeness</strong>.
+    Both a base model and a variant supporting course renewal were developed and
+    analyzed.
+</p>
+<h2>What I Learned</h2>
+<p>
+    This project provided deep insights into
+    <strong>formal methods for business process analysis</strong> and the
+    critical importance of <strong>verification in process design</strong>. I
+    learned how to translate real-world collaborative processes into rigorous
+    formal models that can be mathematically verified.
+</p>
+<p>
+    The <strong>transformation from BPMN to Workflow nets</strong> taught me how
+    different modeling paradigms complement each other, <strong
+        >BPMN excels at stakeholder communication</strong
+    >
+    and visual clarity, while
+    <strong>Petri nets enable behavioral analysis</strong>. I gained practical
+    experience with the systematic transformation rules: replacing
+    <em>tasks</em> and <em>events</em> with <em>transitions</em>,
+    <em>sequence flows</em> with <em>places</em>, and properly handling
+    <em>gateway constructs</em>.
+</p>
+<p>
+    Working with <em>WoPeD</em> deepened my understanding of
+    <strong>workflow net properties</strong>. I learned to identify and
+    interpret <em>S-components</em>, <em>PT-handles</em>, and
+    <em>TP-handles</em>, and to recognize their implications for process
+    structure. The analysis revealed how
+    <strong>soundness, boundedness, and liveness</strong> properties ensure that
+    processes can <strong>execute reliably without deadlocks</strong> or
+    resource accumulation issues.
+</p>
+<p>
+    A significant learning came from analyzing
+    <strong>free-choice violations</strong> in the integrated models. These
+    violations, appearing where multiple actors coordinate through overlapping
+    decision points, taught me about the
+    <strong>complexity of multi-party processes</strong> and the trade-offs
+    between model simplicity and realistic representation.
+</p>
+<p>
+    The project also demonstrated the value of
+    <strong>variant analysis</strong>. By modeling both a base process and an
+    extended version supporting course renewal, I learned how to
+    <strong>assess the impact of process changes</strong> on structural
+    properties and identify potential issues before implementation.
+</p>
+
+<h2>BPMN Model Development</h2>
+<img src="Full.png" alt="BPMN model" />
+<p>
+    The BPMN model captures the collaborative choreography between
+    <strong>two primary participants: the Student and the School</strong>. This
+    <strong>dual-lane structure</strong> effectively separates responsibilities
+    while maintaining clear communication pathways through
+    <em>message flows</em>.
+</p>
+<p>
+    The <strong>Student lane</strong> has <strong>five major phases</strong>.
+    The process begins with <em>course selection</em>, where the student
+    contacts the school and receives available course options. Following
+    selection, an iterative <em>appointment scheduling loop</em> ensures mutual
+    agreement on lesson timing and location through
+    <em>exclusive gateways</em> that handle proposal acceptance or
+    counter-proposals. Prior to each lesson, students receive and review
+    preparatory materials covering techniques and tools. During sessions,
+    students create drafts under teacher guidance with opportunities for
+    clarification. Post-session activities involve
+    <strong
+        >draft selection negotiation, finalization, digitization, and
+        submission</strong
+    >, followed by electronic payment and the decision to continue with another
+    appointment or terminate the course.
+</p>
+<p>
+    The <strong>School lane</strong> mirrors these interactions from the
+    institutional perspective. It manages
+    <strong>course offerings and teacher assignments</strong>, participates in
+    the bidirectional appointment negotiation loop, prepares and distributes
+    lesson materials, provides active supervision and instruction during
+    sessions, proposes draft selections for finalization,
+    <strong>verifies payments</strong>, and responds to student decisions
+    regarding course continuation or closure.
+</p>
+<p>
+    <strong>Message flows</strong> between lanes capture
+    <strong>critical synchronization points</strong>
+    including course initiation requests, scheduling negotiations, material
+    transmissions, feedback exchanges, draft selection discussions, submission
+    and payment confirmations, and closure decisions. This comprehensive
+    message-based coordination ensures both parties remain synchronized
+    throughout the process lifecycle.
+</p>
+<h2>Workflow Net Transformation and Analysis</h2>
+<img src="Full wf net.png" alt="WorkFlow net" />
+<p>
+    The transformation from BPMN to Workflow nets followed established
+    conversion principles. Each <em>task</em> and <em>event</em> was replaced
+    with a <em>transition</em>, each <em>sequence flow</em> became a
+    <em>place</em>, <em>XOR splits and joins</em> were translated into
+    combinations of places and transitions, and
+    <em>event-based gateways</em> were represented as places followed by
+    alternative transitions.
+    <u
+        >Critically, single initial and final places were added to satisfy the
+        formal definition of a Workflow Net.</u
+    >
+</p>
+<p>
+    The <strong>Student Workflow net</strong> comprises
+    <strong>37 places, 42 transitions, and 84 arcs</strong>, forming a single
+    connected and strongly connected component of 79 nodes. Analysis confirmed
+    it is <em>S-coverable</em> with one comprehensive <em>S-component</em>,
+    <em>well-structured</em> with no PT or TP handles, and
+    <strong>satisfies all soundness properties</strong>. The net proved to be
+    <strong>bounded, live, and correctly initialized</strong>, ensuring reliable
+    execution without deadlocks or resource issues.
+</p>
+<p>
+    The <strong>School Workflow net</strong> contains
+    <strong>31 places, 36 transitions, and 72 arcs</strong>, totaling 67 nodes
+    in a single connected component. It similarly demonstrates
+    <em>S-coverability</em>, <em>well-structuredness</em>,
+    <strong>soundness, boundedness, and liveness</strong>, confirming the
+    institutional process logic is formally correct and executable.
+</p>
+<p>
+    The <strong>complete integrated model</strong>, merging all perspectives,
+    consists of <strong>88 places, 78 transitions, and 198 arcs</strong>. While
+    maintaining fundamental soundness properties, one source place, one sink
+    place, no non-standard arc weights, proper connectivity, the integration
+    introduced <strong>six free-choice violations</strong> at points of
+    overlapping communication or decision-making. These violations, occurring in
+    <em>clarification exchanges</em>, <em>counter-offer handling</em>,
+    <em>draft negotiations</em>, and <em>course notifications</em>, reflect the
+    inherent complexity of coordinated multi-actor processes. The model contains
+    <strong>444 S-components, 228 PT-handles, and 210 TP-handles</strong>,
+    indicators of structural complexity that suggest opportunities for future
+    refinement while not compromising functional correctness.
+</p>
+<h2>Variant Model and Course Renewal</h2>
+<img src="Full variant.png" alt="BPMN model variant" />
+<p>
+    The <strong>variant model</strong> extends the base process by enabling
+    students to
+    <strong
+        >initiate new courses upon completing their current enrollment</strong
+    >, creating a recursive educational trajectory. This modification required
+    careful additions to both lanes while preserving process soundness.
+</p>
+<p>
+    In the <strong>Student lane</strong>, an <em>exclusive gateway</em> was
+    inserted after the course completion notification event. This gateway routes
+    process control either to termination or, if the student opts for a new
+    course, <strong>back to the course selection phase</strong> through a
+    message flow to the School. Correspondingly, the
+    <strong>School lane</strong> received an
+    <em>event-based gateway</em> following completion message reception. This
+    gateway waits for either a new course notification or proceeds to
+    termination if no such message arrives, with the new course path looping
+    back to await the student's course choice.
+</p>
+<img src="Full wf net variant.png" alt="WorkFlow net variant" />
+<p>
+    The <strong>variant complete model</strong> contains
+    <strong>93 places, 83 transitions, and 212 arcs</strong> across 176
+    connected nodes. It maintains
+    <strong>soundness, boundedness, and liveness</strong> but exhibits
+    <strong>seven free-choice violations</strong>, one more than the base
+    model, reflecting the additional decision complexity introduced by the
+    renewal option. The model comprises <em>270 S-components</em>,
+    <em>308 PT-handles</em>, and <em>276 TP-handles</em>, representing increased
+    structural complexity that accompanies the enhanced flexibility. Despite
+    these metrics, the variant
+    <strong>preserves all fundamental execution correctness properties</strong>,
+    demonstrating that the process extension was implemented soundly.
+</p>
+<h2>Formal Verification and Key Properties</h2>
+<p>
+    The verification process examined multiple critical properties that ensure
+    process correctness. <strong>Soundness verification</strong> confirmed that
+    all models possess exactly
+    <strong>one source place and one sink place</strong>, have no transitions
+    with empty presets or postsets, and form single connected components,
+    guaranteeing that every part of the process is reachable and properly
+    terminates.
+</p>
+<p>
+    <strong>Boundedness analysis</strong> proved that
+    <strong>no place, in any model, can accumulate an infinite number of tokens</strong>, preventing
+    resource accumulation problems. This property is essential for ensuring that
+    the process can execute repeatedly without exhausting system resources.
+</p>
+<p>
+    <strong>Liveness verification</strong> confirmed that
+    <strong>no transitions are dead or non-live</strong>, meaning every activity
+    in the process can potentially execute in some reachable state. This ensures
+    that no part of the modeled process becomes permanently unreachable during
+    execution, a critical property for operational reliability.
+</p>
+<p>
+    <strong>S-component analysis</strong> revealed interesting differences
+    between individual and integrated models. The individual student and school
+    models each contain
+    <strong>single comprehensive S-components</strong> covering all nodes,
+    indicating tight behavioral cohesion. In contrast, the integrated models
+    contain <strong>hundreds of S-components</strong> (444 in the base model,
+    270 in the variant), reflecting the distributed nature of collaborative
+    processes where multiple concurrent paths exist.
+</p>
+<p>
+    <strong>Well-structuredness assessment</strong> identified
+    <em>PT-handles</em> and <em>TP-handles</em> in the integrated models. While
+    these structural patterns don't compromise soundness, their presence
+    indicates areas where control flow branching creates complexity. The
+    <strong>228 PT-handles and 210 TP-handles</strong> in the complete model
+    suggest opportunities for future process simplification and improved
+    modularity.
+</p>
+<p>
+    <strong>Free-choice violation analysis</strong> uncovered coordination
+    points where transitions share input places without maintaining independent
+    choice sets. These
+    <strong>six violations in the base model and seven in the variant</strong>
+    occur at natural collaboration points, <em>clarification exchanges</em>,
+    <em>offer negotiations</em>, <em>draft selections</em>, and
+    <em>course notifications</em>, representing the
+    <strong>fundamental complexity of multi-party coordination</strong> rather
+    than modeling errors.
+</p>

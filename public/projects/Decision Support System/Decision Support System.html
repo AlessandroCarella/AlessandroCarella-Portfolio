@@ -1,138 +1,169 @@
 <p>
-    For this class project me and my colleagues developed an end-to-end business
-    intelligence solution analyzing Chicago traffic crash data to support a mock
-    insurance company decision-making through dimensional modeling, ETL
-    pipelines, OLAP cubes, and interactive Power BI dashboards.
+    For this class project me and my colleagues developed an
+    <strong>end-to-end business intelligence solution</strong> analyzing Chicago
+    traffic crash data to support a mock insurance company decision-making
+    through <em>dimensional modeling</em>, <em>ETL pipelines</em>,
+    <em>OLAP cubes</em>, and interactive <em>Power BI</em> dashboards.
 </p>
 <p>
     The complete project is available on GitHub at
     <a href="https://github.com/SaraHoxha/lds-dw-modelling">lds-dw-modelling</a
-    >. Collaborating with my colleagues, we divided responsibilities across data
-    cleaning, schema design, ETL development, OLAP implementation, and
-    dashboards creation. The classes tought me the complete data warehousing
-    lifecycle from raw data to actionable business insights and I and my
-    colleagues applied those concepts in the project.
+    >. Collaborating with my colleagues, we
+    <strong>divided responsibilities</strong> across data cleaning, schema
+    design, ETL development, OLAP implementation, and dashboards creation. The
+    classes taught me the
+    <strong>complete data warehousing lifecycle</strong> from raw data to
+    actionable business insights and I and my colleagues applied those concepts
+    in the project.
 </p>
 <!--  -->
 <!--  -->
 <h2>What I Learned</h2>
 <p>
-    This project was my first opportunity to apply the comprehensive data
-    warehousing and OLAP concepts taught throughout the Decision Support Systems
-    course. While the lectures provided the theoretical foundation, implementing
-    a complete business intelligence solution from raw data to interactive
-    dashboards revealed the practical complexities and trade-offs inherent in
+    This project was my <strong>first opportunity to apply</strong> the
+    comprehensive data warehousing and OLAP concepts taught throughout the
+    <em>Decision Support Systems</em> course. While the lectures provided the
+    theoretical foundation, implementing a complete business intelligence
+    solution from raw data to interactive dashboards revealed the
+    <strong>practical complexities and trade-offs</strong> inherent in
     real-world DSS development.
 </p>
 <p>
-    In class, we learned about dimensional modeling, the distinction between
-    fact tables and dimension tables, the principles of star and snowflake
-    schemas, and the importance of grain definition. When we designed our fact
-    table, these principles came to life. The decision to use a snowflake schema
-    rather than a pure star schema wasn't arbitrary, it directly applied the
-    course material on normalization trade-offs.
+    In class, we learned about <em>dimensional modeling</em>, the distinction
+    between fact tables and dimension tables, the principles of
+    <em>star</em> and <em>snowflake schemas</em>, and the importance of grain
+    definition. When we designed our fact table, these principles came to life.
+    The decision to use a
+    <strong>snowflake schema rather than a pure star schema</strong> wasn't
+    arbitrary, it directly applied the course material on normalization
+    trade-offs.
 </p>
 <p>
-    The lectures explained that snowflake schemas reduce redundancy by
-    normalizing dimension tables, but at the cost of more complex queries
-    requiring additional joins. Our choice to normalize the some dimensions into
-    more sub-dimensions showed us this trade-off.
+    The lectures explained that snowflake schemas
+    <strong>reduce redundancy by normalizing dimension tables</strong>, but at
+    the cost of
+    <strong>more complex queries requiring additional joins</strong>. Our choice
+    to normalize some dimensions into more sub-dimensions showed us this
+    trade-off.
 </p>
 <p>
-    The course covered ETL (Extract, Transform, Load) processes and
-    the critical importance of data quality in decision support systems.
-    Lectures emphasized the 80/20 rule: <b>80% of a data warehousing project's
-    effort goes into data cleaning and ETL, with only 20% on reporting and
-    analysis</b>. I initially thought this was an exaggeration, but after spending
-    weeks on data preprocessing, transformation, and quality validation, I
-    completely understand it now.
+    The course covered <em>ETL (Extract, Transform, Load)</em> processes and the
+    critical importance of data quality in decision support systems. Lectures
+    emphasized the
+    <strong
+        >80/20 rule: 80% of a data warehousing project's effort goes into data
+        cleaning and ETL</strong
+    >, with only 20% on reporting and analysis. I initially thought this was an
+    exaggeration, but after spending weeks on data preprocessing,
+    transformation, and quality validation, I completely understand it now.
 </p>
 <p>
-    The SSIS (SQL Server Integration Services) classes taught us about the
-    core transformation components: Lookup, Derived Column, Conditional Split,
-    Aggregate, and Sort. In the project we used those tools in a chain to create complex data flows. 
+    The <em>SSIS (SQL Server Integration Services)</em> classes taught us about
+    the core transformation components: <em>Lookup</em>,
+    <em>Derived Column</em>, <em>Conditional Split</em>, <em>Aggregate</em>, and
+    <em>Sort</em>. In the project we used those tools in a chain to create
+    <strong>complex data flows</strong>.
 </p>
 <p>
-    The lectures on data quality dimensions turned out to be very useful when we handled missing values across numerous
-    columns in the provided tables. The course taught us to document data quality
-    decisions and establish business rules for handling anomalies. 
+    The lectures on <strong>data quality dimensions</strong> turned out to be
+    very useful when we handled missing values across numerous columns in the
+    provided tables. The course taught us to
+    <strong>document data quality decisions</strong> and establish business
+    rules for handling anomalies.
 </p>
 <p>
-    One aspect we had to figure out beyond the course material was the geocoding
-    API integration for recovering missing latitude/longitude values. The
-    lectures covered external data enrichment conceptually, but the practical
-    challenges of API use required independent problem-solving. 
+    One aspect we had to figure out
+    <strong>beyond the course material</strong> was the
+    <em>geocoding API</em> integration for recovering missing latitude/longitude
+    values. The lectures covered external data enrichment conceptually, but the
+    practical challenges of API use required
+    <strong>independent problem-solving</strong>.
 </p>
 <p>
-    The OLAP (Online Analytical Processing) lectures introduced us to
+    The <em>OLAP (Online Analytical Processing)</em> lectures introduced us to
     multidimensional data modeling, measure groups, dimensions, hierarchies, and
-    the fundamental operations of roll-up, drill-down, slice, and dice. The
-    course used the classic sales data warehouse example which provided clear conceptual understanding.
+    the fundamental operations of
+    <strong>roll-up, drill-down, slice, and dice</strong>. The course used the
+    classic sales data warehouse example which provided clear conceptual
+    understanding.
 </p>
 <p>
-    The concept of calculated measures, introduced in class through examples
-    like profit margins and year-over-year growth, became much more complex in
-    our MDX queries. The course taught
-    us the WITH MEMBER syntax and the CURRENTMEMBER function, but applying these
-    to compute relative time calculations took significant experimentation.
-    Understanding that MDX operates on dimensional contexts rather than
-    row-by-row like SQL was essential, but
-    internalizing it required writing failing queries, debugging, and gradually
-    building intuition about when calculations execute in the MDX evaluation
-    pipeline.
+    The concept of <strong>calculated measures</strong>, introduced in class
+    through examples like profit margins and year-over-year growth, became much
+    more complex in our <em>MDX</em> queries. The course taught us the
+    <em>WITH MEMBER</em> syntax and the <em>CURRENTMEMBER</em> function, but
+    applying these to compute relative time calculations took significant
+    experimentation. Understanding that
+    <strong
+        >MDX operates on dimensional contexts rather than row-by-row like
+        SQL</strong
+    >
+    was essential, but internalizing it required writing failing queries,
+    debugging, and gradually building intuition about when calculations execute
+    in the MDX evaluation pipeline.
 </p>
 <p>
-    The MDX (Multidimensional Expressions) portion of the course introduced the
-    basic query structure: SELECT on COLUMNS and ROWS, FROM the cube, WHERE for
-    slicing. We learned key functions like TOPCOUNT, Filter, Hierarchize, NON
-    EMPTY, and aggregate functions (SUM, AVG, MEDIAN, MAX). However, the course
-    examples were relatively straightforward.
+    The <em>MDX (Multidimensional Expressions)</em> portion of the course
+    introduced the basic query structure: <em>SELECT</em> on COLUMNS and ROWS,
+    <em>FROM</em> the cube, <em>WHERE</em> for slicing. We learned key functions
+    like <em>TOPCOUNT</em>, <em>Filter</em>, <em>Hierarchize</em>,
+    <em>NON EMPTY</em>, and aggregate functions (<em>SUM</em>, <em>AVG</em>,
+    <em>MEDIAN</em>, <em>MAX</em>). However, the course examples were relatively
+    straightforward.
 </p>
 <p>
-    The course's final section covered dashboard design principles: identifying
-    KPIs, choosing appropriate visualizations, enabling interactivity, and
-    designing for different user roles. The lectures emphasized that dashboards
-    should answer business questions, not just display data.
+    The course's final section covered
+    <strong>dashboard design principles</strong>: identifying KPIs, choosing
+    appropriate visualizations, enabling interactivity, and designing for
+    different user roles. The lectures emphasized that
+    <strong>dashboards should answer business questions</strong>, not just
+    display data.
 </p>
 <p>
-    The performance optimization required for our 257,925 crash records pushed
-    us to learn about indexing strategies, query execution plans, and OLAP cube
-    processing optimization. The course mentioned that performance matters, but
-    we had to independently research SQL Server index types, understand when to
-    use clustered versus non-clustered indexes, and learn about SSAS partition
-    strategies for large fact tables. When our initial cube processing took over
-    10 minutes, we implemented incremental processing, a technique we found in
-    Microsoft documentation rather than course lectures.
+    The <strong>performance optimization</strong> required for our 257,925 crash
+    records pushed us to learn about <em>indexing strategies</em>,
+    <em>query execution plans</em>, and
+    <em>OLAP cube processing optimization</em>. The course mentioned that
+    performance matters, but we had to independently research SQL Server index
+    types, understand when to use clustered versus non-clustered indexes, and
+    learn about <em>SSAS partition strategies</em> for large fact tables. When
+    our initial cube processing took over 10 minutes, we implemented
+    <strong>incremental processing</strong>, a technique we found in Microsoft
+    documentation rather than course lectures.
 </p>
 
 <!--  -->
 <!--  -->
 <h2>Data Understanding, Cleaning, and Enhancement</h2>
 <p>
-    We began with three, teacher's provided, CSV files from Chicago's traffic
-    crash database extracted from the
+    We began with <strong>three CSV files</strong> from Chicago's traffic crash
+    database extracted from the
     <a href="https://data.cityofchicago.org">Chicago Data Portal</a>:
     <tt>People.csv</tt>, <tt>Vehicles.csv</tt>, and <tt>Crashes.csv</tt>.
 </p>
 <p>
-    The People table contained demographic and behavioral information about the
-    peoples involved in the crashes. Across 14 columns with missing values,
-    incorrect data types, and inconsistent representations we applied nine
-    cleaning operations to fill and normalize the content of the file.
+    The <em>People</em> table contained demographic and behavioral information
+    about the peoples involved in the crashes. Across
+    <strong>14 columns with missing values</strong>, incorrect data types, and
+    inconsistent representations we applied
+    <strong>nine cleaning operations</strong> to fill and normalize the content
+    of the file.
 </p>
 <p>
-    The Vehicles table provided info about crash-involved vehicles, including
-    unit types, license plates, defects, and temporal information. Enhancements
-    to the file focused primarily on consolidating missing and inconsistent
-    values.
+    The <em>Vehicles</em> table provided info about crash-involved vehicles,
+    including unit types, license plates, defects, and temporal information.
+    Enhancements to the file focused primarily on
+    <strong>consolidating missing and inconsistent values</strong>.
 </p>
 <p>
-    The Crashes dataset contained spatial, temporal, and severity information,
-    several data quality improvements applied. Other than the usual missing data
-    handling, Geographic data received significant improvement through geocoding
-    API integration, filling most missing <tt>LATITUDE</tt>, <tt>LONGITUDE</tt>,
-    and <tt>POINT</tt> values using the available <tt>STREET_NAME</tt> and
-    <tt>STREET_NO</tt> fields. On top of that, a <b>new derived feature</b>,
+    The <em>Crashes</em> dataset contained spatial, temporal, and severity
+    information, with several data quality improvements applied. Other than the
+    usual missing data handling,
+    <strong>geographic data received significant improvement</strong> through
+    <em>geocoding API</em> integration, filling most missing <tt>LATITUDE</tt>,
+    <tt>LONGITUDE</tt>, and <tt>POINT</tt> values using the available
+    <tt>STREET_NAME</tt> and <tt>STREET_NO</tt> fields. On top of that, a
+    <strong>new derived feature</strong>,
     <tt>DELTA_TIME_CRASH_DATE_POLICE_REPORT_DATE</tt>, was created to quantify
     reporting delays.
 </p>
@@ -140,28 +171,25 @@
 <!--  -->
 <h2>Snowflake Schema Design for Insurance Analytics</h2>
 <p>
-    During classes we learned the difference between Star, Snowflake, and Fact
-    Constellation (otherwise named Galaxy) Schemas, and we found the Snowflake
-    schema to be the best fitting for our mock insurance company's analytical
-    needs. This structure reduced data redundancy while allowing efficient
-    querying of complex relationships.
+    During classes we learned the difference between <em>Star</em>,
+    <em>Snowflake</em>, and <em>Fact Constellation</em> (otherwise named
+    <em>Galaxy</em>) Schemas, and we found the
+    <strong>Snowflake schema to be the best fitting</strong> for our mock
+    insurance company's analytical needs. This structure
+    <strong>reduced data redundancy</strong> while allowing
+    <strong>efficient querying</strong> of complex relationships.
     <img src="DW Schema.png" alt="snowflake schema" />
 </p>
 <!--  -->
 <!--  -->
 <h2>Queries for Business Intelligence</h2>
 <p>
-    We developed four queries addressing specific insurance company analytical
-    needs.
+    We developed <strong>four queries</strong> addressing specific insurance
+    company analytical needs.
 </p>
-<table
-    border="1"
-    cellpadding="10"
-    cellspacing="0"
-    style="width: 100%; border-collapse: collapse"
->
+<table border="1" cellpadding="10" cellspacing="0">
     <thead>
-        <tr style="background-color: #f2f2f2">
+        <tr>
             <th style="width: 20%">Query</th>
             <th style="width: 30%">Purpose</th>
             <th style="width: 20%">Tables involved</th>
@@ -172,44 +200,47 @@
         <tr>
             <td><strong>Crash Frequency by Participant</strong></td>
             <td>
-                Analyzes crash involvement frequency for all participants across
-                different years to identify individuals with higher crash
-                frequencies.
+                Analyzes <strong>crash involvement frequency</strong> for all
+                participants across different years to
+                <strong
+                    >identify individuals with higher crash frequencies</strong
+                >.
             </td>
             <td>
                 <ul>
-                    <li><b>Person</b></li>
-                    <li><b>DamageReimbursement</b></li>
-                    <li><b>Crash</b></li>
-                    <li><b>DateTime</b></li>
+                    <li><em>Person</em></li>
+                    <li><em>DamageReimbursement</em></li>
+                    <li><em>Crash</em></li>
+                    <li><em>DateTime</em></li>
                 </ul>
             </td>
             <td>
                 Extracted demographic details, linked to retrieve crash IDs,
                 joined to extract crash years. Data aggregated by counting
-                crashes per participant per year, generating "Total Crashes"
-                metric, sorted chronologically.
+                crashes per participant per year, generating
+                <strong>"Total Crashes" metric</strong>, sorted chronologically.
             </td>
         </tr>
         <tr>
             <td><strong>Day-Night Crash Index by Police Beat</strong></td>
             <td>
-                Calculates a day-night crash index per police beat by comparing
-                vehicle counts in nighttime incidents (9 PM to 8 AM) versus
-                daytime (8 AM to 9 PM).
+                Calculates a <strong>day-night crash index</strong> per police
+                beat by comparing vehicle counts in nighttime incidents (9 PM to
+                8 AM) versus daytime (8 AM to 9 PM).
             </td>
             <td>
                 <ul>
-                    <li><b>Crash</b> (Number_of_Units)</li>
-                    <li><b>CrashLocation</b> (Beat_of_Occurrence)</li>
-                    <li><b>DateTime</b> (timestamps)</li>
+                    <li><em>Crash</em> (Number_of_Units)</li>
+                    <li><em>CrashLocation</em> (Beat_of_Occurrence)</li>
+                    <li><em>DateTime</em> (timestamps)</li>
                 </ul>
             </td>
             <td>
-                Created Time_Category field classifying crashes as "Day" or
-                "Night". Data split by Time_Category, aggregated by
-                Beat_of_Occurrence, summed vehicle counts. Final ratio
-                calculation handled division by zero cases.
+                Created <em>Time_Category</em> field classifying crashes as
+                "Day" or "Night". Data split by Time_Category, aggregated by
+                Beat_of_Occurrence, summed vehicle counts. Final
+                <strong>ratio calculation handled division by zero</strong>
+                cases.
             </td>
         </tr>
         <tr>
@@ -217,25 +248,30 @@
                 <strong>Age-Based Crash Ratios by Location and Weather</strong>
             </td>
             <td>
-                Calculates the ratio of people under 21 to those over 21 for
+                Calculates the
+                <strong>ratio of people under 21 to those over 21</strong> for
                 each quarter, weather condition, and beat of occurrence.
-                Analyzes how seasonality, weather, and location affect crash
-                proportions by age.
+                Analyzes how
+                <strong
+                    >seasonality, weather, and location affect crash
+                    proportions</strong
+                >
+                by age.
             </td>
             <td>
                 <ul>
-                    <li><b>DamageReimbursement</b></li>
-                    <li><b>Crash</b></li>
-                    <li><b>CrashLocation</b></li>
-                    <li><b>CrashCondition</b></li>
-                    <li><b>DateTime</b></li>
-                    <li><b>Person</b></li>
+                    <li><em>DamageReimbursement</em></li>
+                    <li><em>Crash</em></li>
+                    <li><em>CrashLocation</em></li>
+                    <li><em>CrashCondition</em></li>
+                    <li><em>DateTime</em></li>
+                    <li><em>Person</em></li>
                 </ul>
             </td>
             <td>
-                Used SSIS lookup operations to join tables. Counted individuals
-                over and under 21, aggregated by required columns (quarter,
-                weather, location), and created ratio column.
+                Used <em>SSIS lookup</em> operations to join tables. Counted
+                individuals over and under 21, aggregated by required columns
+                (quarter, weather, location), and created ratio column.
             </td>
         </tr>
         <tr>
@@ -245,15 +281,20 @@
                 >
             </td>
             <td>
-                Examines the ratio of older individuals (over 60) involved in
-                interstate movements in Chicago, analyzing residence location
-                and vehicle registration state. Incorporates quarterly
-                variations to capture seasonality.
+                Examines the
+                <strong>ratio of older individuals (over 60)</strong> involved
+                in interstate movements in Chicago, analyzing residence location
+                and vehicle registration state. Incorporates
+                <strong>quarterly variations to capture seasonality</strong>.
             </td>
             <td>
                 <ul>
-                    <li>Multiple tables (via lookup transformations)</li>
-                    <li>Focus on Person and vehicle registration data</li>
+                    <li>
+                        Multiple tables (via <em>lookup transformations</em>)
+                    </li>
+                    <li>
+                        Focus on <em>Person</em> and vehicle registration data
+                    </li>
                 </ul>
             </td>
             <td>
@@ -269,71 +310,65 @@
 <!--  -->
 <h2>OLAP Cube Implementation</h2>
 <p>
-    We designed a multidimensional OLAP cube using SQL Server Analysis Services
-    (SSAS) to enable sophisticated analytical queries. The cube stores and
-    analyzes Chicago traffic crash data using dimensions for
-    <b><tt>Person</tt></b
-    >, <b><tt>Crash</tt></b
-    >, <b><tt>Vehicle</tt></b
-    >, and <b><tt>DateTime</tt></b
-    >.
+    We designed a <strong>multidimensional OLAP cube</strong> using
+    <em>SQL Server Analysis Services (SSAS)</em> to enable sophisticated
+    analytical queries. The cube stores and analyzes Chicago traffic crash data
+    using dimensions for <em>Person</em>, <em>Crash</em>, <em>Vehicle</em>, and
+    <em>DateTime</em>.
 </p>
 <h3>Dimension Design with Hierarchies</h3>
 <p>
-    The <b><tt>Person</tt></b> dimension includes attributes like
+    The <strong>Person dimension</strong> includes attributes like
     <tt>Person_ID</tt>, <tt>Injury_Classification</tt>,
     <tt>Physical_Condition</tt>, <tt>Age</tt>, <tt>Type</tt>, <tt>Sex</tt>,
     <tt>Driver_Action</tt>, <tt>Driver_Vision</tt>, <tt>Age_Group</tt>,
     <tt>City</tt>, and <tt>State</tt>.
 </p>
 <p>
-    The <b><tt>Crash</tt></b> dimension has a complex structure with
+    The <strong>Crash dimension</strong> has a complex structure with
     <tt>Crash_ID</tt>, <tt>Crash_Date_ID</tt>, <tt>Police_Notified_Date_ID</tt>,
     <tt>Crash_Location_ID</tt>, <tt>Crash_Condition_ID</tt>, <tt>Injury_ID</tt>,
     <tt>Primary_Contributory_Cause</tt>, <tt>Secondary_Contributory_Cause</tt>,
     and various location attributes.
 </p>
 <p>
-    The <b><tt>Vehicle</tt></b> dimension contains <tt>Vehicle_ID</tt> and
-    <tt>Vehicle_Type</tt>. The <b><tt>DateTime</tt></b> dimension includes
+    The <strong>Vehicle dimension</strong> contains <tt>Vehicle_ID</tt> and
+    <tt>Vehicle_Type</tt>. The <strong>DateTime dimension</strong> includes
     <tt>Date_Time_ID</tt>, <tt>Day</tt>, <tt>Year</tt>, <tt>Month_Name</tt>, and
     <tt>Time</tt> in 24-hour format.
 </p>
 <p>
-    The <b><tt>DateTime</tt></b> dimension includes a hierarchy: <tt>Year</tt> →
-    <tt>Month</tt> → <tt>Day</tt> → <tt>Time</tt>. Following OLAP best
-    practices, access to these hierarchical attributes is not directly visible
-    to end-users.
+    The <em>DateTime</em> dimension includes a <strong>hierarchy</strong>:
+    <tt>Year</tt> → <tt>Month</tt> → <tt>Day</tt> → <tt>Time</tt>. Following
+    OLAP best practices, access to these hierarchical attributes is not directly
+    visible to end-users.
 </p>
 <!--  -->
 <h3>Measure Groups</h3>
 <p>
-    The <b><tt>Damage Reimbursement</tt></b> measure group captures financial
+    The <strong>Damage Reimbursement measure group</strong> captures financial
     data including <tt>Cost</tt>, <tt>Damage_Reimbursement_Count</tt>, and
-    <tt>Average_Cost</tt>, essential for assessing financial impact. The
-    <b><tt>Person</tt></b> measure group provides insights into the number and
+    <tt>Average_Cost</tt>, essential for
+    <strong>assessing financial impact</strong>. The
+    <strong>Person measure group</strong> provides insights into the number and
     type of individuals involved, including <tt>Person_Count</tt>,
     <tt>Count_of_Person_Type</tt>, and <tt>Fatal_Crashes</tt>.
 </p>
 <p>
-    After building and defining the structure, we processed the data and
-    deployed the cube on the OLAP server, enabling MDX queries and analysis
-    directly within the cube environment.
+    After building and defining the structure, we
+    <strong>processed the data and deployed the cube</strong> on the OLAP
+    server, enabling MDX queries and analysis directly within the cube
+    environment.
 </p>
 <h2>Advanced MDX Query Development</h2>
 <p>
-    We developed five MDX queries demonstrating different analytical
-    capabilities.
+    We developed <strong>five MDX queries</strong> demonstrating different
+    analytical capabilities.
 </p>
 
-<table
-    border="1"
-    cellpadding="10"
-    cellspacing="0"
-    style="width: 100%; border-collapse: collapse"
->
+<table border="1" cellpadding="10" cellspacing="0">
     <thead>
-        <tr style="background-color: #f2f2f2">
+        <tr>
             <th style="width: 20%">Query</th>
             <th style="width: 30%">Purpose</th>
             <th style="width: 20%">Tables Involved</th>
@@ -346,21 +381,22 @@
                 <strong>Total Damage Costs by Location and Month</strong>
             </td>
             <td>
-                Shows total damage costs for each location and month with grand
-                totals.
+                Shows <strong>total damage costs</strong> for each location and
+                month with grand totals.
             </td>
             <td>
                 <ul>
-                    <li>Damage Cost measure</li>
-                    <li>Location dimension</li>
-                    <li>Month/Year dimension</li>
+                    <li><em>Damage Cost</em> measure</li>
+                    <li><em>Location</em> dimension</li>
+                    <li><em>Month/Year</em> dimension</li>
                 </ul>
             </td>
             <td>
-                Used WITH MEMBER to define custom grand totals for months and
-                locations. Hierarchize function orders months chronologically
-                with yearly total. Filter excludes All member for locations,
-                showing only individual locations plus grand total.
+                Used <em>WITH MEMBER</em> to define custom grand totals for
+                months and locations. <em>Hierarchize</em> function orders
+                months chronologically with yearly total.
+                <em>Filter</em> excludes All member for locations, showing only
+                individual locations plus grand total.
             </td>
         </tr>
         <tr>
@@ -368,21 +404,23 @@
                 <strong>Year-over-Year Damage Cost Changes</strong>
             </td>
             <td>
-                Shows damage cost changes percentage-wise relative to the
-                previous year for every location.
+                Shows
+                <strong>damage cost changes percentage-wise</strong> relative to
+                the previous year for every location.
             </td>
             <td>
                 <ul>
-                    <li>Damage Cost measure</li>
-                    <li>Location dimension</li>
-                    <li>Year dimension (2017)</li>
+                    <li><em>Damage Cost</em> measure</li>
+                    <li><em>Location</em> dimension</li>
+                    <li><em>Year</em> dimension (2017)</li>
                 </ul>
             </td>
             <td>
-                Two WITH MEMBER clauses: one to name damage cost of previous
-                year, another to create percentage change measure. Displayed
-                2017 data with cost and percentage change on columns, crash
-                location in rows.
+                Two <em>WITH MEMBER</em> clauses: one to name damage cost of
+                previous year, another to create
+                <strong>percentage change measure</strong>. Displayed 2017 data
+                with cost and percentage change on columns, crash location in
+                rows.
             </td>
         </tr>
         <tr>
@@ -391,21 +429,22 @@
             </td>
             <td>
                 Shows for each vehicle type and year the information and total
-                damage costs of the person with the highest reported damage.
+                damage costs of the
+                <strong>person with the highest reported damage</strong>.
             </td>
             <td>
                 <ul>
-                    <li>Total Cost measure</li>
-                    <li>Person dimension</li>
-                    <li>Vehicle Type dimension</li>
-                    <li>Year dimension</li>
+                    <li><em>Total Cost</em> measure</li>
+                    <li><em>Person</em> dimension</li>
+                    <li><em>Vehicle Type</em> dimension</li>
+                    <li><em>Year</em> dimension</li>
                 </ul>
             </td>
             <td>
                 Selected Total Cost as sum of each current member of Person.
                 Rows use nested function with non-empty values, generating
-                year-vehicle type combinations, then extracting top 1 person per
-                combination measured by cost.
+                year-vehicle type combinations, then extracting
+                <strong>top 1 person per combination</strong> measured by cost.
             </td>
         </tr>
         <tr>
@@ -413,25 +452,29 @@
                 <strong>Median and Maximum Reporting Delays</strong>
             </td>
             <td>
-                Calculates median and maximum time delays between crash
+                Calculates
+                <strong>median and maximum time delays</strong> between crash
                 occurrence and police notification for each beat of occurrence,
                 providing insights into typical and extreme reporting delays.
             </td>
             <td>
                 <ul>
                     <li>
-                        Difference_Between_Crash_Date_And_Police_Notified
+                        <em
+                            >Difference_Between_Crash_Date_And_Police_Notified</em
+                        >
                         measure
                     </li>
-                    <li>Beat of Occurrence dimension</li>
+                    <li><em>Beat of Occurrence</em> dimension</li>
                 </ul>
             </td>
             <td>
-                Defined TotalDelaySeconds to compute total delay by extracting
-                and converting components (days, hours, minutes, seconds).
-                Calculated median and maximum delays using MEDIAN and MAX
-                functions, formatted into human-readable strings with null
-                handling. Sorted by median delay descending.
+                Defined <em>TotalDelaySeconds</em> to compute total delay by
+                extracting and converting components (days, hours, minutes,
+                seconds). Calculated median and maximum delays using
+                <em>MEDIAN</em> and <em>MAX</em> functions, formatted into
+                human-readable strings with null handling.
+                <strong>Sorted by median delay descending</strong>.
             </td>
         </tr>
         <tr>
@@ -441,24 +484,29 @@
                 >
             </td>
             <td>
-                Identifies the most frequent crash cause for each year,
-                calculates associated total damage costs, and determines the
-                overall most frequent crash cause.
+                Identifies the <strong>most frequent crash cause</strong> for
+                each year, calculates associated total damage costs, and
+                determines the
+                <strong>overall most frequent crash cause</strong>.
             </td>
             <td>
                 <ul>
-                    <li>Primary Crash Cause dimension</li>
-                    <li>Secondary Crash Cause dimension</li>
-                    <li>Total Damage Cost measure</li>
-                    <li>Year dimension</li>
+                    <li><em>Primary Crash Cause</em> dimension</li>
+                    <li><em>Secondary Crash Cause</em> dimension</li>
+                    <li><em>Total Damage Cost</em> measure</li>
+                    <li><em>Year</em> dimension</li>
                 </ul>
             </td>
             <td>
-                Weighted primary crash factor twice as much as secondary factor
-                using WeightedCauseCount. Used TOPCOUNT to determine most
-                frequent cause per year by weighted frequency. Aggregated
-                TotalCostPerYearTopCause for top cause. Identified overall most
-                frequent cause via TOPCOUNT without time restrictions.
+                <strong
+                    >Weighted primary crash factor twice as much as
+                    secondary</strong
+                >
+                factor using <em>WeightedCauseCount</em>. Used
+                <em>TOPCOUNT</em> to determine most frequent cause per year by
+                weighted frequency. Aggregated TotalCostPerYearTopCause for top
+                cause. Identified overall most frequent cause via TOPCOUNT
+                without time restrictions.
             </td>
         </tr>
     </tbody>
@@ -467,66 +515,75 @@
 <!--  -->
 <h2>Interactive Dashboard Development</h2>
 <p>
-    We created three comprehensive dashboards in Power BI to visualize key
-    insights for insurance company stakeholders.
+    We created <strong>three comprehensive dashboards</strong> in
+    <em>Power BI</em> to visualize key insights for insurance company
+    stakeholders.
 </p>
 <!--  -->
 <h3>Geographical Dashboard: Spatial Analysis of Damage Costs</h3>
 <p>
-    The dashboard showcases the distribution of total damage costs by vehicle
-    category with interactive filtering capabilities. Two primary filters on the
-    left allow users to select specific beats of occurrence and vehicle types
-    dynamically. The middle column features a treemap at the top highlighting
-    total damage costs for selected vehicle categories, providing a hierarchical
-    overview of cost distributions. Below, a bar plot displays the same data
-    with beat of occurrence comparison context in a detailed format.
+    The dashboard showcases the
+    <strong>distribution of total damage costs by vehicle category</strong> with
+    interactive filtering capabilities. Two primary filters on the left allow
+    users to select specific beats of occurrence and vehicle types dynamically.
+    The middle column features a <strong>treemap</strong> at the top
+    highlighting total damage costs for selected vehicle categories, providing a
+    hierarchical overview of cost distributions. Below, a
+    <strong>bar plot</strong> displays the same data with beat of occurrence
+    comparison context in a detailed format.
 </p>
 <p>
-    On the right, a map visualization provides spatial insights, focusing on the
-    Chicago area by default when all beats are selected. The map dynamically
-    updates to reflect chosen beats, allowing exploration of specific regions
-    and identification of areas with higher damage cost concentrations. Users
-    can manipulate filters to adapt displayed data, enabling nuanced analyses of
-    relationships between geographical locations and vehicle-related damage
-    costs.
+    On the right, a <strong>map visualization</strong> provides spatial
+    insights, focusing on the Chicago area by default when all beats are
+    selected. The map
+    <strong>dynamically updates to reflect chosen beats</strong>, allowing
+    exploration of specific regions and identification of areas with higher
+    damage cost concentrations. Users can manipulate filters to adapt displayed
+    data, enabling nuanced analyses of relationships between geographical
+    locations and vehicle-related damage costs.
     <img src="geo_dash.png" alt="Geographical Dashboard" />
 </p>
 <h3>Streets Dashboard: Mobility and Location Analysis</h3>
 <p>
-    The dashboard provides insights into cost and damage reimbursement by
-    street, helping the insurance company locate and analyze mobility dynamics
-    when granting insurance agreements or paying damages. The visualizations
-    include total cost metrics, average cost increase by year, count of damage
-    reimbursements by street, and a street map showing the top 10 streets with
-    highest costs in Chicago. These visualizations together help determine new
-    policies for the insurance company by revealing patterns in street-level
-    crash costs and frequencies.
+    The dashboard provides insights into
+    <strong>cost and damage reimbursement by street</strong>, helping the
+    insurance company locate and analyze mobility dynamics when granting
+    insurance agreements or paying damages. The visualizations include total
+    cost metrics, <strong>average cost increase by year</strong>, count of
+    damage reimbursements by street, and a street map showing the
+    <strong>top 10 streets with highest costs</strong> in Chicago. These
+    visualizations together help determine new policies for the insurance
+    company by revealing patterns in street-level crash costs and frequencies.
     <img src="Street_dashboard.jpeg" alt="Street Dashboard" />
 </p>
 <!--  -->
 <h3>People Dashboard: Demographic and Behavioral Analysis</h3>
 <p>
-    The People dashboard provides actionable information about crash
-    participants for business analysts. At the top left, a pie chart titled
-    "Proportion of Crash Participants by Physical Condition" identifies the
-    impact of factors such as impairment due to drugs, alcohol, or medical
-    conditions, helping understand the role of human factors. The map visualizes
-    geographical concentrations of crashes, allowing insurers to identify
-    high-risk regions for adjustments.
+    The <em>People</em> dashboard provides
+    <strong>actionable information about crash participants</strong> for
+    business analysts. At the top left, a pie chart titled "Proportion of Crash
+    Participants by Physical Condition" identifies the
+    <strong>impact of factors such as impairment</strong> due to drugs, alcohol,
+    or medical conditions, helping understand the role of human factors. The map
+    visualizes geographical concentrations of crashes, allowing insurers to
+    <strong>identify high-risk regions</strong> for adjustments.
 </p>
 <p>
-    The bottom left bar chart provides insight into crash costs by age group and
-    vision impairments, revealing that younger drivers (under 18) and those with
-    specific vision conditions incur higher costs, identifying high-risk
-    demographics for targeted pricing. The treemap "Driver Action by Injury
-    Breakdown" uncovers how specific driver behaviors (failure to act,
-    distracted driving) correlate with injuries, showing potential needs to
-    adjust premiums for policyholders exhibiting these patterns.
+    The bottom left bar chart provides insight into
+    <strong>crash costs by age group and vision impairments</strong>, revealing
+    that younger drivers (under 18) and those with specific vision conditions
+    incur higher costs, identifying
+    <strong>high-risk demographics for targeted pricing</strong>. The treemap
+    "Driver Action by Injury Breakdown" uncovers how specific driver behaviors
+    (failure to act, distracted driving) correlate with injuries, showing
+    potential needs to adjust premiums for policyholders exhibiting these
+    patterns.
 </p>
 <p>
-    Central KPIs display Participants in Crashes, Total Damage Cost, Fatal
-    Crashes, and Average Damage Cost, providing an immediate overview of claim
-    volume and financial exposure crucial for forecasting payments and ensuring
-    sufficient reserves.
+    Central KPIs display <strong>Participants in Crashes</strong>,
+    <strong>Total Damage Cost</strong>, <strong>Fatal Crashes</strong>, and
+    <strong>Average Damage Cost</strong>, providing an immediate overview of
+    claim volume and financial exposure crucial for forecasting payments and
+    ensuring sufficient reserves.
     <img src="People_Dashboard.png" alt="People Dashboard" width="100%" />
 </p>

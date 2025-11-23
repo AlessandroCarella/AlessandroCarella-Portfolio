@@ -1,8 +1,69 @@
 {
     "projectName": "Hackathon XAI",
-    "quickSummary": "Achived third place in a explainable AI hackathon.",
+    "quickSummary": "Hackathon project exploring Explainable AI techniques (LIME, SHAP, LORE) to understand black-box models in marketing uplift modeling, evaluating explanations across content, presentation, and user experience dimensions for diverse stakeholders.",
     "content": "Hackathon_XAI.html",
     "report": "REPORT Hackathon.pdf",
-    "collaborators": ["Rafael", "Sara"],
-    "repository": "https://github.com/AlessandroCarella/Hackaton-05-july-2024-pisa"
+    "collaborators": [
+        "https://www.linkedin.com/in/sara-hoxha/",
+        "https://www.linkedin.com/in/rafael-ignacio-urbina-hincapi%C3%A9-2ba11a214/"
+    ],
+    "repository": "https://github.com/AlessandroCarella/Hackaton-05-july-2024-pisa",
+    "skills": [
+        "Machine Learning",
+        "Explainable AI (XAI)",
+        "Python Programming",
+        "Data Science",
+        "Gradient Boosting",
+        "Model Evaluation",
+        "Data Preprocessing",
+        "Feature Engineering",
+        "Marketing Analytics",
+        "Uplift Modeling",
+        "Model Interpretability",
+        "Stakeholder Communication"
+    ],
+    "keywords": {
+        "technologies": [
+            "LIME",
+            "SHAP",
+            "LORE",
+            "Gradient Boosting",
+            "Random Forest",
+            "AdaBoost",
+            "SMOTE",
+            "Python",
+            "scikit-learn"
+        ],
+        "methodologies": [
+            "Explainable AI",
+            "Uplift Modeling",
+            "Cross-Validation",
+            "Hyperparameter Tuning",
+            "Feature Attribution",
+            "Model-Agnostic Explanations",
+            "Local Interpretability",
+            "Rule-Based Explanations",
+            "Class Imbalance Handling",
+            "Customer Segmentation"
+        ],
+        "domains": [
+            "Marketing",
+            "Customer Analytics",
+            "Campaign Optimization",
+            "Predictive Modeling",
+            "Business Intelligence"
+        ],
+        "evaluation_dimensions": [
+            "Correctness",
+            "Comprehensiveness",
+            "User Experience",
+            "Completeness",
+            "Continuity",
+            "Compactness",
+            "Accessibility",
+            "Composition",
+            "Coherence",
+            "Context"
+        ]
+    }
 }

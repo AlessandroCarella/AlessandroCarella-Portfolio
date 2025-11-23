@@ -1,0 +1,433 @@
+<p>
+    In an era where AI influences decision-making across numerous domains, the
+    <strong>lack of transparency in black-box models</strong> presents a
+    significant challenge to understanding and trusting their decisions. This
+    <a href="http://xai-hackathon.isti.cnr.it/"> hackathon </a>
+    project explores how <strong>Explainable AI (XAI)</strong> enables
+    comprehension of complex machine learning models and augments human
+    understanding of AI-driven decisions.
+</p>
+
+<p>
+    Our team implemented a
+    <strong>gradient boosting classifier for uplift modeling</strong> in
+    marketing campaigns and applied three XAI techniques,
+    <a
+        href="https://www.geeksforgeeks.org/artificial-intelligence/introduction-to-explainable-aixai-using-lime/"
+    >
+        <em>LIME</em>
+    </a>
+    ,
+    <a href="https://arxiv.org/abs/1805.10820"> <em>LORE</em> </a>
+    , and
+    <a
+        href="https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html"
+    >
+        <em>SHAP</em> </a
+    >, to uncover how the model arrives at its predictions. The project focuses
+    on identifying which customers are most likely to respond positively to
+    marketing promotions, categorizing them into <strong>four segments</strong>:
+    <em>Sure Things</em>, <em>Persuadables</em>, <em>Sleeping Dogs</em>, and
+    <em>Lost Causes</em>.
+</p>
+
+<p>
+    By evaluating these explanations across
+    <strong>three critical dimensions</strong>, content, presentation, and user
+    experience, we aimed to demonstrate how diverse XAI methods can serve
+    stakeholders with varying technical expertise, from executives to data
+    engineers.
+</p>
+
+<p>
+    Me and my team
+    <a
+        href="https://www.linkedin.com/posts/sara-hoxha_im-so-excited-to-share-that-my-team-and-activity-7241729852620361728-bRrw/"
+    >
+        <strong>achieved third place</strong>
+    </a>
+    while competing with other master and PhD students.
+</p>
+
+<h2>What I Learned</h2>
+<p>
+    This hackathon provided invaluable insights into the practical application
+    of Explainable AI and its critical role in modern machine learning
+    workflows.
+</p>
+
+<p>
+    I discovered that even
+    <strong
+        >high-performing models can make correct predictions for potentially
+        wrong reasons</strong
+    >. Through systematic analysis of 10,000 correctly classified instances, we
+    found that when considering only the top three features,
+    <strong>nearly half of the predictions</strong> (4,820 instances) might have
+    been correct but relied on unexpected feature combinations. This reinforced
+    the importance of not just achieving high accuracy but understanding the
+    reasoning behind model decisions.
+</p>
+
+<p>
+    The uplift modeling approach taught me the
+    <strong>importance of proper problem framing</strong>. By creating customer
+    segments based on treatment response patterns and addressing class imbalance
+    through <em>SMOTE</em>, I had additional proof that thoughtful data
+    preparation directly impacts model interpretability. The decision to
+    <strong>focus on "Persuadables"</strong>, customers who buy only when
+    receiving promotions, demonstrated how domain knowledge shapes both model
+    design and business value.
+</p>
+
+<p>
+    The hackathon emphasized
+    <strong>evaluating explainability along multiple dimensions</strong>.
+    <em>Correctness</em> and <em>comprehensiveness</em> ensure explanations
+    capture all relevant factors. <em>Continuity</em> validates that similar
+    customer profiles receive consistent explanations. <em>Compactness</em> and
+    <em>composition</em> affect how easily users can digest information.
+    <em>Context</em> and <em>coherence</em> determine whether explanations align
+    with real-world expectations. This evaluation framework showed me that
+    explainability is as much about user experience as it is about technical
+    accuracy.
+</p>
+
+<p>
+    Perhaps the most valuable lesson was understanding that
+    <strong>effective XAI must be tailored to its audience</strong>. Executives
+    need high-level insights for strategic decisions, marketing agents require
+    actionable customer insights, and data engineers need detailed technical
+    validation. By providing explanations suited to each user group's expertise
+    level, XAI transforms from a technical exercise into a practical tool that
+    drives trust and adoption across an organization.
+</p>
+
+<h2>Data Understanding & Preparation</h2>
+<p>
+    The dataset focused on
+    <strong>uplift modeling for marketing campaigns</strong>, with the primary
+    goal of identifying customers most likely to respond positively to
+    promotional offers. The analysis centered on two critical variables: the
+    <em>offer type</em> sent to customers and whether they ultimately made a
+    purchase (<em>conversion</em>).
+</p>
+
+<img
+    src="decision tree.png"
+    alt="Decision tree approach for categorization of customers"
+/>
+<p>
+    Using a decision tree approach, we categorized customers into
+    <strong>four distinct segments</strong> that form the foundation of uplift
+    modeling. <em>Sure Things</em> represent customers who purchase regardless
+    of promotional intervention. <em>Persuadables</em>
+    are the target segment, customers who only buy when receiving promotions.
+    <em>Sleeping Dogs</em> are counterintuitively harmed by promotions and are
+    less likely to purchase when contacted. <em>Lost Causes</em> will not
+    convert regardless of marketing efforts.
+</p>
+
+<p>
+    This segmentation revealed that
+    <u>marketing promotions should be targeted exclusively at Persuadables</u>,
+    as they are the only segment where treatment yields better outcomes than no
+    treatment. This insight drove the creation of our binary target variable
+    <em>"treat"</em>, indicating whether a customer should receive promotional
+    offers.
+</p>
+
+<p>
+    The initial dataset exhibited
+    <strong>significant class imbalance</strong> with 42,694 positive cases and
+    only 21,306 negative cases. To ensure robust model training and prevent bias
+    toward the majority class, we implemented the <em>SMOTE</em> (Synthetic
+    Minority Over-sampling Technique) algorithm. This approach synthetically
+    generated samples for the minority class, resulting in a
+    <strong>balanced distribution of 42,614 instances</strong> for each class,
+    providing a more reliable foundation for model development.
+</p>
+
+<p>
+    Categorical variables required transformation for model compatibility. The
+    <em>offer</em> column was encoded with "Buy One Get One" as 1, "Discount" as
+    -1, and other offers as 0. <em>Channel</em> variables were mapped with Web
+    as 1, Phone as 2, and other channels as 3. Geographic information in the
+    <em>zipcode</em> column was transformed with Suburban as 1, Urban as 2, and
+    other regions as 3. This systematic encoding preserved ordinal relationships
+    where appropriate while ensuring numerical compatibility with machine
+    learning algorithms.
+</p>
+
+<h2>Black-Box Model Implementation</h2>
+<p>
+    To predict customer treatment eligibility, we evaluated
+    <strong>three ensemble learning algorithms</strong>:
+    <em>Gradient Boosting</em>, <em>Random Forest</em>, and <em>AdaBoost</em>.
+    Each model underwent rigorous hyperparameter optimization using 7-fold
+    cross-validation to identify optimal configurations while preventing
+    overfitting.
+</p>
+
+<p>
+    <strong
+        >Gradient Boosting emerged as the superior performer with 79.3%
+        accuracy</strong
+    >, configured with a learning rate of 0.5, maximum depth of 10, subsample
+    ratio of 1, and 75 estimators. Random Forest achieved 72.5% accuracy using
+    50 estimators, maximum depth of 10, and considering 5 features at each
+    split. AdaBoost demonstrated the lowest performance at 66.4% accuracy with a
+    learning rate of 0.9 and 15 estimators.
+</p>
+
+<p>
+    The Gradient Boosting classifier's
+    <strong>balanced performance across both classes</strong>
+    (81% precision and 77% recall for class 0, 78% precision and 82% recall for
+    class 1) made it the ideal candidate for explainability analysis. Its
+    sequential learning approach and ability to capture complex patterns in
+    customer behavior provided a robust foundation for understanding feature
+    importance and decision-making processes.
+</p>
+
+<p>
+    The selected model demonstrated consistent performance with macro and
+    weighted averages of 79% across precision, recall, and F1-score metrics.
+    This balanced performance indicated the model was neither overfitting to one
+    class nor showing bias toward majority predictions, making it an excellent
+    subject for explainability analysis where understanding nuanced decision
+    boundaries is crucial.
+</p>
+
+<h2>XAI Methods Implementation</h2>
+<p>
+    To achieve comprehensive understanding of our black-box model, we
+    implemented <strong>three complementary explainability techniques</strong>,
+    each offering unique perspectives on model decision-making processes.
+</p>
+
+<p>
+    <strong>SHAP provides theoretically grounded explanations</strong> based on
+    game theory principles. It calculates feature contributions by considering
+    all possible feature combinations, ensuring consistent and fair attribution.
+    The implementation revealed that for many instances,
+    <strong>a single feature predominantly drove predictions</strong>,
+    demonstrated by numerous instances having only one non-zero SHAP value. The
+    <em>beeswarm plots</em> generated by SHAP offer intuitive visualizations
+    showing both feature importance and directionality of influence, making it
+    ideal for high-level stakeholders seeking quick insights.
+</p>
+
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="shap_792.png"
+        alt="Instance 792"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="shap_10301.png"
+        alt="Instance 10301"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<p>
+    <strong>LIME creates locally faithful approximations</strong> of the
+    black-box model by training interpretable surrogate models around specific
+    predictions. Our implementation typically generated explanations using seven
+    features, providing <strong>detailed local insights</strong> into individual
+    customer classifications. The <em>bar chart visualizations</em> clearly
+    indicate positive and negative feature contributions, making it particularly
+    valuable for understanding specific customer segments and informing targeted
+    marketing strategies.
+</p>
+
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="LIMEinstance792.png"
+        alt="Instance 792"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="LIMEinstance10301.png"
+        alt="Instance 10301"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<p>
+    <strong>LORE generates decision rules</strong> that explain individual
+    predictions through logical conditions. Analysis of 10,000 explanations
+    revealed rule lengths averaging six conditions, with the longest containing
+    eleven rules and the shortest just two. This
+    <em>rule-based format</em> provides transparent logic chains showing exactly
+    which feature value ranges led to specific predictions. LORE excels at
+    helping technical users identify logical inconsistencies and verify model
+    reasoning, though its effectiveness depends on rule complexity remaining
+    manageable.
+</p>
+
+<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 10px">
+    <img
+        src="LOREinstance792.png"
+        alt="Instance 792"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+    <img
+        src="LOREinstance10301.png"
+        alt="Instance 10301"
+        style="flex: 1 1 40%; min-width: 200px; height: auto; object-fit: cover"
+    />
+</div>
+
+<p>
+    The <strong>three methods proved highly complementary</strong>. SHAP
+    identified the most influential features globally and locally. LIME revealed
+    how specific feature values affected individual predictions. LORE provided
+    explicit logical rules for validation and debugging. Together, they offered
+    multiple lenses through which to understand model behavior, addressing the
+    needs of diverse stakeholders.
+</p>
+
+<h2>Evaluation Framework</h2>
+<p>
+    We assessed explainability methods across
+    <strong>three critical dimensions</strong>, content, presentation, and user
+    experience, ensuring comprehensive evaluation of both technical accuracy and
+    practical usability.
+</p>
+
+<p>
+    <em>Correctness</em> and <em>comprehensiveness</em> examined whether
+    explanations captured all relevant factors influencing predictions. For
+    uplift modeling, this included purchase history, acquisition channel,
+    recency, past promotion usage, and geographic classification.
+    <em>Completeness</em> verified that highlighted features sufficiently
+    explained decisions without omitting crucial factors.
+    <em>Continuity testing</em> compared similar customer profiles (instances
+    792 and 10301) to ensure consistent explanations for analogous cases.
+    <strong>LIME and SHAP both demonstrated strong continuity</strong>,
+    identifying similar feature importance patterns for customers with
+    comparable characteristics.
+</p>
+
+<p>
+    <em>Compactness</em> measured explanation conciseness.
+    <strong>SHAP showed exceptional compactness</strong> with only one non-zero
+    value for specific instances, indicating single dominant features. LIME
+    explanations typically involved seven features, providing moderate
+    compactness while maintaining informativeness. LORE rules averaged six
+    conditions, with consistent median and mode values across 10,000
+    explanations. <em>Composition analysis</em> evaluated visualization formats:
+    SHAP's beeswarm plots effectively showed feature contributions, LIME's bar
+    charts clearly indicated directional influence, and LORE's decision rules
+    provided logical walkthrough of reasoning.
+</p>
+
+<p>
+    <em>Coherence evaluation</em> analyzed whether explanations aligned with
+    human intuition. Testing on a customer with web channel, median purchase
+    history, no referral, recent purchase, BOGO (Buy One, Get One) usage, no
+    discount usage, and urban location confirmed that
+    <strong
+        >all three methods produced explanations consistent with qualitative
+        assessment</strong
+    >. <em>Context relevance</em> ensured explanations addressed stakeholder
+    needs, providing actionable insights for marketing strategy, model
+    debugging, and business decision-making. Visual clarity through plots and
+    rules enhanced interpretability across technical expertise levels.
+</p>
+
+<h2>Research Insights</h2>
+<p>
+    A critical investigation examined instances where
+    <strong
+        >models make correct predictions but potentially based on inappropriate
+        reasoning</strong
+    >. By analyzing 10,000 correctly classified instances, we identified top
+    features most frequently appearing in explanations. LIME and SHAP both
+    highlighted <em>is_referral</em>, <em>used_discount</em>, <em>channel</em>,
+    <em>used_bogo</em>, and <em>zip_code</em> as primary decision drivers with
+    frequencies ranging from 4,820 to 5,750 appearances.
+</p>
+
+<p>
+    Iteratively reducing the feature set revealed
+    <strong>concerning patterns</strong>. When considering only top three
+    features, 4,820 instances were correctly classified but without relying on
+    features like zip_code or specific BOGO/discount patterns. This suggests
+    <strong
+        >nearly half of correct predictions might stem from incomplete feature
+        consideration</strong
+    >. LORE analysis on a smaller sample of 250 instances identified
+    <em>history</em>, <em>recency</em>, and <em>used_discount</em> as most
+    frequent rule components, though rule-based analysis proved less suitable
+    for this specific investigation.
+</p>
+
+<p>
+    <strong
+        >Multiple explainability methods significantly enhance usability</strong
+    >
+    by addressing three key dimensions. <em>Broad accessibility</em> ensures
+    both technical and non-technical stakeholders find suitable explanation
+    formats. SHAP provides simple summary plots for executives alongside
+    theoretically grounded values for data scientists. LIME offers
+    probability-based visualizations accessible to marketing professionals. LORE
+    delivers logical rules familiar to engineers and analysts.
+</p>
+
+<p>
+    <em>Diverse visualization properties</em> cater to different cognitive
+    preferences. Rule-based visualizations suit users comfortable with logical
+    reasoning. SHAP's dependence plots and force diagrams reveal global patterns
+    and feature interactions. LIME's bar charts provide straightforward
+    contribution indicators.
+    <strong>Different error detection aspects emerge from each method</strong>:
+    SHAP identifies potential biases through feature importance patterns, LIME
+    reveals local anomalies in specific predictions, and LORE exposes logical
+    inconsistencies through contradictory rules.
+</p>
+
+<h2>Conclusions & Impact</h2>
+<p>
+    This hackathon project successfully demonstrated that
+    <strong
+        >Explainable AI is not merely a technical enhancement but a fundamental
+        requirement</strong
+    >
+    for deploying trustworthy machine learning systems. By implementing LIME,
+    SHAP, and LORE on a gradient boosting model for uplift modeling, we created
+    a comprehensive framework for understanding black-box model decisions.
+</p>
+
+<p>
+    The <strong>multi-method approach proved essential</strong> for thorough
+    model understanding. SHAP provided intuitive global insights ideal for
+    strategic decision-makers. LIME delivered actionable local explanations
+    supporting tactical marketing decisions. LORE offered detailed logical
+    validation enabling technical quality assurance. Each method addressed
+    distinct user needs while contributing to holistic model transparency.
+</p>
+
+<p>
+    The research revealed critical insights about model reliability.
+    <strong
+        >Nearly half of correct predictions potentially relied on incomplete
+        feature consideration</strong
+    >, highlighting that
+    <u>accuracy metrics alone provide insufficient assurance of model quality</u
+    >. Explainability methods enable detection of such issues, supporting more
+    robust model development and deployment practices.
+</p>
+
+<p>
+    Ultimately, this hackathon reinforced that
+    <strong
+        >transparency and performance are not competing objectives but
+        complementary requirements</strong
+    >
+    for responsible AI. By making model reasoning accessible and understandable,
+    we enable organizations to leverage AI's capabilities while maintaining
+    accountability, fairness, and trust in automated decision-making systems.
+</p>

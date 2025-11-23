@@ -43,7 +43,7 @@
         "API Integration",
         "Geocoding"
     ],
-    "keyWords": {
+    "keywords": {
         "programming_languages": ["SQL", "MDX", "Python"],
         "libraries_and_frameworks": ["pandas", "matplotlib", "seaborn"],
         "tools_and_platforms": [
