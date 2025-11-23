@@ -41,7 +41,7 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
         doc.querySelectorAll("i").forEach(
             (el) => (el.className = "text-italic")
         );
-        
+
         doc.querySelectorAll("em").forEach(
             (el) => (el.style.fontStyle = "italic")
         );
@@ -86,7 +86,7 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
     };
 
     const { introContent, sections } = parseHtmlIntoSections(htmlContent);
-
+    console.log(sections[0]);
     return (
         <main className="project-main-content">
             <div className="project-content-wrapper">
@@ -105,7 +105,10 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
                     <CollapsibleSection
                         key={`section-${index}`}
                         title={section.title}
-                        defaultOpen={index === 0}
+                        defaultOpen={
+                            section.title.toLowerCase().includes("what") &&
+                            section.title.toLowerCase().includes("learned")
+                        }
                     >
                         <div
                             dangerouslySetInnerHTML={{

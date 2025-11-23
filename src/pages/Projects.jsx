@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useProjects } from "../hooks/useProjects.js";
-import { filterProjects, getAllCategories } from "../components/utils/projectUtils.js";
+import {
+    filterProjects,
+    getAllCategories,
+} from "../components/utils/projectUtils.js";
 import ProjectGrid from "../components/projects/ProjectGrid";
 import ProjectFilters from "../components/projects/ProjectFilters";
 import LoadingState from "../components/projects/LoadingState";
@@ -15,23 +18,6 @@ const Projects = () => {
     const [filteredProjects, setFilteredProjects] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("all");
-    const [categoryColors, setCategoryColors] = useState({});
-
-    // Load category colors from config
-    useEffect(() => {
-        const loadCategoryColors = async () => {
-            try {
-                const response = await fetch("/projects/projects-config.json");
-                if (response.ok) {
-                    const config = await response.json();
-                    setCategoryColors(config.categoryColors || {});
-                }
-            } catch (err) {
-                console.error("Error loading category colors:", err);
-            }
-        };
-        loadCategoryColors();
-    }, []);
 
     // Filter projects when dependencies change
     useEffect(() => {
@@ -80,10 +66,7 @@ const Projects = () => {
             {filteredProjects.length === 0 ? (
                 <EmptyState />
             ) : (
-                <ProjectGrid
-                    projects={filteredProjects}
-                    categoryColors={categoryColors}
-                />
+                <ProjectGrid projects={filteredProjects} />
             )}
         </div>
     );

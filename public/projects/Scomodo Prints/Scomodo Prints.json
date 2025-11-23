@@ -1,0 +1,64 @@
+{
+    "projectName": "Scomodo Prints",
+    "liveVersion":"https://scomodo-prints.pages.dev/",
+    "quickSummary": "Interactive web-based visualization toolkit for urban research in Bari, featuring a D3.js survey dashboard with multiple chart types and a Leaflet.js mapping tool, both producing publication-ready SVG exports for data journalism and community analysis.",
+    "content": "Scomodo Prints.html",
+    "skills": [
+        "D3.js",
+        "Leaflet.js",
+        "JavaScript",
+        "Geographic data handling",
+        "UI/UX design",
+        "Color theory and accessibility",
+        "Web-based tool development",
+        "Spatial data analysis",
+        "Collaborative research tools",
+        "Data journalism"
+    ],
+    "keywords": {
+        "technologies": [
+            "D3.js",
+            "Leaflet.js",
+            "JavaScript",
+            "SVG",
+            "HTML",
+            "CSS",
+            "JSON",
+            "GeoJSON",
+            "Web APIs",
+            "Vector graphics"
+        ],
+        "visualization-types": [
+            "bar charts",
+            "pie charts",
+            "treemaps",
+            "correlation heatmaps",
+            "cartographic maps"
+        ],
+        "domains": [
+            "urban research",
+            "data journalism",
+            "social science",
+            "community analysis",
+            "spatial analysis",
+            "geographic research",
+            "independent media"
+        ],
+        "features": [
+            "publication-ready exports",
+            "print accessibility",
+            "real-time preview",
+            "responsive design",
+            "label collision detection",
+            "font embedding",
+            "modular architecture"
+        ],
+        "context": [
+            "Bari, Italy",
+            "Scomodo association",
+            "festival exhibition",
+            "community spaces research",
+            "urban amenities mapping"
+        ]
+    }
+}

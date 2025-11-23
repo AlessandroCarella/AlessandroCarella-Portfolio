@@ -6,23 +6,11 @@ import { getPrimaryCategory, getProjectLinks } from "../utils/projectUtils";
 /**
  * ProjectGrid component - Displays grid of project cards
  */
-const ProjectGrid = ({ projects, categoryColors }) => {
+const ProjectGrid = ({ projects }) => {
     const navigate = useNavigate();
 
     const handleCardClick = (project) => {
         navigate(`/projects/${project.slug}`);
-    };
-
-    const getProjectColors = (category) => {
-        return (
-            categoryColors[category] ||
-            categoryColors.default || {
-                cardBackground: "#1a2a2e",
-                titleColor: "#ffffff",
-                overlayGradientStart: "rgba(0, 0, 0, 0.1)",
-                overlayGradientEnd: "rgba(0, 0, 0, 0.5)",
-            }
-        );
     };
 
     return (
@@ -40,7 +28,12 @@ const ProjectGrid = ({ projects, categoryColors }) => {
                     project.folderPath
                 );
 
-                const colors = getProjectColors(primaryCategory);
+                const colors = {
+                    cardBackground: "#1a2a2e",
+                    titleColor: "#ffffff",
+                    overlayGradientStart: "rgba(0, 0, 0, 0.1)",
+                    overlayGradientEnd: "rgba(0, 0, 0, 0.5)",
+                };
 
                 return (
                     <div
