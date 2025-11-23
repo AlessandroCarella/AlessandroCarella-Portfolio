@@ -3,6 +3,7 @@ import ProjectSidebar from "./ProjectSidebar";
 import ProjectMainContent from "./ProjectMainContent";
 import PDFOverlay from "../PDFOverlay";
 import "../../pages/styles/ProjectPage.css";
+import "../styles/Carousel.css";
 
 /**
  * ProjectContent component - Main container for project content
@@ -33,7 +34,6 @@ const ProjectContent = ({
                 if (!configResponse.ok) {
                     throw new Error("Failed to load projects configuration");
                 }
-                console.log(configResponse)
                 const config = await configResponse.json();
                 // Find this project's config
                 const projectConfig = config.find(

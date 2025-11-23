@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import CollapsibleSection from "../CollapsibleSection";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import "../styles/carousel.css"
 
 /**
  * ProjectMainContent component - Displays the main content area with parsed HTML sections
@@ -132,13 +130,51 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
 
             const prevBtn = document.createElement("button");
             prevBtn.className = "carousel-btn carousel-btn-prev";
-            prevBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>`;
+            prevBtn.type = "button";
             prevBtn.setAttribute("aria-label", "Previous image");
+
+            const prevIcon = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg"
+            );
+            prevIcon.setAttribute("width", "24");
+            prevIcon.setAttribute("height", "24");
+            prevIcon.setAttribute("viewBox", "0 0 24 24");
+            prevIcon.setAttribute("fill", "none");
+            prevIcon.setAttribute("stroke", "currentColor");
+            prevIcon.setAttribute("stroke-width", "2");
+            prevIcon.style.pointerEvents = "none";
+            const prevPolyline = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "polyline"
+            );
+            prevPolyline.setAttribute("points", "15 18 9 12 15 6");
+            prevIcon.appendChild(prevPolyline);
+            prevBtn.appendChild(prevIcon);
 
             const nextBtn = document.createElement("button");
             nextBtn.className = "carousel-btn carousel-btn-next";
-            nextBtn.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>`;
+            nextBtn.type = "button";
             nextBtn.setAttribute("aria-label", "Next image");
+
+            const nextIcon = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "svg"
+            );
+            nextIcon.setAttribute("width", "24");
+            nextIcon.setAttribute("height", "24");
+            nextIcon.setAttribute("viewBox", "0 0 24 24");
+            nextIcon.setAttribute("fill", "none");
+            nextIcon.setAttribute("stroke", "currentColor");
+            nextIcon.setAttribute("stroke-width", "2");
+            nextIcon.style.pointerEvents = "none";
+            const nextPolyline = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "polyline"
+            );
+            nextPolyline.setAttribute("points", "9 18 15 12 9 6");
+            nextIcon.appendChild(nextPolyline);
+            nextBtn.appendChild(nextIcon);
 
             controls.appendChild(prevBtn);
             controls.appendChild(nextBtn);
@@ -187,14 +223,12 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
                     indicatorButtons[currentIndex].classList.add("active");
                 }
 
-                // Smooth scroll to the active slide
-                const slideWidth = slides[currentIndex].offsetWidth;
-                carouselTrack.style.transform = `translateX(-${
-                    currentIndex * slideWidth
-                }px)`;
+                // Smooth scroll to the active slide - use percentage for consistency
+                const transformValue = `translateX(-${currentIndex * 100}%)`;
+                carouselTrack.style.transform = transformValue;
             };
 
-            // Navigation handlers
+            // Navigation handlers - simplified
             const goToNext = () => {
                 const newIndex = (currentIndex + 1) % slides.length;
                 updateCarousel(newIndex);
@@ -206,13 +240,65 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
                 updateCarousel(newIndex);
             };
 
-            // Attach event listeners
-            nextBtn.addEventListener("click", goToNext);
-            prevBtn.addEventListener("click", goToPrev);
+            // Attach event listeners - use addEventListener for reliable click handling
+            prevBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                goToPrev();
+            });
+            nextBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                goToNext();
+            });
+
+            prevBtn.addEventListener("mousedown", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            nextBtn.addEventListener("mousedown", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            prevBtn.addEventListener("touchstart", (e) => {
+                e.stopPropagation();
+            });
+
+            prevBtn.addEventListener("touchend", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                goToPrev();
+            });
+
+            nextBtn.addEventListener("touchstart", (e) => {
+                e.stopPropagation();
+            });
+
+            nextBtn.addEventListener("touchend", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                goToNext();
+            });
 
             // Indicator click handlers
             indicatorButtons.forEach((indicator, index) => {
-                indicator.addEventListener("click", () => {
+                indicator.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    updateCarousel(index);
+                });
+                indicator.addEventListener("mousedown", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+                indicator.addEventListener("touchstart", (e) => {
+                    e.stopPropagation();
+                });
+                indicator.addEventListener("touchend", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                     updateCarousel(index);
                 });
             });
@@ -248,21 +334,15 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
                 }
             };
 
-            // Handle window resize
-            let resizeTimeout;
-            const handleResize = () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(() => {
-                    const slideWidth = slides[currentIndex].offsetWidth;
-                    carouselTrack.style.transform = `translateX(-${
-                        currentIndex * slideWidth
-                    }px)`;
-                }, 100);
+            // Cleanup function - store references for removal
+            const cleanupData = {
+                nextBtn,
+                prevBtn,
+                goToNext,
+                goToPrev,
+                carousel,
             };
 
-            window.addEventListener("resize", handleResize);
-
-            // Clean up on unmount
             carousel.dataset.carouselId = `carousel-${carouselIndex}`;
         });
 
@@ -270,6 +350,8 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
         return () => {
             const carousels = contentRef.current?.querySelectorAll(".carousel");
             carousels?.forEach((carousel) => {
+                // Remove initialized class so carousel can be re-initialized
+                carousel.classList.remove("carousel-initialized");
                 const prevBtn = carousel.querySelector(".carousel-btn-prev");
                 const nextBtn = carousel.querySelector(".carousel-btn-next");
                 if (prevBtn) prevBtn.replaceWith(prevBtn.cloneNode(true));
