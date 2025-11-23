@@ -38,6 +38,10 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
         doc.querySelectorAll("strong").forEach(
             (el) => (el.className = "text-emphasis")
         );
+        doc.querySelectorAll("i").forEach(
+            (el) => (el.className = "text-italic")
+        );
+        
         doc.querySelectorAll("em").forEach(
             (el) => (el.style.fontStyle = "italic")
         );
@@ -86,13 +90,6 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
     return (
         <main className="project-main-content">
             <div className="project-content-wrapper">
-                {/* Quick Summary */}
-                {projectData.quickSummary && (
-                    <div className="project-intro">
-                        <p className="paragraph">{projectData.quickSummary}</p>
-                    </div>
-                )}
-
                 {/* Intro Content */}
                 {introContent.length > 0 && (
                     <div

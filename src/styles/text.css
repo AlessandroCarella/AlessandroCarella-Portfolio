@@ -80,8 +80,12 @@
 
 /* Emphasis text */
 .text-emphasis {
-    color: #58a6ff;
-    font-weight: 500;
+    /* color: #58a6ff; */
+    font-weight: 800;
+}
+
+.text-italic{
+    font-weight: 600;
 }
 
 .text-highlight {

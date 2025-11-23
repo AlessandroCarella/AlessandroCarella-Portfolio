@@ -61,13 +61,33 @@ const ProjectContent = ({
                     if (htmlResponse.ok) {
                         let htmlText = await htmlResponse.text();
 
+                        // Extract image names from HTML content
+                        const imgRegex = /src=["']([^"']+)["']/g;
+                        let match;
+                        const extractedImages = new Set();
+
+                        while ((match = imgRegex.exec(htmlText)) !== null) {
+                            const src = match[1];
+                            // Only process relative paths (not absolute URLs or already processed paths)
+                            if (
+                                !src.startsWith("http") &&
+                                !src.startsWith("/") &&
+                                !src.startsWith("data:")
+                            ) {
+                                extractedImages.add(src);
+                            }
+                        }
+
                         // Replace image paths with correct absolute paths
-                        // Use images from config
-                        projectConfig.images.forEach((imageName) => {
+                        extractedImages.forEach((imageName) => {
                             const imagePath = `${basePath}/${imageName}`;
-                            // Replace src attributes pointing to this image
+                            // Escape special regex characters in the image name
+                            const escapedImageName = imageName.replace(
+                                /[.*+?^${}()|[\]\\]/g,
+                                "\\$&"
+                            );
                             const regex = new RegExp(
-                                `src=["']${imageName}["']`,
+                                `src=["']${escapedImageName}["']`,
                                 "g"
                             );
                             htmlText = htmlText.replace(
