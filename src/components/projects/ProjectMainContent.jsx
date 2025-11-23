@@ -36,6 +36,26 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
         doc.querySelectorAll("a").forEach((el) => (el.className = "text-link"));
         doc.querySelectorAll("img").forEach((el) => {
             el.className = "project-image";
+
+            // Wrap image in figure with figcaption if it has alt text
+            const altText = el.getAttribute("alt");
+            if (
+                altText &&
+                altText.trim() &&
+                !el.parentElement.classList.contains("carousel-slide")
+            ) {
+                const figure = doc.createElement("figure");
+                figure.className = "project-image-figure";
+
+                const figcaption = doc.createElement("figcaption");
+                figcaption.className = "project-image-caption";
+                figcaption.textContent = altText;
+
+                // Replace img with figure containing img and caption
+                el.parentNode.replaceChild(figure, el);
+                figure.appendChild(el);
+                figure.appendChild(figcaption);
+            }
         });
         doc.querySelectorAll("strong").forEach(
             (el) => (el.className = "text-emphasis")
@@ -115,7 +135,20 @@ const ProjectMainContent = ({ htmlContent, projectData }) => {
                 const slide = document.createElement("div");
                 slide.className = "carousel-slide";
                 if (index === 0) slide.classList.add("active");
-                slide.appendChild(img.cloneNode(true));
+
+                // Clone the image
+                const clonedImg = img.cloneNode(true);
+                slide.appendChild(clonedImg);
+
+                // Add caption if image has alt text
+                const altText = img.getAttribute("alt");
+                if (altText && altText.trim()) {
+                    const caption = document.createElement("div");
+                    caption.className = "carousel-caption";
+                    caption.textContent = altText;
+                    slide.appendChild(caption);
+                }
+
                 carouselTrack.appendChild(slide);
             });
 

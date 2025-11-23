@@ -83,6 +83,7 @@ const ProjectSidebar = ({ projectData, onOpenPDF }) => {
     const formatCategoryName = (category) => {
         return category
             .replace(/_/g, " ")
+            .replace(/-/g, " ")
             .replace(/\b\w/g, (l) => l.toUpperCase());
     };
 
@@ -300,7 +301,18 @@ const ProjectSidebar = ({ projectData, onOpenPDF }) => {
                                 <SkillSection
                                     key={`keyword-${category}-${index}`}
                                     sectionName={formatCategoryName(category)}
-                                    skills={items}
+                                    skills={items.map((str) =>
+                                        str
+                                            .split(" ")
+                                            .map(
+                                                (word) =>
+                                                    word
+                                                        .charAt(0)
+                                                        .toUpperCase() +
+                                                    word.slice(1)
+                                            )
+                                            .join(" ")
+                                    )}
                                     colors={colors}
                                     onSkillClick={() => {}}
                                     onSkillHover={() => {}}
