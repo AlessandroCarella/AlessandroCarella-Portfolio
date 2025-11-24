@@ -8,6 +8,11 @@ const ImageOverlay = ({ imageSrc, onClose, alt = "Image" }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
 
+    // Safety check - don't render if no valid image source
+    if (!imageSrc || imageSrc.trim() === "") {
+        return null;
+    }
+
     const handleOverlayClick = (e) => {
         if (e.target.className === "image-overlay") {
             onClose();

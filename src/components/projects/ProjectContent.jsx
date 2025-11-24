@@ -190,7 +190,7 @@ const ProjectContent = ({
             )}
 
             {/* Image Overlay */}
-            {activeImage && (
+            {activeImage && activeImage.src && (
                 <ImageOverlay
                     imageSrc={activeImage.src}
                     alt={activeImage.alt}
