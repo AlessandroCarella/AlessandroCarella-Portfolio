@@ -1,0 +1,215 @@
+/* Image Overlay */
+.image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.image-overlay-content {
+    width: 95%;
+    height: 95%;
+    max-width: 1600px;
+    max-height: 90vh;
+    background: #1c1c1c;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Header */
+.image-overlay-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: #252525;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.image-overlay-title {
+    margin: 0;
+    color: #f0f6fc;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.image-overlay-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.zoom-level {
+    color: #c9d1d9;
+    font-size: 0.9rem;
+    font-weight: 500;
+    min-width: 50px;
+    text-align: center;
+}
+
+.image-control-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #c9d1d9;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.image-control-button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.image-control-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.image-control-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.image-close-button {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+    margin-left: 0.5rem;
+}
+
+.image-close-button:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+/* Image Viewer Container */
+.image-viewer-container {
+    flex: 1;
+    overflow: hidden;
+    background: #0f151b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    user-select: none;
+}
+
+.image-viewer {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.2s ease-out;
+    transform-origin: center center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .image-overlay-content {
+        width: 98%;
+        height: 98%;
+    }
+
+    .image-overlay-header {
+        padding: 0.875rem 1rem;
+    }
+
+    .image-overlay-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .image-overlay-header {
+        padding: 0.75rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .image-overlay-title {
+        font-size: 1rem;
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+    .image-overlay-controls {
+        flex: 1 1 100%;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .image-control-button {
+        padding: 0.4rem;
+    }
+
+    .zoom-level {
+        font-size: 0.85rem;
+        min-width: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-overlay-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .image-overlay-header {
+        padding: 0.75rem;
+    }
+
+    .image-overlay-title {
+        font-size: 0.95rem;
+    }
+
+    .image-overlay-controls {
+        gap: 0.4rem;
+    }
+
+    .image-control-button {
+        padding: 0.35rem;
+    }
+
+    .zoom-level {
+        font-size: 0.8rem;
+        min-width: 40px;
+    }
+}

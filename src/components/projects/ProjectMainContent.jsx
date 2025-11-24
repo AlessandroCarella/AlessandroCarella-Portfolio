@@ -1,15 +1,48 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import CollapsibleSection from "../CollapsibleSection";
 import useCarousel from "../hooks/useCarousel.js";
 
 /**
  * ProjectMainContent component - Displays the main content area with parsed HTML sections
  */
-const ProjectMainContent = ({ htmlContent, projectData }) => {
+const ProjectMainContent = ({ htmlContent, projectData, onImageClick }) => {
     const contentRef = useRef(null);
 
     // Initialize carousels using the custom hook
     useCarousel(contentRef, htmlContent);
+
+    // Add click handlers to images after content is rendered
+    useEffect(() => {
+        if (!contentRef.current || !onImageClick) return;
+
+        const images = contentRef.current.querySelectorAll("img.project-image");
+
+        const handleImageClick = (e) => {
+            const img = e.currentTarget;
+            const src = img.getAttribute("src");
+            const alt = img.getAttribute("alt") || "Project Image";
+
+            // Don't open overlay for carousel images
+            if (img.closest(".carousel-slide")) return;
+
+            onImageClick(src, alt);
+        };
+
+        images.forEach((img) => {
+            // Don't add click handler to carousel images
+            if (!img.closest(".carousel-slide")) {
+                img.style.cursor = "pointer";
+                img.addEventListener("click", handleImageClick);
+            }
+        });
+
+        // Cleanup
+        return () => {
+            images.forEach((img) => {
+                img.removeEventListener("click", handleImageClick);
+            });
+        };
+    }, [htmlContent, onImageClick]);
 
     // Parse HTML content into sections based on headings
     const parseHtmlIntoSections = (html) => {

@@ -186,6 +186,13 @@
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Clickable image hover effect */
+.project-image[style*="cursor: pointer"]:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
 }
 
 .project-image-caption {

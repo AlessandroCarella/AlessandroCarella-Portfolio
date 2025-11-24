@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProjectSidebar from "./ProjectSidebar";
 import ProjectMainContent from "./ProjectMainContent";
 import PDFOverlay from "../PDFOverlay";
+import ImageOverlay from "../ImageOverlay";
 import "../../pages/styles/ProjectPage.css";
 import "../styles/Carousel.css";
 
@@ -19,6 +20,7 @@ const ProjectContent = ({
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [activePDF, setActivePDF] = useState(null);
+    const [activeImage, setActiveImage] = useState(null);
 
     useEffect(() => {
         const loadProjectData = async () => {
@@ -124,6 +126,14 @@ const ProjectContent = ({
         setActivePDF(null);
     };
 
+    const handleOpenImage = (imageSrc, alt) => {
+        setActiveImage({ src: imageSrc, alt: alt || "Project Image" });
+    };
+
+    const handleCloseImage = () => {
+        setActiveImage(null);
+    };
+
     if (loading) {
         return (
             <div className="loading-message">
@@ -160,6 +170,7 @@ const ProjectContent = ({
                 <ProjectMainContent
                     htmlContent={htmlContent}
                     projectData={projectData}
+                    onImageClick={handleOpenImage}
                 />
 
                 {/* Sidebar */}
@@ -175,6 +186,15 @@ const ProjectContent = ({
                     pdfPath={activePDF.path}
                     title={activePDF.type}
                     onClose={handleClosePDF}
+                />
+            )}
+
+            {/* Image Overlay */}
+            {activeImage && (
+                <ImageOverlay
+                    imageSrc={activeImage.src}
+                    alt={activeImage.alt}
+                    onClose={handleCloseImage}
                 />
             )}
         </div>
