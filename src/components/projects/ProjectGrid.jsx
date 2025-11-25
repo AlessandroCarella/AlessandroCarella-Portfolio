@@ -28,13 +28,6 @@ const ProjectGrid = ({ projects }) => {
                     project.folderPath
                 );
 
-                const colors = {
-                    cardBackground: "#1a2a2e",
-                    titleColor: "#ffffff",
-                    overlayGradientStart: "rgba(0, 0, 0, 0.1)",
-                    overlayGradientEnd: "rgba(0, 0, 0, 0.5)",
-                };
-
                 return (
                     <div
                         key={project.id}
@@ -53,7 +46,6 @@ const ProjectGrid = ({ projects }) => {
                             presentationLink={links.presentationLink}
                             liveVersionLink={links.liveVersionLink}
                             classNotesLink={links.classNotesLink}
-                            colors={colors}
                         />
                     </div>
                 );
