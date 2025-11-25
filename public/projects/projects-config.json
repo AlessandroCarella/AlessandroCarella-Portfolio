@@ -42,10 +42,10 @@
         "categories": ["thesis", "web development"]
     },
     {
-        "slug": "business-process-mining",
+        "slug": "business-process-modeling",
         "folder": "Business Process Modeling",
-        "jsonFile": "Business_Process_Mining.json",
-        "htmlFile": "Business_Process_Mining.html",
+        "jsonFile": "Business_Process_Modeling.json",
+        "htmlFile": "Business_Process_Modeling.html",
         "pdfFiles": {
             "report": "REPORT business processes modeling.pdf"
         },
