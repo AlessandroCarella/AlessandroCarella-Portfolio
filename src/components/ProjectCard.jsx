@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Github, FileText, Globe, Presentation } from "lucide-react";
+import { SiNotion } from "react-icons/si";
 import "./styles/ProjectCard.css";
 
 const ProjectCard = ({
@@ -10,6 +11,7 @@ const ProjectCard = ({
     githubLink,
     presentationLink,
     liveVersionLink,
+    classNotesLink,
     colors = {
         cardBackground: "#ffffff",
         titleColor: "#ffffff",
@@ -154,6 +156,26 @@ const ProjectCard = ({
                         >
                             <Globe className="button-icon" size={16} />
                             Live Demo
+                        </a>
+                    )}
+
+                    {classNotesLink && (
+                        <a
+                            href={classNotesLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="action-button"
+                            style={{
+                                "--btn-bg": colors.buttonBackground,
+                                "--btn-border": colors.buttonBorder,
+                                "--btn-text": colors.buttonText,
+                                "--btn-hover-bg": colors.buttonHoverBackground,
+                                "--btn-hover-border": colors.buttonHoverBorder,
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <SiNotion className="button-icon" size={16} />
+                            Class Notes
                         </a>
                     )}
                 </div>

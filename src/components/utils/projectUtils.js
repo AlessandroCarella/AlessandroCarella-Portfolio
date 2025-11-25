@@ -26,7 +26,8 @@ export const getProjectLinks = (projectConfig, projectData, folderPath) => {
         pdfLink: null,
         githubLink: null,
         presentationLink: null,
-        liveVersionLink:null
+        liveVersionLink:null,
+        classNotesLink:null
     };
 
     // Get report PDF from config
@@ -47,6 +48,11 @@ export const getProjectLinks = (projectConfig, projectData, folderPath) => {
     // Get Live version link from project JSON data
     if (projectData && projectData.liveVersion) {
         links.liveVersionLink = projectData.liveVersion;
+    }
+    
+    // Get Class notes link from project JSON data
+    if (projectData && projectData.classNotes) {
+        links.classNotesLink = projectData.classNotes;
     }
 
     return links;

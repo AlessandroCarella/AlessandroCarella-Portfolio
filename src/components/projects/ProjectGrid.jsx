@@ -52,6 +52,7 @@ const ProjectGrid = ({ projects }) => {
                             githubLink={links.githubLink}
                             presentationLink={links.presentationLink}
                             liveVersionLink={links.liveVersionLink}
+                            classNotesLink={links.classNotesLink}
                             colors={colors}
                         />
                     </div>
