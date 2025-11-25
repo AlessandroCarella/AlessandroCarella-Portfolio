@@ -43,7 +43,7 @@
     },
     {
         "slug": "business-process-mining",
-        "folder": "Business Process Mining",
+        "folder": "Business Process Modeling",
         "jsonFile": "Business_Process_Mining.json",
         "htmlFile": "Business_Process_Mining.html",
         "pdfFiles": {

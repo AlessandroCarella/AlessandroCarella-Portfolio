@@ -1,10 +1,14 @@
 {
-    "pageText":{"education":"Education", "skill": "Skills", "experience":"Work Experience"},
+    "pageText": {
+        "education": "Education",
+        "skill": "Skills",
+        "experience": "Work Experience"
+    },
     "bachelor": {
         "title": "Computer Science",
         "info": "Bachelor's Degree (BSc)",
         "uni": "University of Bari Aldo Moro",
-        "uniLink":"https://www.uniba.it/",
+        "uniLink": "https://www.uniba.it/",
         "period": "2019 - 2023",
         "location": "Bari, Italy",
         "exams": [
@@ -120,7 +124,8 @@
                 "exam": "Multimedia Design and Production",
                 "ssd": "INF/01",
                 "credits": 9,
-                "link": ""
+                "link": "",
+                "projectLink":"https://alessandrocarella.pages.dev/projects/healthy-catering"
             },
             {
                 "exam": "Probability and Statistics",
@@ -135,19 +140,25 @@
                 "link": "https://elearning.uniba.it/pluginfile.php/260788/course/summary/Fanizzi-INF-IngegneriaDellaConoscenza-Isem-2024-25.pdf"
             },
             {
-                "exam": "Internships and Seminars",
+                "exam": "Internships and Seminars (Worked)",
                 "ssd": "",
                 "credits": 12,
                 "link": ""
             },
-            { "exam": "Final Examination", "ssd": "", "credits": 6, "link": "" }
+            {
+                "exam": "Final Examination",
+                "ssd": "",
+                "credits": 6,
+                "link": "",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/bachelor-thesis"
+            }
         ]
     },
     "master": {
         "title": "Data Science and Business Informatics",
         "info": "Master's Degree (MSc)",
         "uni": "University of Pisa",
-        "uniLink":"https://www.unipi.it/",
+        "uniLink": "https://www.unipi.it/",
         "period": "2023 - 2025",
         "location": "Pisa, Italy",
         "exams": [
@@ -155,91 +166,111 @@
                 "exam": "Fundamentals of Business Management",
                 "ssd": "",
                 "credits": 9,
-                "link": "https://unipi.coursecatalogue.cineca.it/insegnamenti/2025/53385_703130_77396/2025/53385/11357"
+                "link": "https://unipi.coursecatalogue.cineca.it/insegnamenti/2025/53385_703130_77396/2025/53385/11357",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/fundamentals-of-business-management"
             },
             {
                 "exam": "Strategic and Competitive Intelligence",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.cli.di.unipi.it/doku.php/mds/sci/start"
+                "link": "https://didawiki.cli.di.unipi.it/doku.php/mds/sci/start",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/strategic-and-competitive-intelligence"
             },
             {
                 "exam": "Technologies for Web Marketing",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://elearning.di.unipi.it/enrol/index.php?id=1036"
+                "link": "https://elearning.di.unipi.it/enrol/index.php?id=1036",
+                "notesLink": "https://alessandro-carella.notion.site/Technologies-for-web-marketing-1e8c7c750f024af08fc80b7d40a082cd"
             },
             {
                 "exam": "Project Design & Management for Data Science",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.cli.di.unipi.it/doku.php/mds/d4ds/start"
+                "link": "https://didawiki.cli.di.unipi.it/doku.php/mds/d4ds/start",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/project-design-and-management"
             },
             {
                 "exam": "Legal Issues in Data Science",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://esami.unipi.it/esami2/programma.php?noframe=1&c=61290&aa=2023&cid=361&did=13"
+                "link": "https://esami.unipi.it/esami2/programma.php?noframe=1&c=61290&aa=2023&cid=361&did=13",
+                "notesLink": "https://alessandro-carella.notion.site/Legal-issues-in-data-science-2023-24-f1c0c77e34f84b03a6da787d32536a2d"
             },
             {
                 "exam": "Optimization for Data Science",
                 "ssd": "",
                 "credits": 9,
-                "link": "https://elearning.di.unipi.it/enrol/index.php?id=497"
+                "link": "https://elearning.di.unipi.it/enrol/index.php?id=497",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/optimization-for-data-science"
             },
             {
                 "exam": "Statistics for Data Science",
                 "ssd": "",
                 "credits": 9,
-                "link": "https://didawiki.di.unipi.it/doku.php/mds/sds/start"
+                "link": "https://didawiki.di.unipi.it/doku.php/mds/sds/start",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/statistics-for-data-science"
             },
             {
                 "exam": "Data Mining: Module I - Fundamentals",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.cli.di.unipi.it/doku.php/dm/dm_ds2024-25#exam_dm1"
+                "link": "https://didawiki.cli.di.unipi.it/doku.php/dm/dm_ds2024-25#exam_dm1",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/data-mining-1",
+                "notesLink": "https://alessandro-carella.notion.site/Data-mining-2-9b74c1ae2ce04eb28d26003a23a399dd"
             },
             {
                 "exam": "Data Mining: Module II - Advanced Topics and Applications",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.cli.di.unipi.it/doku.php/dm/dm_ds2024-25#exam_dm2"
+                "link": "https://didawiki.cli.di.unipi.it/doku.php/dm/dm_ds2024-25#exam_dm2",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/data-mining-2",
+                "notesLink": "https://alessandro-carella.notion.site/Data-mining-2-9b74c1ae2ce04eb28d26003a23a399dd"
             },
             {
                 "exam": "Business Process Modeling",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.di.unipi.it/doku.php/magistraleinformaticaeconomia/mpb/2021-22/start"
+                "link": "https://didawiki.di.unipi.it/doku.php/magistraleinformaticaeconomia/mpb/2021-22/start",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/business-process-mining",
+                "notesLink": "https://alessandro-carella.notion.site/BPM-118a1f6cd9d0800cb593c67a51c3d13f"
             },
             {
                 "exam": "Visual Analytics",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.cli.di.unipi.it/doku.php/magistraleinformaticaeconomia/va/start"
+                "link": "https://didawiki.cli.di.unipi.it/doku.php/magistraleinformaticaeconomia/va/start",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/visual-analytics"
             },
             {
                 "exam": "Decision Support Systems: Module I - Decision Support Databases",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.cli.di.unipi.it/doku.php/mds/dsd/start"
+                "link": "https://didawiki.cli.di.unipi.it/doku.php/mds/dsd/start",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/decision-support-system",
+                "notesLink": "https://alessandro-carella.notion.site/Decision-support-systems-11aa1f6cd9d0807c8784f6d327d6bf7b"
             },
             {
                 "exam": "Decision Support Systems: Module II - Laboratory of Data Science",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.cli.di.unipi.it/doku.php/mds/lbi/start"
+                "link": "https://didawiki.cli.di.unipi.it/doku.php/mds/lbi/start",
+                "projectLink": "https://alessandrocarella.pages.dev/projects/decision-support-system",
+                "notesLink": "https://alessandro-carella.notion.site/Decision-support-systems-11aa1f6cd9d0807c8784f6d327d6bf7b"
             },
             {
                 "exam": "Information Retrieval",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.cli.di.unipi.it/doku.php/magistraleinformatica/ir/ir23/start"
+                "link": "https://didawiki.cli.di.unipi.it/doku.php/magistraleinformatica/ir/ir23/start",
+                "notesLink": "https://alessandro-carella.notion.site/Information-retrieval-11aa1f6cd9d08096b2face8e116f3556"
             },
             {
                 "exam": "Geospatial Analytics",
                 "ssd": "",
                 "credits": 6,
-                "link": "https://didawiki.cli.di.unipi.it/doku.php/geospatialanalytics/gsa/gsa2024"
+                "link": "https://didawiki.cli.di.unipi.it/doku.php/geospatialanalytics/gsa/gsa2024",
+                "notesLink": "https://alessandro-carella.notion.site/Geospatial-analytics-11aa1f6cd9d0800eac53c1b87cdee8d8"
             },
             { "exam": "Master Thesis", "ssd": "", "credits": 27, "link": "" }
         ]
