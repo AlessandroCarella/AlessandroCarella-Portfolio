@@ -1,0 +1,72 @@
+{
+    "projectName": "Scomodo Interactive Maps",
+    "quickSummary": "Interactive web mapping platform for visualizing aggregation spaces, social struggle locations, and study environments across Bari, Italy. Developed for Scomodo cultural association to document youth infrastructure and support community access to urban spaces through three specialized map applications with real-time filtering.",
+    "liveVersion": "https://scomodo-interactive-maps.pages.dev/",
+    "content": "Scomodo Interactive Maps.html",
+    "skills": [
+        "Geospatial Data Processing",
+        "Interactive Web Mapping",
+        "JavaScript/ES6 Development",
+        "Leaflet.js",
+        "Data Visualization",
+        "Python Data Engineering",
+        "API Integration (Overpass API, Web3Forms)",
+        "JSON Data Architecture",
+        "SVG Manipulation",
+        "Frontend Architecture",
+        "UX/UI Design",
+        "Responsive Web Design",
+        "OpenStreetMap Integration",
+        "Temporal Data Handling",
+        "Form Validation",
+        "Performance Optimization",
+        "Static Site Deployment",
+        "Civic Technology",
+        "Community Engagement",
+        "Data Validation and Quality Assurance"
+    ],
+    "keywords": {
+        "technologies": [
+            "Leaflet.js",
+            "JavaScript ES6",
+            "Python",
+            "Jupyter Notebooks",
+            "OpenStreetMap",
+            "Overpass API",
+            "Web3Forms API",
+            "Cloudflare Pages"
+        ],
+        "geospatial": [
+            "Interactive Mapping",
+            "Heatmap Visualization",
+            "Coordinate Transformation",
+            "Geographic Data Processing",
+            "POI Mapping",
+            "Polygon Overlays"
+        ],
+        "features": [
+            "Multi-layer Visualization",
+            "Spotlight Interaction Pattern",
+            "Time-based Filtering",
+            "Community Contribution Forms",
+            "Toggle Visualization Modes",
+            "Real-time Overlay Updates",
+            "Slide-out Information Panels",
+            "Distance-based Filtering",
+            "Custom Markers"
+        ],
+        "domains": [
+            "Civic Technology",
+            "Urban Mapping",
+            "Youth Infrastructure",
+            "Community Spaces"
+        ],
+        "data_sources": [
+            "Manual Curation",
+            "Community Questionnaires",
+            "OpenStreetMap",
+            "Excel Spreadsheets",
+            "Crowdsourced Submissions"
+        ]
+    }
+}

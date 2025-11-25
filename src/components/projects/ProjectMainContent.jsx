@@ -165,8 +165,8 @@ const ProjectMainContent = ({ htmlContent, projectData, onImageClick }) => {
                         key={`section-${index}`}
                         title={section.title}
                         defaultOpen={
-                            section.title.toLowerCase().includes("what") &&
-                            section.title.toLowerCase().includes("learned")
+                            (section.title.toLowerCase()=="what i learned") ||
+                            section.title.toLowerCase().includes("what i worked on")
                         }
                     >
                         <div

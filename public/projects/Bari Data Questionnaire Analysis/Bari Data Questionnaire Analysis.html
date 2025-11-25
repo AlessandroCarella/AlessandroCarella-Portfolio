@@ -1,0 +1,278 @@
+<p>
+    I worked on the analysis of a questionnaire carried by the editorial staff
+    of
+    <a href="https://www.instagram.com/laredazionebari/">Scomodo Bari</a>. This
+    project was created to support a collective writing article about
+    aggregation spaces and urban social dynamics in the city of Bari. The work
+    includes multiple data analysis studies conducted on survey responses from
+    approximately 1,000 Bari residents.
+</p>
+
+<p>
+    The project transforms questionnaire data into actionable insights through
+    five distinct analytical approaches: AI-powered citizen desires, regarding
+    the city of Bari, using
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/sogni/">
+        natural language processing analysis</a
+    >, geographic heatmap visualization of urban activity patterns both through
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/mappa/">
+        classical heatmap representation</a
+    >, and
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/mappa%20v2/">
+        with a neighboroods split</a
+    >,
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/grafici/">
+        survey response categorization and visualization</a
+    >, and
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/correlation/">
+        statistical correlation analysis
+    </a>
+    of youth behavior patterns.
+</p>
+
+<p>
+    By combining machine learning techniques with interactive web
+    visualizations, this project makes urban data accessible and contributes to
+    evidence-based cultural analysis for the city of Bari,
+</p>
+
+<h2>What I Worked on</h2>
+<p>
+    This project provided me with experience in full-stack data science and
+    dashboard development. I learned how to implement advanced natural language
+    processing techniques which i didn't study during my master course,
+    specifically using
+    <a href="https://maartengr.github.io/BERTopic/index.html"> BERTopic </a>
+    for unsupervised topic modeling on open-ended text responses in Italian.
+    This required understanding not just the technical implementation but also
+    how to tune parameters for meaningful results in a civic context.
+</p>
+
+<p>
+    I gained more expertise in geospatial data processing and visualization,
+    learning to work with coordinate validation, and intensity calculations.
+    This included understanding the balance between technical accuracy and
+    user-friendly interfaces that non-technical users could navigate
+    effectively.
+</p>
+
+<p>
+    During the development of the project i used data preprocessing techniques
+    including one-hot encoding for categorical variables and multi-label
+    binarization for complex survey responses. I identified and created
+    visualizations for statistical correlations in ways that reveal meaningful
+    patterns without overwhelming users with complexity.
+</p>
+
+<h2>Citizen Desires Analysis</h2>
+
+<img src="sogni.png" alt="Citizen Desires Analysis Dashboard">
+<h3>Visualization</h3>
+<p>
+    The
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/sogni/">
+        visualization
+    </a>
+    presents an AI-powered citizen engagement platform that analyzes open-ended
+    survey responses from Bari residents about their vision for the city. It
+    features two interactive views: a circle packing diagram and a treemap.
+    Users can explore discovered topics through the interface that displays
+    topic clusters, associated keywords, and allows drilling down into original
+    citizen responses. The visualization provides users with an accessible way
+    to understand what citizens care about most. Each topic is represented with
+    proportional sizing based on frequency, and clicking on topics reveals the
+    underlying text responses that contributed to each theme.
+</p>
+
+<h3>Notebook</h3>
+<p>
+    The
+    <a
+        href="https://bari-data-questionnaire-analysis.pages.dev/sogni/analisi%20dati/clustering"
+    >
+        notebook
+    </a>
+    implements Natural Language Processing techniques using BERTopic for
+    unsupervised topic modeling on Italian text responses. It processes
+    thousands of open-ended survey answers, cleaning and preprocessing the text
+    data before applying transformer-based embeddings. The analysis
+    automatically discovers thematic patterns in citizen responses without
+    predefined categories, using dimensionality reduction and clustering
+    algorithms to group similar responses. The notebook includes parameter
+    tuning for optimal topic coherence, extraction of representative keywords
+    for each topic, and preparation of structured data for the web
+    visualization.
+</p>
+
+<h2>Geographic Heatmap</h2>
+
+<img src="mappa.png" alt="Generated heatmap">
+<h3>Visualization</h3>
+<p>
+    This
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/mappa/">
+        interactive geographic heatmap platform
+    </a>
+    visualizes urban activity patterns across Bari neighborhoods using
+    color-coded intensity zones. The interface allows users to toggle between
+    satellite and standard map views, switch between different neighborhood
+    boundary overlays, and adjust the heatmap radius for different levels of
+    granularity. Features include smart masking to focus on specific geographic
+    areas, and fractional zoom controls for precise navigation. The
+    visualization uses a gradient color scheme to represent location frequency
+    data, making spatial patterns immediately apparent. Users can hide or show
+    the polygon overlay and neighborhood boundaries, and reset zoom to return to
+    the full city view.
+</p>
+
+<h3>Notebook</h3>
+<p>
+    The
+    <a
+        href="https://bari-data-questionnaire-analysis.pages.dev/mappa/analisi%20dati/analisi%20spazi"
+    >
+        notebook
+    </a>
+    handles geospatial data processing including coordinate validation,
+    cleaning, and intensity calculations. It processes raw location data from
+    survey responses, validates geographic coordinates to ensure they fall
+    within Bari's boundaries, and calculates frequency metrics for each
+    location. The analysis includes spatial aggregation techniques to generate
+    density measurements across the city. The notebook exports structured
+    datasets in formats compatible with Leaflet.js heatmap libraries, including
+    coordinate pairs, intensity values, and neighborhood classification data.
+    Additional processing includes handling edge cases, removing outliers, and
+    preparing GeoJSON data for neighborhood boundary overlays.
+</p>
+
+<h2>Polygonal Heatmap - Neighborhoods Split</h2>
+
+<img src="mappa-v2.png" alt="Other heatmap with neighborhoods split">
+<h3>Visualization</h3>
+<p>
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/mappa%20v2/">
+        Another version
+    </a>
+    of the geographic heatmap that combines traditional heatmap visualization
+    with polygon-based neighborhood analysis. This dual-layer approach allows
+    users to visualize discrete neighborhood-level aggregations. The interface
+    includes controls to toggle the polygon overlay, switch between neighborhood
+    boundary versions, hide/show neighborhood names, and completely hide the
+    heatmap layer to focus on neighborhood statistics. The visualization
+    provides a more nuanced understanding of spatial patterns by showing how
+    activity concentrates within specific administrative boundaries, while
+    maintaining the granular detail of the continuous heatmap underneath.
+</p>
+
+<p>
+    This visualization shares the
+    <a
+        href="https://bari-data-questionnaire-analysis.pages.dev/mappa/analisi%20dati/analisi%20spazi"
+    >
+        previous notebook
+    </a>
+    since it is just another kind of visualization to the previously extracted
+    data.
+</p>
+
+<h2>Survey Response Dashboard</h2>
+
+<h3>Visualization</h3>
+<p>
+    A
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/grafici/">
+        modular web dashboard
+    </a>
+    that presents survey analysis through multiple visualization modes including
+    bar charts, pie charts, and treemaps. The interface features drag-and-drop
+    reordering of chart elements, five customizable color themes to match
+    different presentation contexts, and individual chart export functionality
+    for creating reports. Users can switch between visualization types to
+    explore the same data from different perspectives. The dashboard is designed
+    to make complex survey insights accessible to non-technical stakeholders
+    while maintaining analytical depth. Each visualization is interactive, with
+    hover tooltips providing detailed statistics and percentages for individual
+    data points.
+</p>
+
+<h3>Notebook</h3>
+<p>
+    The
+    <a
+        href="https://bari-data-questionnaire-analysis.pages.dev/grafici/analisi%20dati/analisi%20generale"
+    >
+        notebook
+    </a>
+    implements a full-stack survey data processing pipeline that categorizes
+    question types (categorical,
+    <a href="https://en.wikipedia.org/wiki/Likert_scale"> Likert scale </a>,
+    multiple-choice, multi-select) and applies appropriate cleaning and
+    transformation techniques for each. It handles missing data, standardizes
+    response formats, and implements one-hot encoding for categorical variables.
+    The analysis includes frequency calculations, percentage computations, and
+    statistical summaries for each survey question. The notebook exports
+    structured JSON files organized by question type, with metadata about
+    response options, labels, and statistical measures. This preprocessing
+    ensures that the web dashboard receives clean, well-structured data
+    optimized for D3.js visualization libraries.
+</p>
+
+<h3>Extra</h3>
+
+<p>
+    Some components of this visualization were later reproposed in
+    <a href="https://scomodo-prints.pages.dev/article%20plots/">
+        another project
+    </a>
+</p>
+
+<h2>Correlation Analysis</h2>
+
+<h3>Visualization</h3>
+<p>
+    A
+    <a href="https://bari-data-questionnaire-analysis.pages.dev/correlation/">
+        statistical visualization tool
+    </a>
+    that presents correlation matrices as interactive, color-coded heatmaps. The
+    interface displays relationships between various demographic, behavioral,
+    and attitudinal variables from the youth survey data. Users can customize
+    the color palette to highlight different correlation strengths, hover over
+    cells to view exact correlation coefficients and statistical significance
+    indicators, and export the visualization as PNG files for presentations. The
+    heatmap uses color intensity to represent correlation strength, with
+    different hues for positive and negative correlations. The visualization
+    helps researchers and decision-makers quickly identify meaningful patterns
+    and relationships in the survey data.
+</p>
+
+<h3>Notebook</h3>
+<p>
+    This
+    <a
+        href="https://bari-data-questionnaire-analysis.pages.dev/correlation/analisi%20dati/correlation"
+    >
+        notebook
+    </a>
+    implements data preprocessing techniques including one-hot encoding for
+    categorical variables, multi-label binarization for questions where
+    respondents could select multiple options, and proper handling of ordinal
+    Likert scale data. It computes correlation matrices using appropriate
+    methods (Pearson, Spearman, or Point-Biserial) based on variable types. The
+    analysis identifies statistically significant correlations, filters out weak
+    or non-significant relationships, and structures the results for
+    visualization. The notebook includes detailed documentation of preprocessing
+    decisions, handles edge cases like sparse variables, and generates JSON
+    output containing the correlation matrix, variable labels, and metadata
+    about statistical significance. This enables the web interface to display
+    clear, scientifically rigorous correlation insights.
+</p>
+
+<h3>Extra</h3>
+
+<p>
+    Some components of this visualization were later reproposed in
+    <a href="https://scomodo-prints.pages.dev/article%20plots/">
+        another project
+    </a>
+</p>

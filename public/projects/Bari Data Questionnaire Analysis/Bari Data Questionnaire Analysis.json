@@ -1,0 +1,66 @@
+{
+    "projectName": "Bari Data Questionnaire Analysis",
+    "quickSummary": "Comprehensive civic data analysis platform for Bari, Italy, processing 1,000+ survey responses through AI-powered NLP, geographic heatmaps, and statistical correlation analysis to transform citizen feedback into actionable urban planning insights.",
+    "liveVersion": "https://bari-data-questionnaire-analysis.pages.dev/",
+    "content": "Bari Data Questionnaire Analysis.html",
+    "skills": [
+        "Natural Language Processing",
+        "Topic Modeling",
+        "Data Visualization",
+        "Geospatial Analysis",
+        "Statistical Analysis",
+        "Python Programming",
+        "JavaScript Development",
+        "D3.js",
+        "Machine Learning",
+        "Data Preprocessing",
+        "Web Development",
+        "UI/UX Design",
+        "Data Cleaning",
+        "Survey Analysis",
+        "Interactive Design",
+        "Responsive Design",
+        "Data Privacy"
+    ],
+    "keywords": {
+        "technologies": [
+            "BERTopic",
+            "Python",
+            "D3.js",
+            "JavaScript",
+            "pandas",
+            "NumPy",
+            "scikit-learn",
+            "Cloudflare Pages",
+            "BERTopic"
+        ],
+        "methodologies": [
+            "Topic Modeling",
+            "Unsupervised Learning",
+            "Correlation Analysis",
+            "Kernel Density Estimation",
+            "One-Hot Encoding",
+            "Multi-Label Binarization",
+            "Data Cleaning",
+            "Data Validation",
+            "Progressive Rendering",
+            "Component-Based Architecture",
+            "Responsive Design"
+        ],
+        "visualization-types": [
+            "Heatmaps",
+            "Bar Charts",
+            "Pie Charts",
+            "Treemaps",
+            "Circle Packing",
+            "Correlation Matrices"
+        ],
+        "data-types": [
+            "Survey Data",
+            "Text Data",
+            "Geographic Data",
+            "Categorical Data",
+            "Likert Scale Data"
+        ]
+    }
+}

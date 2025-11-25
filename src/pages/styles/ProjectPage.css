@@ -192,7 +192,6 @@
 /* Clickable image hover effect */
 .project-image[style*="cursor: pointer"]:hover {
     transform: scale(1.02);
-    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
 }
 
 .project-image-caption {

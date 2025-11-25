@@ -1,0 +1,174 @@
+<p>
+    The Scomodo Interactive Maps project is a digital mapping initiative
+    developed for the cultural association Scomodo, focused on visualizing and
+    analyzing aggregation spaces, social struggle locations, and study
+    environments across Bari, Italy. Created as part of a collective research
+    article examining urban spaces and youth accessibility, this project
+    combines data processing, geospatial analysis, and interactive web
+    visualization to document the social infrastructure available to young
+    people in the city.
+</p>
+
+<p>
+    The Scomodo association has long been concerned with the availability and
+    accessibility of physical spaces for youth, making this mapping project a
+    natural extension of their mission. The interactive platform serves multiple
+    purposes: documenting existing aggregation spaces, collecting
+    community-reported locations through questionnaires, integrating
+    OpenStreetMap data for comprehensive urban amenity mapping, and providing an
+    accessible tool for citizens to explore available spaces in their city.
+</p>
+
+<p>
+    The project consists of three distinct interactive map applications, each
+    designed with specific use cases in mind, alongside a robust data processing
+    pipeline that transforms raw geographic data into usable JSON datasets. The
+    mock version of the pages you find the link to in the sidebar is hosted on
+    Cloudflare Pages.
+</p>
+
+<h2>What I Worked On</h2>
+<p>
+    Throughout this project, I was responsible for the complete development
+    lifecycle from data transformation to deployment. I designed and implemented
+    the data processing pipeline using Python and Jupyter notebooks, creating
+    automated scripts to transform raw Excel data into structured JSON datasets
+    and integrate OpenStreetMap data through the
+    <a href="https://wiki.openstreetmap.org/wiki/Overpass_API"> Overpass API</a
+    >. I developed three distinct interactive web mapping applications using
+    JavaScript, <a href="https://leafletjs.com/"> Leaflet.js </a>, and modern
+    <a href="https://www.w3schools.com/js/js_es6.asp">ES6</a>
+    modules, each with unique interaction patterns for specific use cases:
+    multi-layer visualization with heat maps, spotlight-based focused
+    exploration, and time-based filtering for opening hours of study facilities.
+</p>
+
+<p>
+    I implemented geospatial analysis features including coordinate validation,
+    distance calculations for proximity filtering, and polygon boundary overlays
+    for neighborhood visualization. The front-end development involved creating
+    responsive user interfaces with custom SVG overlays for the spotlight
+    effect, interactive time selection controls, and detailed information panels
+    with structured data display. I also integrated form handling with the
+    <a href="https://web3forms.com/">Web3Forms</a>
+    API for community submissions, implementing client-side validation and error
+    handling to ensure data quality.
+</p>
+
+<p>
+    The deployment process involved configuring the project for hosting on
+    <a href="https://www.cloudflare.com/"> Cloudflare Pages </a>, optimizing
+    asset delivery. Throughout the project, I collaborated with the Scomodo
+    association to understand their research needs and translate them into
+    functional technical requirements, resulting in a suite of tools that
+    support their mission of documenting and analyzing urban spaces for youth
+    accessibility in Bari.
+</p>
+
+<h2>Data Analysis Notebooks</h2>
+
+<h3>Notebook: Geographic Data Transformation Pipeline</h3>
+<p>
+    The first
+    <a
+        href="https://scomodo-interactive-maps.pages.dev/notebooks/mappaturaExcelToJson"
+    >
+        notebook
+    </a>
+    automates the transformation of geographic and other data from Excel
+    spreadsheets into structured JSON datasets. This data processing tool
+    extracts hyperlinks, parses opening hours with multiple time slots per day,
+    and organizes spaces by category including aggregation spaces, social
+    struggle locations, and study environments. The notebook ensures data
+    consistency and prepares the information for integration with the
+    interactive mapping visualizations.
+</p>
+
+<h3>Notebook: OpenStreetMap POI Extraction</h3>
+<p>
+    The second
+    <a href="https://scomodo-interactive-maps.pages.dev/notebooks/query">
+        notebook
+    </a>
+    queries OpenStreetMap's Overpass API to collect Points of Interest (POIs)
+    and amenities across Bari. Using geometric operations to validate
+    coordinates for the spatial database, this notebook automatically retrieves
+    comprehensive urban infrastructure data including cafes, libraries, parks,
+    and other public spaces. The collected data is processed and formatted into
+    ready-to-use JSON files that complement the manually collected space
+    information.
+</p>
+
+<h2>Aggregation Spaces Map</h2>
+<img src="spaziDiAggregazione.png" alt="Aggregation Spaces Map" />
+<h3>Visualization</h3>
+<p>
+    An interactive multi-layer mapping platform for
+    <a href="https://scomodo-interactive-maps.pages.dev/SpaziAggregazioneMap/">
+        visualizing aggregation spaces </a
+    >, citizen-reported locations from questionnaires, and OpenStreetMap
+    amenities across Bari. The visualization is structured with a modular
+    architecture with three independently controllable data layers, each
+    toggleable between pin markers and heat density visualization modes. Users
+    can switch visualization modes through radio controls, explore individual
+    locations with detailed tooltips showing names, addresses, and categories,
+    and access comprehensive information including structured opening hours and
+    coordinates in a slide-out side panel. Built with Leaflet.js and organized
+    with ES6 modules, the platform includes UI hiding functionality for
+    distraction-free exploration, custom color-coded markers for different space
+    types, polygon boundary overlays showing Bari's outline, and responsive
+    design optimized for analyzing spatial distribution patterns of social
+    spaces throughout the city.
+</p>
+
+<h2>Social Struggle Spaces Map</h2>
+<img src="spaziDiLotta.png" alt="Social Struggle Spaces Map" />
+<h3>Visualization</h3>
+<p>
+    A interactive mapping application focused on
+    <a
+        href="https://scomodo-interactive-maps.pages.dev/SpaziDiLottaInteractive/"
+    >
+        visualizing social struggle spaces in Bari
+    </a>
+    through a unique spotlight interaction pattern. When clicking any location
+    pin, the system generates a SVG overlay that darkens the entire map while
+    creating a 150-meter radius circular cutout around the selected point,
+    visually "spotlighting" that area and filtering nearby OpenStreetMap
+    amenities within the illuminated zone. The visualization features a
+    dual-layer architecture displaying social struggle spaces as primary markers
+    alongside secondary OpenStreetMap amenities with distance-based visibility
+    filtering. A special "All places" mode simultaneously highlights all
+    locations with multiple circular cutouts, allowing users to see the
+    collective spatial impact of social struggle spaces across the city. Built
+    with Leaflet.js and modular ES6 architecture, the interface emphasizes
+    focused exploration over complex controls with a single-button toggle,
+    creating a clean and distraction-free spatial analysis experience.
+</p>
+
+<h2>Study Spaces Map</h2>
+<img src="spaziDiStudio.png" alt="Study Spaces Map" />
+<h3>Visualization</h3>
+<p>
+    A
+    <a href="https://scomodo-interactive-maps.pages.dev/SpaziStudioMap/">
+        time-interactive mapping platform designed for discovering study spaces
+        across Bari
+    </a>
+    with intelligent availability filtering based on opening hours. The
+    visualization features a horizontal time control interface allowing users to
+    select any day of the week and hour of the day to automatically filter
+    locations by their opening hours, with the system defaulting to the current
+    time and "show only open" spaces mode on page load. The comprehensive
+    opening hours parsing and display system shows structured weekly schedules
+    with multiple time slots per day, making it easy for students to find
+    available study locations at any given moment. The platform includes a
+    validated web form where users can contribute new study space locations by
+    submitting information such as name, email, description, address,
+    functionality, capacity, and relevant links. Form submissions are processed
+    directly via the Web3Forms API with real-time field validation and error
+    handling, enabling community-driven content expansion. Built specifically
+    for students seeking available study locations, the visualization combines
+    Leaflet.js mapping technology with practical scheduling utilities and an
+    accessible submission workflow.
+</p>
