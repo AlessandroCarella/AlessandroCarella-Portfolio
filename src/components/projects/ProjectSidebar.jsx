@@ -257,11 +257,12 @@ const ProjectSidebar = ({ projectData, onOpenPDF }) => {
                             <TextCapsule
                                 name="View Saverio's Thesis"
                                 link={projectData.saverioThesis}
-                                icon={<FileText size={16} />}
-                                onClick={() =>
-                                    onOpenPDF(
-                                        "Saverio's Thesis",
-                                        projectData.saverioThesis
+                                icon={<Github size={16} />}
+                                onClick={(link) =>
+                                    window.open(
+                                        link,
+                                        "_blank",
+                                        "noopener,noreferrer"
                                     )
                                 }
                             />
