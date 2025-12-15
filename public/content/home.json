@@ -22,20 +22,6 @@
                             "content": " page. You can filter the results in the page based on the ones you are the most interested in :)"
                         }
                     ]
-                },
-                {
-                    "parts": [
-                        { "type": "text", "content": "The " },
-                        {
-                            "type": "link",
-                            "text": "About",
-                            "url": "/About"
-                        },
-                        {
-                            "type": "text",
-                            "content": " page allows you to get to know me a bit better, I talk about my hobbies and some fun facts."
-                        }
-                    ]
                 }
             ],
             "specialContent": {
