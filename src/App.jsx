@@ -12,7 +12,7 @@ import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
-import About from "./pages/About";
+// import About from "./pages/About";
 import Resume from "./pages/Resume";
 import "./styles/App.css";
 import "./styles/text.css";
@@ -40,7 +40,7 @@ function AppContent() {
                 iconSize={35}
                 navItems={[
                     { path: "/home", label: "Home", icon: HomeIcon },
-                    { path: "/about", label: "About", icon: User },
+                    // { path: "/about", label: "About", icon: User },
                     { path: "/projects", label: "Projects", icon: Briefcase },
                     { path: "/resume", label: "Resume", icon: FileText },
                 ]}
@@ -70,7 +70,7 @@ function AppContent() {
                     />
 
                     {/* Other pages */}
-                    <Route path="/about" element={<About />} />
+                    {/* <Route path="/about" element={<About />} /> */}
                     <Route path="/resume" element={<Resume />} />
 
                     {/* 404 Not Found - Optional */}

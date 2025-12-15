@@ -6,7 +6,7 @@ function Navigation({
     brandName = "Navigation component",
     navItems = [
         { path: "/", label: "Home", icon: Home },
-        { path: "/about", label: "About", icon: User },
+        // { path: "/about", label: "About", icon: User },
         { path: "/projects", label: "Projects", icon: Briefcase },
         { path: "/resume", label: "Resume", icon: FileText },
     ],

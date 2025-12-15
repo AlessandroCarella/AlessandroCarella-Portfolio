@@ -55,13 +55,13 @@ const Projects = () => {
 
     return (
         <div className="projects-container">
-            <ProjectFilters
+            {/* <ProjectFilters
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}
                 selectedCategory={selectedCategory}
                 onCategoryChange={setSelectedCategory}
                 categories={categories}
-            />
+            /> */}
 
             {filteredProjects.length === 0 ? (
                 <EmptyState />
