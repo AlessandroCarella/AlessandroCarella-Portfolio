@@ -389,7 +389,6 @@
 
 @media (max-width: 768px) {
     .project-card-wrapper::before {
-        content: "Tap to view details";
         bottom: 10px;
         font-size: 0.7rem;
     }

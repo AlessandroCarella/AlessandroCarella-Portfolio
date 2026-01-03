@@ -1,6 +1,6 @@
 {
     "projectName": "Visual Analytics",
-    "quickSummary": "Interactive visual analytics tool using D3.js to investigate illegal fishing networks through knowledge graph visualization. Developed for VAST Challenge 2023, enabling analysts to explore entity relationships and identify suspicious patterns in maritime industry connections.",
+    "quickSummary": "Interactive visual analytics tool developed in D3.js to investigate illegal fishing networks through knowledge graph visualization. The project is based on one of the VAST Challenge 2023 tasks.",
     "content": "Visual_Analytics.html",
     "report": "REPORT Visual analytics.pdf",
     "liveVersion": "https://alessandrocarella-visual-analytics-project.alessandro-carella-universita.workers.dev/",

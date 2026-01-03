@@ -15,9 +15,6 @@ const ProjectCard = ({
 }) => {
     const [imageLoaded, setImageLoaded] = useState(false);
 
-    // Add debugging
-    console.log("ProjectCard render:", { title, backgroundImage, imageLoaded });
-
     return (
         <div className="project-card">
             <div className="card-content">

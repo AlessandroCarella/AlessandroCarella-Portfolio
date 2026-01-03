@@ -1,6 +1,6 @@
 {
     "projectName": "Healthy Catering",
-    "quickSummary": "3D serious game for nutritional education built with Unity and C#. Players manage a restaurant serving health-appropriate dishes to customers with medical conditions, learning about nutrition, pathologies, and environmental sustainability through engaging gameplay mechanics and progressive difficulty levels.",
+    "quickSummary": "3D serious game for nutritional education built in Unity. Players manage a restaurant serving health-appropriate dishes to customers with different medical conditions, learning about nutrition, pathologies, and environmental sustainability.",
     "content": "Healthy_Catering.html",
     "report": "REPORT Heatlhy Catering.pdf",
     "saverioThesis": "https://github.com/zSavT/Healthy-Catering",

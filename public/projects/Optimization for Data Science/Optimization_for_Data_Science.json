@@ -1,6 +1,6 @@
 {
     "projectName": "Optimization for Data Science",
-    "quickSummary": "Implementation and comparison of Lagrangian dual-based optimization algorithms using Nesterov's Fast Gradient Method with dynamic smoothing for solving quadratic minimum cost flow problems on network graphs, benchmarked against CVXPY's SCS solver.",
+    "quickSummary": "Implementation and comparison of Lagrangian dual-based optimization algorithms using Nesterov's Fast Gradient Method with dynamic smoothing for solving quadratic minimum cost flow problems on network graphs.",
     "content": "Optimization_for_Data_Science.html",
     "report": "REPORT Optimization for data science.pdf",
     "collaborators": ["https://www.linkedin.com/in/erica-neri-408633331/"],

@@ -1,6 +1,6 @@
 {
     "projectName": "Bachelor Thesis",
-    "quickSummary": "Machine learning system for detecting student moods (engaged, confused, frustrated, bored, drowsy, looking away) in e-learning environments through facial Action Unit analysis. Achieved 82% accuracy using Random Forest classifier with real-time webcam implementation.",
+    "quickSummary": "Machine learning system for detecting student moods (engaged, confused, frustrated, bored, drowsy, looking away) in e-learning environments through facial Action Unit analysis.",
     "content": "Bachelor_Thesis.html",
     "thesis": "BACHELOR THESIS.pdf",
     "userManual": "BACHELOR THESIS user manual.pdf",

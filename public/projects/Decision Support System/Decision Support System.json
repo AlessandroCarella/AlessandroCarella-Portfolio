@@ -1,6 +1,6 @@
 {
     "projectName": "Decision Support System",
-    "quickSummary": "A comprehensive data warehouse and OLAP solution analyzing Chicago traffic crash data to support insurance company decision-making through multidimensional analysis, ETL pipelines, MDX queries, and interactive dashboards.",
+    "quickSummary": "Data warehouse and OLAP solution analyzing Chicago traffic crash data to support mock insurance company decision-making through multidimensional analysis, ETL pipelines, MDX queries, and interactive Power BI dashboards.",
     "content": "DSS.html",
     "collaborators": [
         "https://www.linkedin.com/in/rafael-ignacio-urbina-hincapi%C3%A9-2ba11a214/",

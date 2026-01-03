@@ -1,6 +1,6 @@
 {
     "projectName": "Business Process Modeling",
-    "quickSummary": "Comprehensive business process modeling project analyzing a painting school scenario using BPMN and Workflow Nets. The project involved formal verification of process properties including soundness, boundedness, and liveness using Petri net analysis and WoPeD tool.",
+    "quickSummary": "Business process modeling project analyzing a painting school scenario using BPMN and Workflow Nets. Formal verification of process properties including soundness, boundedness, and liveness using Petri net analysis and WoPeD tool.",
     "content": "Business_Process_Mining.html",
     "report": "REPORT business processes modeling.pdf",
     "classNotes": "https://alessandro-carella.notion.site/BPM-118a1f6cd9d0800cb593c67a51c3d13f",

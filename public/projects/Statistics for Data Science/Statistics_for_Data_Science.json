@@ -1,6 +1,6 @@
 {
     "projectName": "Statistics for Data Science",
-    "quickSummary": "A statistical analysis of word embeddings establishing theoretical connections between Word2Vec and PMI matrices. Developed novel SVD-based estimators incorporating EM algorithms and copula models to recover semantic relationships from text, validated through controlled experiments on synthetic and real corpora.",
+    "quickSummary": "Recreation of a paper on statistical analysis of word embeddings that found connections between Word2Vec and PMI matrices.",
     "content": "Statistics_for_Data_Science.html",
     "slides": "PRESENTATION statistics for data science.pdf",
     "collaborators": [

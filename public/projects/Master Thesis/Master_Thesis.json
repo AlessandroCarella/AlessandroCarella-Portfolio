@@ -1,6 +1,6 @@
 {
     "projectName": "Master Thesis",
-    "quickSummary": "An interactive visualization framework for explainable AI that coordinates spatial neighborhood projections with hierarchical decision tree visualizations, enabling intuitive exploration and validation of local rule-based explanations through bidirectional interaction mechanisms.",
+    "quickSummary": "Interactive visualization framework for explainable AI that coordinates spatial neighborhood projections with hierarchical decision tree visualizations, enabling intuitive exploration and validation of local rule-based explanations through bidirectional interaction mechanisms.",
     "content": "Master_Thesis.html",
     "thesis": "MASTER THESIS.pdf",
     "collaborators": [],

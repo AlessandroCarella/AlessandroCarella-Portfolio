@@ -1,6 +1,6 @@
 {
     "projectName": "Bari Data Questionnaire Analysis",
-    "quickSummary": "Comprehensive civic data analysis platform for Bari, Italy, processing 1,000+ survey responses through AI-powered NLP, geographic heatmaps, and statistical correlation analysis to transform citizen feedback into actionable urban planning insights.",
+    "quickSummary": "Civic data analysis platform for Bari, Italy, processing 1,000+ survey responses through AI-powered NLP, geographic heatmaps, and statistical correlation analysis to transform citizen feedback into actionable insights.",
     "liveVersion": "https://bari-data-questionnaire-analysis.pages.dev/",
     "content": "Bari Data Questionnaire Analysis.html",
     "skills": [

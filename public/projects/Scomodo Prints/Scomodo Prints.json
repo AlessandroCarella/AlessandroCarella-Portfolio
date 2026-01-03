@@ -1,7 +1,7 @@
 {
     "projectName": "Scomodo Prints",
     "liveVersion":"https://scomodo-prints.pages.dev/",
-    "quickSummary": "Interactive web-based visualization toolkit for urban research in Bari, featuring a D3.js survey dashboard with multiple chart types and a Leaflet.js mapping tool, both producing publication-ready SVG exports for data journalism and community analysis.",
+    "quickSummary": "Interactive web-based visualization toolkit for urban research in my home town (Bari). Developed a D3.js survey dashboard with multiple chart types and a Leaflet.js mapping tools.",
     "content": "Scomodo Prints.html",
     "skills": [
         "D3.js",
