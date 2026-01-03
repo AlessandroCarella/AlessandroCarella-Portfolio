@@ -39,6 +39,11 @@ export const useProjects = () => {
 
                             const projectData = await response.json();
 
+                            // Construct background image path
+                            const backgroundImage =
+                                projectConfig.backgroundImage
+                                    ? encodeURI(`/projects/${projectConfig.folder}/${projectConfig.backgroundImage}`)
+                                    : "/defaultPicProjectsCard.png";
                             // Construct the project object with ALL config data embedded
                             return {
                                 ...projectData,
@@ -50,8 +55,7 @@ export const useProjects = () => {
                                 images: projectConfig.images || [],
                                 pdfFiles: projectConfig.pdfFiles || {},
                                 htmlFile: projectConfig.htmlFile,
-                                // Standard fields
-                                backgroundImage: "/defaultPicProjectsCard.png",
+                                backgroundImage: backgroundImage,
                                 id: projectConfig.slug,
                             };
                         } catch (error) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Github, FileText, Globe, Presentation } from "lucide-react";
 import { SiNotion } from "react-icons/si";
 import "./styles/ProjectCard.css";
@@ -13,13 +13,19 @@ const ProjectCard = ({
     liveVersionLink,
     classNotesLink,
 }) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    // Add debugging
+    console.log("ProjectCard render:", { title, backgroundImage, imageLoaded });
+
     return (
         <div className="project-card">
             <div className="card-content">
-                {/* Image Section with Title Overlay - 40% */}
                 <div
                     className="card-image-section"
-                    style={{ backgroundImage: `url(${backgroundImage})` }}
+                    style={{
+                        backgroundImage: `url(${backgroundImage})`,
+                    }}
                 >
                     <div className="image-overlay-project-card"></div>
                     <h3 className="card-title">{title}</h3>
