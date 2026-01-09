@@ -1,5 +1,5 @@
 {
-    "projectName": "Data Mining 2",
+    "projectName": "Data Mining II",
     "quickSummary": "Expansion of data mining I project analyzing Spotify music data through time series classification, neural networks, and ensemble methods. Applied DTW, Random Forest, and Gradient Boosting for prediction tasks, with LIME, LORE, and SHAP explainability revealing audio features relationships.",
     "content": "Data_Mining_2.html",
     "report": "REPORT data mining 2.pdf",

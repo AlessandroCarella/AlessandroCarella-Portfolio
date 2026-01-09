@@ -13,8 +13,6 @@ const ProjectCard = ({
     liveVersionLink,
     classNotesLink,
 }) => {
-    const [imageLoaded, setImageLoaded] = useState(false);
-
     return (
         <div className="project-card">
             <div className="card-content">
