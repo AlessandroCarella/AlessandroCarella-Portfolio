@@ -11,7 +11,7 @@
             "thesis",
             "machine learning"
         ],
-        "backgroundImage": "dual_representation_strategy.jpg"
+        "backgroundImage": "dual_representation_strategy_bg.jpg"
     },
     {
         "slug": "hackathon-xai",
@@ -25,7 +25,7 @@
             "machine learning",
             "explainable ai"
         ],
-        "backgroundImage": "decision tree.png"
+        "backgroundImage": "decision tree_bg.png"
     },
     {
         "slug": "project-design-and-management",
@@ -41,7 +41,7 @@
             "management",
             "project management"
         ],
-        "backgroundImage": "backgroundImage.jpg"
+        "backgroundImage": "backgroundImage_bg.jpg"
     },
     {
         "slug": "decision-support-system",
@@ -56,7 +56,7 @@
             "business intelligence",
             "data warehouse"
         ],
-        "backgroundImage": "geo_dash.png"
+        "backgroundImage": "geo_dash_bg.png"
     },
     {
         "slug": "data-mining-2",
@@ -70,7 +70,7 @@
             "data mining",
             "machine learning"
         ],
-        "backgroundImage": "discord cluster.png"
+        "backgroundImage": "discord cluster_bg.png"
     },
     {
         "slug": "strategic-and-competitive-intelligence",
@@ -82,7 +82,7 @@
             "business",
             "intelligence"
         ],
-        "backgroundImage": "quest1.png"
+        "backgroundImage": "quest1_bg.png"
     },
     {
         "slug": "fundamentals-of-business-management",
@@ -97,7 +97,7 @@
             "business",
             "management"
         ],
-        "backgroundImage": "dash1.png"
+        "backgroundImage": "dash1_bg.png"
     },
     {
         "slug": "visual-analytics",
@@ -111,7 +111,7 @@
             "visualization",
             "data science"
         ],
-        "backgroundImage": "clusters1.png"
+        "backgroundImage": "clusters1_bg.png"
     },
     {
         "slug": "business-process-modeling",
@@ -125,7 +125,7 @@
             "business",
             "process mining"
         ],
-        "backgroundImage": "Full.png"
+        "backgroundImage": "Full_bg.png"
     },
     {
         "slug": "optimization-for-data-science",
@@ -139,7 +139,7 @@
             "optimization",
             "data science"
         ],
-        "backgroundImage": "backgroundImage.png"
+        "backgroundImage": "backgroundImage_bg.png"
     },
     {
         "slug": "statistics-for-data-science",
@@ -153,7 +153,7 @@
             "statistics",
             "data science"
         ],
-        "backgroundImage": "aggregated_no_sppmi.png"
+        "backgroundImage": "aggregated_no_sppmi_bg.png"
     },
     {
         "slug": "data-mining-1",
@@ -167,7 +167,7 @@
             "data mining",
             "machine learning"
         ],
-        "backgroundImage": "heatmap.png"
+        "backgroundImage": "heatmap_bg.png"
     },
     {
         "slug": "Bari Data Questionnaire Analysis",
@@ -178,7 +178,7 @@
             "web development",
             "e-commerce"
         ],
-        "backgroundImage": "sogni.png"
+        "backgroundImage": "sogni_bg.png"
     },
     {
         "slug": "Scomodo Interactive Maps",
@@ -189,7 +189,7 @@
             "web development",
             "e-commerce"
         ],
-        "backgroundImage": "spaziDiAggregazione.png"
+        "backgroundImage": "spaziDiAggregazione_bg.png"
     },
     {
         "slug": "Scomodo Prints",
@@ -200,7 +200,7 @@
             "web development",
             "e-commerce"
         ],
-        "backgroundImage": "MAPPA-VUOTI-SVUOTATI.png"
+        "backgroundImage": "MAPPA-VUOTI-SVUOTATI_bg.png"
     },
     {
         "slug": "bachelor-thesis",
@@ -215,7 +215,7 @@
             "thesis",
             "web development"
         ],
-        "backgroundImage": "Action Units.png"
+        "backgroundImage": "Action Units_bg.png"
     },
     {
         "slug": "healthy-catering",
@@ -230,6 +230,6 @@
             "web development",
             "business"
         ],
-        "backgroundImage": "backgroundImage.png"
+        "backgroundImage": "backgroundImage_bg.png"
     }
 ]
