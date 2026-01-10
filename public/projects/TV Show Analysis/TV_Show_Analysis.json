@@ -1,0 +1,63 @@
+{
+    "projectName": "TMDB TV Show Analysis & Prediction",
+    "quickSummary": "A comprehensive machine learning and XAI pipeline for predicting TV show ratings using tabular and textual data, utilizing CatBoost and SHAP/LIME for model interpretability.",
+    "content": "TV_Show_Analysis.html",
+    "repository": "https://github.com/AlessandroCarella/colloquio-Wideverse",
+    "slides": "presentazione.pdf",
+    "collaborators": [],
+    "skills": [
+        "Python",
+        "Machine Learning",
+        "Explainable AI (XAI)",
+        "Natural Language Processing (NLP)",
+        "CatBoost",
+        "Feature Engineering",
+        "Data Visualization",
+        "Statistical Analysis",
+        "Predictive Modeling",
+        "Data Preprocessing",
+        "Hyperparameter Tuning",
+        "SHAP",
+        "LIME"
+    ],
+    "keywords": {
+        "technologies": [
+            "Python",
+            "Jupyter Notebook",
+            "Scikit-learn",
+            "CatBoost",
+            "XGBoost",
+            "LightGBM",
+            "Pandas",
+            "Matplotlib"
+        ],
+        "domains": [
+            "Data Science",
+            "Media Analytics",
+            "Explainable AI",
+            "Predictive Analytics"
+        ],
+        "methodologies": [
+            "Classification",
+            "Regression",
+            "K-Fold Cross-Validation",
+            "SMOTE/Oversampling",
+            "Grid Search",
+            "Feature Clustering",
+            "NLP Vectorization"
+        ],
+        "ml_algorithms": [
+            "CatBoost Regressor",
+            "CatBoost Classifier",
+            "Random Forest",
+            "Support Vector Machines (SVM)",
+            "Logistic Regression"
+        ],
+        "explainability": [
+            "SHAP (SHapley Additive exPlanations)",
+            "LIME (Local Interpretable Model-agnostic Explanations)",
+            "Feature Importance",
+            "Centroid Analysis"
+        ]
+    }
+}

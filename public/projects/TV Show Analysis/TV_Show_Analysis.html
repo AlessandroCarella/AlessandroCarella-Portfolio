@@ -1,0 +1,954 @@
+<p>
+    This project develops a
+    <strong>comprehensive machine learning solution</strong> for
+    <strong>predicting average viewer ratings</strong> of popular
+    <strong>TV shows</strong> using
+    <a
+        href="https://www.kaggle.com/datasets/riteshswami08/10000-popular-tv-shows-dataset-tmdb"
+    >
+        from The Movie Database</a
+    >
+    (<em>TMDB</em>). The work was developed as part of an interview process,
+    demonstrating <strong>end-to-end data science capabilities</strong> from
+    exploration through deployment. Working with a dataset of
+    <em>10,000 TV shows</em>, the project addresses the prediction challenge
+    through both classification and regression approaches, providing insights
+    into what factors influence TV show ratings.
+    <u>The entire project was completed in 5 days</u> (starting December
+    26th, 2024) to deliver before New Year's Eve, as evidenced by the GitHub
+    repository commit history.
+</p>
+
+<p>
+    The dataset originally contained <em>16 features</em> including show
+    metadata, popularity metrics, genre information, and viewer ratings. Through
+    <strong>extensive exploratory data analysis</strong> and
+    <strong>feature engineering</strong>, these were transformed into a refined
+    set of predictive features including
+    <em
+        >popularity scores, vote counts, release years, genre clusters,
+        continental origins, and language macro-areas</em
+    >.
+</p>
+
+<p>
+    The <strong>dual approach</strong> of treating the prediction as both a
+    <strong>classification problem</strong> (predicting rating categories 0-10)
+    and a <strong>regression problem</strong> (predicting continuous rating
+    values) allows for comprehensive model evaluation and comparison. The
+    project demonstrates the
+    <strong>complete machine learning pipeline</strong> from data exploration
+    through model deployment, including advanced techniques like
+    <em
+        >outlier detection ensemble methods, custom clustering for
+        dimensionality reduction, and explainable AI</em
+    >
+    for model interpretability.
+</p>
+
+<h2>What I Worked On</h2>
+<p>
+    This project provided <strong>extensive hands-on experience</strong> with
+    the complete data science workflow and involved working on several critical
+    areas:
+</p>
+
+<p>
+    <strong>Feature Engineering and Domain Knowledge:</strong> I transformed raw
+    categorical data into <strong>meaningful features</strong> through creative
+    approaches. The <em>genre clustering exercise</em>, where I reduced
+    <strong>35 distinct genres to 6 clusters</strong> using multiple algorithms
+    (<em>K-Means, Hierarchical, DBSCAN</em>) and evaluation metrics (<em
+        >Silhouette, Davies-Bouldin, Calinski-Harabasz</em
+    >), required balancing dimensionality reduction with information
+    preservation. Mapping languages to macro-areas and countries to continents
+    demonstrated the importance of domain knowledge in feature creation.
+</p>
+
+<!-- Image from PDF page 7: PCA and UMAP visualization of genres -->
+<img
+    src="genre_pca_umap_visualization.png"
+    alt="Dimensionality Reduction Comparison, PCA and UMAP colored by primary genre"
+/>
+
+<p>
+    <strong>Handling Imbalanced Data:</strong> The project presented a
+    significant challenge with
+    <strong>highly imbalanced target classes</strong>. I explored various
+    techniques including <em>SMOTE</em> for oversampling minority classes,
+    random undersampling for majority classes, and combined approaches. This
+    taught me that sometimes the "obvious" solution (balancing classes)
+    <strong>doesn't always yield better results</strong>—the
+    <strong>unbalanced dataset actually performed better</strong> in this case,
+    highlighting the importance of empirical testing over assumptions.
+</p>
+
+<!-- Image from PDF page 19: Class distribution visualization -->
+<img
+    src="class_distribution_original_aggregated.png"
+    alt="Original Class Distribution (0-10) and Aggregated Class Distribution (Likert Scale)"
+/>
+
+<!-- Image from PDF page 20: Balancing techniques comparison -->
+<img
+    src="balancing_smote_undersampling.png"
+    alt="Class distribution: Original, After SMOTE, After SMOTE + Undersampling"
+/>
+
+<p>
+    <strong>Outlier Detection Ensemble Methods:</strong> Rather than relying on
+    a single outlier detection technique, I implemented an
+    <strong>ensemble approach</strong> testing
+    <em>13 different methods</em> (<em
+        >Z-Score variants, IQR, Isolation Forest, LOF, KNN, DBSCAN</em
+    >). By requiring
+    <strong>consensus across multiple methods</strong> (threshold of 9+ methods
+    agreeing), I created more robust outlier detection that reduces false
+    positives while maintaining effectiveness. This ensemble thinking is
+    applicable beyond just outlier detection.
+</p>
+
+<!-- Image from PDF page 15: UMAP with outliers highlighted -->
+<img
+    src="umap_outliers_highlighted.png"
+    alt="UMAP Projection with Outliers Highlighted (threshold ≥9)"
+/>
+
+<p>
+    <strong>Model Selection and Hyperparameter Tuning:</strong> Working with
+    <strong>multiple model families</strong> (tree-based:
+    <em
+        >Random Forest, AdaBoost, Gradient Boosting, LightGBM, XGBoost,
+        CatBoost</em
+    >; linear: <em>Logistic/Ridge/Lasso Regression</em>; probabilistic:
+    <em>Naive Bayes</em>; instance-based: <em>SVM, KNN</em>) demonstrated how
+    different algorithms have different strengths. The
+    <strong>systematic grid search</strong> with cross-validation (<em>k=5</em>
+    initially, then <em>k=10</em> for fine-tuning) showed the importance of
+    methodical experimentation. I learned that
+    <strong>gradient boosting methods</strong> (especially
+    <em>LightGBM and CatBoost</em>) excel at tabular data with mixed feature
+    types.
+</p>
+
+<p>
+    <strong>Evaluation Metrics for Different Problems:</strong> For
+    classification, I looked beyond simple accuracy, using
+    <em>precision, recall, F1-score, balanced accuracy, and ROC-AUC</em> to get
+    a <strong>complete picture</strong>, especially with imbalanced classes. For
+    regression, understanding the differences between
+    <em>MSE, RMSE, MAE, R², and MAPE</em> helped me evaluate model performance
+    from multiple perspectives. The <strong>MAPE of 16.71%</strong> for the
+    final regressor provided an interpretable measure of average prediction
+    error.
+</p>
+
+<p>
+    <strong>Explainable AI (XAI) Techniques:</strong> Implementing both
+    <em>LIME</em> (Local Interpretable Model-agnostic Explanations) and
+    <em>SHAP</em> (SHapley Additive exPlanations) was crucial for
+    <strong>model interpretability</strong>. Discovering that
+    <strong>vote_count was overwhelmingly the most important feature</strong>
+    for regression made intuitive sense—polarizing shows get more reviews. The
+    XAI analysis for different rating classes revealed interesting patterns,
+    like <em>European origin</em>
+    being a strong predictor for rating 0, suggesting regional biases in
+    lower-rated content.
+</p>
+
+<!-- Image from PDF page 36: Feature importance for regression -->
+<img
+    src="feature_importance_catboost.png"
+    alt="Top 20 Most Important Features (Aggregated), CatBoost Regressor"
+/>
+
+<p>
+    <strong>Text Classification with Transformers:</strong> The extra work with
+    <em>DistilBERT</em> for sequence classification using show names and
+    overviews introduced <strong>modern NLP techniques</strong>. While the model
+    achieved decent metrics (42% accuracy), the class distribution analysis
+    revealed it primarily
+    <strong>predicted the majority classes</strong> (ratings 7-8), highlighting
+    the challenges of applying deep learning to imbalanced datasets without
+    extensive fine-tuning or data augmentation.
+</p>
+
+<p>
+    <strong>Importance of Data Preprocessing:</strong> The project reinforced
+    that
+    <strong>data preprocessing often takes more time than modeling</strong> but
+    is equally crucial. From API calls to fetch genre mappings, to creating
+    geographical and linguistic groupings, to testing
+    <strong>multiple scaling methods</strong> (<em>StandardScaler</em> proved
+    optimal over
+    <em
+        >MinMaxScaler, RobustScaler, PowerTransformer, and
+        QuantileTransformer</em
+    >), each preprocessing decision impacted final model performance
+    significantly.
+</p>
+
+<!-- Image from PDF page 16: Scaler comparison for popularity feature -->
+<img
+    src="scaler_comparison_popularity.png"
+    alt="Confronto Scalers, Distribuzione popularity"
+/>
+
+<!-- Image from PDF page 17: Statistical metrics for different scalers -->
+<img
+    src="scaler_statistical_metrics.png"
+    alt="Metriche Statistiche per Scaler, Skewness, Kurtosis, Std Dev, Mean, Range, IQR"
+/>
+
+<h2>Data Exploration & Preprocessing</h2>
+<p>
+    The initial dataset contained <strong>10,000 TV shows</strong> with
+    <em>16 features</em> from TMDB. The
+    <strong>exploration phase revealed</strong> several data quality issues and
+    opportunities for feature engineering that would drive the preprocessing
+    strategy.
+</p>
+
+<h3>Initial Data Analysis</h3>
+<p>
+    The dataset included features such as adult content flag, backdrop and
+    poster image paths, genre IDs, show identifiers, origin countries, original
+    language, names, text overviews, popularity scores, air dates, and
+    critically, the <strong>target variables</strong> <em>vote_average</em> and
+    <em>vote_count</em>. Initial statistical analysis revealed
+    <strong>significant class imbalance</strong> in the target variable, with
+    ratings concentrated in the 6-8 range (<em
+        >1,830 shows rated 7, 2,095 rated 8</em
+    >), while extreme ratings were rare (only
+    <em>19 shows rated 1, 46 rated 2</em>).
+</p>
+
+<h3>Feature Removal and Transformation</h3>
+<p>
+    Several columns were identified as
+    <strong>non-predictive and removed</strong>. The <em>'adult'</em>
+    column contained only False values, making it uninformative. The
+    <em>'backdrop_path'</em> and <em>'poster_path'</em> columns, while
+    potentially useful for image-based models, were file paths without
+    accessible image data. The <em>'original_name'</em> and
+    <em>'id'</em> columns were identifiers that wouldn't generalize to
+    prediction tasks.
+</p>
+
+<p>
+    <strong>Key transformations</strong> included extracting the
+    <strong>year</strong> from <em>'first_air_date'</em> to create a temporal
+    feature, as release year could correlate with rating trends. The extensive
+    <strong>genre information was consolidated</strong> through clustering
+    (detailed in the Feature Engineering section). The
+    <em>'original_language'</em> field was mapped to
+    <strong>five linguistic macro-areas</strong> (<em
+        >Europe, Africa, Papunesia, South America, North America</em
+    >) to reduce dimensionality while maintaining geographical-linguistic
+    information. Similarly, <em>'origin_country'</em> was mapped to
+    <strong>six continents</strong> to create meaningful geographical groupings.
+</p>
+
+<!-- Image from PDF page 11: Language macro-area frequency distribution -->
+<img
+    src="language_macroarea_distribution.png"
+    alt="Frequenza dei continenti, Language macro-areas"
+/>
+
+<!-- Image from PDF page 12: Origin country continent distribution -->
+<img
+    src="origin_country_continent_distribution.png"
+    alt="Film per continente, Origin country mapping"
+/>
+
+<h3>Data Cleaning and Splitting</h3>
+<p>
+    <strong>Duplicate records were removed</strong> to prevent data leakage and
+    ensure model validity. The dataset was split into
+    <strong>three sets</strong> following best practices:
+    <strong>70% for training</strong> (ensuring sufficient data for model
+    learning), <strong>10% for validation</strong> (for hyperparameter tuning
+    and model selection), and <strong>20% for final testing</strong> (for
+    unbiased performance evaluation). This split was performed before any
+    data-dependent preprocessing to prevent information leakage.
+</p>
+
+<h3>Outlier Detection and Removal</h3>
+<p>
+    A <strong>comprehensive outlier detection strategy</strong> was implemented
+    using an <strong>ensemble of 13 different methods</strong>. Statistical
+    methods included <em>Z-Score</em> with multiple thresholds (<em>3σ</em>
+    detecting 285 outliers, <em>2.5σ</em> detecting 455),
+    <em>Modified Z-Score</em> (2,187 outliers), and <em>IQR</em> with different
+    k values (<em>k=1.5</em>: 1,597 outliers, <em>k=2.0</em>: 1,256 outliers).
+    Machine learning methods included <em>Isolation Forest</em> at different
+    contamination levels (1%, 5%, 10%), <em>Local Outlier Factor</em> with
+    varying neighborhoods (<em>n=20, n=50</em>),
+    <em>K-Nearest Neighbors</em> distance-based detection (<em>k=5, k=10</em> at
+    95th percentile), and <em>DBSCAN</em> with different epsilon values.
+</p>
+
+<p>
+    Rather than relying on any single method, an
+    <strong>ensemble voting approach</strong> was used. Each data point was
+    evaluated by all 13 methods, and only those flagged as outliers by
+    <strong>9 or more methods</strong> (achieving over 50% consensus) were
+    removed. This conservative approach identified
+    <strong>327 robust outliers</strong> (4.81% of the dataset).
+    <em>UMAP</em> dimensionality reduction visualization confirmed these
+    outliers formed distinct clusters separated from the main data distribution.
+</p>
+
+<h3>Feature Scaling</h3>
+<p>
+    <strong>Six different scaling methods</strong> were evaluated on the
+    training data:
+    <em
+        >StandardScaler, MinMaxScaler, RobustScaler, MaxAbsScaler,
+        QuantileTransformer, and PowerTransformer</em
+    >. Comparison metrics included skewness (measuring distribution asymmetry),
+    kurtosis (measuring distribution tails), mean centering, standard deviation,
+    and value range. <strong>StandardScaler emerged as optimal</strong>,
+    achieving zero mean, unit standard deviation, and maintaining reasonable
+    value ranges while preserving the original distribution shape better than
+    aggressive transformations like PowerTransformer and QuantileTransformer.
+</p>
+
+<h2>Feature Engineering & Clustering</h2>
+<p>
+    The <strong>feature engineering phase</strong> transformed raw data into
+    <strong>predictive features</strong>
+    through sophisticated dimensionality reduction and domain knowledge
+    application. The genre clustering exercise exemplified this approach.
+</p>
+
+<h3>Genre Clustering Methodology</h3>
+<p>
+    The original dataset contained <strong>35 distinct genre IDs</strong>,
+    creating a high-dimensional sparse feature space if one-hot encoded
+    directly. To address this, genre data was retrieved via the
+    <em>TMDB API</em> to map numeric IDs to genre names including
+    <em
+        >Reality, War & Politics, Sci-Fi & Fantasy, Comedy, Drama, Animation,
+        Action, Soap, Talk, News, Crime, Horror, Thriller, Western, Mystery,
+        Family, Kids, Adventure, Documentary, Music, Romance, and TV Movie</em
+    >.
+</p>
+
+<p>
+    Shows were represented in a <strong>genre feature space</strong> and
+    dimensionality reduction techniques (<em>PCA and UMAP</em>) were applied to
+    visualize genre relationships.
+    <strong>Three clustering algorithms</strong> were systematically tested:
+    <em>K-Means</em> (with k values from 3 to 7),
+    <em>Hierarchical Agglomerative Clustering</em> (with ward linkage), and
+    <em>DBSCAN</em> (with varying eps and min_samples parameters). Each
+    configuration was evaluated using
+    <strong>three complementary metrics</strong>:
+    <em>Silhouette Score</em> (measuring cluster cohesion and separation),
+    <em>Davies-Bouldin Index</em> (lower is better, measuring cluster
+    compactness), and <em>Calinski-Harabasz Index</em> (measuring
+    between-cluster to within-cluster variance ratio).
+</p>
+
+<!-- Image from PDF page 9: Top 3 clustering configurations per metric -->
+<img
+    src="clustering_metrics_comparison.png"
+    alt="Top 3 Clustering Configurations per Metric, Silhouette, Davies-Bouldin, Calinski-Harabasz"
+/>
+
+<p>
+    <strong>K-Means with k=6 emerged as optimal</strong>, balancing cluster
+    quality metrics with the goal of dimensionality reduction. This created
+    <strong>six genre clusters</strong> with frequencies: Cluster 0 (5,946
+    shows), Cluster 1 (5,358 shows), Cluster 2 (1,294 shows), Cluster 3 (518
+    shows), Cluster 4 (174 shows), and Cluster 5 (97 shows). These clusters
+    represented natural genre groupings that preserved meaningful distinctions
+    while
+    <strong>dramatically reducing feature space from 35 to 6 dimensions</strong
+    >.
+</p>
+
+<!-- Image from PDF page 10: Cluster frequency distribution -->
+<img
+    src="cluster_frequency_kmeans_k6.png"
+    alt="Frequenza dei Cluster nel Dataset (K-Means k=6)"
+/>
+
+<h3>Geographic and Linguistic Features</h3>
+<p>
+    The <em>'original_language'</em> field containing dozens of language codes
+    was <strong>mapped to five linguistic macro-areas</strong> based on
+    linguistic geography: <em>European languages</em> (dominant with 52+
+    languages),
+    <em
+        >African languages, Papunesian languages, South American languages, and
+        North American languages</em
+    >. This transformation reduced a high-cardinality categorical feature to a
+    meaningful five-category grouping.
+</p>
+
+<p>
+    Similarly, the <em>'origin_country'</em> field was
+    <strong>mapped to continents</strong> to create geographic features. The
+    distribution showed strong representation from
+    <em
+        >Asia (3,890 shows), North America (3,542 shows), and Europe (1,943
+        shows)</em
+    >, with smaller contributions from
+    <em
+        >South America (345 shows), Oceania (117 shows), and Africa (42
+        shows)</em
+    >. These geographic features could capture regional production quality
+    differences, cultural preferences, and market dynamics affecting ratings.
+</p>
+
+<h3>Final Feature Set</h3>
+<p>
+    After all transformations, the <strong>refined dataset contained</strong>:
+    <em
+        >popularity (continuous), vote_count (continuous), year (continuous),
+        genre clusters (6 binary features via one-hot encoding), continent (6
+        binary features), and language macro-area (5 binary features)</em
+    >. This resulted in a total of <strong>20 features</strong> (3 continuous +
+    17 binary), significantly reduced from the original high-dimensional sparse
+    representation while retaining predictive information.
+</p>
+
+<h2>Model Training & Evaluation</h2>
+<p>
+    The model training phase employed
+    <strong>systematic experimentation</strong> with multiple algorithms,
+    extensive hyperparameter tuning, and rigorous evaluation protocols for both
+    classification and regression tasks.
+</p>
+
+<h3>Classification Approach</h3>
+<p>
+    <strong>Eight classification algorithms</strong> were evaluated with
+    comprehensive parameter grids. Tree-based ensemble methods included
+    <em>Random Forest</em> (n_estimators: 100-300, max_depth: 10-None,
+    min_samples_split: 2), <em>Support Vector Machines</em> (C: 0.1-10, kernel:
+    RBF/linear, gamma: scale/auto), <em>AdaBoost</em> (n_estimators: 50-200,
+    learning_rate: 0.01-1.0), <em>Gradient Boosting</em> (n_estimators: 100-200,
+    learning_rate: 0.01-0.2, max_depth: 3-5), <em>Logistic Regression</em> (C:
+    0.01-10, penalty: l1/l2, solver: liblinear),
+    <em>LightGBM</em> (n_estimators: 100-200, learning_rate: 0.01-0.1,
+    num_leaves: 31-50, max_depth: -1), <em>XGBoost</em> (n_estimators: 100-200,
+    learning_rate: 0.01-0.2, max_depth: 3-6), <em>CatBoost</em> (iterations:
+    100-300, learning_rate: 0.01-0.1, depth: 4-6), and
+    <em>Bernoulli Naive Bayes</em> (alpha: 0.1-5.0, binarize: 0.0-0.5).
+</p>
+
+<p>
+    Initial training was performed on both
+    <strong>balanced and unbalanced datasets</strong> with
+    <em>5-fold cross-validation</em>. Surprisingly, the
+    <strong>unbalanced dataset yielded superior performance</strong> across most
+    metrics.
+    <strong>LightGBM achieved the best validation performance</strong> with 0.49
+    accuracy, 0.47 weighted precision, 0.49 weighted recall, 0.48 weighted
+    F1-score, 0.29 balanced accuracy, and <strong>0.79 ROC-AUC</strong>. The
+    high ROC-AUC despite moderate accuracy indicated good class separation
+    capability, while the lower balanced accuracy reflected challenges with
+    minority classes.
+</p>
+
+<!-- Image from PDF page 24: Validation metrics for balanced dataset -->
+<img
+    src="validation_metrics_balanced.png"
+    alt="Top 10 Models, Validation Metrics Comparison (Balanced Dataset)"
+/>
+
+<!-- Image from PDF page 25: Validation metrics for unbalanced dataset -->
+<img
+    src="validation_metrics_unbalanced.png"
+    alt="Top 10 Models, Validation Metrics Comparison (Unbalanced Dataset)"
+/>
+
+<img
+    src="roc_curves_unbalanced_dataset.png"
+    alt="ROC curves (Unbalanced Dataset)"
+/>
+
+<h3>Fine-Tuning Process</h3>
+<p>
+    <em>LightGBM</em> was selected for
+    <strong>intensive fine-tuning</strong> with an expanded parameter grid
+    focusing on the most promising parameter ranges:
+    <em
+        >n_estimators (200, 150, 250), learning_rate (0.01, 0.005, 0.015),
+        num_leaves (50, 30, 70), and max_depth (-1, 10, 30)</em
+    >. Cross-validation was increased to <strong>10 folds</strong> for more
+    robust performance estimation. The
+    <strong>optimal configuration found</strong> was: n_estimators=250,
+    learning_rate=0.015, num_leaves=70, max_depth=10.
+</p>
+
+<img
+    src="per_class_metrics_fine_tuned_model.png"
+    alt="Per class metrics, fine tuned model"
+/>
+
+<h3>Regression Approach</h3>
+<p>
+    <strong>Nine regression algorithms</strong> were evaluated:
+    <em
+        >Random Forest, SVR, AdaBoost, Gradient Boosting, Ridge, Lasso,
+        ElasticNet, KNeighbors, LightGBM, XGBoost, and CatBoost</em
+    >. <strong>CatBoost emerged as the top performer</strong> with remarkable
+    consistency across metrics: validation <strong>R² of 0.74</strong>, MAE of
+    0.74, RMSE of 1.12, MSE of 1.24, and <strong>MAPE of 11.65%</strong>.
+</p>
+
+<!-- Image from PDF page 31: Validation metrics for regression models -->
+<img
+    src="regression_validation_metrics.png"
+    alt="Top 10 Models, Validation Metrics Comparison (Regression)"
+/>
+
+<!-- Image from PDF page 32: Detailed regression metrics comparison -->
+<img
+    src="regression_metrics_detailed.png"
+    alt="Validation R², MSE, RMSE, MAE, MAPE, CV Mean MSE Comparison"
+/>
+
+<p>
+    Fine-tuning <em>CatBoost</em> involved testing iterations (100, 70, 130),
+    learning_rate (0.1, 0.05, 0.2), depth (6, 10, 14), and importantly,
+    loss_function (RMSE vs MAPE). The comparison between initial and fine-tuned
+    models showed: Initial model (CV Score: -1.32, Val MSE: 1.24, Val RMSE:
+    1.11, Val MAE: 0.74, Val R²: 0.77) vs Fine-Tuned model (CV Score: -1.30, Val
+    MSE: 1.25, Val RMSE: 1.12, Val MAE: 0.74, Val R²: 0.77). The
+    <strong>marginal improvement</strong> suggested the initial parameter
+    selection was already near-optimal, validating the comprehensive grid search
+    approach.
+</p>
+
+<h3>Cross-Validation Strategy</h3>
+<p>
+    The use of <strong>stratified K-fold cross-validation</strong> (<em>k=5</em>
+    initially, <em>k=10</em> for fine-tuning) ensured
+    <strong>robust performance estimates</strong> by evaluating models across
+    multiple train-validation splits. This approach helped detect overfitting
+    and provided confidence intervals for performance metrics. The validation
+    set served as a held-out set for final model selection, while the
+    <strong>test set remained completely untouched</strong> until final
+    evaluation to prevent optimization bias.
+</p>
+
+<h2>Results & Performance Analysis</h2>
+<p>
+    The <strong>final models demonstrated strong performance</strong> with
+    distinct strengths for classification and regression tasks, validated on the
+    held-out test set.
+</p>
+
+<h3>Classification Results</h3>
+<p>
+    The final <em>LightGBM classifier</em> achieved
+    <strong>test set performance</strong> of: Accuracy: 0.4928, Weighted
+    Precision: 0.4700, Weighted Recall: 0.4928, Weighted F1-Score: 0.4768,
+    Balanced Accuracy: 0.2940, and <strong>ROC-AUC: 0.7878</strong>. The
+    near-50% accuracy for an <strong>11-class problem</strong> (compared to 9%
+    random baseline) represents meaningful predictive power. The
+    <strong>high ROC-AUC of 0.79</strong> indicated excellent ranking
+    ability—the model was very good at ordering predictions by confidence.
+</p>
+
+<!-- Image from PDF page 27: Test set performance metrics -->
+<img
+    src="lightgbm_test_performance.png"
+    alt="Test Set Performance Metrics, LightGBM Classifier and Per-Class Performance"
+/>
+
+<p>
+    <strong>Per-class analysis</strong> revealed performance patterns aligned
+    with class frequency. <strong>Class 0</strong> (lowest ratings) achieved
+    <strong>perfect precision and recall</strong> (1.0) due to distinctive
+    characteristics—these shows had clear markers of poor quality.
+    <strong>Classes 7-8</strong> (most frequent with 1,830 and 2,095 samples)
+    showed moderate performance with F1-scores around 0.6-0.65.
+    <strong>Minority classes</strong>
+    (1-5, 9-10) had lower recall, often misclassified into adjacent rating
+    categories, highlighting the challenge of learning decision boundaries with
+    limited examples.
+</p>
+
+<h3>Regression Results</h3>
+<p>
+    The final <em>CatBoost regressor</em> demonstrated
+    <strong>excellent performance</strong> on the test set: MSE: 1.9811, RMSE:
+    1.4075, MAE: 0.8673, <strong>R²: 0.6301</strong>,
+    <strong>MAPE: 16.71%</strong>. The R² of 0.63 indicated the model
+    <strong>explained 63% of rating variance</strong>, a strong result given the
+    subjective nature of ratings and the limited feature set. The RMSE of 1.41
+    meant <strong>predictions were typically within 1.4 rating points</strong>
+    of actual values. The MAE of 0.87 and MAPE of 16.71% provided intuitive
+    interpretability—on average, predictions were off by less than one rating
+    point or about 17% of the actual value.
+</p>
+
+<h3>Residual Analysis</h3>
+<p>
+    Comprehensive
+    <strong>residual analysis revealed model behavior patterns</strong>. The
+    residual plot showed relatively <strong>uniform variance</strong> across
+    predicted values, suggesting homoscedastic errors. However, slight
+    heteroscedasticity was visible at rating extremes (0-2 and 9-10), where
+    predictions tended to regress toward the mean. The
+    <strong>residual distribution was approximately normal</strong>
+    with near-zero mean, validating regression assumptions. The Q-Q plot showed
+    good alignment with theoretical normal distribution in the central region
+    but heavier tails, indicating occasional larger prediction errors for
+    unusual shows.
+</p>
+
+<!-- Image from PDF page 35: Residual analysis plots -->
+<img
+    src="residual_analysis_plots.png"
+    alt="Residual Plot, Distribution of Residuals, Q-Q Plot, Residuals vs Actual Values, Test Set"
+/>
+
+<p>
+    The residuals vs actual values plot revealed
+    <strong>systematic patterns</strong>. For shows with actual ratings 7-8 (the
+    majority), <strong>residuals were tightly clustered around zero</strong>,
+    indicating accurate predictions. For extreme ratings (0-2, 9-10), residuals
+    showed more spread and slight bias, with the model
+    <strong
+        >under-predicting high ratings and over-predicting low ratings</strong
+    >—a common regression-to-mean effect when training data is imbalanced.
+</p>
+
+<h3>Feature Importance Analysis</h3>
+<p>
+    <em>CatBoost's</em> feature importance analysis revealed
+    <strong>'vote_count' as overwhelmingly dominant</strong> for regression,
+    accounting for approximately <strong>80% of aggregated importance</strong>.
+    This makes intuitive sense—polarizing shows (whether extremely good or bad)
+    generate more discussion and reviews. The remaining features contributed
+    more modestly:
+    <em
+        >genre_cluster (5-10%), continent (3-7%), year (3-5%), popularity
+        (2-4%), and lang_macroarea (2-4%)</em
+    >. This distribution suggests that while metadata features provide signal,
+    <strong
+        >engagement metrics (vote_count) are the strongest predictors</strong
+    >
+    of ratings.
+</p>
+
+<p>
+    For classification,
+    <strong>feature importance was more distributed</strong>, with
+    <em>vote_count</em> still leading but
+    <em>genre clusters, continental origins, and linguistic macro-areas</em>
+    playing more substantial roles. This likely reflects that classification
+    decision boundaries depend more on multiple feature interactions to
+    distinguish adjacent rating categories.
+</p>
+
+<h2>Text-Based Classification</h2>
+<p>
+    An additional exploration investigated whether
+    <strong>textual features</strong> (show names and overviews) could predict
+    ratings, implementing both traditional machine learning and modern
+    transformer-based approaches.
+</p>
+
+<h3>Traditional ML with TF-IDF</h3>
+<p>
+    Text preprocessing involved combining <em>'name'</em> and
+    <em>'overview'</em> fields into a single document per show.
+    <strong>TF-IDF vectorization</strong> was applied with parameter grids
+    testing max_features (5000, 10000) and n-gram ranges ((1,1) for unigrams,
+    (1,2) for unigrams+bigrams).
+    <strong>Three classifiers were evaluated</strong>:
+    <em>Logistic Regression</em> (C: 0.1-10.0, penalty: l1/l2, solver:
+    liblinear), <em>Naive Bayes</em> (alpha: 0.1-1.0), and
+    <em>Random Forest</em> (n_estimators: 100-200, max_depth: 10-20,
+    max_features: 5000).
+</p>
+
+<p>
+    <strong>Random Forest achieved the best performance</strong> among
+    traditional methods: Test Accuracy: 0.3851, Precision: 0.3276, Recall:
+    0.3851, F1-Score: 0.2740. While lower than tabular feature models, this
+    demonstrated that
+    <strong>textual content carries predictive signal</strong> about ratings.
+    Genre keywords in overviews and title sentiment likely contributed to these
+    predictions.
+</p>
+
+<h3>Transformer-Based Approach: DistilBERT</h3>
+<p>
+    <em>DistilBERT</em>, a distilled version of BERT optimized for efficiency,
+    was <strong>fine-tuned for sequence classification</strong>. The model
+    <em>'distilbert-base-uncased'</em> was loaded from HuggingFace with 11
+    output classes (ratings 0-10). Text preprocessing involved tokenization with
+    a maximum sequence length of 128 tokens, truncation, and padding. Training
+    used <em>AdamW optimizer</em> with a learning rate of 2e-5, batch size of
+    16, and 3 epochs on the training set.
+</p>
+
+<p>
+    <em>DistilBERT</em> achieved test performance of:
+    <strong>Accuracy: 0.4169</strong>, Precision: 0.3251, Recall: 0.4169,
+    F1-Score: 0.3802. This
+    <strong>improvement over traditional ML</strong> (0.42 vs 0.39 accuracy)
+    validated the benefit of
+    <strong>pre-trained language representations</strong>. The model captured
+    semantic relationships and contextual information that bag-of-words TF-IDF
+    missed.
+</p>
+
+<!-- Image from PDF page 41: Text classification performance comparison -->
+<img
+    src="text_classification_comparison.png"
+    alt="Performance comparison Classifiers, Accuracy, Precision, Recall, F1-Score"
+/>
+
+<h3>Challenges and Limitations</h3>
+<p>
+    Detailed analysis of <em>DistilBERT</em> predictions revealed
+    <strong>significant limitations</strong>. The model
+    <strong>predominantly predicted classes 7-8</strong> (1,600+ predictions for
+    class 8 alone), essentially learning to predict the majority classes while
+    largely ignoring minority classes. This occurred despite class imbalance
+    being less severe for text data (<em>SMOTE</em> wasn't applied). The true
+    value distribution showed peaks at ratings 6-8, while predictions formed a
+    narrower peak at rating 8.
+</p>
+
+<!-- Image from PDF page 42: True vs predicted distribution for DistilBERT -->
+<img
+    src="distilbert_distribution_comparison.png"
+    alt="Ground thruth and predicted values distribituions, DistilBERT"
+/>
+
+<p>
+    This behavior suggests several factors:
+    <strong>insufficient training epochs</strong> for the model to learn
+    minority class patterns, the inherent difficulty of predicting extreme
+    ratings from text alone (extreme ratings may depend more on subjective
+    preferences or execution quality not captured in descriptions), and the
+    potential need for class-weighted loss functions or oversampling techniques
+    adapted for deep learning. More extensive hyperparameter tuning, longer
+    training with early stopping, and augmentation techniques specific to NLP
+    (<em>back-translation, paraphrasing</em>) might improve minority class
+    performance.
+</p>
+
+<p>
+    Despite limitations, the text-based approach demonstrated that
+    <strong>content descriptions contain predictive information</strong> about
+    ratings, complementary to the metadata features. An
+    <strong>ensemble combining tabular features with text embeddings</strong>
+    could potentially outperform either approach alone.
+</p>
+
+<h2>Explainable AI: LIME & SHAP Analysis</h2>
+<p>
+    To understand how the best-performing classifier made decisions,
+    <strong>explainable AI techniques</strong> were applied. For each target
+    class (0-10) present in the test set, the median sample (by feature values)
+    was identified as representative, and both <em>LIME</em> and
+    <em>SHAP</em> were used to explain that prediction.
+</p>
+
+<h3>LIME (Local Interpretable Model-Agnostic Explanations)</h3>
+<p>
+    <em>LIME</em> works by fitting
+    <strong>interpretable linear models locally</strong> around individual
+    predictions. For each class centroid, LIME identified the
+    <strong>most influential features</strong> and their contribution directions
+    (positive or negative) toward predicting that class. A tabular explainer was
+    configured with the training data, feature names, and class names,
+    generating explanations showing feature contributions as bar charts.
+</p>
+
+<p>
+    For <strong>Class 0</strong> (worst ratings), LIME revealed:
+    <strong>continent_Europe contributed +7.77</strong> (the strongest positive
+    predictor), suggesting European shows in the dataset were more likely to
+    receive the lowest ratings. This could reflect sampling bias or cultural
+    differences in rating behaviors. Negative contributions came from
+    <em
+        >lang_macroarea_Papunesia (-2.64), lang_macroarea_South America (-2.24),
+        and lang_macroarea_North America (-2.01)</em
+    >, indicating shows from these linguistic regions were less likely to be
+    rated 0. Interestingly, <em>continent_North America</em> provided a moderate
+    positive contribution (+1.49), creating a nuanced picture where North
+    American shows (by geography) were somewhat likely to be rated 0, but shows
+    in North American languages were less likely.
+</p>
+
+<p>
+    For <strong>Class 10</strong> (highest ratings), LIME showed:
+    <strong>vote_count was by far the dominant positive predictor</strong>, as
+    expected from feature importance analysis.
+    <em>Lang_macroarea_Africa (-1.00)</em> and
+    <em>continent_South America (-0.80)</em> contributed negatively, suggesting
+    shows from these regions were less represented in the top-rated category.
+    Multiple genre clusters (<em>genre_cluster_3, genre_cluster_2</em>) and
+    geographic features (<em>continent_Oceania, lang_macroarea_Papunesia</em>)
+    showed smaller positive contributions, indicating
+    <strong>diverse content could achieve top ratings</strong>. The spread of
+    contributing features for class 10 contrasted with class 0's strong
+    concentration on geographic origin, suggesting that achieving top ratings
+    required multiple factors aligning favorably.
+</p>
+
+<!-- Image from PDF page 45: LIME explanation for class 10 -->
+<img src="lime_class_10.png" alt="LIME All Features, Class 10" />
+
+<h3>SHAP (SHapley Additive exPlanations)</h3>
+<p>
+    <em>SHAP values</em>, grounded in game theory, provide a
+    <strong>unified measure of feature importance</strong> by considering all
+    possible feature combinations. A <em>TreeExplainer</em> was initialized with
+    the trained LightGBM model, computing SHAP values for test set samples.
+    <strong>Waterfall plots visualized</strong> how features pushed predictions
+    away from the base value (average model output) toward the final prediction.
+</p>
+
+<p>
+    For <strong>Class 0</strong>, SHAP's waterfall plot showed the base value
+    (expected model output across all samples) starting at -3.459. The
+    <strong>continent_Europe feature contributed +7.77</strong>, moving the
+    prediction significantly toward class 0. This
+    <strong>massive contribution</strong> explained the very high predicted
+    probability (0.9940) for this class. Subsequent features like
+    <em>lang_macroarea_Papunesia</em> (value 0.07, contribution -2.64) and
+    <em>lang_macroarea_South America</em> (value 0.102, contribution -2.24)
+    pulled back slightly, but not enough to overcome the European origin signal.
+</p>
+
+<!-- Image from PDF page 44: SHAP waterfall plot for class 0 -->
+<img
+    src="shap_waterfall_class_0.png"
+    alt="SHAP Waterfall Plot (Top 10), Class 0"
+/>
+
+<p>
+    The SHAP analysis <strong>confirmed LIME's findings</strong> while providing
+    magnitude perspective. The <em>E[f(X)] = -5.187</em> base value represented
+    the average log-odds prediction before considering specific features. For
+    the class 0 centroid, features pushed this to f(x) = -3.459, resulting in
+    <strong>extremely high confidence</strong> for predicting the lowest rating.
+    This <strong>quantitative framework</strong>
+    revealed not just which features mattered, but precisely how much they
+    shifted predictions.
+</p>
+
+<h3>Insights from XAI Analysis</h3>
+<p>
+    Several <strong>key insights emerged</strong> from the explainability
+    analysis. First,
+    <strong
+        >geographic and linguistic features played surprisingly strong
+        roles</strong
+    >
+    for extreme ratings (classes 0 and 10), suggesting systematic differences in
+    how shows from different regions are rated or which regional content appears
+    in this dataset. The <strong>vote_count feature's dominance</strong> in
+    class 10 predictions confirmed that engagement and polarization are closely
+    tied—shows with many ratings tend to be highly rated (possibly due to
+    selection bias where only popular shows accumulate many ratings).
+</p>
+
+<p>
+    The model learned <strong>nuanced interactions between features</strong>.
+    For instance, continent and language macro-area sometimes provided opposing
+    signals (North American geography vs North American languages), indicating
+    the model distinguished between production location and linguistic content
+    markets. <em>Genre clusters</em> showed more uniform but smaller
+    contributions across classes, suggesting genre was a modifying factor rather
+    than a primary determinant of ratings.
+</p>
+
+<p>
+    The explanations validated that the model was
+    <strong>learning meaningful patterns</strong> rather than spurious
+    correlations. The identified relationships (European content → lower
+    ratings, high engagement → higher ratings, diverse features → top ratings)
+    were <strong>interpretable and aligned with domain knowledge</strong> about
+    global television markets and rating dynamics. This transparency is crucial
+    for deploying ML systems in real-world applications where stakeholders need
+    to trust and understand model decisions.
+</p>
+
+<h2>Conclusions & Future Directions</h2>
+<p>
+    This comprehensive machine learning project successfully addressed the
+    challenge of <strong>predicting TV show ratings</strong> through both
+    classification and regression frameworks. The
+    <strong>final models achieved strong performance</strong>:
+    <em>LightGBM classifier</em> with <strong>0.79 ROC-AUC</strong> and
+    <em>CatBoost regressor</em> with <strong>0.63 R² and 16.71% MAPE</strong>.
+    These results demonstrate that
+    <strong
+        >show metadata and engagement metrics contain substantial predictive
+        signal</strong
+    >
+    about viewer ratings.
+</p>
+
+<h3>Key Takeaways</h3>
+<p>
+    The project validated several <strong>important ML principles</strong>.
+    <strong>Feature engineering</strong>, including custom genre clustering and
+    geographic-linguistic mapping, proved essential for model performance. The
+    <strong>outlier detection ensemble method</strong> and careful scaling
+    approach exemplified best practices in data preprocessing.
+    <strong>Systematic hyperparameter tuning</strong> with appropriate
+    cross-validation prevented overfitting while maximizing performance. The
+    comparison of balanced vs unbalanced training data revealed that
+    <strong>real-world performance sometimes contradicts common wisdom</strong>
+    about class balancing.
+</p>
+
+<p>
+    The <strong>explainability analysis using LIME and SHAP</strong> provided
+    critical insights into model decision-making, revealing that
+    <em>vote_count</em> (engagement) was the strongest predictor for high
+    ratings, while geographic and linguistic features strongly influenced
+    extreme ratings. This
+    <strong>transparency makes the models more trustworthy</strong> and
+    deployable in production environments.
+</p>
+
+<h3>Potential Improvements</h3>
+<p>
+    Several avenues could <strong>improve model performance</strong>.
+    Incorporating <strong>additional features</strong> like cast/crew
+    information, network/production company, episode count, season structure, or
+    viewer demographic data could provide richer context. Temporal features
+    beyond release year, such as trends in ratings over time or seasonal
+    patterns, might capture evolving viewer preferences. More sophisticated
+    <strong>text analysis using full DistilBERT embeddings</strong> (not just
+    fine-tuned predictions) could be combined with tabular features in an
+    ensemble model.
+</p>
+
+<p>
+    For the classification task, addressing class imbalance through more
+    advanced techniques like
+    <em>focal loss, cost-sensitive learning, or class-weighted training</em>
+    could improve minority class performance. The regression task might benefit
+    from <strong>ensemble methods combining CatBoost</strong> with other top
+    performers like <em>LightGBM or XGBoost</em> through stacking or blending.
+</p>
+
+<p>
+    It's worth noting that despite the comprehensive scope of this project—from
+    data preprocessing through advanced explainability analysis, <u
+        >all work was completed in just 5 days</u
+    >
+    (December 26-31, 2024) to meet the self-imposed deadline of delivering
+    before New Year's Eve. This rapid development timeline, documented in the
+    GitHub repository's commit history, demonstrates the ability to execute
+    end-to-end machine learning workflows efficiently under time constraints
+    while maintaining quality and rigor in methodology.
+</p>

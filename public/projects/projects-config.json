@@ -7,10 +7,7 @@
         "pdfFiles": {
             "report": "MASTER THESIS.pdf"
         },
-        "categories": [
-            "thesis",
-            "machine learning"
-        ],
+        "categories": ["Thesis", "Master's project", "Data science"],
         "backgroundImage": "dual_representation_strategy_bg.jpg"
     },
     {
@@ -21,10 +18,7 @@
         "pdfFiles": {
             "report": "REPORT Hackathon.pdf"
         },
-        "categories": [
-            "machine learning",
-            "explainable ai"
-        ],
+        "categories": ["Data science", "Hackathon", "Extra"],
         "backgroundImage": "decision tree_bg.png"
     },
     {
@@ -36,11 +30,7 @@
             "report": "REPORT Project Design and Management.pdf",
             "presentation": "PRESENTATION Project Design and Management.pdf"
         },
-        "categories": [
-            "business",
-            "management",
-            "project management"
-        ],
+        "categories": ["Business", "Master's project"],
         "backgroundImage": "backgroundImage_bg.jpg"
     },
     {
@@ -52,10 +42,7 @@
             "report": "REPORT Decision Support Systems.pdf",
             "presentation": "PRESENTATION Decision Support Systems.pdf"
         },
-        "categories": [
-            "business intelligence",
-            "data warehouse"
-        ],
+        "categories": ["Data science", "Master's project"],
         "backgroundImage": "geo_dash_bg.png"
     },
     {
@@ -66,10 +53,7 @@
         "pdfFiles": {
             "report": "REPORT data mining 2.pdf"
         },
-        "categories": [
-            "data mining",
-            "machine learning"
-        ],
+        "categories": ["Data science", "Master's project"],
         "backgroundImage": "discord cluster_bg.png"
     },
     {
@@ -78,10 +62,7 @@
         "jsonFile": "Strategic_and_Competitive_Intelligence.json",
         "htmlFile": "Strategic_and_Competitive_Intelligence.html",
         "pdfFiles": {},
-        "categories": [
-            "business",
-            "intelligence"
-        ],
+        "categories": ["Business", "Master's project", "Data science"],
         "backgroundImage": "quest1_bg.png"
     },
     {
@@ -93,10 +74,7 @@
             "report": "REPORT Fundamentals of Business Management.pdf",
             "presentation": "PRESENTATION Fundamentals of Business Management.pdf"
         },
-        "categories": [
-            "business",
-            "management"
-        ],
+        "categories": ["Business", "Master's project"],
         "backgroundImage": "dash1_bg.png"
     },
     {
@@ -107,10 +85,7 @@
         "pdfFiles": {
             "report": "REPORT Visual analytics.pdf"
         },
-        "categories": [
-            "visualization",
-            "data science"
-        ],
+        "categories": ["Data science", "Master's project"],
         "backgroundImage": "clusters1_bg.png"
     },
     {
@@ -121,10 +96,7 @@
         "pdfFiles": {
             "report": "REPORT business processes modeling.pdf"
         },
-        "categories": [
-            "business",
-            "process mining"
-        ],
+        "categories": ["Business", "Master's project"],
         "backgroundImage": "Full_bg.png"
     },
     {
@@ -135,10 +107,7 @@
         "pdfFiles": {
             "report": "REPORT Optimization for data science.pdf"
         },
-        "categories": [
-            "optimization",
-            "data science"
-        ],
+        "categories": ["Mathematics", "Data science", "Master's project"],
         "backgroundImage": "backgroundImage_bg.png"
     },
     {
@@ -149,10 +118,7 @@
         "pdfFiles": {
             "presentation": "PRESENTATION statistics for data science.pdf"
         },
-        "categories": [
-            "statistics",
-            "data science"
-        ],
+        "categories": ["Mathematics", "Data science", "Master's project"],
         "backgroundImage": "aggregated_no_sppmi_bg.png"
     },
     {
@@ -163,21 +129,26 @@
         "pdfFiles": {
             "report": "REPORT data mining 1.pdf"
         },
-        "categories": [
-            "data mining",
-            "machine learning"
-        ],
+        "categories": ["Data science", "Master's project"],
         "backgroundImage": "heatmap_bg.png"
+    },
+    {
+        "slug": "tv-show-analysis",
+        "folder": "TV Show Analysis",
+        "jsonFile": "TV_Show_Analysis.json",
+        "htmlFile": "TV_Show_Analysis.html",
+        "pdfFiles": {
+            "report": "presentazione.pdf"
+        },
+        "categories": ["Data science", "Extra"],
+        "backgroundImage": "xai_analysis_bg.png"
     },
     {
         "slug": "Bari Data Questionnaire Analysis",
         "folder": "Bari Data Questionnaire Analysis",
         "jsonFile": "Bari Data Questionnaire Analysis.json",
         "htmlFile": "Bari Data Questionnaire Analysis.html",
-        "categories": [
-            "web development",
-            "e-commerce"
-        ],
+        "categories": ["Data science", "Computer science", "Volunteering"],
         "backgroundImage": "sogni_bg.png"
     },
     {
@@ -185,10 +156,7 @@
         "folder": "Scomodo Interactive Maps",
         "jsonFile": "Scomodo Interactive Maps.json",
         "htmlFile": "Scomodo Interactive Maps.html",
-        "categories": [
-            "web development",
-            "e-commerce"
-        ],
+        "categories": ["Volunteering", "Computer science"],
         "backgroundImage": "spaziDiAggregazione_bg.png"
     },
     {
@@ -196,10 +164,7 @@
         "folder": "Scomodo Prints",
         "jsonFile": "Scomodo Prints.json",
         "htmlFile": "Scomodo Prints.html",
-        "categories": [
-            "web development",
-            "e-commerce"
-        ],
+        "categories": ["Volunteering", "Computer science"],
         "backgroundImage": "MAPPA-VUOTI-SVUOTATI_bg.png"
     },
     {
@@ -211,10 +176,7 @@
             "report": "BACHELOR THESIS.pdf",
             "manual": "BACHELOR THESIS user manual.pdf"
         },
-        "categories": [
-            "thesis",
-            "web development"
-        ],
+        "categories": ["Thesis", "Bachelor's project", "Computer science"],
         "backgroundImage": "Action Units_bg.png"
     },
     {
@@ -226,10 +188,7 @@
             "report": "REPORT Heatlhy Catering.pdf",
             "manual": "USER MANUAL Heatlhy Catering.pdf"
         },
-        "categories": [
-            "web development",
-            "business"
-        ],
+        "categories": ["Computer science", "Bachelor's project"],
         "backgroundImage": "backgroundImage_bg.png"
     }
 ]
