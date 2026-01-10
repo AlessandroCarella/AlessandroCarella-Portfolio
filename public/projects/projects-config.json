@@ -141,7 +141,7 @@
             "report": "presentazione.pdf"
         },
         "categories": ["Data science", "Extra"],
-        "backgroundImage": "xai_analysis_bg.png"
+        "backgroundImage": "bg_image.png"
     },
     {
         "slug": "Bari Data Questionnaire Analysis",
