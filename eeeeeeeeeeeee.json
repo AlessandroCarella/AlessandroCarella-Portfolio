@@ -1,0 +1,14 @@
+                {
+                    "parts": [
+                        { "type": "text", "content": "The " },
+                        {
+                            "type": "link",
+                            "text": "About",
+                            "url": "/About"
+                        },
+                        {
+                            "type": "text",
+                            "content": " page allows you to get to know me a bit better, I talk about my hobbies and some fun facts."
+                        }
+                    ]
+                }
