@@ -19,32 +19,19 @@
                         },
                         {
                             "type": "text",
-                            "content": " page. You can filter the results in the page based on the ones you are the most interested in :)"
+                            "content": " page."
                         }
                     ]
                 }
             ],
             "specialContent": {
                 "type": "resume-joke",
-                "text": "In the ",
+                "text": "Also, in the ",
                 "link": {
                     "text": "Resume",
                     "url": "/Resume"
                 },
-                "textAfter": " page, you can find a 1:1 copy of the info I shared with many companies in a standardized way so that they could",
-                "strikethrough": "hire me",
-                "shinyWords": [
-                    "suggest",
-                    "the",
-                    "best",
-                    "fitting",
-                    "ads",
-                    "on",
-                    "my",
-                    "social",
-                    "media",
-                    "feed."
-                ]
+                "textAfter": " page, you can find an interactive version of my resume :)"
             }
         },
         {
@@ -114,7 +101,7 @@
             "heading": "Additional Info",
             "paragraphs": [
                 "I feel fortunate to be born in a setting that allowed me to learn so much among extraordinarily talented teachers and peers.",
-                "My native language is Italian, but since I was a teenager, I have developed most of my interests online; therefore, I do not really consider English as a second language. Every class in my master's degree was held in English and I both bonded and worked, mostly with international students.",
+                "My native language is Italian, but since I was a teenager, I have developed most of my interests online; therefore, I do not really consider English as a second language. Every class in my master's degree was held in English and I both bonded and worked, mostly, with international students.",
                 "I'm excited to bring my skills to an exciting and challenging setting for my first data-related job :)"
             ]
         }

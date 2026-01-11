@@ -87,12 +87,12 @@ const Home = () => {
                         </Link>
                     )}
                     {specialContent.textAfter}{" "}
-                    <s>{specialContent.strikethrough}</s>{" "}
+                    {/* <s>{specialContent.strikethrough}</s>{" "}
                     {specialContent.shinyWords.map((word, index) => (
                         <React.Fragment key={index}>
                             <ShinyText text={word} speed={3} />{" "}
                         </React.Fragment>
-                    ))}
+                    ))} */}
                 </div>
             );
         }
