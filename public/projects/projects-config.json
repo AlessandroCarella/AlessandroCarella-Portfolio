@@ -190,5 +190,13 @@
         },
         "categories": ["Computer science", "Bachelor's project"],
         "backgroundImage": "backgroundImage_bg.png"
+    },
+    {
+        "slug": "canile-sanitario-bari",
+        "folder": "Canile Sanitario Bari",
+        "jsonFile": "Canile Sanitario Bari.json",
+        "htmlFile": "Canile Sanitario Bari.html",
+        "categories": ["Computer science", "Volunteering", "Extra"],
+        "backgroundImage": "dog_bg.jpg"
     }
 ]

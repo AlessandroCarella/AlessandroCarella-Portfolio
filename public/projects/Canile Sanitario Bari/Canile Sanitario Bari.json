@@ -1,0 +1,127 @@
+{
+    "projectName": "Canile Sanitario Bari — Adoption Platform",
+    "quickSummary": "Full-stack Italian-language dog shelter adoption platform built for Canile Sanitario Bari. React 19 + TypeScript SPA on Cloudflare Workers (Hono backend, KV data store, R2 media), with an admin dashboard, WhatsApp-first contact flow, Instagram caption generator, and live analytics — all on Cloudflare's free tier.",
+    "content": "Canile Sanitario Bari.html",
+    "liveVersion": "https://canilo.alessandro-carella-lavoro.workers.dev",
+    "repository": "https://github.com/AlessandroCarella/canilo",
+    "collaborators": [],
+    "skills": [
+        "React 19",
+        "TypeScript",
+        "Vite 6",
+        "Cloudflare Workers",
+        "Hono.js",
+        "Serverless Architecture",
+        "Edge Computing",
+        "React Router v7",
+        "Cloudflare KV",
+        "Cloudflare R2",
+        "REST API Design",
+        "Full-stack Web Development",
+        "PBKDF2 Password Hashing",
+        "Session-based Authentication",
+        "File Upload Handling",
+        "Drag-and-drop UX",
+        "Responsive Web Design",
+        "Mobile-first Design",
+        "Data Visualization (Recharts)",
+        "CSV Export (xlsx)",
+        "Fire-and-forget Analytics",
+        "ESLint",
+        "JSDoc-based Auto-documentation",
+        "WhatsApp Deep Linking",
+        "Instagram Marketing Automation",
+        "Italian Localization",
+        "Non-profit / Civic Web Development",
+        "Cookie Consent & Privacy Compliance"
+    ],
+    "keywords": {
+        "technologies": [
+            "React 19",
+            "TypeScript 5.8",
+            "Vite 6",
+            "Hono v4",
+            "Cloudflare Workers",
+            "Cloudflare KV",
+            "Cloudflare R2",
+            "react-router-dom v7",
+            "Recharts",
+            "xlsx",
+            "ESLint 9",
+            "Wrangler v4",
+            "ts-morph"
+        ],
+        "architecture": [
+            "Serverless",
+            "Edge Computing",
+            "Single Page Application (SPA)",
+            "Code-splitting (public vs. admin bundles)",
+            "Static asset + dynamic worker hybrid",
+            "Single-binary deploy",
+            "Asynchronous (fire-and-forget) analytics"
+        ],
+        "backend": [
+            "Hono router",
+            "KV-backed data store",
+            "R2 media serving",
+            "Signed media URLs",
+            "PBKDF2 + 16-byte salt password hashing",
+            "Session tokens with 24h expiry",
+            "Page-view and contact counters"
+        ],
+        "frontend": [
+            "Component-driven UI",
+            "React Context for auth & cookie consent",
+            "Custom hooks (usePageView, useConsentContext)",
+            "Skeleton loaders",
+            "JavaScript-based responsive breakpoints",
+            "Sticky mobile WhatsApp CTA",
+            "Reorderable file upload list"
+        ],
+        "features": [
+            "Public dog browsing",
+            "Filter by size / sex / age",
+            "Full-text search",
+            "Detailed dog profiles with photo galleries",
+            "Admin dashboard",
+            "Drag-and-drop multi-file uploads (up to 10)",
+            "Inline status updates (disponibile / riservato / adottato)",
+            "Statistics dashboard with KPIs and charts",
+            "CSV export",
+            "Auto-generated Instagram captions and hashtags",
+            "WhatsApp contact tracking"
+        ],
+        "security": [
+            "PBKDF2 password hashing",
+            "Salted credential storage",
+            "Session token rotation",
+            "Role-gated admin routes",
+            "Cookie consent layer"
+        ],
+        "domains": [
+            "Animal Welfare",
+            "Non-profit Web",
+            "Adoption Platforms",
+            "Civic Technology",
+            "Italian-language UX",
+            "Volunteering"
+        ],
+        "tooling": [
+            "Auto-generated README export tables",
+            "JSDoc validation (docs:check)",
+            "TypeScript strict mode",
+            "ESLint enforcement",
+            "Pre-deploy dry-run (wrangler deploy --dry-run)",
+            "ts-morph-powered code analysis"
+        ],
+        "design": [
+            "Mobile-first responsive layout",
+            "CSS variables for theming",
+            "Warm amber / terracotta palette",
+            "WhatsApp green accent",
+            "Personality tag chips",
+            "Status badges",
+            "Empty-state messaging"
+        ]
+    }
+}

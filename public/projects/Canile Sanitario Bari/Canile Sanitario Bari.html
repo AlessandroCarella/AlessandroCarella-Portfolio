@@ -1,0 +1,596 @@
+<p>
+    <strong>Canilo</strong> is a full-stack
+    <strong>Italian-language dog shelter adoption platform</strong> I built for
+    <em>Canile Sanitario Bari</em>, a municipal shelter operating in the
+    industrial zone of <em>Bari</em>. It gives the shelter a public face on the
+    web — visitors can browse adoptable dogs, contact the staff through
+    <strong>WhatsApp</strong>, and learn about the adoption process — and it
+    gives the shelter staff a self-service admin dashboard for managing dog
+    profiles, uploading photos and videos, tracking adoption status, and
+    generating ready-to-publish Instagram captions to push dogs into the
+    social-media stream.
+</p>
+
+<p>
+    The platform is deployed at
+    <a href="https://canilo.alessandro-carella-lavoro.workers.dev">
+        canilo.alessandro-carella-lavoro.workers.dev
+    </a>
+    and runs <strong>entirely on Cloudflare's free tier</strong>:
+    <em>Workers</em> for the backend, <em>KV</em> for structured data, and
+    <em>R2</em> for media. There is
+    <strong>no traditional server, no database license, no monthly hosting bill</strong> —
+    a deliberate constraint, because shelters and small non-profits typically
+    can't sustain operating costs for a website that exists to serve a public
+    mission.
+</p>
+
+<p>
+    The project covers
+    <strong>everything end-to-end</strong>: architecture decisions, the React
+    SPA, the Hono backend, the KV/R2 data model, the admin authentication
+    layer, the analytics pipeline, the Italian copywriting, the responsive
+    design, the deployment automation, the internal documentation system, and
+    the migration scripts that seeded the initial dog profiles from the
+    shelter's Instagram archive.
+</p>
+
+<!-- TODO: add screenshot - homepage hero with stats and featured dogs carousel -->
+<img
+    src="screenshot_homepage.png"
+    alt="Canilo homepage with hero section, live counters for available/adopted dogs, and a featured-dogs carousel"
+/>
+
+<h2>What I Worked On</h2>
+
+<p>
+    This was an
+    <strong>end-to-end solo build</strong>: I owned the product, the
+    architecture, the implementation, and the deployment. Concretely, the work
+    spanned:
+</p>
+
+<p>
+    <strong>Product definition.</strong> Translating the shelter's needs
+    (showcase dogs, take adoption inquiries, keep up with Instagram) into a
+    concrete feature set — public listing, dog detail page, contact funnel,
+    admin CRUD, statistics, and the Instagram caption generator. Choosing what
+    <em>not</em> to build was as important as choosing what to build: no
+    payment integration, no in-platform messaging, no donation flow — the
+    platform stays focused on
+    <strong>matching visitors with dogs and routing them to WhatsApp</strong>.
+</p>
+
+<p>
+    <strong>Architecture.</strong> Designing a serverless data model on top
+    of <em>Cloudflare KV</em> (a key-value store with no joins, no indexes,
+    and eventual consistency), with <em>R2</em> for binary media. Picking
+    <em>Hono</em> as the router for its low overhead on the Workers runtime,
+    and <em>react-router-dom v7</em> with the new file-based features for the
+    SPA shell.
+</p>
+
+<p>
+    <strong>Frontend.</strong> Building every public and admin page in
+    <em>React 19</em> + <em>TypeScript</em>, including responsive layouts,
+    skeleton loaders, drag-and-drop photo uploads, filter pills, photo
+    galleries with thumbnails, sticky mobile CTAs, and the Recharts-based
+    statistics dashboard.
+</p>
+
+<p>
+    <strong>Backend.</strong> Writing the full Hono API surface (CRUD for
+    dogs, file upload to R2, signed media serving, analytics counters,
+    PBKDF2-based authentication with session tokens), all in a single Worker
+    binary.
+</p>
+
+<p>
+    <strong>Operations.</strong> Setting up the Wrangler workflow,
+    provisioning the KV namespace and R2 bucket, configuring the production
+    variables, and wiring a pre-deploy check that runs <em>tsc</em>,
+    <em>vite build</em>, and <em>wrangler deploy --dry-run</em> in sequence.
+</p>
+
+<p>
+    <strong>Documentation and code quality.</strong> Authoring per-folder
+    READMEs in <code>src/</code>, plus building a custom
+    <em>ts-morph</em>-powered docstring checker that fails CI if any exported
+    function or component is missing a <em>JSDoc</em> comment, and a
+    README-table generator that keeps the per-folder Exports tables in sync
+    with the code.
+</p>
+
+<p>
+    <strong>Content seeding.</strong> Writing a Python downloader that
+    scrapes the shelter's Instagram archive and uses the upload API to seed
+    the initial dog roster, so the platform launched
+    <strong>pre-populated with real dogs</strong> rather than empty.
+</p>
+
+<h2>Architecture &amp; Infrastructure</h2>
+
+<p>
+    The system is a
+    <strong>single Cloudflare Worker</strong> serving both a static React SPA
+    (from R2-attached assets) and a dynamic Hono-based API. There is no
+    separate frontend host, no separate API host, no separate database
+    server. The deploy is one <em>wrangler deploy</em>.
+</p>
+
+<p>
+    Data lives in <strong>two stores</strong>:
+    <em>Cloudflare KV</em> holds the structured dog profiles
+    (<u>name, breed, age in months and years, sex, size, status, health
+    flags, personality tags, arrival date, ordered list of media keys</u>) and
+    the analytics counters (per-dog views, per-dog WhatsApp clicks, daily
+    site-wide page views). <em>Cloudflare R2</em> holds the photos and videos
+    referenced by key from each dog profile. Media is served through a
+    Worker route at <code>/r2/:key</code> that streams the object directly,
+    so the public site never exposes raw R2 URLs.
+</p>
+
+<p>
+    This split exists because <strong>KV is optimised for tiny reads</strong>
+    (great for a dog profile of a few hundred bytes) and <strong>R2 is
+    optimised for blobs</strong> (great for photos averaging several
+    hundred kilobytes). Mixing them would be wasteful — storing JPGs in KV
+    would blow past the per-value size cap, and storing dog metadata in R2
+    would require an HTTP round-trip per attribute lookup.
+</p>
+
+<p>
+    <strong>Authentication</strong> is session-based. Admin credentials are
+    hashed with <em>PBKDF2</em> using a per-user 16-byte salt; on login the
+    Worker mints a session token, stores it in KV with a
+    <strong>24-hour expiry</strong>, and returns it to the client. The token
+    is sent in subsequent requests via a header and validated on every
+    admin-route call. There is a single seed admin (<em>admin/admin</em>)
+    that the shelter changes after first login.
+</p>
+
+<p>
+    The deployment topology means that
+    <strong>every user request hits the edge</strong>, not an origin. There
+    is no cold start, no region selection, no autoscaling concerns. Cloudflare
+    runs the same Worker code in every PoP. The trade-off is that you give up
+    the operational simplicity of a real relational database — every join,
+    every secondary index, every aggregate has to be computed in JavaScript
+    against KV. For a shelter with at most a few hundred dogs, that is
+    <strong>massively the right trade</strong>; for a marketplace with
+    millions of listings it would not be.
+</p>
+
+<!-- TODO: add architecture diagram - React SPA <-> Hono Worker <-> KV (data) + R2 (media), with admin auth + analytics arrows -->
+<img
+    src="architecture_diagram.png"
+    alt="Architecture diagram: React SPA in the browser talks to a single Cloudflare Worker that routes to either KV (dog data, sessions, counters) or R2 (photos and videos), with the admin dashboard guarded by PBKDF2 sessions"
+/>
+
+<h2>Public-Facing Experience</h2>
+
+<p>
+    The public site has <strong>five route surfaces</strong>: the landing
+    page, the dog listing, the dog detail page, the contact page, and the
+    legal pages (<em>privacy</em>, <em>cookie</em>). Together they cover the
+    full <strong>browse → discover → contact</strong> funnel.
+</p>
+
+<h3>Landing page</h3>
+<p>
+    The <strong>landing page</strong> opens with an emotional hero ("trova il
+    tuo nuovo migliore amico"), followed by a row of live stats
+    (<em>available dogs, adopted dogs, years of operation</em>) computed on
+    page load from KV counters. Below the stats is a
+    <strong>featured-dogs carousel</strong> showing up to four randomly
+    selected available dogs — randomising means visitors see different dogs
+    on different sessions, surfacing the long tail rather than always the
+    same four. A three-step
+    <em>"how to adopt"</em> walkthrough sets expectations for the process,
+    and a CTA banner invites other shelters to get in touch about adopting
+    the platform itself.
+</p>
+
+<h3>Dog listing &amp; discovery</h3>
+<p>
+    The <strong>dog listing page</strong> at <code>/cani</code> is a
+    responsive grid (<u>2 columns on mobile, 3 on desktop</u>) with
+    advanced filters: <em>size</em> (piccolo / medio / grande),
+    <em>sex</em>, and <em>age category</em>, plus a
+    <strong>full-text search</strong> across the dog's name and breed. Each
+    card shows a status badge (<em>disponibile</em>, <em>riservato</em>,
+    <em>adottato</em>) and a subtle "someone is interested" heart icon when
+    the dog has recently been contacted, which gives the page a
+    <strong>signal of activity</strong> without ever revealing personal
+    information. Empty states and skeleton loaders keep the page from feeling
+    broken while data resolves.
+</p>
+
+<!-- TODO: add screenshot - dog listing grid with filter chips active and search box -->
+<img
+    src="screenshot_dog_listing.png"
+    alt="Dog listing page in a 3-column grid with size/sex/age filter chips and a search box, each card showing status badge and primary photo"
+/>
+
+<h3>Dog detail page</h3>
+<p>
+    The <strong>dog detail page</strong> at <code>/cani/:id</code> is the
+    conversion surface. It pairs a <strong>large photo gallery with
+    thumbnails</strong> against a structured info column: breed, age in
+    years/months, sex, size. Health badges show <em>vaccinated</em>,
+    <em>sterilized</em>, <em>microchipped</em> status at a glance.
+    Personality traits are rendered as chips drawn from a 14-tag predefined
+    Italian vocabulary (<em>affettuoso, giocoso, calmo, energetico,
+    socievole…</em>) — a controlled vocabulary keeps filtering useful and
+    prevents the dataset from fragmenting into one-off adjectives. The
+    primary action is a <strong>green WhatsApp CTA</strong> that, on mobile,
+    is <u>sticky to the bottom of the viewport</u> so it never scrolls out of
+    reach. Tapping it deep-links to WhatsApp with a pre-filled message
+    referencing the dog by name.
+</p>
+
+<!-- TODO: add screenshot - dog detail page with gallery + thumbnails + WhatsApp CTA + personality chips -->
+<img
+    src="screenshot_dog_detail.png"
+    alt="Dog detail page showing main photo with thumbnail strip, structured info grid (breed/age/sex/size), health badges, personality trait chips, description, and a prominent green WhatsApp contact button"
+/>
+
+<h3>Contact page</h3>
+<p>
+    The <strong>contact page</strong> at <code>/contatti</code> is
+    deliberately WhatsApp-first: the primary CTA is a big green button. Below
+    it sit the shelter's name, address, and city, an accordion of four
+    Italian adoption FAQs (the questions the staff get asked most), opening
+    hours, and a Google Maps placeholder for the shelter location.
+</p>
+
+<!-- TODO: add screenshot - contact page with WhatsApp CTA, FAQ accordion, shelter address -->
+<img
+    src="screenshot_contact_page.png"
+    alt="Contact page with prominent WhatsApp call-to-action, shelter address block, opening hours, and a four-question Italian adoption FAQ accordion"
+/>
+
+<h3>Cookie consent &amp; legal</h3>
+<p>
+    A <strong>cookie consent layer</strong> lives at the bottom of every
+    page, backed by a React context that gates analytics until the user
+    opts in. The <em>privacy</em> and <em>cookie</em> pages document the
+    data the platform collects (which is minimal — page-view counts and
+    WhatsApp-click counts, no personal identifiers).
+</p>
+
+<h2>Admin Dashboard</h2>
+
+<p>
+    The <strong>admin dashboard</strong> is a separate code-split bundle —
+    loading the public site does not download <em>Recharts</em>, the admin
+    form components, or the file upload tooling, because none of that is
+    needed for a visitor browsing dogs.
+</p>
+
+<h3>Authentication</h3>
+<p>
+    The login page at <code>/admin/login</code> takes a username and password,
+    posts them to the Worker, and on success stores a session token in
+    <em>localStorage</em>. The Worker validates credentials against a
+    <strong>PBKDF2-hashed user record in KV</strong>, mints a token, stores
+    it with a 24-hour expiry, and returns it. Every admin-route fetch sends
+    the token in an <code>X-Session-Token</code> header; the Worker rejects
+    expired or unknown tokens with a 401 and the React app routes back to
+    the login page.
+</p>
+
+<h3>Add Dog flow</h3>
+<p>
+    The <strong>Add Dog</strong> page at <code>/admin/aggiungi</code> is the
+    most ergonomically dense screen in the app. It includes:
+</p>
+
+<p>
+    A <strong>drag-and-drop file area</strong> that also accepts
+    click-to-upload, supporting up to <strong>10 files per dog</strong>
+    (photos or short videos). Each file uploads in real time with a status
+    badge — <em>uploading, uploaded, failed</em> — and the order is
+    <strong>reorderable</strong> so the first file becomes the primary photo
+    used in the gallery and listing cards.
+</p>
+
+<p>
+    A structured <strong>form for the dog's profile</strong>: name, breed,
+    age as separate years + months inputs (because shelter dogs are often
+    "1 year 3 months" not just "1 year"), sex, size, and the health status
+    flags. A <strong>multi-select for personality traits</strong> with the
+    14 predefined Italian chips plus an "add custom" affordance. A
+    resizable description textarea. An arrival date picker.
+</p>
+
+<p>
+    On submit, the Worker writes the dog record to KV with the ordered list
+    of R2 media keys, returns the new dog ID, and the UI shows a success
+    toast with a direct shortcut to
+    <strong>"Generate Instagram post for this dog"</strong>.
+</p>
+
+<!-- TODO: add screenshot - Add Dog admin page with drag-and-drop upload area, personality tag picker, and form fields -->
+<img
+    src="screenshot_add_dog.png"
+    alt="Add Dog admin page with drag-and-drop file upload area (showing in-progress uploads), reorderable file list, multi-select personality tag picker, and structured form fields for name, breed, age, sex, size"
+/>
+
+<h3>Manage Dogs</h3>
+<p>
+    The <strong>Manage Dogs</strong> page at <code>/admin/gestisci</code>
+    adapts to viewport: a <strong>table on desktop</strong> (thumbnail, name,
+    breed, age, size, status, actions) and a
+    <strong>card list on mobile</strong>. A summary row at the top shows
+    counters for <em>disponibile / riservato / adottato</em>; filter pills
+    let staff narrow by status, and a name-search input handles ad-hoc
+    lookup. Each row supports inline status change via a dropdown, delete
+    (behind a confirmation dialog), edit (routes to
+    <code>/admin/modifica/:id</code>), and a quick shortcut to the
+    Instagram generator.
+</p>
+
+<!-- TODO: add screenshot - Manage Dogs admin table with status counters, filter pills, and inline action buttons -->
+<img
+    src="screenshot_admin_dashboard.png"
+    alt="Manage Dogs admin page showing a table with thumbnails, status counters at the top (disponibile/riservato/adottato), filter pills, search box, and per-row dropdown for status changes plus edit/delete/Instagram-generate buttons"
+/>
+
+<h2>Statistics &amp; Analytics</h2>
+
+<p>
+    <strong>Analytics are first-party and fire-and-forget</strong>. The
+    public site never loads a third-party tracker; instead, two custom hooks
+    — <em>usePageView</em> on the page level and an inline contact handler on
+    the WhatsApp button — issue async POST requests to the Worker that
+    increment KV counters and return immediately. The user never waits on
+    analytics.
+</p>
+
+<p>
+    The <strong>statistics dashboard</strong> at
+    <code>/admin/statistiche</code> aggregates those counters into KPI cards
+    (<em>available, reserved, adopted, total WhatsApp contacts, total visits
+    in last 30 days, most-viewed dog, most-contacted dog</em>) and two
+    <strong>Recharts visualisations</strong>: a horizontal bar chart of the
+    top five most-contacted dogs, and a line chart of daily page views over
+    the last 30 days. A <strong>CSV export</strong> built with <em>xlsx</em>
+    bundles per-dog statistics (name, breed, status, arrival date, views,
+    contacts) into a spreadsheet that staff can take into adoption meetings
+    or share with municipal partners. The page also embeds a small
+    "Cloudflare Analytics" card pointing to the dashboard for finer-grained
+    edge metrics.
+</p>
+
+<!-- TODO: add screenshot - Statistics admin page with KPI cards and Recharts bar + line charts -->
+<img
+    src="screenshot_statistics.png"
+    alt="Statistics dashboard with seven KPI cards across the top, a horizontal bar chart of the top five most-contacted dogs, a line chart of daily page views for the last 30 days, and a CSV export button"
+/>
+
+<h2>Instagram Post Generator</h2>
+
+<p>
+    The shelter publishes regularly on Instagram, and writing a caption for
+    every dog is repetitive work. The
+    <strong>Instagram Post Generator</strong> automates it. Given a dog's
+    profile, the generator composes a caption in the dog's voice
+    (<em>"Ciao, sono {nome}!"</em>), narrates the personality traits in
+    natural Italian, adds an age statement, describes the breed and size,
+    appends health-status emojis, and closes with a
+    <strong>gender-specific emotional appeal</strong> (<em>"sto cercando una
+    famiglia che mi sappia amare"</em> for males,
+    <em>"…che mi sappia amare"</em> with feminine agreement for females).
+</p>
+
+<p>
+    The shelter's name and city are tacked on, plus a curated hashtag block:
+    <strong>size-specific hashtags</strong> (e.g. <em>#canipiccoliadozione</em>
+    for small dogs), <strong>14+ general adoption hashtags</strong>, and the
+    shelter's own brand tag. The output is
+    <strong>30+ hashtags</strong> ready to copy with a single button — staff
+    paste the caption into Instagram and post.
+</p>
+
+<!-- TODO: add screenshot - Instagram caption generator with generated text and hashtag block, plus copy button -->
+<img
+    src="screenshot_instagram_generator.png"
+    alt="Instagram post generator page showing the auto-composed Italian caption (with personality traits narrated in the dog's voice), health emoji row, and the 30+ generated hashtags block with a one-click copy button"
+/>
+
+<h2>Tech Stack Deep Dive</h2>
+
+<p>
+    The frontend is <strong>React 19</strong> with
+    <strong>Vite 6</strong> as the bundler and dev server, written in
+    <strong>TypeScript 5.8</strong> in strict mode.
+    <em>react-router-dom v7</em> handles client-side routing with the
+    modern data-router API. State management is
+    <strong>intentionally not Redux or Zustand</strong> — the data is
+    almost entirely server-derived, so React Context (for
+    <em>auth</em> and <em>cookie consent</em>) plus per-page <em>useEffect</em>
+    fetches and a couple of custom hooks (<em>usePageView</em>,
+    <em>useConsentContext</em>) covers everything without adding a
+    state-management library.
+</p>
+
+<p>
+    The backend is <strong>Hono v4</strong> running on the
+    <strong>Cloudflare Workers runtime</strong>. Hono was chosen over
+    alternatives like itty-router for its
+    <strong>full middleware story</strong> (request validation, error
+    boundaries, sub-routers) without the bundle cost of Express-style
+    frameworks. All routes — dog CRUD, file upload, signed media serving,
+    analytics counters, auth — live in a single
+    <a href="https://github.com/AlessandroCarella/canilo/blob/main/src/worker/index.ts">
+        worker entry file
+    </a>
+    that Wrangler bundles into one Worker binary.
+</p>
+
+<p>
+    <strong>Code-splitting</strong> is deliberate: the admin bundle ships
+    <em>Recharts</em>, <em>xlsx</em>, and all the admin form components,
+    while the public bundle ships none of those. The result is a public site
+    that loads <strong>fast on mobile</strong> — the audience for an
+    adoption page is often someone on a phone, not a desktop user, and the
+    shelter is in a region where bandwidth assumptions need to be
+    conservative.
+</p>
+
+<p>
+    Responsive design uses
+    <strong>JavaScript-based breakpoints rather than CSS media queries</strong>
+    in components where the desktop and mobile layouts differ structurally
+    (table vs. card list on Manage Dogs, side-by-side vs. stacked on the
+    dog detail page). The break at <em>768px</em> is read once from
+    <em>window.matchMedia</em> and updated via a listener — this keeps the
+    React tree consistent rather than relying on CSS to hide the wrong tree.
+</p>
+
+<h2>Documentation Automation</h2>
+
+<p>
+    Every folder under <code>src/</code> has a <em>README.md</em> with a
+    <strong>purpose statement</strong>, a <strong>file list</strong>, and an
+    <strong>Exports table</strong>. The exports table is generated by a
+    custom script (<code>scripts/generate-readme.ts</code>) that uses
+    <strong>ts-morph</strong> to walk every exported symbol in the folder,
+    extract its name, kind (function / component / type / constant), and
+    JSDoc summary, and rewrite the README's <em>Exports</em> section. Running
+    <em>npm run docs:generate</em> keeps the docs in sync with the code.
+</p>
+
+<p>
+    Paired with the generator is a
+    <strong>docstring checker</strong> (<code>scripts/check-docstrings.ts</code>):
+    same ts-morph traversal, but it
+    <strong>fails with a non-zero exit code</strong> if any exported symbol
+    is missing a JSDoc comment. The <em>npm run docs</em> command runs
+    generate then check, and the <em>npm run check</em> pre-deploy script
+    runs <em>tsc</em>, <em>vite build</em>, and
+    <em>wrangler deploy --dry-run</em> in sequence — so the project will not
+    deploy if a new export is undocumented or if the production bundle fails
+    to build.
+</p>
+
+<p>
+    This is the kind of guardrail that pays off
+    <strong>specifically on solo projects</strong>: it stops past-me from
+    handing future-me an undocumented function I no longer remember writing.
+</p>
+
+<h2>Deployment on Cloudflare Free Tier</h2>
+
+<p>
+    Setup is three Wrangler commands:
+</p>
+
+<p>
+    <strong>1.</strong> <em>npx wrangler kv namespace create KV</em> — provisions
+    the KV namespace, returns an ID that goes into <em>wrangler.json</em>.
+</p>
+
+<p>
+    <strong>2.</strong> <em>npx wrangler r2 bucket create shelter-media</em> —
+    provisions the R2 bucket already bound in <em>wrangler.json</em> under
+    the <em>MEDIA</em> binding name.
+</p>
+
+<p>
+    <strong>3.</strong> Edit the <em>vars</em> block in
+    <em>wrangler.json</em>: <em>SHELTER_NAME</em>, <em>SHELTER_ADDRESS</em>,
+    <em>SHELTER_CITY</em>, <em>WHATSAPP_NUMBER</em>,
+    <em>WHATSAPP_DEFAULT_MESSAGE</em>. These are the only variables that
+    differ between shelters, which means the same codebase can be
+    <strong>redeployed for a different shelter</strong> by editing five
+    strings and running <em>npm run deploy</em>.
+</p>
+
+<p>
+    The project lives well inside the
+    <strong>free-tier limits</strong>: Workers gives 100,000 requests/day,
+    KV gives 100,000 reads + 1,000 writes/day, R2 gives 10GB of storage and
+    a million Class A operations / month for free. A small-city shelter
+    with a few hundred adoptable dogs and a few thousand visits per month
+    fits comfortably. The economic model is
+    <strong>"nothing per month, forever"</strong> until traffic grows, at
+    which point the bill scales gradually — there is no abrupt step from
+    free to a $100/month managed database.
+</p>
+
+<h2>Real-World Impact</h2>
+
+<p>
+    The platform is <strong>actively deployed</strong> for Canile Sanitario
+    Bari and serves as their primary digital presence. Before this, the
+    shelter relied on Instagram for visibility and word-of-mouth and phone
+    calls for inquiries — there was no
+    <strong>searchable, filterable, always-up-to-date catalogue</strong> of
+    adoptable dogs. The website now provides exactly that, and the
+    WhatsApp-first contact flow meets people where they already are
+    (<em>WhatsApp is the dominant messaging channel in Italy</em>) rather
+    than forcing them through a contact form.
+</p>
+
+<p>
+    The analytics dashboard makes the shelter's
+    <strong>engagement measurable</strong> for the first time: staff can see
+    which dogs are getting attention, which dogs are getting no attention
+    (and therefore need a fresh push on Instagram), and how many people are
+    crossing the funnel from "view a profile" to "tap to message". That
+    feedback loop is the actual product — the website is the surface, but
+    the value is the visibility into what works.
+</p>
+
+<h2>What I Learned</h2>
+
+<p>
+    <strong>KV is not a database, and that's fine.</strong> Building on KV
+    forced me to design the read path first and decide
+    <strong>up front what every page needs</strong>, instead of relying on
+    ad-hoc SQL queries to bail me out at render time. The dog list page
+    reads one KV entry (a sorted index of dog IDs) and then fans out to
+    per-dog reads — explicit, traceable, and easy to reason about.
+</p>
+
+<p>
+    <strong>Edge runtimes have sharp edges.</strong> The Workers runtime is
+    not Node.js: <em>Buffer</em> does not exist by default,
+    <em>process.env</em> is gone, and many npm packages assume APIs that
+    aren't there. Picking small, edge-native dependencies (<em>Hono</em>,
+    plain <em>crypto.subtle</em> for PBKDF2) avoided a class of bugs that
+    Node-targeted libraries would have introduced.
+</p>
+
+<p>
+    <strong>Designing admin UX for non-technical users matters more than
+    designing the public site.</strong> The shelter staff are the ones who
+    use the platform every day. The Add Dog page got more iteration than any
+    public page — file upload with reorderable thumbnails, immediate visual
+    feedback on upload progress, sensible defaults so a profile can be
+    created in under a minute. A clever admin interface that the staff
+    can't use is a failed product.
+</p>
+
+<p>
+    <strong>Italian-language UX has its own constraints.</strong>
+    Gender-agreeing copy (<em>adottato</em> vs. <em>adottata</em>),
+    consistent vocabulary for personality traits, and avoiding
+    English-borrowed words where Italian readers expect Italian — these
+    decisions accumulate and shape the perceived quality of the platform.
+    The personality tag vocabulary went through several revisions before
+    landing on 14 traits that staff actually wanted to use.
+</p>
+
+<p>
+    <strong>Serverless lets a small project punch above its weight.</strong>
+    A shelter with no IT budget gets the
+    <strong>same edge-distributed, globally cached, zero-downtime
+    infrastructure</strong> that a large e-commerce site would pay for.
+    That asymmetry — institutional-grade tech at hobbyist-grade cost — is
+    the most interesting thing about the project. It is the architectural
+    pattern I'd reach for again the moment someone needs a real website
+    with no real budget.
+</p>
