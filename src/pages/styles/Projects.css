@@ -336,7 +336,19 @@
 .projects-grid .project-card {
     width: 100%;
     max-width: 100%;
-    height: 500px;
+}
+
+/* Per-row equal height: grid stretches each row's cards to that row's tallest */
+.projects-grid {
+    align-items: stretch;
+}
+
+.project-card-wrapper {
+    display: flex;
+}
+
+.project-card-wrapper .project-card {
+    height: 100%;
 }
 
 /* Accessibility - Focus states */

@@ -12,6 +12,7 @@ const ProjectCard = ({
     presentationLink,
     liveVersionLink,
     classNotesLink,
+    onOpenPDF,
 }) => {
     return (
         <div className="project-card">
@@ -34,16 +35,17 @@ const ProjectCard = ({
                 {/* Action Buttons Section - 10% */}
                 <div className="card-actions-section">
                     {pdfLink && (
-                        <a
-                            href={pdfLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            type="button"
                             className="action-button"
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onOpenPDF?.("Report", pdfLink);
+                            }}
                         >
                             <FileText className="button-icon" size={16} />
                             Report
-                        </a>
+                        </button>
                     )}
 
                     {githubLink && (
@@ -60,16 +62,17 @@ const ProjectCard = ({
                     )}
 
                     {presentationLink && (
-                        <a
-                            href={presentationLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            type="button"
                             className="action-button"
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onOpenPDF?.("Slides", presentationLink);
+                            }}
                         >
                             <Presentation className="button-icon" size={16} />
                             Slides
-                        </a>
+                        </button>
                     )}
 
                     {liveVersionLink && (

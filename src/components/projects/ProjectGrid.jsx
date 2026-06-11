@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProjectCard from "../ProjectCard";
+import PDFOverlay from "../PDFOverlay";
 import { getProjectLinks } from "../utils/projectUtils";
 
 /**
@@ -8,9 +9,18 @@ import { getProjectLinks } from "../utils/projectUtils";
  */
 const ProjectGrid = ({ projects }) => {
     const navigate = useNavigate();
+    const [activePDF, setActivePDF] = useState(null);
 
     const handleCardClick = (project) => {
         navigate(`/projects/${project.slug}`);
+    };
+
+    const handleOpenPDF = (type, path) => {
+        setActivePDF({ type, path });
+    };
+
+    const handleClosePDF = () => {
+        setActivePDF(null);
     };
 
     return (
@@ -43,10 +53,19 @@ const ProjectGrid = ({ projects }) => {
                             presentationLink={links.presentationLink}
                             liveVersionLink={links.liveVersionLink}
                             classNotesLink={links.classNotesLink}
+                            onOpenPDF={handleOpenPDF}
                         />
                     </div>
                 );
             })}
+
+            {activePDF && (
+                <PDFOverlay
+                    pdfPath={activePDF.path}
+                    title={activePDF.type}
+                    onClose={handleClosePDF}
+                />
+            )}
         </div>
     );
 };
