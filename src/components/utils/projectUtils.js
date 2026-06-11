@@ -19,6 +19,10 @@ export const PROJECT_TAGS = {
     "web development":  "#3094FF",  // blue.4
 };
 
+export const tagToSlug = (tag) => tag.toLowerCase().replace(/\s+/g, "-");
+export const slugToTag = (slug) =>
+    Object.keys(PROJECT_TAGS).find((t) => tagToSlug(t) === slug) ?? null;
+
 /**
  * Gets the project links (PDF, GitHub, Presentation) from config
  * @param {object} projectConfig - The project config object

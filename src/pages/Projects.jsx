@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProjects } from "../hooks/useProjects.js";
 import {
     filterProjects,
     PROJECT_TAGS,
+    tagToSlug,
+    slugToTag,
 } from "../components/utils/projectUtils.js";
 import ProjectGrid from "../components/projects/ProjectGrid";
 import ProjectFilters from "../components/projects/ProjectFilters";
@@ -14,10 +17,27 @@ import "./styles/Projects.css";
  * Projects Page - Main page displaying all projects with filters
  */
 const Projects = () => {
+    const { projectSlug } = useParams();
+    const navigate = useNavigate();
     const { projects, loading, error } = useProjects();
     const [filteredProjects, setFilteredProjects] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState("all");
+
+    const categoryFromUrl = projectSlug ? (slugToTag(projectSlug) ?? "all") : "all";
+    const [selectedCategory, setSelectedCategory] = useState(categoryFromUrl);
+
+    // Sync state when URL changes (e.g. browser back/forward)
+    useEffect(() => {
+        setSelectedCategory(categoryFromUrl);
+    }, [categoryFromUrl]);
+
+    const handleCategoryChange = (category) => {
+        if (category === "all") {
+            navigate("/projects");
+        } else {
+            navigate(`/projects/${tagToSlug(category)}`);
+        }
+    };
 
     // Filter projects when dependencies change
     useEffect(() => {
@@ -56,7 +76,7 @@ const Projects = () => {
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}
                 selectedCategory={selectedCategory}
-                onCategoryChange={setSelectedCategory}
+                onCategoryChange={handleCategoryChange}
                 categories={PROJECT_TAGS}
             />
 

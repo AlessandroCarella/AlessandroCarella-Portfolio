@@ -6,6 +6,7 @@ import {
     Navigate,
     useLocation,
     useNavigate,
+    useParams,
 } from "react-router-dom";
 import { Home as HomeIcon, User, Briefcase, FileText } from "lucide-react";
 import Navigation from "./components/Navigation";
@@ -14,10 +15,20 @@ import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 // import About from "./pages/About";
 import Resume from "./pages/Resume";
+import { PROJECT_TAGS, tagToSlug } from "./components/utils/projectUtils.js";
 import "./styles/App.css";
 import "./styles/text.css";
 
 const WIPpage = "/home";
+
+function ProjectSlugRouter() {
+    const { projectSlug } = useParams();
+    const isCategory = Object.keys(PROJECT_TAGS).some(
+        (t) => tagToSlug(t) === projectSlug
+    );
+    if (isCategory) return <Projects />;
+    return <ProjectDetail />;
+}
 
 function AppContent() {
     const location = useLocation();
@@ -57,16 +68,10 @@ function AppContent() {
                     {/* Projects list page - shows all project cards */}
                     <Route path="/projects" element={<Projects />} />
 
-                    {/* Individual project page - dynamic route */}
-                    {/* This matches URLs like:
-                            /projects/data-mining-1
-                            /projects/decision-support-system
-                            /projects/bachelor-thesis
-                            etc.
-                        */}
+                    {/* Handles both category filters (/projects/master) and project detail pages */}
                     <Route
                         path="/projects/:projectSlug"
-                        element={<ProjectDetail />} // ✅ CHANGED: Updated component
+                        element={<ProjectSlugRouter />}
                     />
 
                     {/* Other pages */}

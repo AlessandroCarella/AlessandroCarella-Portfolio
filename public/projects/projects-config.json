@@ -131,21 +131,21 @@
         "backgroundImage": "bg_image.png"
     },
     {
-        "slug": "Bari Data Questionnaire Analysis",
+        "slug": "bari-data-questionnaire-analysis",
         "folder": "Bari Data Questionnaire Analysis",
         "jsonFile": "Bari Data Questionnaire Analysis.json",
         "htmlFile": "Bari Data Questionnaire Analysis.html",
         "backgroundImage": "sogni_bg.png"
     },
     {
-        "slug": "Scomodo Interactive Maps",
+        "slug": "scomodo-interactive-maps",
         "folder": "Scomodo Interactive Maps",
         "jsonFile": "Scomodo Interactive Maps.json",
         "htmlFile": "Scomodo Interactive Maps.html",
         "backgroundImage": "spaziDiAggregazione_bg.png"
     },
     {
-        "slug": "Scomodo Prints",
+        "slug": "scomodo-prints",
         "folder": "Scomodo Prints",
         "jsonFile": "Scomodo Prints.json",
         "htmlFile": "Scomodo Prints.html",
