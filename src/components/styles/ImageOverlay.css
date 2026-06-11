@@ -61,7 +61,7 @@
 .image-overlay-title {
     margin: 0;
     color: #f0f6fc;
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
     font-weight: 600;
 }
 
@@ -73,7 +73,7 @@
 
 .zoom-level {
     color: #c9d1d9;
-    font-size: 0.9rem;
+    font-size: var(--fs-sm);
     font-weight: 500;
     min-width: 50px;
     text-align: center;
@@ -149,10 +149,6 @@
     .image-overlay-header {
         padding: 0.875rem 1rem;
     }
-
-    .image-overlay-title {
-        font-size: 1.1rem;
-    }
 }
 
 @media (max-width: 768px) {
@@ -163,7 +159,6 @@
     }
 
     .image-overlay-title {
-        font-size: 1rem;
         flex: 1 1 100%;
         text-align: center;
     }
@@ -179,7 +174,6 @@
     }
 
     .zoom-level {
-        font-size: 0.85rem;
         min-width: 45px;
     }
 }
@@ -195,10 +189,6 @@
         padding: 0.75rem;
     }
 
-    .image-overlay-title {
-        font-size: 0.95rem;
-    }
-
     .image-overlay-controls {
         gap: 0.4rem;
     }
@@ -208,7 +198,6 @@
     }
 
     .zoom-level {
-        font-size: 0.8rem;
         min-width: 40px;
     }
 }

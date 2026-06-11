@@ -1,3 +1,44 @@
+/* Typographic scale — single source of truth for font sizes.
+   Components reference these tokens; only the large end scales per breakpoint.
+   Layout breakpoints (1080/1024/650/1800) live in their own files and are
+   intentionally NOT mirrored here — these are type tiers only. */
+:root {
+    --fs-2xs: 0.75rem;   /* micro labels, badges */
+    --fs-xs: 0.85rem;    /* tags, meta */
+    --fs-sm: 0.95rem;    /* captions, secondary */
+    --fs-base: 1rem;     /* body default */
+    --fs-md: 1.125rem;   /* lead / emphasized body */
+    --fs-lg: 1.25rem;    /* h4 / small heading */
+    --fs-xl: 1.5rem;     /* h3 */
+    --fs-2xl: 2rem;      /* h2 / section title */
+    --fs-3xl: 2.5rem;    /* h1 */
+    --fs-display: 3rem;  /* page hero */
+}
+
+@media (max-width: 768px) {
+    :root {
+        --fs-display: 2.25rem;
+        --fs-3xl: 2rem;
+        --fs-2xl: 1.6rem;
+        --fs-xl: 1.35rem;
+        --fs-lg: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --fs-display: 1.9rem;
+        --fs-3xl: 1.75rem;
+        --fs-2xl: 1.4rem;
+        --fs-xl: 1.25rem;
+        --fs-lg: 1.1rem;
+        --fs-md: 1rem;
+        --fs-base: 0.95rem;
+        --fs-sm: 0.9rem;
+        --fs-xs: 0.8rem;
+    }
+}
+
 html,
 body {
     background-color: #0f151b !important;
@@ -5,7 +46,8 @@ body {
 }
 
 .app-container {
-    width: 80%;
+    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
     padding-top: 1.5rem;
 }

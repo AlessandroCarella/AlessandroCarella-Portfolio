@@ -4,26 +4,26 @@
 .text-primary {
     color: #f0f6fc;
     line-height: 1.6;
-    font-size: 1rem;
+    font-size: var(--fs-base);
 }
 
 .text-secondary {
     color: #c9d1d9;
     line-height: 1.6;
-    font-size: 1rem;
+    font-size: var(--fs-base);
 }
 
 .text-muted {
     color: #8b949e;
     line-height: 1.6;
-    font-size: 0.95rem;
+    font-size: var(--fs-sm);
 }
 
 /* Heading styles */
 .heading-xl {
     padding-top: 1.3rem;
     color: #f0f6fc;
-    font-size: 2.5rem;
+    font-size: var(--fs-3xl);
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1rem;
@@ -32,7 +32,7 @@
 .heading-lg {
     padding-top: 1.3rem;
     color: #f0f6fc;
-    font-size: 2rem;
+    font-size: var(--fs-2xl);
     font-weight: 700;
     line-height: 1.3;
     margin-bottom: 0.875rem;
@@ -41,7 +41,7 @@
 .heading-md {
     padding-top: 1.3rem;
     color: #c9d1d9;
-    font-size: 1.5rem;
+    font-size: var(--fs-xl);
     font-weight: 600;
     line-height: 1.4;
     margin-bottom: 0.75rem;
@@ -50,7 +50,7 @@
 .heading-sm {
     padding-top: 1.3rem;
     color: #c9d1d9;
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
     font-weight: 600;
     line-height: 1.4;
     margin-bottom: 0.5rem;
@@ -59,21 +59,21 @@
 /* Paragraph styles */
 .paragraph {
     color: #c9d1d9;
-    font-size: 1.4rem;
+    font-size: var(--fs-md);
     line-height: 1.7;
     margin-bottom: 1rem;
 }
 
 .paragraph-lg {
     color: #c9d1d9;
-    font-size: 1.125rem;
+    font-size: var(--fs-md);
     line-height: 1.8;
     margin-bottom: 1.25rem;
 }
 
 .paragraph-sm {
     color: #8b949e;
-    font-size: 0.875rem;
+    font-size: var(--fs-sm);
     line-height: 1.6;
     margin-bottom: 0.75rem;
 }
@@ -169,41 +169,4 @@
     line-height: 1.8;
 }
 
-/* Responsive text sizing */
-@media (max-width: 768px) {
-    .heading-xl {
-        font-size: 2rem;
-    }
-
-    .heading-lg {
-        font-size: 1.75rem;
-    }
-
-    .heading-md {
-        font-size: 1.35rem;
-    }
-
-    .paragraph-lg {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .heading-xl {
-        font-size: 1.75rem;
-    }
-
-    .heading-lg {
-        font-size: 1.5rem;
-    }
-
-    .heading-md {
-        font-size: 1.25rem;
-    }
-
-    .text-primary,
-    .text-secondary,
-    .paragraph {
-        font-size: 0.95rem;
-    }
-}
+/* Responsive font sizing handled by the token scale in App.css :root. */

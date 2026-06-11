@@ -1,28 +1,29 @@
 /* Sidebar Styles */
 .sidebar {
-    flex: 0 0 20%;
-    max-width: 300px;
-    min-width: 220px;
-    padding: 1.5rem;
     position: fixed;
     top: var(--navbar-height, 80px);
+    left: max(5vw, calc((100vw - 1200px) / 2));
+    width: 280px;
     height: calc(100vh - var(--navbar-height, 80px));
+    padding: 0.75rem;
     display: flex;
     align-items: center;
-    overflow-y: auto;
+    overflow: hidden;
+    z-index: 10;
 }
 
 .sidebar-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    justify-content: space-between;
     width: 100%;
+    height: 80%;
 }
 
 .sidebar-image {
-    width: 100%;
-    max-width: 100%;
+    width: 65%;
+    max-width: 140px;
     aspect-ratio: 1;
     border-radius: 50%;
     object-fit: cover;
@@ -34,8 +35,24 @@
     width: 100%;
 }
 
+.sidebar-info .paragraph {
+    font-size: var(--fs-sm);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
 .sidebar-contacts {
     width: 100%;
+}
+
+.sidebar-contacts .text-capsule {
+    padding: 6px 12px;
+    margin: 3px 0;
+    font-size: var(--fs-sm);
+}
+
+.sidebar-contacts .capsule-text {
+    font-size: var(--fs-sm);
 }
 
 .sidebar-contacts .skills-container {
@@ -49,24 +66,26 @@
 }
 
 /* Responsive breakpoints */
-@media (max-width: 1400px) {
+@media (max-width: 1024px) {
     .sidebar {
         position: relative;
+        top: unset;
+        left: unset;
         width: 100%;
         max-width: 100%;
         min-width: unset;
         padding: 1.5rem;
-        top: 0;
-        left: 0;
         height: auto;
-        max-height: none;
+        overflow: visible;
         display: block;
+        z-index: unset;
     }
 
     .sidebar-content {
         flex-direction: row;
         align-items: center;
         gap: 2rem;
+        height: auto;
     }
 
     .sidebar-image {
@@ -80,17 +99,32 @@
         text-align: left;
         flex: 1;
     }
+
+    .sidebar-info .paragraph {
+        font-size: var(--fs-base);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    .sidebar-contacts .text-capsule {
+        padding: 10px 16px;
+        margin: 6px 0;
+    }
+
+    .sidebar-contacts .capsule-text {
+        font-size: var(--fs-sm);
+    }
 }
 
-@media (max-width: 1160px) {
+@media (max-width: 1024px) {
     .sidebar {
-        padding: 1rem;
+        padding: 0.75rem;
     }
 
     .sidebar-content {
         flex-direction: column;
         text-align: center;
-        gap: 1rem;
+        gap: 0.6rem;
     }
 
     .sidebar-info {
@@ -98,8 +132,7 @@
     }
 
     .sidebar-image {
-        width: 200px;
-        min-width: 200px;
-        max-width: 200px;
+        width: 65%;
+        max-width: 140px;
     }
 }

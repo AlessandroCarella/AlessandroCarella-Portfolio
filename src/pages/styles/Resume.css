@@ -2,30 +2,34 @@
 .resume-container {
     display: flex;
     min-height: 100vh;
-    gap: 2rem;
     width: 100%;
     max-width: 100%;
+    padding-left: calc(280px + 2rem);
 }
 
 /* Main Content */
 .main-content {
     flex: 1 1 auto;
     min-width: 0;
-    padding: 0 2rem 2rem 0;
+    padding: 0 1rem 1rem 0;
     width: 100%;
-    margin-left: calc(300px + 2rem);
 }
 
 /* Resume Sections */
 .resume-section {
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 }
 
 .section-header {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Resume-scoped: smaller section titles than the global heading-xl */
+.section-header .heading-xl {
+    font-size: var(--fs-2xl);
 }
 
 .section-icon {
@@ -34,15 +38,15 @@
 
 /* Degree Block */
 .degree-block {
-    margin-bottom: 3rem;
-    padding: 2rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
 }
 
 .degree-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .degree-header.clickable {
@@ -59,20 +63,20 @@
 }
 
 .degree-title {
-    font-size: 2rem;
+    font-size: var(--fs-lg);
     font-weight: 600;
     color: #ffffff;
     margin: 0 0 0.5rem 0;
 }
 
 .degree-info {
-    font-size: 1.25rem;
+    font-size: var(--fs-base);
     color: rgba(255, 255, 255, 0.7);
     margin: 0 0 0.5rem 0;
 }
 
 .university-link {
-    font-size: 1.25rem;
+    font-size: var(--fs-md);
     font-weight: 500;
 }
 
@@ -117,14 +121,14 @@
 
 /* Experience Block */
 .experience-block {
-    padding: 2rem;
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
 }
 
 .experience-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .experience-header.clickable {
@@ -141,14 +145,14 @@
 }
 
 .experience-title {
-    font-size: 2rem;
+    font-size: var(--fs-xl);
     font-weight: 600;
     color: #ffffff;
     margin: 0 0 0.5rem 0;
 }
 
 .company-link {
-    font-size: 1.25rem;
+    font-size: var(--fs-md);
     font-weight: 500;
 }
 
@@ -157,7 +161,7 @@
 }
 
 .experience-info {
-    font-size: 1.15rem;
+    font-size: var(--fs-base);
     color: rgba(255, 255, 255, 0.6);
     margin: 0;
 }
@@ -167,7 +171,7 @@
 }
 
 .experience-description p {
-    font-size: 1.25rem;
+    font-size: var(--fs-md);
 }
 
 .experience-list {
@@ -200,14 +204,14 @@
 }
 
 .skill-category {
-    padding: 1.5rem;
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
 }
 
 .skill-category-title {
-    font-size: 1.25rem;
+    font-size: var(--fs-md);
     font-weight: 600;
     color: rgba(96, 165, 250, 0.9);
     margin: 0 0 1rem 0;
@@ -224,7 +228,7 @@
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: var(--fs-xs);
     color: rgba(255, 255, 255, 0.9);
     transition: all 0.2s ease;
 }
@@ -236,16 +240,16 @@
 }
 
 /* Responsive breakpoints */
-@media (max-width: 1400px) {
+@media (max-width: 1024px) {
     .resume-container {
         flex-direction: column;
         gap: 1rem;
+        padding-left: 0;
     }
 
     .main-content {
         width: 100%;
-        padding: 0 1rem 2rem 1rem;
-        margin-left: 0;
+        padding: 0 1rem 1rem 1rem;
     }
 
     .exams-grid {
@@ -266,18 +270,13 @@
 
 @media (max-width: 768px) {
     .main-content {
-        padding: 0 0.5rem 2rem 0.5rem;
+        padding: 0 0.5rem 1rem 0.5rem;
     }
 
     .degree-block,
     .experience-block,
     .skill-category {
-        padding: 1.5rem;
-    }
-
-    .degree-title,
-    .experience-title {
-        font-size: 1.25rem;
+        padding: 1rem;
     }
 
     .exams-grid {
@@ -303,7 +302,6 @@
     }
 
     .skill-tag {
-        font-size: 0.8rem;
         padding: 5px 12px;
     }
 }

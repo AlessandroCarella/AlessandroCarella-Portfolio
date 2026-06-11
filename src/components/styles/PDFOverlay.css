@@ -26,7 +26,7 @@
 .pdf-overlay-content {
     width: 95%;
     height: 95%;
-    max-width: 1400px;
+    max-width: 1024px;
     max-height: 90vh;
     background: #1c1c1c;
     border-radius: 12px;
@@ -62,7 +62,7 @@
 .pdf-overlay-title {
     margin: 0;
     color: #f0f6fc;
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
     font-weight: 600;
 }
 
@@ -144,10 +144,6 @@
         padding: 1rem;
     }
 
-    .pdf-overlay-title {
-        font-size: 1.1rem;
-    }
-
     .pdf-control-button {
         padding: 0.4rem;
     }
@@ -166,10 +162,6 @@
 
     .pdf-overlay-header {
         padding: 0.75rem;
-    }
-
-    .pdf-overlay-title {
-        font-size: 1rem;
     }
 
     .pdf-viewer {

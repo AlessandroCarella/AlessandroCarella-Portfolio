@@ -131,6 +131,13 @@
         "backgroundImage": "bg_image.png"
     },
     {
+        "slug": "canile-sanitario-bari",
+        "folder": "Canile Sanitario Bari",
+        "jsonFile": "Canile Sanitario Bari.json",
+        "htmlFile": "Canile Sanitario Bari.html",
+        "backgroundImage": "dog_bg.jpg"
+    },
+    {
         "slug": "bari-data-questionnaire-analysis",
         "folder": "Bari Data Questionnaire Analysis",
         "jsonFile": "Bari Data Questionnaire Analysis.json",
@@ -172,12 +179,5 @@
             "manual": "USER MANUAL Heatlhy Catering.pdf"
         },
         "backgroundImage": "backgroundImage_bg.png"
-    },
-    {
-        "slug": "canile-sanitario-bari",
-        "folder": "Canile Sanitario Bari",
-        "jsonFile": "Canile Sanitario Bari.json",
-        "htmlFile": "Canile Sanitario Bari.html",
-        "backgroundImage": "dog_bg.jpg"
     }
 ]

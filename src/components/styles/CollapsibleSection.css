@@ -29,7 +29,7 @@
 }
 
 .collapsible-title {
-    font-size: 1.2rem;
+    font-size: var(--fs-lg);
     font-weight: 600;
     flex: 1;
 }
@@ -76,7 +76,7 @@
 }
 
 .collapsible-section .collapsible-section .collapsible-title {
-    font-size: 15px;
+    font-size: var(--fs-sm);
     font-weight: 600;
     color: #8b949e;
 }
@@ -86,23 +86,9 @@
     height: 14px;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments — font sizing handled by token scale */
 @media (max-width: 768px) {
-    .collapsible-title {
-        font-size: 1.1rem;
-    }
-
     .collapsible-header {
         padding: 0.6rem 0.4rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .collapsible-title {
-        font-size: 1rem;
-    }
-
-    .collapsible-section .collapsible-section .collapsible-title {
-        font-size: 14px;
     }
 }

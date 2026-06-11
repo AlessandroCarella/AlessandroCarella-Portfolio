@@ -80,17 +80,11 @@
 }
 
 .exam-title {
-    font-size: 1rem;
+    font-size: var(--fs-base);
     font-weight: 500;
     color: #ffffff;
     margin: 0;
     flex: 1;
-}
-
-@media (max-width: 480px) {
-    .exam-title {
-        font-size: 0.8rem;
-    }
 }
 
 .exam-card-footer {
@@ -102,13 +96,13 @@
 }
 
 .exam-ssd {
-    font-size: 0.85rem;
+    font-size: var(--fs-xs);
     color: rgba(255, 255, 255, 0.5);
     font-family: "Courier New", monospace;
 }
 
 .exam-credits {
-    font-size: 0.85rem;
+    font-size: var(--fs-xs);
     font-weight: 600;
     color: rgba(96, 165, 250, 0.9);
     margin-left: auto;

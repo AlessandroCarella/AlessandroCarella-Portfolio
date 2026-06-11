@@ -212,7 +212,7 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     color: #ffffff;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: var(--fs-sm);
 }
 
 /* Carousel Captions */
@@ -222,7 +222,7 @@
     max-width: 90%; /* Prevent caption from touching edges */
     color: #ffffff;
     padding: 0.5rem 1rem;
-    font-size: 1.1rem; /* Slightly smaller for better fit */
+    font-size: var(--fs-md);
     font-style: italic;
     text-align: center;
     line-height: 1.4;
@@ -337,7 +337,6 @@
     }
 
     .carousel-caption {
-        font-size: 0.95rem;
         padding: 0.3rem 0.6rem;
     }
 }

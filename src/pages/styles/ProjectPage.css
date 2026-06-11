@@ -16,7 +16,7 @@
 .project-main-title {
     margin: 0;
     padding: 0;
-    font-size: 3rem;
+    font-size: var(--fs-display);
     font-weight: 700;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .keywords-wrapper .section-title {
-    font-size: 15px;
+    font-size: var(--fs-sm);
     font-weight: 600;
     margin-bottom: 0.5rem;
     color: #8b949e;
@@ -99,7 +99,7 @@
 
 .keywords-wrapper .text-capsule {
     padding: 6px 12px;
-    font-size: 12px;
+    font-size: var(--fs-2xs);
     margin: 0;
     width: auto;
     cursor: default;
@@ -133,7 +133,7 @@
 }
 
 .project-main-content .collapsible-title {
-    font-size: 1.5rem;
+    font-size: var(--fs-xl);
     font-weight: 700;
 }
 
@@ -157,7 +157,7 @@
     .collapsible-section
     .collapsible-section
     .collapsible-title {
-    font-size: 1.2rem;
+    font-size: var(--fs-lg);
     font-weight: 600;
 }
 
@@ -198,7 +198,7 @@
     margin-top: 0.75rem;
     padding: 0 0.5rem;
     color: #8b949e;
-    font-size: 1.4rem;
+    font-size: var(--fs-sm);
     font-style: italic;
     text-align: center;
     line-height: 1.5;
@@ -235,7 +235,7 @@
 
 .two-images-div .project-image-caption {
     margin-top: 0.75rem;
-    font-size: 0.9rem;
+    font-size: var(--fs-sm);
 }
 
 /* Tables in main content */
@@ -277,7 +277,7 @@
 }
 
 /* Responsive Breakpoints */
-@media (max-width: 1400px) {
+@media (max-width: 1024px) {
     .project-page-container {
         display: flex;
         flex-direction: column;
@@ -328,27 +328,12 @@
         margin-bottom: 1.5rem;
     }
 
-    .project-main-title {
-        font-size: 2.5rem;
-    }
-
     .project-sidebar {
         padding: 1.5rem 1rem 1.5rem 1rem;
     }
 
     .project-main-content {
         padding: 0 1rem 1.5rem 1rem;
-    }
-
-    .project-main-content .collapsible-title {
-        font-size: 1.3rem;
-    }
-
-    .project-main-content
-        .collapsible-section
-        .collapsible-section
-        .collapsible-title {
-        font-size: 1.1rem;
     }
 
     .two-images-div {
@@ -365,10 +350,6 @@
     .project-title-section {
         padding: 1rem 0 0.5rem 0;
         margin-bottom: 1rem;
-    }
-
-    .project-main-title {
-        font-size: 2rem;
     }
 
     .project-sidebar-content {
@@ -391,22 +372,11 @@
         padding: 0.75rem 0.5rem;
     }
 
-    .project-main-content .collapsible-title {
-        font-size: 1.25rem;
-    }
-
     .project-main-content
         .collapsible-section
         .collapsible-section
         .collapsible-header {
         padding: 0.6rem 0.4rem;
-    }
-
-    .project-main-content
-        .collapsible-section
-        .collapsible-section
-        .collapsible-title {
-        font-size: 1rem;
     }
 
     .project-main-content .collapsible-section .collapsible-section {
@@ -419,32 +389,12 @@
 }
 
 @media (max-width: 480px) {
-    .project-main-title {
-        font-size: 1.75rem;
-    }
-
     .sidebar-section-title {
-        font-size: 1.1rem;
-    }
-
-    .keywords-wrapper .section-title {
-        font-size: 14px;
+        font-size: var(--fs-md);
     }
 
     .keywords-wrapper .text-capsule {
-        font-size: 11px;
         padding: 5px 10px;
-    }
-
-    .project-main-content .collapsible-title {
-        font-size: 1.1rem;
-    }
-
-    .project-main-content
-        .collapsible-section
-        .collapsible-section
-        .collapsible-title {
-        font-size: 0.95rem;
     }
 
     .project-main-content .collapsible-header {
@@ -456,7 +406,6 @@
     }
 
     .project-image-caption {
-        font-size: 0.95rem;
         margin-top: 0.5rem;
     }
 }
