@@ -1,4 +1,5 @@
 {
+    "tags": ["bachelor", "data science"],
     "projectName": "Bachelor Thesis",
     "quickSummary": "Machine learning system for detecting student moods (engaged, confused, frustrated, bored, drowsy, looking away) in e-learning environments through facial Action Unit analysis.",
     "content": "Bachelor_Thesis.html",

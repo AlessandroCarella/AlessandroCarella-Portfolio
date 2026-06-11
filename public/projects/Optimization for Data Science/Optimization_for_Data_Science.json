@@ -1,4 +1,5 @@
 {
+    "tags": ["master", "data science"],
     "projectName": "Optimization for Data Science",
     "quickSummary": "Implementation and comparison of Lagrangian dual-based optimization algorithms using Nesterov's Fast Gradient Method with dynamic smoothing for solving quadratic minimum cost flow problems on network graphs.",
     "content": "Optimization_for_Data_Science.html",

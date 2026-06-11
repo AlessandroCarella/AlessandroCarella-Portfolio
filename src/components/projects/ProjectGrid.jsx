@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ProjectCard from "../ProjectCard";
-import { getPrimaryCategory, getProjectLinks } from "../utils/projectUtils";
+import { getProjectLinks } from "../utils/projectUtils";
 
 /**
  * ProjectGrid component - Displays grid of project cards
@@ -16,9 +16,6 @@ const ProjectGrid = ({ projects }) => {
     return (
         <div className="projects-grid">
             {projects.map((project) => {
-                // Get primary category from project's categories array
-                const primaryCategory = getPrimaryCategory(project.categories);
-
                 // Get links using the new utility function with config data
                 const links = getProjectLinks(
                     {

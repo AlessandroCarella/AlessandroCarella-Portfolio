@@ -1,4 +1,5 @@
 {
+    "tags": ["master", "business"],
     "projectName": "Business Process Modeling",
     "quickSummary": "Business process modeling project analyzing a painting school scenario using BPMN and Workflow Nets. Formal verification of process properties including soundness, boundedness, and liveness using Petri net analysis and WoPeD tool.",
     "content": "Business_Process_Mining.html",

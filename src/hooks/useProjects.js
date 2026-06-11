@@ -51,7 +51,7 @@ export const useProjects = () => {
                                 slug: projectConfig.slug,
                                 folderName: projectConfig.folder,
                                 folderPath: `/projects/${projectConfig.folder}`,
-                                categories: projectConfig.categories || [],
+                                tags: projectData.tags || [],
                                 images: projectConfig.images || [],
                                 pdfFiles: projectConfig.pdfFiles || {},
                                 htmlFile: projectConfig.htmlFile,

@@ -4,14 +4,19 @@
  */
 
 /**
- * Gets the primary category for a project based on its categories array
- * @param {string[]} categories - Array of category keywords
- * @returns {string} Primary category name
+ * Canonical, ordered list of project tags used by the filter UI.
+ * Stored lowercase in each project JSON; title-cased only for display.
+ * @type {string[]}
  */
-export const getPrimaryCategory = (categories) => {
-    if (!categories || categories.length === 0) return "default";
-    // Return the first category as primary
-    return categories[0];
+export const PROJECT_TAGS = {
+    "master":           "#FA4549",  // red.4
+    "bachelor":         "#23EA57",  // green.4
+    "data science":     "#FFD743",  // yellow.2
+    "explainable AI":   "#F08A3A",  // orange.3
+    "hackathon":        "#B870FF",  // purple.3
+    "business":         "#FF7B56",  // coral.3
+    "volunteering":     "#39DAD2",  // teal.3
+    "web development":  "#3094FF",  // blue.4
 };
 
 /**
@@ -49,7 +54,7 @@ export const getProjectLinks = (projectConfig, projectData, folderPath) => {
     if (projectData && projectData.liveVersion) {
         links.liveVersionLink = projectData.liveVersion;
     }
-    
+
     // Get Class notes link from project JSON data
     if (projectData && projectData.classNotes) {
         links.classNotesLink = projectData.classNotes;
@@ -59,19 +64,19 @@ export const getProjectLinks = (projectConfig, projectData, folderPath) => {
 };
 
 /**
- * Filters projects based on search term and category
- * @param {Array} projects - Array of projects (with config embedded)
+ * Filters projects based on search term and tag
+ * @param {Array} projects - Array of projects (with tags embedded)
  * @param {string} searchTerm - Search term
- * @param {string} category - Selected category
+ * @param {string} tag - Selected tag, or "all"
  * @returns {Array} Filtered projects
  */
-export const filterProjects = (projects, searchTerm, category) => {
+export const filterProjects = (projects, searchTerm, tag) => {
     let filtered = [...projects];
 
-    // Filter by category using the categories array from config
-    if (category !== "all") {
+    // Filter by tag using the tags array from each project
+    if (tag !== "all") {
         filtered = filtered.filter((project) => {
-            return project.categories && project.categories.includes(category);
+            return project.tags && project.tags.includes(tag);
         });
     }
 
@@ -85,31 +90,12 @@ export const filterProjects = (projects, searchTerm, category) => {
             const matchesSummary = project.quickSummary
                 ?.toLowerCase()
                 .includes(term);
-            const matchesCategories =
-                project.categories &&
-                project.categories.some((cat) =>
-                    cat.toLowerCase().includes(term)
-                );
-            return matchesName || matchesSummary || matchesCategories;
+            const matchesTags =
+                project.tags &&
+                project.tags.some((t) => t.toLowerCase().includes(term));
+            return matchesName || matchesSummary || matchesTags;
         });
     }
 
     return filtered;
-};
-
-/**
- * Gets all unique categories from all projects
- * @param {Array} projects - Array of projects
- * @returns {string[]} Array of unique category names, sorted
- */
-export const getAllCategories = (projects) => {
-    const categoriesSet = new Set();
-
-    projects.forEach((project) => {
-        if (project.categories && Array.isArray(project.categories)) {
-            project.categories.forEach((cat) => categoriesSet.add(cat));
-        }
-    });
-
-    return Array.from(categoriesSet).sort();
 };

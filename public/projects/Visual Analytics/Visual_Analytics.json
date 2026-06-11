@@ -1,4 +1,5 @@
 {
+    "tags": ["master", "data science", "web development"],
     "projectName": "Visual Analytics",
     "quickSummary": "Interactive visual analytics tool developed in D3.js to investigate illegal fishing networks through knowledge graph visualization. The project is based on one of the VAST Challenge 2023 tasks.",
     "content": "Visual_Analytics.html",

@@ -7,7 +7,6 @@
         "pdfFiles": {
             "report": "MASTER THESIS.pdf"
         },
-        "categories": ["Thesis", "Master's project", "Data science"],
         "backgroundImage": "dual_representation_strategy_bg.jpg"
     },
     {
@@ -18,7 +17,6 @@
         "pdfFiles": {
             "report": "REPORT Hackathon.pdf"
         },
-        "categories": ["Data science", "Hackathon", "Extra"],
         "backgroundImage": "decision tree_bg.png"
     },
     {
@@ -30,7 +28,6 @@
             "report": "REPORT Project Design and Management.pdf",
             "presentation": "PRESENTATION Project Design and Management.pdf"
         },
-        "categories": ["Business", "Master's project"],
         "backgroundImage": "backgroundImage_bg.jpg"
     },
     {
@@ -42,7 +39,6 @@
             "report": "REPORT Decision Support Systems.pdf",
             "presentation": "PRESENTATION Decision Support Systems.pdf"
         },
-        "categories": ["Data science", "Master's project"],
         "backgroundImage": "geo_dash_bg.png"
     },
     {
@@ -53,7 +49,6 @@
         "pdfFiles": {
             "report": "REPORT data mining 2.pdf"
         },
-        "categories": ["Data science", "Master's project"],
         "backgroundImage": "discord cluster_bg.png"
     },
     {
@@ -62,7 +57,6 @@
         "jsonFile": "Strategic_and_Competitive_Intelligence.json",
         "htmlFile": "Strategic_and_Competitive_Intelligence.html",
         "pdfFiles": {},
-        "categories": ["Business", "Master's project", "Data science"],
         "backgroundImage": "quest1_bg.png"
     },
     {
@@ -74,7 +68,6 @@
             "report": "REPORT Fundamentals of Business Management.pdf",
             "presentation": "PRESENTATION Fundamentals of Business Management.pdf"
         },
-        "categories": ["Business", "Master's project"],
         "backgroundImage": "dash1_bg.png"
     },
     {
@@ -85,7 +78,6 @@
         "pdfFiles": {
             "report": "REPORT Visual analytics.pdf"
         },
-        "categories": ["Data science", "Master's project"],
         "backgroundImage": "clusters1_bg.png"
     },
     {
@@ -96,7 +88,6 @@
         "pdfFiles": {
             "report": "REPORT business processes modeling.pdf"
         },
-        "categories": ["Business", "Master's project"],
         "backgroundImage": "Full_bg.png"
     },
     {
@@ -107,7 +98,6 @@
         "pdfFiles": {
             "report": "REPORT Optimization for data science.pdf"
         },
-        "categories": ["Mathematics", "Data science", "Master's project"],
         "backgroundImage": "backgroundImage_bg.png"
     },
     {
@@ -118,7 +108,6 @@
         "pdfFiles": {
             "presentation": "PRESENTATION statistics for data science.pdf"
         },
-        "categories": ["Mathematics", "Data science", "Master's project"],
         "backgroundImage": "aggregated_no_sppmi_bg.png"
     },
     {
@@ -129,7 +118,6 @@
         "pdfFiles": {
             "report": "REPORT data mining 1.pdf"
         },
-        "categories": ["Data science", "Master's project"],
         "backgroundImage": "heatmap_bg.png"
     },
     {
@@ -140,7 +128,6 @@
         "pdfFiles": {
             "report": "presentazione.pdf"
         },
-        "categories": ["Data science", "Extra"],
         "backgroundImage": "bg_image.png"
     },
     {
@@ -148,7 +135,6 @@
         "folder": "Bari Data Questionnaire Analysis",
         "jsonFile": "Bari Data Questionnaire Analysis.json",
         "htmlFile": "Bari Data Questionnaire Analysis.html",
-        "categories": ["Data science", "Computer science", "Volunteering"],
         "backgroundImage": "sogni_bg.png"
     },
     {
@@ -156,7 +142,6 @@
         "folder": "Scomodo Interactive Maps",
         "jsonFile": "Scomodo Interactive Maps.json",
         "htmlFile": "Scomodo Interactive Maps.html",
-        "categories": ["Volunteering", "Computer science"],
         "backgroundImage": "spaziDiAggregazione_bg.png"
     },
     {
@@ -164,7 +149,6 @@
         "folder": "Scomodo Prints",
         "jsonFile": "Scomodo Prints.json",
         "htmlFile": "Scomodo Prints.html",
-        "categories": ["Volunteering", "Computer science"],
         "backgroundImage": "MAPPA-VUOTI-SVUOTATI_bg.png"
     },
     {
@@ -176,7 +160,6 @@
             "report": "BACHELOR THESIS.pdf",
             "manual": "BACHELOR THESIS user manual.pdf"
         },
-        "categories": ["Thesis", "Bachelor's project", "Computer science"],
         "backgroundImage": "Action Units_bg.png"
     },
     {
@@ -188,7 +171,6 @@
             "report": "REPORT Heatlhy Catering.pdf",
             "manual": "USER MANUAL Heatlhy Catering.pdf"
         },
-        "categories": ["Computer science", "Bachelor's project"],
         "backgroundImage": "backgroundImage_bg.png"
     },
     {
@@ -196,7 +178,6 @@
         "folder": "Canile Sanitario Bari",
         "jsonFile": "Canile Sanitario Bari.json",
         "htmlFile": "Canile Sanitario Bari.html",
-        "categories": ["Computer science", "Volunteering", "Extra"],
         "backgroundImage": "dog_bg.jpg"
     }
 ]

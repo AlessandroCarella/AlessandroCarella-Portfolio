@@ -60,7 +60,7 @@ export const useProjectDetail = (projectSlug) => {
                     slug: projectSlug,
                     htmlFile: projectConfig.htmlFile,
                     pdfFiles: projectConfig.pdfFiles || {},
-                    categories: projectConfig.categories || [],
+                    tags: foundProject.tags || [],
                 });
             } catch (err) {
                 console.error("Error loading project:", err);

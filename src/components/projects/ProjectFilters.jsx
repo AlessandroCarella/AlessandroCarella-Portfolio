@@ -11,6 +11,10 @@ const ProjectFilters = ({
     onCategoryChange,
     categories = [],
 }) => {
+    // Tags are stored lowercase; title-case them for display only
+    const titleCase = (str) =>
+        str.replace(/\b\w/g, (char) => char.toUpperCase());
+
     return (
         <div className="projects-controls">
             {/* Search Bar */}
@@ -26,7 +30,7 @@ const ProjectFilters = ({
             </div>
 
             {/* Category Filters */}
-            {categories.length > 0 && (
+            {Object.keys(categories).length > 0 && (
                 <div className="category-filters">
                     <button
                         className={`category-button ${
@@ -36,15 +40,16 @@ const ProjectFilters = ({
                     >
                         All
                     </button>
-                    {categories.map((category) => (
+                    {Object.entries(categories).map(([category, color]) => (
                         <button
                             key={category}
+                            style={{ "--tag-color": color }}
                             className={`category-button ${
                                 selectedCategory === category ? "active" : ""
                             }`}
                             onClick={() => onCategoryChange(category)}
                         >
-                            {category}
+                            {titleCase(category)}
                         </button>
                     ))}
                 </div>

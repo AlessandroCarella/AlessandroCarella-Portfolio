@@ -1,4 +1,5 @@
 {
+    "tags": ["master", "business", "data science"],
     "projectName": "Fundamentals of Business Management",
     "quickSummary": "Forecasting system for banking sector EBIT and Net Income predictions using machine learning models trained on financial statements from Italy's top 5 banks (2018-2022) and macroeconomic indicators.",
     "content": "Fundamentals_of_Business_Management.html",

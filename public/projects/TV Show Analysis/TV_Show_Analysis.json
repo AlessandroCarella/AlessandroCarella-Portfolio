@@ -1,4 +1,5 @@
 {
+    "tags": ["data science", "explainable AI"],
     "projectName": "TMDB TV Show Analysis & Prediction",
     "quickSummary": "A comprehensive machine learning and XAI pipeline for predicting TV show ratings using tabular and textual data, utilizing CatBoost and SHAP/LIME for model interpretability.",
     "content": "TV_Show_Analysis.html",

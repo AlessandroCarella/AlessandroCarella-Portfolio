@@ -1,4 +1,5 @@
 {
+    "tags": ["hackathon", "data science", "explainable AI"],
     "projectName": "Hackathon XAI",
     "quickSummary": "Hackathon project exploring Explainable AI techniques (LIME, SHAP, LORE) to understand black-box models in marketing uplift modeling, evaluating explanations across content, presentation, and user experience dimensions for diverse stakeholders.",
     "content": "Hackathon_XAI.html",
@@ -7,7 +8,7 @@
         "https://www.linkedin.com/in/sara-hoxha/",
         "https://www.linkedin.com/in/rafael-ignacio-urbina-hincapi%C3%A9-2ba11a214/"
     ],
-    "repository": "https://github.com/AlessandroCarella/Hackaton-05-july-2024-pisa",
+    "repository": "https://github.com/AlessandroCarella/Hackathon-05-july-2024-pisa",
     "skills": [
         "Machine Learning",
         "Explainable AI (XAI)",

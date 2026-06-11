@@ -1,4 +1,5 @@
 {
+    "tags": ["master", "data science"],
     "projectName": "Decision Support System",
     "quickSummary": "Data warehouse and OLAP solution analyzing Chicago traffic crash data to support mock insurance company decision-making through multidimensional analysis, ETL pipelines, MDX queries, and interactive Power BI dashboards.",
     "content": "DSS.html",

@@ -1,4 +1,5 @@
 {
+    "tags": ["master", "data science"],
     "projectName": "Data Mining I",
     "quickSummary": "Data mining project analyzing 15,000 Spotify tracks using clustering, classification, regression, and pattern mining techniques to predict songs metadata.",
     "content": "dataMining1.html",

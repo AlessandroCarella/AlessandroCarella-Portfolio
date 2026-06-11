@@ -1,4 +1,5 @@
 {
+    "tags": ["master", "data science"],
     "projectName": "Statistics for Data Science",
     "quickSummary": "Recreation of a paper on statistical analysis of word embeddings that found connections between Word2Vec and PMI matrices.",
     "content": "Statistics_for_Data_Science.html",

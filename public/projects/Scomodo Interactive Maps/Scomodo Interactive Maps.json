@@ -1,4 +1,5 @@
 {
+    "tags": ["volunteering", "web development"],
     "projectName": "Scomodo Interactive Maps",
     "quickSummary": "Interactive web map platform for visualizing aggregation spaces, social struggle locations, and study environments across my home town (Bari). Developed for an association to document youth infrastructure and support community access to urban spaces.",
     "liveVersion": "https://scomodo-interactive-maps.pages.dev/",

@@ -1,4 +1,5 @@
 {
+    "tags": ["master", "data science", "business"],
     "projectName": "Strategic and Competitive Intelligence",
     "quickSummary": "Strategic intelligence analysis of coding trends through social media, analyzing 3.8M+ tweets, Dev.to articles, Reddit posts, and custom-built R scraper for extracting structured Q&A data to identify technology adoption patterns and emerging methodologies.",
     "content": "Strategic_and_Competitive_Intelligence.html",

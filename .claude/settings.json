@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(node node_modules/vite/bin/vite.js build)",
+      "Bash(npm install *)",
+      "Bash(node -e ' *)",
+      "WebFetch(domain:primer.style)"
+    ]
+  }
+}

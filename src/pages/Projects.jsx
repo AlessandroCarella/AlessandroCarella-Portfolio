@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useProjects } from "../hooks/useProjects.js";
 import {
     filterProjects,
-    getAllCategories,
+    PROJECT_TAGS,
 } from "../components/utils/projectUtils.js";
 import ProjectGrid from "../components/projects/ProjectGrid";
 import ProjectFilters from "../components/projects/ProjectFilters";
@@ -31,9 +31,6 @@ const Projects = () => {
         }
     }, [projects, searchTerm, selectedCategory]);
 
-    // Get unique categories from projects using utility function
-    const categories = getAllCategories(projects);
-
     if (loading) {
         return (
             <div className="projects-container">
@@ -55,13 +52,13 @@ const Projects = () => {
 
     return (
         <div className="projects-container">
-            {/* <ProjectFilters
+            <ProjectFilters
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}
                 selectedCategory={selectedCategory}
                 onCategoryChange={setSelectedCategory}
-                categories={categories}
-            /> */}
+                categories={PROJECT_TAGS}
+            />
 
             {filteredProjects.length === 0 ? (
                 <EmptyState />

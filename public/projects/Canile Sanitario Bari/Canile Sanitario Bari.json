@@ -1,4 +1,5 @@
 {
+    "tags": ["volunteering", "web development", "data science"],
     "projectName": "Canile Sanitario Bari — Adoption Platform",
     "quickSummary": "Full-stack Italian-language dog shelter adoption platform built for Canile Sanitario Bari. React 19 + TypeScript SPA on Cloudflare Workers (Hono backend, KV data store, R2 media), with an admin dashboard, WhatsApp-first contact flow, Instagram caption generator, and live analytics — all on Cloudflare's free tier.",
     "content": "Canile Sanitario Bari.html",
