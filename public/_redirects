@@ -1,9 +1,25 @@
-# SPA fallback for the only client-only routes: category filters /projects/<tag>.
-# All real pages (/, /home, /projects, /resume, /projects/<slug>) are prerendered
-# to static files and served directly with 200, so this only catches non-file paths.
+# SPA fallback for the client-only category-filter routes /projects/<tag> ONLY.
 #
-# Destination is "/" (NOT "/index.html"): Cloudflare's loop detector rejects any
-# rewrite whose target it can strip ".html"/"/index" from — it ignored both
-# "/*  /index.html  200" and "/projects/*  /index.html  200". "/" has nothing to
-# strip, so it parses cleanly while still serving the app shell (index.html).
-/projects/*  /  200
+# DO NOT use a /projects/* splat. On Cloudflare Pages a 200-rewrite takes
+# precedence OVER static assets, so "/projects/*  /  200" rewrote EVERY
+# /projects/... request — projects-config.json, per-project JSON/HTML/images,
+# and the prerendered /projects/<slug> pages — to the home shell, breaking the
+# Projects list ("Unexpected token '<'") and every project detail page.
+#
+# Tags, project slugs and real files all live at /projects/<one-segment>, so we
+# must list the (non-prerendered, non-file) tag routes explicitly. Every other
+# path has no matching rule and correctly falls through to its static asset.
+#
+# Keep in sync with PROJECT_TAGS in src/components/utils/projectUtils.js.
+# Target "/projects" (NOT a "*/index.html" target — Cloudflare's loop detector
+# ignores rewrites whose target it can strip "/index"/".html" from). Serving the
+# prerendered /projects list shell first-paints real content; the SPA then
+# applies the tag filter from the URL.
+/projects/master           /projects  200
+/projects/bachelor         /projects  200
+/projects/data-science     /projects  200
+/projects/explainable-ai   /projects  200
+/projects/hackathon        /projects  200
+/projects/business         /projects  200
+/projects/volunteering     /projects  200
+/projects/web-development  /projects  200
