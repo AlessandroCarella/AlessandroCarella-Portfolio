@@ -11,15 +11,16 @@
 # path has no matching rule and correctly falls through to its static asset.
 #
 # Keep in sync with PROJECT_TAGS in src/components/utils/projectUtils.js.
-# Target "/projects" (NOT a "*/index.html" target — Cloudflare's loop detector
-# ignores rewrites whose target it can strip "/index"/".html" from). Serving the
-# prerendered /projects list shell first-paints real content; the SPA then
-# applies the tag filter from the URL.
-/projects/master           /projects  200
-/projects/bachelor         /projects  200
-/projects/data-science     /projects  200
-/projects/explainable-ai   /projects  200
-/projects/hackathon        /projects  200
-/projects/business         /projects  200
-/projects/volunteering     /projects  200
-/projects/web-development  /projects  200
+# Target "/projects/" WITH the trailing slash: it is the canonical 200 URL of the
+# prerendered projects-list page, so CF serves it as a clean in-place 200 rewrite
+# (the address bar stays /projects/<tag>) and the SPA reads the slug to apply the
+# filter. A target of "/projects" (no slash) instead 308-redirects to "/projects/",
+# dropping the tag from the URL and losing the filter on a hard load / shared link.
+/projects/master           /projects/  200
+/projects/bachelor         /projects/  200
+/projects/data-science     /projects/  200
+/projects/explainable-ai   /projects/  200
+/projects/hackathon        /projects/  200
+/projects/business         /projects/  200
+/projects/volunteering     /projects/  200
+/projects/web-development  /projects/  200
