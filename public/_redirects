@@ -1,10 +1,9 @@
-# SPA fallback for client-only routes — the category filters /projects/<tag>.
-# Every real page (/, /home, /projects, /resume, /projects/<slug>) is prerendered
-# to a static file by scripts/prerender.mjs and served directly with 200, so this
-# splat only ever catches non-file paths (category filters / unknowns under it).
+# SPA fallback for the only client-only routes: category filters /projects/<tag>.
+# All real pages (/, /home, /projects, /resume, /projects/<slug>) are prerendered
+# to static files and served directly with 200, so this only catches non-file paths.
 #
-# Do NOT use `/*  /index.html  200`: Cloudflare now rejects it as an infinite loop
-# (the /index.html destination re-matches the /* source, so 0 rules parse). Scoping
-# the source under /projects/ avoids the self-match while still covering the only
-# client-only routes that aren't prerendered.
-/projects/*  /index.html  200
+# Destination is "/" (NOT "/index.html"): Cloudflare's loop detector rejects any
+# rewrite whose target it can strip ".html"/"/index" from — it ignored both
+# "/*  /index.html  200" and "/projects/*  /index.html  200". "/" has nothing to
+# strip, so it parses cleanly while still serving the app shell (index.html).
+/projects/*  /  200
