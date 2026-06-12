@@ -103,7 +103,7 @@ const Home = () => {
     return (
         <div className="home-container">
             <Seo
-                title="Alessandro Carella — Data Scientist & Data Visualization"
+                title="Alessandro Carella — Data Scientist"
                 description="Portfolio of a data scientist specializing in data visualization and explainable AI. 19 projects spanning ML, XAI, and visual analytics."
                 path="/home"
             />
