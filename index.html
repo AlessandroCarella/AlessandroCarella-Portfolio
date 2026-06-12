@@ -16,10 +16,11 @@
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        <!-- Resource hints — preload the self-hosted hero font (LCP) -->
-        <link rel="preload" href="/fonts/RobotoFlex.woff2" as="font" type="font/woff2" crossorigin />
+        <!-- Hero font (RobotoFlex.woff2) preload is emitted by the Home route
+             only (src/pages/Home.jsx) — it's the LCP font there and unused on
+             other routes, so a global preload warned "preloaded but not used". -->
 
-        <!-- Open Graph (og-image.png generated 1200x630 by scripts/gen-og-image.mjs) -->
+<!-- Open Graph (og-image.png generated 1200x630 by scripts/gen-og-image.mjs) -->
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="Alessandro Carella" />

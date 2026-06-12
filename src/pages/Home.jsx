@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import TextPressure from "../components/text/TextPressure";
 import ShinyText from "../components/text/ShinyText";
 import Sidebar from "../components/Sidebar";
@@ -107,6 +108,18 @@ const Home = () => {
                 description="Portfolio of a data scientist specializing in data visualization and explainable AI. 19 projects spanning ML, XAI, and visual analytics."
                 path="/home"
             />
+            {/* Preload the LCP hero font only here — TextPressure (its sole
+                consumer) renders on home only. A global preload in index.html
+                downloaded it on every route unused. */}
+            <Helmet>
+                <link
+                    rel="preload"
+                    href="/fonts/RobotoFlex.woff2"
+                    as="font"
+                    type="font/woff2"
+                    crossOrigin="anonymous"
+                />
+            </Helmet>
             <Sidebar />
 
             <main className="main-content">
