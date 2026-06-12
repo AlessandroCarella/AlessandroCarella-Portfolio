@@ -11,6 +11,7 @@ import ProjectGrid from "../components/projects/ProjectGrid";
 import ProjectFilters from "../components/projects/ProjectFilters";
 import LoadingState from "../components/projects/LoadingState";
 import EmptyState from "../components/projects/EmptyState";
+import Seo from "../components/Seo";
 import "./styles/Projects.css";
 
 /**
@@ -72,6 +73,12 @@ const Projects = () => {
 
     return (
         <div className="projects-container">
+            <Seo
+                title="Projects"
+                description="19 data science and data visualization projects: explainable AI, machine learning, visual analytics, and full-stack tools."
+                path="/projects"
+            />
+            <h1 className="visually-hidden">Projects</h1>
             <ProjectFilters
                 searchTerm={searchTerm}
                 onSearchChange={setSearchTerm}

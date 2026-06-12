@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, Suspense, lazy } from "react";
+import { Link } from "react-router-dom";
 import ProjectCard from "../ProjectCard";
-import PDFOverlay from "../PDFOverlay";
 import { getProjectLinks } from "../utils/projectUtils";
+
+// Lazy-load the PDF viewer (react-pdf + pdfjs worker, ~1 MB) only on first open.
+const PDFOverlay = lazy(() => import("../PDFOverlay"));
 
 /**
  * ProjectGrid component - Displays grid of project cards
  */
 const ProjectGrid = ({ projects }) => {
-    const navigate = useNavigate();
     const [activePDF, setActivePDF] = useState(null);
-
-    const handleCardClick = (project) => {
-        navigate(`/projects/${project.slug}`);
-    };
 
     const handleOpenPDF = (type, path) => {
         setActivePDF({ type, path });
@@ -38,9 +35,17 @@ const ProjectGrid = ({ projects }) => {
                 return (
                     <div
                         key={project.id}
-                        onClick={() => handleCardClick(project)}
                         className="project-card-wrapper"
                     >
+                        {/* Stretched overlay link makes the whole card a crawlable
+                            <a href>, while action buttons stay clickable (raised
+                            above it in CSS). Kept as a sibling of ProjectCard so the
+                            inner GitHub/Live <a> are never nested inside this anchor. */}
+                        <Link
+                            to={`/projects/${project.slug}`}
+                            className="project-card-link"
+                            aria-label={`View project: ${project.projectName}`}
+                        />
                         <ProjectCard
                             title={project.projectName}
                             description={
@@ -60,11 +65,13 @@ const ProjectGrid = ({ projects }) => {
             })}
 
             {activePDF && (
-                <PDFOverlay
-                    pdfPath={activePDF.path}
-                    title={activePDF.type}
-                    onClose={handleClosePDF}
-                />
+                <Suspense fallback={null}>
+                    <PDFOverlay
+                        pdfPath={activePDF.path}
+                        title={activePDF.type}
+                        onClose={handleClosePDF}
+                    />
+                </Suspense>
             )}
         </div>
     );

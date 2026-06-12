@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://alessandrocarella.pages.dev/home</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/resume</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/master-thesis</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/hackathon-xai</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/project-design-and-management</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/decision-support-system</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/data-mining-2</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/strategic-and-competitive-intelligence</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/fundamentals-of-business-management</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/visual-analytics</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/business-process-modeling</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/optimization-for-data-science</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/statistics-for-data-science</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/data-mining-1</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/tv-show-analysis</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/canile-sanitario-bari</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/bari-data-questionnaire-analysis</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/scomodo-interactive-maps</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/scomodo-prints</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/bachelor-thesis</loc><priority>0.7</priority></url>
+  <url><loc>https://alessandrocarella.pages.dev/projects/healthy-catering</loc><priority>0.7</priority></url>
+</urlset>

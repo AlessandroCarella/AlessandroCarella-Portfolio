@@ -56,10 +56,20 @@ const ProjectMainContent = ({ htmlContent, projectData, onImageClick }) => {
         let currentSection = null;
         let introContent = [];
 
-        // Apply custom classes to elements
-        doc.querySelectorAll("h1").forEach(
-            (el) => (el.className = "heading-xl")
-        );
+        // Apply custom classes to elements.
+        // Demote any source <h1> to a real <h2> element (not just class) so the
+        // project page keeps exactly one <h1> — the project title rendered by
+        // ProjectContent. (SEO audit §8.) The h2 loop below then classes it.
+        doc.querySelectorAll("h1").forEach((el) => {
+            const h2 = doc.createElement("h2");
+            h2.innerHTML = el.innerHTML;
+            el.getAttributeNames().forEach((name) => {
+                if (name !== "class") {
+                    h2.setAttribute(name, el.getAttribute(name));
+                }
+            });
+            el.replaceWith(h2);
+        });
         doc.querySelectorAll("h2").forEach(
             (el) => (el.className = "heading-lg")
         );
@@ -73,6 +83,9 @@ const ProjectMainContent = ({ htmlContent, projectData, onImageClick }) => {
         doc.querySelectorAll("a").forEach((el) => (el.className = "text-link"));
         doc.querySelectorAll("img").forEach((el) => {
             el.className = "project-image";
+            // Lazy-load + async-decode content images (CWV: payload/LCP, §11).
+            el.setAttribute("loading", "lazy");
+            el.setAttribute("decoding", "async");
 
             // Wrap image in figure with figcaption if it has alt text
             const altText = el.getAttribute("alt");

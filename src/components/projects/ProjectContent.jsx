@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
+import { useParams } from "react-router-dom";
+import { SITE_URL } from "../../../site.config.js";
+import Seo from "../Seo";
 import ProjectSidebar from "./ProjectSidebar";
 import ProjectMainContent from "./ProjectMainContent";
-import PDFOverlay from "../PDFOverlay";
 import ImageOverlay from "../ImageOverlay";
+
+// Lazy-load the PDF viewer (react-pdf + pdfjs worker, ~1 MB) only on first open.
+const PDFOverlay = lazy(() => import("../PDFOverlay"));
 import "../../pages/styles/ProjectPage.css";
 import "../styles/Carousel.css";
 
@@ -15,6 +20,7 @@ const ProjectContent = ({
     imageNames = [],
     htmlFileName = null,
 }) => {
+    const { projectSlug } = useParams();
     const [projectData, setProjectData] = useState(null);
     const [htmlContent, setHtmlContent] = useState("");
     const [loading, setLoading] = useState(true);
@@ -157,6 +163,22 @@ const ProjectContent = ({
 
     return (
         <div className="project-page-wrapper">
+            <Seo
+                title={projectData.projectName}
+                description={
+                    projectData.quickSummary ||
+                    `${projectData.projectName} — a data science project by Alessandro Carella.`
+                }
+                path={`/projects/${projectSlug ?? ""}`}
+                breadcrumb={[
+                    { name: "Home", item: `${SITE_URL}/home` },
+                    { name: "Projects", item: `${SITE_URL}/projects` },
+                    {
+                        name: projectData.projectName,
+                        item: `${SITE_URL}/projects/${projectSlug ?? ""}`,
+                    },
+                ]}
+            />
             {/* Project Title Section */}
             <div className="project-title-section">
                 <h1 className="project-main-title heading-xl">
@@ -182,11 +204,13 @@ const ProjectContent = ({
 
             {/* PDF Overlay */}
             {activePDF && (
-                <PDFOverlay
-                    pdfPath={activePDF.path}
-                    title={activePDF.type}
-                    onClose={handleClosePDF}
-                />
+                <Suspense fallback={null}>
+                    <PDFOverlay
+                        pdfPath={activePDF.path}
+                        title={activePDF.type}
+                        onClose={handleClosePDF}
+                    />
+                </Suspense>
             )}
 
             {/* Image Overlay */}

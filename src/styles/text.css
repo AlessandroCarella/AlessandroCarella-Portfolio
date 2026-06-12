@@ -170,3 +170,17 @@
 }
 
 /* Responsive font sizing handled by the token scale in App.css :root. */
+
+/* Visually-hidden: exposes an accessible page <h1> to screen readers and
+   crawlers without altering the visual design. */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

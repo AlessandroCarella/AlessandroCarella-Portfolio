@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from "react";
 
 const TextPressure = ({
     text = "Compressa",
-    fontFamily = "Compressa VF",
-    // This font is just an example, you should not use it in commercial projects.
-    fontUrl = "https://res.cloudinary.com/dr6lvwubh/raw/upload/v1529908256/CompressaPRO-GX.woff2",
+    fontFamily = "Roboto Flex",
+    // Self-hosted SIL OFL variable font (wght + wdth + slnt axes). Replaces the
+    // former Cloudinary CompressaPRO demo font, which was "not for commercial use"
+    // and a render-blocking third-party request on the LCP hero.
+    fontUrl = "/fonts/RobotoFlex.woff2",
 
     width = true,
     weight = true,
@@ -138,11 +140,16 @@ const TextPressure = ({
                     const wght = weight
                         ? Math.floor(getAttr(d, 100, 900))
                         : 400;
-                    const italVal = italic ? getAttr(d, 0, 1).toFixed(2) : 0;
+                    // Roboto Flex has no `ital` axis but does have `slnt` (0 upright
+                    // to -10 slanted); proximity leans the glyph. `italic` prop kept
+                    // for API compatibility.
+                    const slntVal = italic
+                        ? (-getAttr(d, 0, 10)).toFixed(2)
+                        : 0;
                     const alphaVal = alpha ? getAttr(d, 0, 1).toFixed(2) : 1;
 
                     span.style.opacity = alphaVal;
-                    span.style.fontVariationSettings = `'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${italVal}`;
+                    span.style.fontVariationSettings = `'wght' ${wght}, 'wdth' ${wdth}, 'slnt' ${slntVal}`;
                 });
             }
 
@@ -175,8 +182,9 @@ const TextPressure = ({
             <style>{`
         @font-face {
           font-family: '${fontFamily}';
-          src: url('${fontUrl}');
+          src: url('${fontUrl}') format('woff2');
           font-style: normal;
+          font-display: swap;
         }
 
         .flex {

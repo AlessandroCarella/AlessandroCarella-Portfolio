@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ExamCard from "../components/ExamCard";
 import Sidebar from "../components/Sidebar";
 import { Briefcase, GraduationCap, ChevronDown, ChevronUp, Wrench } from "lucide-react";
+import Seo from "../components/Seo";
 import "./styles/Resume.css";
 
 const Resume = () => {
@@ -35,16 +36,22 @@ const Resume = () => {
 
     return (
         <div className="resume-container">
+            <Seo
+                title="Resume"
+                description="Resume of Alessandro Carella — MSc Data Science, BSc Business Informatics & Computer Science, 14 months full-stack (React/Spring Boot)."
+                path="/resume"
+            />
             {/* Sidebar Component */}
             <Sidebar />
 
             {/* Main Content - 80% */}
             <main className="main-content">
+                <h1 className="visually-hidden">Resume</h1>
                 {/* Education Section */}
                 <section className="resume-section">
                     <div className="section-header">
                         <GraduationCap size={32} className="section-icon" />
-                        <h1 className="heading-xl">{pageText.education}</h1>
+                        <h2 className="heading-xl">{pageText.education}</h2>
                     </div>
 
                     {/* Master's Degree */}
@@ -146,7 +153,7 @@ const Resume = () => {
                 <section className="resume-section">
                     <div className="section-header">
                         <Briefcase size={32} className="section-icon" />
-                        <h1 className="heading-xl">{pageText.experience}</h1>
+                        <h2 className="heading-xl">{pageText.experience}</h2>
                     </div>
 
                     <div className="experience-block">
@@ -211,7 +218,7 @@ const Resume = () => {
                 <section className="resume-section">
                     <div className="section-header">
                         <Wrench size={32} className="section-icon" />
-                        <h1 className="heading-xl">{pageText.skill}</h1>
+                        <h2 className="heading-xl">{pageText.skill}</h2>
                     </div>
 
                     <div className="skills-container">

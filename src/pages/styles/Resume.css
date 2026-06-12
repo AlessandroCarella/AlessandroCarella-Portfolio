@@ -23,13 +23,19 @@
 .section-header {
     display: flex;
     align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
     gap: 1rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
 }
 
 /* Resume-scoped: smaller section titles than the global heading-xl */
 .section-header .heading-xl {
     font-size: var(--fs-2xl);
+    padding-top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1;
 }
 
 .section-icon {
@@ -284,9 +290,8 @@
     }
 
     .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
+        align-items: center;
+        gap: 1rem;
     }
 }
 

@@ -4,6 +4,7 @@ import TextPressure from "../components/text/TextPressure";
 import ShinyText from "../components/text/ShinyText";
 import Sidebar from "../components/Sidebar";
 import GitHubCalendar from "react-github-calendar";
+import Seo from "../components/Seo";
 
 import "./styles/Home.css";
 
@@ -101,6 +102,11 @@ const Home = () => {
 
     return (
         <div className="home-container">
+            <Seo
+                title="Alessandro Carella — Data Scientist & Data Visualization"
+                description="Portfolio of a data scientist specializing in data visualization and explainable AI. 19 projects spanning ML, XAI, and visual analytics."
+                path="/home"
+            />
             <Sidebar />
 
             <main className="main-content">
@@ -125,7 +131,7 @@ const Home = () => {
                         key={section.id}
                         className="max-w-6xl mx-auto px-6 py-16"
                     >
-                        <h1 className="heading-xl">{section.heading}</h1>
+                        <h2 className="heading-xl">{section.heading}</h2>
 
                         {section.paragraphs.map((paragraph, index) =>
                             renderParagraph(paragraph, index)

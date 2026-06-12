@@ -180,6 +180,28 @@
     pointer-events: auto; /* Re-enable pointer events for buttons */
 }
 
+/* Stretched overlay anchor — crawlable <a href> covering the card.
+   No nested anchors: it is a sibling of the card, not an ancestor of the
+   GitHub/Live action links. */
+.project-card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: 12px;
+}
+
+/* Keep action buttons above the overlay link so they remain clickable. */
+.project-card-wrapper .card-actions-section {
+    position: relative;
+    z-index: 2;
+}
+
+.project-card-link:focus-visible {
+    outline: 2px solid rgba(102, 126, 234, 0.5);
+    outline-offset: 4px;
+    border-radius: 12px;
+}
+
 /* Loading State */
 .loading-state {
     display: flex;

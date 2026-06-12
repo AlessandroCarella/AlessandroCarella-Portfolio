@@ -39,15 +39,33 @@
     }
 }
 
+/* Minimal reset — replaces the essentials Bootstrap's Reboot used to provide
+   (box-sizing, body margin reset, system font stack) now that bootstrap.min.css
+   is removed. */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html,
 body {
     background-color: #0f151b !important;
     color: white !important;
 }
 
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    line-height: 1.5;
+}
+
 .app-container {
     width: 90%;
     max-width: 1200px;
-    margin: 0 auto;
+    /* margin-top replaces the former Bootstrap `mt-4` on this element. */
+    margin: 1.5rem auto 0;
     padding-top: 1.5rem;
 }

@@ -1,4 +1,5 @@
 // src/App.jsx
+import { lazy, Suspense } from "react";
 import {
     BrowserRouter as Router,
     Routes,
@@ -10,12 +11,13 @@ import {
 } from "react-router-dom";
 import { Home as HomeIcon, User, Briefcase, FileText } from "lucide-react";
 import Navigation from "./components/Navigation";
-import Home from "./pages/Home";
-import Projects from "./pages/Projects";
-import ProjectDetail from "./pages/ProjectDetail";
-// import About from "./pages/About";
-import Resume from "./pages/Resume";
 import { PROJECT_TAGS, tagToSlug } from "./components/utils/projectUtils.js";
+
+// Route-level code splitting: each page ships as its own chunk. (CWV §11)
+const Home = lazy(() => import("./pages/Home"));
+const Projects = lazy(() => import("./pages/Projects"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const Resume = lazy(() => import("./pages/Resume"));
 import "./styles/App.css";
 import "./styles/text.css";
 
@@ -56,7 +58,8 @@ function AppContent() {
                     { path: "/resume", label: "Resume", icon: FileText },
                 ]}
             />
-            <div className="app-container mt-4">
+            <div className="app-container">
+                <Suspense fallback={<div className="route-loading">Loading…</div>}>
                 <Routes>
                     <Route
                         path="/"
@@ -91,6 +94,7 @@ function AppContent() {
                         }
                     />
                 </Routes>
+                </Suspense>
             </div>
         </>
     );
