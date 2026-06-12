@@ -13,7 +13,11 @@ export default function Seo({
     breadcrumb = null, // array of { name, item }
     jsonLd = null, // extra schema.org node (e.g. CreativeWork per project)
 }) {
-    const url = `${DOMAIN}${path}`;
+    // Cloudflare Pages serves every route at a trailing slash and 308-redirects
+    // the bare form (/home -> /home/), so canonical + og:url must name the
+    // trailing-slash URL — otherwise they point at a redirect. Root "/" stays.
+    const normalizedPath = path.endsWith("/") ? path : `${path}/`;
+    const url = `${DOMAIN}${normalizedPath}`;
     const fullTitle = title.includes("Alessandro Carella")
         ? title
         : `${title} — Alessandro Carella`;

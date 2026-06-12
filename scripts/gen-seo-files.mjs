@@ -22,7 +22,9 @@ const body = routes
         const cf = r.changefreq
             ? `<changefreq>${r.changefreq}</changefreq>`
             : "";
-        return `  <url><loc>${SITE_URL}${r.loc}</loc>${cf}<priority>${r.priority}</priority></url>`;
+        // Trailing slash: Cloudflare Pages 308-redirects the bare form, so the
+        // sitemap must list the canonical 200 URL (…/home/, not …/home).
+        return `  <url><loc>${SITE_URL}${r.loc}/</loc>${cf}<priority>${r.priority}</priority></url>`;
     })
     .join("\n");
 

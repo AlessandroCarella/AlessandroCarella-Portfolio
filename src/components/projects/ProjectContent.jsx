@@ -171,11 +171,11 @@ const ProjectContent = ({
                 }
                 path={`/projects/${projectSlug ?? ""}`}
                 breadcrumb={[
-                    { name: "Home", item: `${SITE_URL}/home` },
-                    { name: "Projects", item: `${SITE_URL}/projects` },
+                    { name: "Home", item: `${SITE_URL}/home/` },
+                    { name: "Projects", item: `${SITE_URL}/projects/` },
                     {
                         name: projectData.projectName,
-                        item: `${SITE_URL}/projects/${projectSlug ?? ""}`,
+                        item: `${SITE_URL}/projects/${projectSlug ?? ""}/`,
                     },
                 ]}
                 jsonLd={{
@@ -187,7 +187,7 @@ const ProjectContent = ({
                     ...(projectData.quickSummary && {
                         description: projectData.quickSummary,
                     }),
-                    url: `${SITE_URL}/projects/${projectSlug ?? ""}`,
+                    url: `${SITE_URL}/projects/${projectSlug ?? ""}/`,
                     author: { "@id": `${SITE_URL}/#person` },
                     ...(projectData.repository && {
                         codeRepository: projectData.repository,
