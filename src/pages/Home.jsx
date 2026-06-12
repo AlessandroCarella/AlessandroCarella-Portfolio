@@ -110,8 +110,15 @@ const Home = () => {
             <Sidebar />
 
             <main className="main-content">
+                {/* Real page heading for SEO/a11y. The animated TextPressure
+                    hero below renders as a <div> (as="div") so the page keeps
+                    exactly one, keyword-bearing <h1>. */}
+                <h1 className="visually-hidden">
+                    Alessandro Carella — Data Scientist
+                </h1>
                 <div className="intro-title-wrapper">
                     <TextPressure
+                        as="div"
                         text={content.title}
                         flex={true}
                         alpha={false}

@@ -24,6 +24,9 @@ const TextPressure = ({
     className = "",
 
     minFontSize = 24,
+    // Rendered element. Defaults to <h1>; pass "div" when a real (e.g. keyword-
+    // bearing, visually-hidden) <h1> lives elsewhere on the page to avoid two h1s.
+    as: Tag = "h1",
 }) => {
     const containerRef = useRef(null);
     const titleRef = useRef(null);
@@ -212,7 +215,7 @@ const TextPressure = ({
         }
       `}</style>
 
-            <h1
+            <Tag
                 ref={titleRef}
                 className={`text-pressure-title ${dynamicClassName}`}
                 style={{
@@ -243,7 +246,7 @@ const TextPressure = ({
                         {char}
                     </span>
                 ))}
-            </h1>
+            </Tag>
         </div>
     );
 };

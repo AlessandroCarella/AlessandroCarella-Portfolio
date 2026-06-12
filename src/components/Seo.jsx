@@ -2,9 +2,8 @@ import { Helmet } from "react-helmet-async";
 import { SITE_URL } from "../../site.config.js";
 
 const DOMAIN = SITE_URL;
-// Interim OG image = existing /propic.jpeg. Replace with a 1200x630 /og-image.png
-// (see reportSEOstatus.md "Missing assets").
-const DEFAULT_IMAGE = `${DOMAIN}/propic.jpeg`;
+// 1200x630 social card generated at build by scripts/gen-og-image.mjs.
+const DEFAULT_IMAGE = `${DOMAIN}/og-image.png`;
 
 export default function Seo({
     title,
@@ -12,6 +11,7 @@ export default function Seo({
     path = "/",
     image = DEFAULT_IMAGE,
     breadcrumb = null, // array of { name, item }
+    jsonLd = null, // extra schema.org node (e.g. CreativeWork per project)
 }) {
     const url = `${DOMAIN}${path}`;
     const fullTitle = title.includes("Alessandro Carella")
@@ -28,6 +28,9 @@ export default function Seo({
             <meta property="og:description" content={description} />
             <meta property="og:url" content={url} />
             <meta property="og:image" content={image} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:alt" content={fullTitle} />
 
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={fullTitle} />
@@ -46,6 +49,12 @@ export default function Seo({
                             item: b.item,
                         })),
                     })}
+                </script>
+            )}
+
+            {jsonLd && (
+                <script type="application/ld+json">
+                    {JSON.stringify(jsonLd)}
                 </script>
             )}
         </Helmet>

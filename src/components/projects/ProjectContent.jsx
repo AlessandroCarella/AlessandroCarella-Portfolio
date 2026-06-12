@@ -178,6 +178,21 @@ const ProjectContent = ({
                         item: `${SITE_URL}/projects/${projectSlug ?? ""}`,
                     },
                 ]}
+                jsonLd={{
+                    "@context": "https://schema.org",
+                    "@type": projectData.repository
+                        ? "SoftwareSourceCode"
+                        : "CreativeWork",
+                    name: projectData.projectName,
+                    ...(projectData.quickSummary && {
+                        description: projectData.quickSummary,
+                    }),
+                    url: `${SITE_URL}/projects/${projectSlug ?? ""}`,
+                    author: { "@id": `${SITE_URL}/#person` },
+                    ...(projectData.repository && {
+                        codeRepository: projectData.repository,
+                    }),
+                }}
             />
             {/* Project Title Section */}
             <div className="project-title-section">
