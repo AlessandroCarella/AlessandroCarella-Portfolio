@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ExamCard from "../components/ExamCard";
 import Sidebar from "../components/Sidebar";
-import { Briefcase, GraduationCap, ChevronDown, ChevronUp, Wrench } from "lucide-react";
+import {
+    Briefcase,
+    GraduationCap,
+    ChevronDown,
+    ChevronUp,
+    Wrench,
+} from "lucide-react";
 import Seo from "../components/Seo";
 import "./styles/Resume.css";
 
@@ -30,7 +36,7 @@ const Resume = () => {
                 setSkills(data.skills);
             })
             .catch((error) =>
-                console.error("Error loading resume data:", error)
+                console.error("Error loading resume data:", error),
             );
     }, []);
 
@@ -47,6 +53,72 @@ const Resume = () => {
             {/* Main Content - 80% */}
             <main className="main-content">
                 <h1 className="visually-hidden">Resume</h1>
+
+                {/* Experience Section */}
+                <section className="resume-section">
+                    <div className="section-header">
+                        <Briefcase size={32} className="section-icon" />
+                        <h2 className="heading-xl">{pageText.experience}</h2>
+                    </div>
+
+                    <div className="experience-block">
+                        <div
+                            className="experience-header clickable"
+                            onClick={() =>
+                                setIsExperienceOpen(!isExperienceOpen)
+                            }
+                        >
+                            <div>
+                                <h2 className="experience-title">
+                                    {experience.position}
+                                </h2>
+                                <a
+                                    href={experience.companyLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="company-link text-link"
+                                >
+                                    {experience.company}
+                                </a>
+                                <p className="experience-info">
+                                    {experience.period} • {experience.location}
+                                </p>
+                                {isExperienceOpen ? (
+                                    <ChevronUp
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                ) : (
+                                    <ChevronDown
+                                        size={24}
+                                        className="collapse-icon"
+                                    />
+                                )}
+                            </div>
+                        </div>
+                        <div
+                            className={`collapsible-content ${
+                                isExperienceOpen ? "open" : ""
+                            }`}
+                        >
+                            <div className="experience-description">
+                                <p className="paragraph">
+                                    {experience.description}
+                                </p>
+                                <ul className="experience-list paragraph">
+                                    {experience.responsibilities.map(
+                                        (responsibility, index) => (
+                                            <li key={index}>
+                                                {responsibility}
+                                            </li>
+                                        ),
+                                    )}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 {/* Education Section */}
                 <section className="resume-section">
                     <div className="section-header">
@@ -149,71 +221,6 @@ const Resume = () => {
                     </div>
                 </section>
 
-                {/* Experience Section */}
-                <section className="resume-section">
-                    <div className="section-header">
-                        <Briefcase size={32} className="section-icon" />
-                        <h2 className="heading-xl">{pageText.experience}</h2>
-                    </div>
-
-                    <div className="experience-block">
-                        <div
-                            className="experience-header clickable"
-                            onClick={() =>
-                                setIsExperienceOpen(!isExperienceOpen)
-                            }
-                        >
-                            <div>
-                                <h2 className="experience-title">
-                                    {experience.position}
-                                </h2>
-                                <a
-                                    href={experience.companyLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="company-link text-link"
-                                >
-                                    {experience.company}
-                                </a>
-                                <p className="experience-info">
-                                    {experience.period} • {experience.location}
-                                </p>
-                                {isExperienceOpen ? (
-                                    <ChevronUp
-                                        size={24}
-                                        className="collapse-icon"
-                                    />
-                                ) : (
-                                    <ChevronDown
-                                        size={24}
-                                        className="collapse-icon"
-                                    />
-                                )}
-                            </div>
-                        </div>
-                        <div
-                            className={`collapsible-content ${
-                                isExperienceOpen ? "open" : ""
-                            }`}
-                        >
-                            <div className="experience-description">
-                                <p className="paragraph">
-                                    {experience.description}
-                                </p>
-                                <ul className="experience-list paragraph">
-                                    {experience.responsibilities.map(
-                                        (responsibility, index) => (
-                                            <li key={index}>
-                                                {responsibility}
-                                            </li>
-                                        )
-                                    )}
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 {/* Skills Section */}
                 <section className="resume-section">
                     <div className="section-header">
@@ -236,7 +243,7 @@ const Resume = () => {
                                             >
                                                 {skill}
                                             </span>
-                                        )
+                                        ),
                                     )}
                                 </div>
                             </div>
