@@ -149,7 +149,7 @@ const Home = () => {
                 {content.sections.map((section) => (
                     <div
                         key={section.id}
-                        className="max-w-6xl mx-auto px-6 py-16"
+                        className="max-w-6xl px-6 py-16"
                     >
                         <h2 className="heading-xl">{section.heading}</h2>
 

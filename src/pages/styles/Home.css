@@ -34,6 +34,22 @@
     width: 100%;
 }
 
+/* Tighter spacing between home sections (py-16/max-w-6xl are no-op — no Tailwind) */
+.home-container .main-content > div {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.home-container .heading-xl {
+    padding-top: 0.5rem;
+}
+
+/* Drop trailing paragraph margin so it doesn't stack with next section gap */
+.home-container .main-content > div > .paragraph:last-child {
+    margin-bottom: 0;
+}
+
 /* Responsive breakpoints */
 @media (max-width: 1024px) {
     .home-container {
